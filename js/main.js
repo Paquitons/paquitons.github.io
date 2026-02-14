@@ -22,12 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Highlight active nav link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index';
-    navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-        }
-    });
+    const currentPage = window.location.pathname.split('/').pop();
+
+navLinks.forEach(link => {
+  const linkPage = link.getAttribute('href').replace('.html', '');
+  if (linkPage === currentPage) {
+    link.classList.add('active');
+  }
+});
 
     // Initialize booking form if exists
     const bookingForm = document.getElementById('bookingForm');
