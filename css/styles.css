@@ -773,6 +773,32 @@ textarea.form-control {
     .grid-4 {
         grid-template-columns: 1fr;
     }
+    /* CTA button spacing on mobile */
+.cta-section .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.cta-section .btn:last-child {
+    margin-bottom: 0;
+}
+/* Fix hero button spacing on small screens */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-content .btn {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+}
+
+.hero-content .btn:last-child {
+    margin-bottom: 0;
+}
 }
 
 @media (max-width: 480px) {
