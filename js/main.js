@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Highlight active nav link based on current page
     const currentPage = window.location.pathname.split('/').pop() || 'index';
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {    
+        if (link.getAttribute('href') === currentPage) {
             link.classList.add('active');
         }
     });
