@@ -20,23 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-const currentPage = window.location.pathname
-  .split('/')
-  .pop()
-  .replace('.html', '');
+const currentPage = window.location.pathname.split('/').pop() || '';
 
 navLinks.forEach(link => {
   const linkPage = link.getAttribute('href')
-    .split('/')
-    .pop()
-    .replace('.html', '');
+    .replace('.html', '')
+    .replace('/', '');
 
-  // Home case
-  const isHome =
-    (currentPage === '' || currentPage === 'index') &&
-    (linkPage === '' || linkPage === 'index');
+  if (linkPage === currentPage) {
+    link.classList.add('active');
+  }
 
-  if (linkPage === currentPage || isHome) {
+  // Home fix
+  if (currentPage === '' && link.getAttribute('href').includes('index')) {
     link.classList.add('active');
   }
 });
