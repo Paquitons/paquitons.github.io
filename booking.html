@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book an appointment with Iron Volt Electric - Easy online scheduling for electrical services.">
+    <title>Book Appointment - Iron Volt Electric</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar container">
+            <div class="logo">
+                <img src="images/IronVoltSmallerBoltBlueBG.png" alt="Iron Volt Electric" style="height: 50px;">
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="booking.html" class="btn btn-primary">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section style="background: linear-gradient(135deg, #1a4d8f 0%, #2c3e50 100%); color: white; padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 1rem;">Book Your Appointment</h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9);">
+                First, schedule a service at your convenience. We’ll provide a clear estimate, and once you approve, our team delivers high-quality work you can trust.
+            </p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section>
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Schedule Your Service</h2>
+                
+                <form id="bookingForm" class="card" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="a5219f00-7197-4fbb-a482-7a1c77f5a484">
+                    <input type="hidden" name="subject" value="New Booking Request">
+
+                    <!-- Personal Information -->
+                    <div style="border-bottom: 2px solid #dee2e6; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="color: #1a4d8f; margin-bottom: 1rem;">Personal Information</h3>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="bookingEmail" class="form-label">Email Address *</label>
+                                <input type="email" id="bookingEmail" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingPhone" class="form-label">Phone Number *</label>
+                                <input type="tel" id="bookingPhone" name="phone" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Information -->
+                    <div style="border-bottom: 2px solid #dee2e6; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="color: #1a4d8f; margin-bottom: 1rem;">Property Information</h3>
+                        <div class="form-group">
+                            <label for="propertyType" class="form-label">Property Type *</label>
+                            <select id="propertyType" name="propertyType" class="form-control" required>
+                                <option value="">Select property type...</option>
+                                <option value="residential-house">Residential - House</option>
+                                <option value="residential-apartment">Residential - Apartment/Condo</option>
+                                <option value="commercial-office">Commercial - Office</option>
+                                <option value="commercial-retail">Commercial - Retail</option>
+                                <option value="commercial-warehouse">Commercial - Warehouse</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="form-label">Service Address *</label>
+                            <input type="text" id="address" name="address" class="form-control" placeholder="Street Address" required>
+                        </div>
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label for="city" class="form-label">City *</label>
+                                <input type="text" id="city" name="city" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state" class="form-label">State *</label>
+                                <input type="text" id="state" name="state" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode" class="form-label">ZIP Code *</label>
+                                <input type="text" id="zipCode" name="zipCode" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Details -->
+                    <div style="border-bottom: 2px solid #dee2e6; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="color: #1a4d8f; margin-bottom: 1rem;">Service Details</h3>
+                        <div class="form-group">
+                            <label for="serviceType" class="form-label">Service Type *</label>
+                            <select id="serviceType" name="serviceType" class="form-control" required>
+                                <option value="">Select service type...</option>
+                                <option value="Electrical Repairs">Electrical Repairs</option>
+                                <option value="Indoor Lighting">Indoor Lighting</option>
+                                <option value="Outdoor Lighting">Outdoor Lighting</option>
+                                <option value="Panel Repair & Upgrades">Panel Repair & Upgrades</option>
+                                <option value="Breakers & Fuses">Breakers & Fuses</option>
+                                <option value="Surge Protection">Surge Protection</option>
+                                <option value="EV Charging">EV Charging</option>
+                                <option value="Generator Installation">Generator Installation</option>
+                                <option value="Outlet Repair & Replacement">Outlet Repair & Replacement</option>
+                                <option value="Recessed & Track Lighting">Recessed & Track Lighting</option>
+                                <option value="Ceiling Fan Installation">Ceiling Fan Installation</option>
+                                <option value="Hot Tub Wiring">Hot Tub Wiring</option>
+                                <option value="Smart Home Installations">Smart Home Installations</option>
+                                <option value="Data & Network Cabling">Data & Network Cabling</option>
+                                <option value="Wiring Repair & Replacement">Wiring Repair & Replacement</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency" class="form-label">Urgency Level *</label>
+                            <select id="urgency" name="urgency" class="form-control" required>
+                                <option value="">Select urgency...</option>
+                                <option value="emergency">Emergency - Within 24 hours</option>
+                                <option value="urgent">Urgent - Within 2-3 days</option>
+                                <option value="normal">Normal - Within a week</option>
+                                <option value="flexible">Flexible - Anytime convenient</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="form-label">Service Description *</label>
+                            <textarea id="description" name="description" class="form-control" rows="4" placeholder="Please describe the electrical work you need done..." required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Preferred Schedule -->
+                    <div style="border-bottom: 2px solid #dee2e6; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+                        <h3 style="color: #1a4d8f; margin-bottom: 1rem;">Preferred Schedule</h3>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="preferredDate" class="form-label">Preferred Date *</label>
+                                <input type="date" id="preferredDate" name="preferredDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="preferredTime" class="form-label">Preferred Time *</label>
+                                <select id="preferredTime" name="preferredTime" class="form-control" required>
+                                    <option value="">Select time slot...</option>
+                                    <option value="8am-10am">8:00 AM - 10:00 AM</option>
+                                    <option value="10am-12pm">10:00 AM - 12:00 PM</option>
+                                    <option value="12pm-2pm">12:00 PM - 2:00 PM</option>
+                                    <option value="2pm-4pm">2:00 PM - 4:00 PM</option>
+                                    <option value="4pm-6pm">4:00 PM - 6:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alternateDate" class="form-label">Alternate Date (Optional)</label>
+                            <input type="date" id="alternateDate" name="alternateDate" class="form-control">
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="color: #1a4d8f; margin-bottom: 1rem;">Additional Information</h3>
+                        <div class="form-group">
+                            <label for="additionalNotes" class="form-label">Special Instructions or Notes</label>
+                            <textarea id="additionalNotes" name="additionalNotes" class="form-control" rows="3" placeholder="Any special access instructions, parking information, or other relevant details..."></textarea>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" name="terms" required>
+                                <span>I agree to the terms and conditions and authorize Iron Volt Electric to contact me regarding this appointment. *</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Success/Error Message -->
+                    <p id="formMessage" style="text-align: center; margin-top: 1rem; font-size: 1rem;"></p>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.25rem; font-size: 1.125rem;">
+                        Submit Booking Request
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Alternative Section -->
+    <section class="bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Prefer to Talk?</h2>
+                <p class="section-subtitle">Call us directly to schedule your appointment</p>
+            </div>
+            <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
+                <div class="card text-center">
+                    <div class="card-icon">📞</div>
+                    <h3 class="card-title">Call Us</h3>
+                    <p class="card-text">Speak with our friendly team to schedule your service</p>
+                    <a href="tel:8326108081" class="btn btn-primary" style="margin-top: 1rem;">
+                        +1 (832) 610-8081
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section footer-brand">
+                    <h2>Iron Volt Electric</h2>
+                    <p>Reliable electrical services for residential and commercial clients. Licensed, insured, and ready to power your home or business.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>📞 <a href="tel:8326108081">+1 (832) 610-8081</a></p>
+                    <p>✉️ <a href="mailto:info@ironvoltelectric.com">info@ironvoltelectric.com</a></p>
+                    <p>🕐 Mon–Sun: 8AM–6PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Iron Volt Electric LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>
