@@ -20,13 +20,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Highlight active nav link based on current page
-    const currentPage = window.location.pathname.split('/').pop();
+const currentPage = window.location.pathname
+  .split('/')
+  .pop()
+  .replace('.html', '');
 
 navLinks.forEach(link => {
-  const linkPage = link.getAttribute('href').replace('.html', '');
-  if (linkPage === currentPage) {
+  const linkPage = link.getAttribute('href')
+    .split('/')
+    .pop()
+    .replace('.html', '');
+
+  // Home case
+  const isHome =
+    (currentPage === '' || currentPage === 'index') &&
+    (linkPage === '' || linkPage === 'index');
+
+  if (linkPage === currentPage || isHome) {
     link.classList.add('active');
   }
 });
