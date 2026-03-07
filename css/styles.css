@@ -512,25 +512,44 @@ textarea.form-control { resize: vertical; min-height: 110px; }
   }
 
   .nav-menu {
-    display: none;
-    width: 100%;
-    background: var(--navy);
+    /* always in DOM, animate with max-height */
+    display: flex !important;
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
+    order: 3;
+    background: var(--navy);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 1rem;
+    gap: 0.25rem;
+    box-shadow: none;
+    transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nav-menu.active {
+    max-height: 500px;
+    opacity: 1;
     padding: 0.75rem 1rem 1.25rem;
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    gap: 0.25rem;
-    /* use normal flow instead of absolute so it always appears below navbar */
-    position: static;
-    order: 3;
   }
-  .nav-menu.active { display: flex; }
+  /* staggered fade-in for each link */
+  .nav-menu li {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .nav-menu.active li { opacity: 1; transform: translateY(0); }
+  .nav-menu.active li:nth-child(1) { transition-delay: 0.05s; }
+  .nav-menu.active li:nth-child(2) { transition-delay: 0.10s; }
+  .nav-menu.active li:nth-child(3) { transition-delay: 0.15s; }
+  .nav-menu.active li:nth-child(4) { transition-delay: 0.20s; }
+  .nav-menu.active li:nth-child(5) { transition-delay: 0.25s; }
+  .nav-menu.active li:nth-child(6) { transition-delay: 0.30s; }
   .nav-menu li a { padding: 0.65rem 1rem; border-radius: 6px; }
 
   /* make navbar wrap so menu appears below logo row */
-  .navbar {
-    flex-wrap: wrap;
-  }
+  .navbar { flex-wrap: wrap; }
 
   .grid-2, .grid-3, .why-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }

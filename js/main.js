@@ -1,37 +1,41 @@
-// Mobile menu toggle — dead simple version
+// Mobile menu toggle — animated dropdown
 function toggleMenu() {
   var menu = document.querySelector('.nav-menu');
   var btn  = document.querySelector('.mobile-menu-toggle');
   if (!menu || !btn) return;
-  if (menu.style.display === 'flex') {
-    menu.style.display = 'none';
+  var isOpen = menu.classList.contains('active');
+  if (isOpen) {
+    menu.classList.remove('active');
     btn.textContent = '☰';
   } else {
-    menu.style.display = 'flex';
-    menu.style.flexDirection = 'column';
-    menu.style.width = '100%';
-    menu.style.padding = '0.75rem 1rem 1.25rem';
-    menu.style.background = '#111e33';
-    menu.style.order = '3';
+    menu.classList.add('active');
     btn.textContent = '✕';
   }
 }
 
 window.onload = function() {
   var btn = document.querySelector('.mobile-menu-toggle');
-  if (btn) {
-    btn.onclick = toggleMenu;
-  }
+  if (btn) btn.onclick = toggleMenu;
 
-  // Close menu when any nav link clicked
-  var links = document.querySelectorAll('.nav-menu a');
-  links.forEach(function(link) {
+  // Close menu when any nav link is clicked
+  document.querySelectorAll('.nav-menu a').forEach(function(link) {
     link.addEventListener('click', function() {
       var menu = document.querySelector('.nav-menu');
       var b    = document.querySelector('.mobile-menu-toggle');
-      if (menu) menu.style.display = 'none';
+      if (menu) menu.classList.remove('active');
       if (b)    b.textContent = '☰';
     });
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', function(e) {
+    var menu = document.querySelector('.nav-menu');
+    var btn  = document.querySelector('.mobile-menu-toggle');
+    if (!menu || !btn) return;
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('active');
+      btn.textContent = '☰';
+    }
   });
 };
 
