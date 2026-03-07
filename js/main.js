@@ -60,18 +60,18 @@ if (form && msg) {
       const data = await res.json();
       if (data.success) {
         msg.style.color = '#28a745';
-        msg.textContent = "✅ Booking request sent! We'll be in touch within 24 hours.";
+        msg.textContent = "Booking request sent! We'll be in touch within 24 hours.";
         form.reset();
       } else {
         throw new Error('Submission failed');
       }
     } catch {
       msg.style.color = '#dc3545';
-      msg.textContent = '❌ Something went wrong. Please call us at (832) 610-8081.';
+      msg.textContent = 'Something went wrong. Please call us at (832) 610-8081.';
     }
 
     btn.disabled = false;
-    btn.textContent = 'Submit Booking Request ⚡';
+    btn.textContent = 'Submit Booking Request';
   });
 }
 
