@@ -460,6 +460,48 @@ section {
     line-height: 1.4;
 }
 
+/* Services Category Layout */
+.service-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.service-category h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.service-category-image {
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin: 0 auto var(--spacing-lg) auto;
+    display: block;
+}
+
+.dark-section {
+    background: #293d66;
+    color: white;
+    padding: 70px 0;
+}
+
+.dark-section h1,
+.dark-section h2 {
+    color: white;
+}
+
+.dark-section .section-subtitle {
+    color: rgba(255,255,255,0.9);
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.dark-section.darker {
+    background: #1f2f4d;
+}
 
 /* Trust Logos */
 .trust-logos {
