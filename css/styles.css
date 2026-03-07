@@ -495,11 +495,9 @@ textarea.form-control { resize: vertical; min-height: 110px; }
   /* Navbar: logo centered, toggle right */
   .navbar {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0.75rem 1.5rem;
-    position: relative;
   }
   .logo {
     position: absolute;
@@ -514,9 +512,13 @@ textarea.form-control { resize: vertical; min-height: 110px; }
     align-items: center;
     justify-content: center;
     margin-left: auto;
-    order: 2;
     height: 40px;
     width: 40px;
+  }
+  /* menu spans full width below the logo row */
+  .nav-menu {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 
   .nav-menu {
