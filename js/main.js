@@ -1,130 +1,65 @@
-// main.js
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const menu   = document.querySelector('.nav-menu');
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-    }
-    
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active');
-            }
-        });
+  if (toggle && menu) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.toggle('active');
+      toggle.textContent = menu.classList.contains('active') ? '✕' : '☰';
     });
-const currentPage = window.location.pathname.split('/').pop() || '';
 
-navLinks.forEach(link => {
-  const linkPage = link.getAttribute('href')
-    .replace('.html', '')
-    .replace('/', '');
+    // Close when a nav link is clicked
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+        toggle.textContent = '☰';
+      });
+    });
 
-  if (linkPage === currentPage) {
-    link.classList.add('active');
-  }
-
-  // Home fix
-  if (currentPage === '' && link.getAttribute('href').includes('index')) {
-    link.classList.add('active');
+    // Close when clicking outside the nav
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('active');
+        toggle.textContent = '☰';
+      }
+    });
   }
 });
 
-    // Initialize booking form if exists
-    const bookingForm = document.getElementById('bookingForm');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
+// Booking form feedback
+const form = document.getElementById('bookingForm');
+const msg  = document.getElementById('formMessage');
 
-            // Validate required fields
-            let isValid = true;
-            const inputs = bookingForm.querySelectorAll('.form-control[required]');
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = 'red';
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
+if (form && msg) {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
 
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            // Gather form data
-            const formData = new FormData(bookingForm);
-
-            const firstName = formData.get('firstName');
-            const lastName = formData.get('lastName');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const propertyType = formData.get('propertyType');
-            const address = formData.get('address');
-            const city = formData.get('city');
-            const state = formData.get('state');
-            const zipCode = formData.get('zipCode');
-            const serviceType = formData.get('serviceType');
-            const urgency = formData.get('urgency');
-            const description = formData.get('description');
-            const preferredDate = formData.get('preferredDate');
-            const preferredTime = formData.get('preferredTime');
-            const alternateDate = formData.get('alternateDate');
-            const additionalNotes = formData.get('additionalNotes');
-
-            // Prepare plain-text message
-            const message = `
-First Name: ${firstName}
-Last Name: ${lastName}
-Email: ${email}
-Phone: ${phone}
-Property Type: ${propertyType}
-Address: ${address}, ${city}, ${state}, ${zipCode}
-Service Type: ${serviceType}
-Urgency Level: ${urgency}
-Description: ${description}
-Preferred Date & Time: ${preferredDate} at ${preferredTime}
-Alternate Date: ${alternateDate || 'N/A'}
-Additional Notes: ${additionalNotes || 'N/A'}
-`;
-
-            // Create payload for Web3Forms
-            const payload = new FormData();
-            payload.append('access_key', 'a5219f00-7197-4fbb-a482-7a1c77f5a484');
-            payload.append('name', `${firstName} ${lastName}`);
-            payload.append('email', email);
-            payload.append('message', message);
-            payload.append('subject', `New Booking Request: ${serviceType}`);
-            payload.append('replyto', email);
-
-            // Send form
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: payload
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    alert('Thank you! Your booking request has been submitted successfully. We will contact you shortly.');
-                    bookingForm.reset();
-                } else {
-                    console.error(result);
-                    alert('Oops! Something went wrong while submitting your request. Please try again.');
-                }
-            } catch (error) {
-                console.error(error);
-                alert('Network error. Please check your connection and try again.');
-            }
-        });
+    try {
+      const res  = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (data.success) {
+        msg.style.color = '#28a745';
+        msg.textContent = '✅ Booking request sent! We'll be in touch within 24 hours.';
+        form.reset();
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch {
+      msg.style.color = '#dc3545';
+      msg.textContent = '❌ Something went wrong. Please call us at (832) 610-8081.';
     }
+
+    btn.disabled = false;
+    btn.textContent = 'Submit Booking Request ⚡';
+  });
+}
+
+// Set minimum date on date pickers to today
+document.querySelectorAll('input[type="date"]').forEach(input => {
+  input.min = new Date().toISOString().split('T')[0];
 });
