@@ -1,32 +1,39 @@
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.mobile-menu-toggle');
-  const menu   = document.querySelector('.nav-menu');
-
-  if (toggle && menu) {
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      menu.classList.toggle('active');
-      toggle.textContent = menu.classList.contains('active') ? '✕' : '☰';
-    });
-
-    // Close when a nav link is clicked
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        toggle.textContent = '☰';
-      });
-    });
-
-    // Close when clicking outside the nav
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.classList.remove('active');
-        toggle.textContent = '☰';
-      }
-    });
+// Mobile menu toggle — dead simple version
+function toggleMenu() {
+  var menu = document.querySelector('.nav-menu');
+  var btn  = document.querySelector('.mobile-menu-toggle');
+  if (!menu || !btn) return;
+  if (menu.style.display === 'flex') {
+    menu.style.display = 'none';
+    btn.textContent = '☰';
+  } else {
+    menu.style.display = 'flex';
+    menu.style.flexDirection = 'column';
+    menu.style.width = '100%';
+    menu.style.padding = '0.75rem 1rem 1.25rem';
+    menu.style.background = '#111e33';
+    menu.style.order = '3';
+    btn.textContent = '✕';
   }
-});
+}
+
+window.onload = function() {
+  var btn = document.querySelector('.mobile-menu-toggle');
+  if (btn) {
+    btn.onclick = toggleMenu;
+  }
+
+  // Close menu when any nav link clicked
+  var links = document.querySelectorAll('.nav-menu a');
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      var menu = document.querySelector('.nav-menu');
+      var b    = document.querySelector('.mobile-menu-toggle');
+      if (menu) menu.style.display = 'none';
+      if (b)    b.textContent = '☰';
+    });
+  });
+};
 
 // Booking form feedback
 const form = document.getElementById('bookingForm');
@@ -44,7 +51,7 @@ if (form && msg) {
       const data = await res.json();
       if (data.success) {
         msg.style.color = '#28a745';
-        msg.textContent = '✅ Booking request sent! We'll be in touch within 24 hours.';
+        msg.textContent = "✅ Booking request sent! We'll be in touch within 24 hours.";
         form.reset();
       } else {
         throw new Error('Submission failed');
