@@ -492,42 +492,52 @@ textarea.form-control { resize: vertical; min-height: 110px; }
 @media (max-width: 768px) {
   section { padding: 3.5rem 0; }
 
-  /* Navbar: logo centered, toggle right */
+  /* Mobile navbar */
+  header { position: relative; }
   .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 1.5rem;
+    height: 64px;
+    padding: 0 1.5rem;
+    flex-wrap: nowrap;
+  }
+  .nav-spacer {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
   .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 1;
     display: flex;
+    justify-content: center;
     align-items: center;
+    position: static;
+    transform: none;
   }
   .logo img { height: 40px; }
   .mobile-menu-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
-    height: 40px;
     width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
   /* menu spans full width below the logo row */
   .nav-menu {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    width: 100%;
   }
 
   .nav-menu {
-    /* always in DOM, animate with max-height */
     display: flex !important;
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
-    order: 3;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 999;
     background: var(--navy);
     overflow: hidden;
     max-height: 0;
