@@ -51,7 +51,12 @@ if (form && msg) {
     btn.textContent = 'Sending…';
 
     try {
-      const res  = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const formData = Object.fromEntries(new FormData(form).entries());
+      const res  = await fetch('https://ironvolt.omnemarchy.online/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
       const data = await res.json();
       if (data.success) {
         msg.style.color = '#28a745';
