@@ -44,6 +44,40 @@ ul { list-style: none; }
 /* ---- Container ---- */
 .container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
 
+/* ---- Emergency Banner ---- */
+.emergency-banner {
+  background: #c0392b;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  z-index: 1001;
+  position: relative;
+}
+.emergency-banner a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-weight: 700;
+}
+.emergency-banner a:hover { color: #ffe0dd; }
+
+/* ---- Emergency Hero Note ---- */
+.hero-emergency {
+  margin-top: 1.25rem;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-body);
+}
+.hero-emergency a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.hero-emergency a:hover { color: #f5c842; }
+
 /* ---- Typography ---- */
 h1,h2,h3,h4 {
   font-family: var(--font-head);
