@@ -1,4 +1,4 @@
-// Mobile menu toggle — animated dropdown
+// ── Mobile menu toggle — animated dropdown ───────────────────
 function toggleMenu() {
   var menu = document.querySelector('.nav-menu');
   var btn  = document.querySelector('.mobile-menu-toggle');
@@ -39,17 +39,15 @@ window.onload = function() {
   });
 };
 
-// Booking form feedback
+// ── Booking form feedback ────────────────────────────────────
 const form = document.getElementById('bookingForm');
 const msg  = document.getElementById('formMessage');
-
 if (form && msg) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = 'Sending…';
-
     try {
       const formData = Object.fromEntries(new FormData(form).entries());
       const res  = await fetch('https://ironvolt.omnemarchy.online/booking', {
@@ -69,7 +67,6 @@ if (form && msg) {
       msg.style.color = '#dc3545';
       msg.textContent = 'Something went wrong. Please call us at (832) 610-8081.';
     }
-
     btn.disabled = false;
     btn.textContent = 'Submit Booking Request';
   });
@@ -78,4 +75,45 @@ if (form && msg) {
 // Set minimum date on date pickers to today
 document.querySelectorAll('input[type="date"]').forEach(input => {
   input.min = new Date().toISOString().split('T')[0];
+});
+
+// ── Service card slideshows ──────────────────────────────────
+document.querySelectorAll('.card-slideshow').forEach(function(slideshow) {
+  var track    = slideshow.querySelector('.slideshow-track');
+  var imgs     = slideshow.querySelectorAll('.slide-img');
+  var dotsWrap = slideshow.querySelector('.slide-dots');
+  var total    = imgs.length;
+  var current  = 0;
+  var timer;
+
+  // Build dots
+  imgs.forEach(function(_, i) {
+    var d = document.createElement('span');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', function() { goTo(i); });
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    slideshow.querySelectorAll('.slide-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(function() { goTo(current + 1); }, 4000);
+  }
+
+  slideshow.querySelector('.slide-prev').addEventListener('click', function() { goTo(current - 1); });
+  slideshow.querySelector('.slide-next').addEventListener('click', function() { goTo(current + 1); });
+
+  // Pause on hover
+  slideshow.addEventListener('mouseenter', function() { clearInterval(timer); });
+  slideshow.addEventListener('mouseleave', resetTimer);
+
+  resetTimer();
 });
