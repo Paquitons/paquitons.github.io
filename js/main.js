@@ -42,9 +42,30 @@ window.onload = function() {
 // ── Booking form feedback ────────────────────────────────────
 const form = document.getElementById('bookingForm');
 const msg  = document.getElementById('formMessage');
+
+// ── Math captcha ─────────────────────────────────────────────
+var mathA, mathB, mathCorrect;
+function generateMathQuestion() {
+  mathA = Math.floor(Math.random() * 10) + 1;
+  mathB = Math.floor(Math.random() * 10) + 1;
+  mathCorrect = mathA + mathB;
+  var label = document.getElementById('mathQuestion');
+  if (label) label.textContent = 'Quick Check: What is ' + mathA + ' + ' + mathB + '?  *';
+}
+generateMathQuestion();
+
 if (form && msg) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    var answerInput = document.getElementById('mathAnswer');
+    var mathError   = document.getElementById('mathError');
+    if (parseInt(answerInput.value) !== mathCorrect) {
+      mathError.style.display = 'block';
+      answerInput.value = '';
+      generateMathQuestion();
+      return;
+    }
+    mathError.style.display = 'none';
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = 'Sending…';
