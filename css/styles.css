@@ -29,8 +29,9 @@
 
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { 
-  scroll-behavior: smooth; 
+html {
+  overscroll-behavior: none;
+  height: 100%;
 }
 body {
   font-family: var(--font-body);
@@ -66,20 +67,6 @@ ul { list-style: none; }
   font-weight: 700;
 }
 .emergency-banner a:hover { color: #ffe0dd; }
-
-/* ---- Emergency Hero Note ---- */
-.hero-emergency {
-  margin-top: 1.25rem;
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.85);
-  font-family: var(--font-body);
-}
-.hero-emergency a {
-  color: var(--accent);
-  font-weight: 700;
-  text-decoration: underline;
-}
-.hero-emergency a:hover { color: #f5c842; }
 
 /* ---- Typography ---- */
 h1,h2,h3,h4 {
@@ -127,7 +114,6 @@ header {
   position: sticky; top: 0; z-index: 1000;
   background: var(--navy);
   box-shadow: 0 2px 18px rgba(0,0,0,0.28);
-  position: sticky;
 }
 .navbar {
   display: flex; align-items: center; justify-content: space-between;
@@ -164,6 +150,40 @@ header {
 .mobile-menu-toggle {
   display: none; background: none; border: none;
   color: var(--white); font-size: 1.7rem; cursor: pointer; line-height: 1;
+}
+
+/* ---- Service Area Strip ---- */
+.area-strip {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 0.7rem 0;
+  overflow: hidden;
+}
+.area-strip .container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  justify-content: center;
+}
+.area-label {
+  font-family: var(--font-head);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+.area-strip .container span:not(.area-label):not(.area-dot) {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+}
+.area-dot {
+  color: rgba(255,255,255,0.25) !important;
+  font-size: 0.7rem !important;
 }
 
 /* ---- Page Banner ---- */
@@ -247,9 +267,12 @@ section { padding: 5.5rem 0; }
 .hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: url('../images/ironvoltvan.png') center center / cover no-repeat;
-  opacity: 0.18;
-  filter: blur(2px);
+  background-image:
+    linear-gradient(rgba(232,160,32,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,160,32,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 }
 .hero::after {
   content: '';
@@ -523,7 +546,7 @@ textarea.form-control { resize: vertical; min-height: 110px; }
   font-size: 1.7rem; color: var(--white);
   margin-bottom: 0.85rem; text-transform: uppercase;
 }
-.footer-brand p { font-size: 0.95rem; line-height: 1.7; color: #8a9aac; }
+.footer-brand p { font-size: 0.95rem; line-height: 1.7; color: #8a9aac; margin-bottom: 1.25rem; }
 .footer-section h3 {
   font-family: var(--font-head);
   font-size: 1rem; font-weight: 700;
@@ -539,6 +562,27 @@ textarea.form-control { resize: vertical; min-height: 110px; }
 .footer-bottom {
   text-align: center; padding: 1.5rem 0;
   font-size: 0.85rem; color: #4a5a6a;
+}
+
+/* Social icons */
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.07);
+  color: #8a9aac;
+  transition: background var(--trans), color var(--trans);
+}
+.footer-social a:hover {
+  background: var(--accent);
+  color: var(--navy);
 }
 
 /* ============================================================
@@ -593,9 +637,6 @@ textarea.form-control { resize: vertical; min-height: 110px; }
     height: 40px;
     flex-shrink: 0;
   }
-  .nav-menu {
-    width: 100%;
-  }
 
   .nav-menu {
     display: flex !important;
@@ -632,7 +673,6 @@ textarea.form-control { resize: vertical; min-height: 110px; }
   .nav-menu.active li:nth-child(3) { transition-delay: 0.15s; }
   .nav-menu.active li:nth-child(4) { transition-delay: 0.20s; }
   .nav-menu.active li:nth-child(5) { transition-delay: 0.25s; }
-  .nav-menu.active li:nth-child(6) { transition-delay: 0.30s; }
   .nav-menu li a { padding: 0.65rem 1rem; border-radius: 6px; }
 
   .navbar { flex-wrap: wrap; }
@@ -647,6 +687,8 @@ textarea.form-control { resize: vertical; min-height: 110px; }
 
   .service-category-image { height: 220px; }
   .page-banner { padding: 3.5rem 0 3rem; }
+
+  .area-strip .container { justify-content: center; gap: 0.4rem 0.6rem; }
 }
 
 @media (max-width: 480px) {
