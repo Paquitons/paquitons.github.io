@@ -641,7 +641,44 @@ select.form-control { cursor: pointer; }
 .footer-section a { color: #6a7f92; transition: color var(--trans); }
 .footer-section a:hover { color: var(--gold); }
 .footer-tecl { display: inline-block; background: rgba(240,165,0,0.1); border: 1px solid rgba(240,165,0,0.3); color: var(--gold); font-family: var(--font-head); font-size: 0.76rem; font-weight: 600; letter-spacing: 0.1em; padding: 0.26rem 0.72rem; border-radius: 4px; margin-top: 0.5rem; }
-.footer-bottom { text-align: center; padding: 1.5rem 0; font-size: 0.8rem; color: #3a4f62; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.75rem 0 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-wrap: wrap;
+}
+.footer-socials-label {
+  font-family: var(--font-head);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.32);
+  margin-right: 0.35rem;
+  white-space: nowrap;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.55);
+  transition: background var(--trans), border-color var(--trans), color var(--trans), transform var(--trans);
+  flex-shrink: 0;
+}
+.social-btn svg { width: 17px; height: 17px; fill: currentColor; display: block; }
+.social-btn:hover {
+  background: rgba(240,165,0,0.14);
+  border-color: rgba(240,165,0,0.45);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+.footer-bottom { text-align: center; padding: 1.4rem 0; font-size: 0.8rem; color: #3a4f62; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 .footer-bottom-links { display: flex; gap: 1.5rem; }
 .footer-bottom-links a { color: #3a4f62; transition: color var(--trans); }
 .footer-bottom-links a:hover { color: var(--gold); }
@@ -780,6 +817,10 @@ select.form-control { cursor: pointer; }
 
   /* Booking sidebar stacks */
   .booking-sidebar { position: static !important; }
+
+  /* Footer socials */
+  .footer-socials { gap: 0.5rem; }
+  .footer-socials-label { width: 100%; margin-right: 0; margin-bottom: 0.25rem; }
 }
 
 @media (max-width: 480px) {
