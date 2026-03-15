@@ -45,6 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData
       });
+      if (!response.ok) {
+        const err = await response.json();
+        console.log('Server error:', err);
+        alert(err.error);
+        return;
+      }
 
       if (response.ok) {
         form.style.display = 'none';
