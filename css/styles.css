@@ -1152,7 +1152,6 @@ header {
   color: var(--text);
   background: var(--white);
   transition: border-color var(--trans), box-shadow var(--trans);
-  -webkit-appearance: none;
 }
 .form-control:focus {
   outline: none;
