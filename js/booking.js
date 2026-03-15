@@ -39,9 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = 'Submitting...';
 
     try {
-      const formData = new FormData(form);
+      const formData = new URLSearchParams(new FormData(form));
       const response = await fetch(form.action, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData
       });
 
