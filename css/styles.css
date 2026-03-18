@@ -1,6 +1,6 @@
 /* ============================================================
-   IRON VOLT ELECTRIC — styles.css  v6.0
-   Design: Industrial Premium — Deep Navy / Amber / Electric Blue
+   IRON VOLT ELECTRIC — styles.css  v7.0
+   Design: Industrial Grit — Deep Navy / Amber / Electric Blue
    Fonts: Archivo (headings) + Outfit (body)
    ============================================================ */
 
@@ -44,6 +44,15 @@
   --shadow-gold: 0 6px 28px rgba(232,160,32,0.25);
   --trans:     0.28s cubic-bezier(0.4, 0, 0.2, 1);
   --trans-fast:0.16s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Industrial texture — inline SVG noise */
+  --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  --diagonal: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18px,
+    rgba(255,255,255,0.015) 18px,
+    rgba(255,255,255,0.015) 19px
+  );
 }
 
 /* ============================================================
@@ -301,7 +310,7 @@ p:last-child { margin-bottom: 0; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.emergency-banner a { color: #fff; text-decoration: underline; font-weight: 700; }
+/* Hazard-stripe texture on emergency banner */
 .emergency-banner a:hover { opacity: 0.85; }
 
 /* ============================================================
@@ -462,7 +471,7 @@ header {
 }
 
 /* ============================================================
-   PAGE BANNER
+   PAGE BANNER — industrial texture
    ============================================================ */
 .page-banner {
   background: var(--navy);
@@ -472,26 +481,41 @@ header {
   position: relative;
   overflow: hidden;
 }
+/* Layered industrial texture: grid + diagonal stripes + noise + gold radial glow */
 .page-banner::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(232,160,32,0.06) 0%, transparent 70%),
+    var(--noise),
+    var(--diagonal),
+    radial-gradient(ellipse 60% 50% at 50% 120%, rgba(232,160,32,0.08) 0%, transparent 70%),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 120px,
-      rgba(255,255,255,0.008) 120px,
-      rgba(255,255,255,0.008) 121px
+      rgba(255,255,255,0.012) 120px,
+      rgba(255,255,255,0.012) 121px
     ),
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 120px,
-      rgba(255,255,255,0.008) 120px,
-      rgba(255,255,255,0.008) 121px
+      rgba(255,255,255,0.012) 120px,
+      rgba(255,255,255,0.012) 121px
     );
+  pointer-events: none;
+}
+/* Top edge spark line */
+.page-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 10%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 90%);
+  opacity: 0.5;
 }
 .page-banner .container { position: relative; }
 .page-banner h1 { color: var(--white); margin-bottom: 1rem; font-weight: 900; }
@@ -513,7 +537,7 @@ header {
 .breadcrumb a:hover { text-decoration: underline; }
 
 /* ============================================================
-   HERO
+   HERO — full industrial treatment
    ============================================================ */
 .hero {
   background: var(--navy);
@@ -527,26 +551,42 @@ header {
   padding: 5rem 1.5rem 4.5rem;
 }
 
-/* Grid pattern */
+/* Grid pattern + diagonal hazard stripes + noise texture */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
+    var(--noise),
+    var(--diagonal),
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 80px,
-      rgba(255,255,255,0.012) 80px,
-      rgba(255,255,255,0.012) 81px
+      rgba(255,255,255,0.015) 80px,
+      rgba(255,255,255,0.015) 81px
     ),
     repeating-linear-gradient(
       0deg,
       transparent,
       transparent 80px,
-      rgba(255,255,255,0.012) 80px,
-      rgba(255,255,255,0.012) 81px
+      rgba(255,255,255,0.015) 80px,
+      rgba(255,255,255,0.015) 81px
     );
+  pointer-events: none;
+}
+
+/* Top spark edge */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--gold-dark) 25%, var(--gold-light) 50%, var(--gold-dark) 75%, transparent 95%);
+  opacity: 0.35;
+  z-index: 2;
 }
 
 /* Accent lines */
@@ -566,8 +606,8 @@ header {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(232,160,32,0.1) 30%,
-    rgba(232,160,32,0.05) 50%,
+    rgba(232,160,32,0.12) 30%,
+    rgba(232,160,32,0.06) 50%,
     transparent 100%
   );
 }
@@ -579,14 +619,14 @@ header {
   inset: 0;
   background: url('../images/ironvoltvan.png') center center / cover no-repeat;
   opacity: 0.06;
-  filter: blur(2px);
+  filter: blur(2px) contrast(1.1);
 }
 
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(232,160,32,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(232,160,32,0.08) 0%, transparent 70%),
     radial-gradient(ellipse 50% 50% at 80% 80%, rgba(20,48,77,0.3) 0%, transparent 55%),
     radial-gradient(ellipse 40% 40% at 15% 20%, rgba(45,124,246,0.03) 0%, transparent 55%);
 }
@@ -608,8 +648,8 @@ header {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  background: rgba(232,160,32,0.06);
-  border: 1px solid rgba(232,160,32,0.2);
+  background: rgba(232,160,32,0.08);
+  border: 1px solid rgba(232,160,32,0.25);
   padding: 0.4rem 1.2rem;
   border-radius: 50px;
   margin-bottom: 1.8rem;
@@ -649,6 +689,7 @@ header {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 2px 12px rgba(232,160,32,0.3));
 }
 
 .hero-sub {
@@ -858,7 +899,7 @@ header {
 }
 
 /* ============================================================
-   WHY US
+   WHY US — industrial accent cards
    ============================================================ */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
@@ -873,6 +914,7 @@ header {
   overflow: hidden;
   transition: transform var(--trans), box-shadow var(--trans);
 }
+/* Gold top bar */
 .why-card::before {
   content: '';
   position: absolute;
@@ -881,6 +923,21 @@ header {
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+/* Subtle corner rivet dots */
+.why-card::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+  box-shadow:
+    -16px 0 0 var(--border),
+    0 0 0 1px rgba(0,0,0,0.04),
+    -16px 0 0 1px rgba(0,0,0,0.04);
 }
 .why-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .why-card h3 { font-size: 1.02rem; margin-bottom: 0.6rem; position: relative; font-weight: 800; }
@@ -892,7 +949,7 @@ header {
 .reviews-widget-wrap { max-width: 1060px; margin: 0 auto; }
 
 /* ============================================================
-   AREAS
+   AREAS — industrial dark section
    ============================================================ */
 .areas-map-section {
   background: var(--navy);
@@ -904,17 +961,20 @@ header {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(232,160,32,0.04) 0%, transparent 70%),
+    var(--noise),
+    var(--diagonal),
+    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(232,160,32,0.06) 0%, transparent 70%),
     repeating-linear-gradient(
       90deg,
       transparent, transparent 120px,
-      rgba(255,255,255,0.006) 120px, rgba(255,255,255,0.006) 121px
+      rgba(255,255,255,0.008) 120px, rgba(255,255,255,0.008) 121px
     ),
     repeating-linear-gradient(
       0deg,
       transparent, transparent 120px,
-      rgba(255,255,255,0.006) 120px, rgba(255,255,255,0.006) 121px
+      rgba(255,255,255,0.008) 120px, rgba(255,255,255,0.008) 121px
     );
+  pointer-events: none;
 }
 .areas-map-section .container { position: relative; }
 .areas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
@@ -994,7 +1054,7 @@ header {
 }
 
 /* ============================================================
-   CTA
+   CTA — full industrial treatment
    ============================================================ */
 .cta-section {
   background: var(--navy);
@@ -1003,24 +1063,42 @@ header {
   position: relative;
   overflow: hidden;
 }
+/* Layered industrial: noise + diagonals + grid + gold glow */
 .cta-section::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(232,160,32,0.05) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 50% 120%, rgba(232,160,32,0.04) 0%, transparent 65%),
+    var(--noise),
+    var(--diagonal),
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(232,160,32,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 50% 120%, rgba(232,160,32,0.05) 0%, transparent 65%),
     repeating-linear-gradient(
       90deg,
       transparent, transparent 80px,
-      rgba(255,255,255,0.008) 80px, rgba(255,255,255,0.008) 81px
+      rgba(255,255,255,0.01) 80px, rgba(255,255,255,0.01) 81px
     ),
     repeating-linear-gradient(
       0deg,
       transparent, transparent 80px,
-      rgba(255,255,255,0.008) 80px, rgba(255,255,255,0.008) 81px
+      rgba(255,255,255,0.01) 80px, rgba(255,255,255,0.01) 81px
     );
+  pointer-events: none;
 }
+/* Top spark edge */
+/* Bottom spark edge — separates CTA from footer */
+.cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 5%, var(--gold-dark) 30%, var(--gold-light) 50%, var(--gold-dark) 70%, transparent 95%);
+  opacity: 0.45;
+  z-index: 1;
+}
+
 .cta-section .container { position: relative; z-index: 1; }
 .cta-section h2 { color: var(--white); margin-bottom: 0.9rem; }
 .cta-section p {
@@ -1416,6 +1494,7 @@ select.form-control { cursor: pointer; }
   overflow: hidden;
   box-shadow: 0 8px 40px rgba(192,40,40,0.2);
 }
+/* Hazard stripes on emergency callout */
 .emergency-callout::before {
   content: '';
   position: absolute;
@@ -1425,9 +1504,10 @@ select.form-control { cursor: pointer; }
       -45deg,
       transparent,
       transparent 20px,
-      rgba(255,255,255,0.02) 20px,
-      rgba(255,255,255,0.02) 40px
+      rgba(255,255,255,0.025) 20px,
+      rgba(255,255,255,0.025) 40px
     );
+  pointer-events: none;
 }
 .emergency-callout h3 { color: var(--white); margin-bottom: 0.3rem; position: relative; }
 .emergency-callout p  { color: rgba(255,255,255,0.75); font-size: 0.92rem; position: relative; }
@@ -1468,23 +1548,37 @@ select.form-control { cursor: pointer; }
 }
 
 /* ============================================================
-   FOOTER
+   FOOTER — industrial texture
    ============================================================ */
 .site-footer {
   background: #050a12;
   color: #8a97a8;
   padding: 5.5rem 0 0;
   position: relative;
+  overflow: hidden;
 }
+/* Gold spark top edge */
 .site-footer::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(232,160,32,0.2), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, transparent 5%, var(--gold-dark) 25%, var(--gold-light) 50%, var(--gold-dark) 75%, transparent 95%);
+  opacity: 0.35;
+  z-index: 1;
 }
+/* Clean dark — no texture (avoids blending with CTA above) */
+.site-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--noise);
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 
 .footer-grid {
   display: grid;
@@ -1492,6 +1586,8 @@ select.form-control { cursor: pointer; }
   gap: 3rem;
   padding-bottom: 3.5rem;
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-brand h2 {
@@ -1503,6 +1599,10 @@ select.form-control { cursor: pointer; }
 }
 .footer-brand p { font-size: 0.9rem; line-height: 1.78; color: rgba(255,255,255,0.28); }
 
+.footer-section {
+  position: relative;
+  z-index: 1;
+}
 .footer-section h3 {
   font-family: var(--font-head);
   font-size: 0.78rem;
@@ -1542,6 +1642,8 @@ select.form-control { cursor: pointer; }
   padding: 1.85rem 0 1.6rem;
   border-bottom: 1px solid rgba(255,255,255,0.05);
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 .footer-socials-label {
   font-family: var(--font-head);
@@ -1584,6 +1686,8 @@ select.form-control { cursor: pointer; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 .footer-bottom-links { display: flex; gap: 1.5rem; }
 .footer-bottom-links a { color: rgba(255,255,255,0.18); transition: color var(--trans); }
