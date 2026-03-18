@@ -283,42 +283,55 @@
   </div>
 </section>
 
+<!-- ============================================================
+     REPLACE your existing "SERVICE AREAS" section in index.html
+     with this block (everything between the two comment markers)
+     ============================================================ -->
+
 <!-- SERVICE AREAS -->
-<section class="areas-map-section compact" aria-labelledby="areas-heading">
+<section class="areas-map-section compact" aria-labelledby="areas-heading" style="padding:4rem 0;">
   <div class="container">
-    <div class="section-header reveal" style="margin-bottom:2.25rem;">
+
+    <!-- Section Header -->
+    <div class="section-header reveal" style="margin-bottom:2rem;">
       <span class="section-label" style="color:var(--gold); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Coverage Area</span>
       <h2 class="section-title" id="areas-heading" style="color:#fff;">Serving All of Greater Houston</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,0.6);">From The Woodlands to Pearland, from Katy to Baytown &mdash; we cover the entire metro area.</p>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.6);">From The Woodlands to Sugar Land, from Katy to Baytown &mdash; we cover the entire metro area.</p>
     </div>
-    <!--<div class="reveal" style="max-width:800px; margin:0 auto 2.25rem; border-radius:var(--radius-lg); overflow:hidden; box-shadow:0 12px 44px rgba(0,0,0,0.4); border:2px solid rgba(232,160,32,0.2);">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1LhLIpW-zz8NlB5EiPDURBrFma7WREZI&ehbc=2E312F&noprof=1" width="100%" height="400" style="display:block; border:0;" title="Iron Volt Electric Service Area Map" loading="lazy" allowfullscreen></iframe>
-    </div>-->
-    <div class="areas-grid reveal" role="list">
-      <span class="area-tag" role="listitem">Houston</span>
-      <span class="area-tag" role="listitem">Spring</span>
-      <span class="area-tag" role="listitem">The Woodlands</span>
-      <span class="area-tag" role="listitem">Cypress</span>
-      <span class="area-tag" role="listitem">Tomball</span>
-      <span class="area-tag" role="listitem">Katy</span>
-      <span class="area-tag" role="listitem">Humble</span>
-      <span class="area-tag" role="listitem">Kingwood</span>
-      <span class="area-tag" role="listitem">Atascocita</span>
-      <span class="area-tag" role="listitem">Bellaire</span>
-      <span class="area-tag" role="listitem">West University</span>
-      <span class="area-tag" role="listitem">Jersey Village</span>
-      <span class="area-tag" role="listitem">Aldine</span>
-      <span class="area-tag" role="listitem">Heights</span>
-      <span class="area-tag" role="listitem">River Oaks</span>
-      <span class="area-tag" role="listitem">Memorial</span>
-      <span class="area-tag" role="listitem">Clear Lake</span>
+
+    <!-- Map + Cities Split Layout -->
+    <div class="sa-split reveal" style="display:flex; gap:1.5rem; align-items:stretch; flex-wrap:wrap;">
+
+      <!-- LEFT: Map Image -->
+      <div style="flex:1.3; min-width:280px; border-radius:14px; overflow:hidden; box-shadow:0 8px 36px rgba(0,0,0,0.45); border:2px solid rgba(232,160,32,0.25);">
+        <img src="images/servicearea.png" alt="Iron Volt Electric Service Area Map — Greater Houston" style="width:100%; height:100%; object-fit:cover; display:block; min-height:400px;">
+      </div>
+
+      <!-- RIGHT: Cities Panel -->
+      <div style="flex:1; min-width:260px; background:#fff; border-radius:14px; padding:2.5rem 2.25rem; display:flex; flex-direction:column; justify-content:center; box-shadow:0 8px 36px rgba(0,0,0,0.3);">
+        <h3 style="font-family:var(--font-head); font-size:1.65rem; font-weight:900; text-transform:uppercase; line-height:1.15; color:var(--navy); margin-bottom:1.25rem; letter-spacing:-0.01em;">Proudly Serving the<br>Greater Houston Area</h3>
+        <p style="font-size:0.95rem; color:#444; line-height:2.0; margin-bottom:0;">
+          Houston | Conroe | Magnolia | Montgomery | Willis | The Woodlands | Shenandoah | Oak Ridge North | Spring | Klein | Tomball | Cypress | Jersey Village | Hedwig Village | Bunker Hill Village | Piney Point Village | Bellaire | West University Place | Katy | Cinco Ranch | Cleveland | Dayton | Liberty | Baytown | Highlands | Crosby | Sugar Land | Missouri City | Stafford
+        </p>
+        <div style="margin-top:1.75rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+          <a href="servicearea" style="background:var(--gold); color:#0a1e3c; font-family:var(--font-head); font-weight:900; text-transform:uppercase; letter-spacing:0.07em; border-radius:50px; padding:0.75rem 1.75rem; text-decoration:none; font-size:0.88rem; display:inline-block;">View Full Map &rarr;</a>
+          <a href="tel:8326108081" style="color:var(--navy); font-weight:700; font-size:0.9rem; text-decoration:none; padding:0.5rem 0.25rem;">(832) 610-8081</a>
+        </div>
+        <p style="color:#999; font-size:0.78rem; margin-top:1rem; margin-bottom:0;">Not sure if we cover your area? <a href="tel:8326108081" style="color:var(--gold-dark,#b8820f); font-weight:600;">Give us a call.</a></p>
+      </div>
+
     </div>
-    <div style="text-align:center; margin-top:1.75rem;">
-      <a href="servicearea" class="btn btn-outline" style="border-color:rgba(255,255,255,0.2); color:#fff;">View Full Service Area &rarr;</a>
-    </div>
-    <p style="text-align:center; color:rgba(255,255,255,0.45); font-size:0.85rem; margin-top:1rem;">Not sure if we cover your area? <a href="tel:8326108081" style="color:var(--gold);">Give us a call</a> &mdash; we&rsquo;ll let you know right away.</p>
   </div>
 </section>
+
+<style>
+@media (max-width:720px){
+  .sa-split{flex-direction:column !important;}
+  .sa-split > div:first-child img{min-height:240px !important;}
+}
+</style>
+
+<!-- ============================================================ END ============================================================ -->
 
 <!-- FAQ -->
 <section class="bg-light" aria-labelledby="faq-heading">

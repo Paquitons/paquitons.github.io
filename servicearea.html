@@ -178,21 +178,50 @@
   </div>
 </div>
 
-<!-- INTERACTIVE MAP -->
-<section aria-labelledby="map-heading">
+<!-- ============================================================
+     REPLACE your existing "INTERACTIVE MAP" section in servicearea.html
+     with this block. Also replace the "AREAS BY REGION" section below it.
+     ============================================================ -->
+
+<!-- INTERACTIVE MAP + CITIES -->
+<section aria-labelledby="map-heading" style="background:var(--navy,#0a1e3c); padding:5rem 0;">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Coverage Map</span>
-      <h2 class="section-title" id="map-heading">See Where We Work</h2>
-      <p class="section-subtitle">Our service territory spans the entire Greater Houston metro &mdash; from Conroe and The Woodlands in the north to Pearland and League City in the south.</p>
+
+    <div class="section-header reveal" style="margin-bottom:2.5rem;">
+      <span class="section-label" style="color:var(--gold); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Coverage Map</span>
+      <h2 class="section-title" id="map-heading" style="color:#fff;">Proudly Serving Greater Houston</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">Our service territory spans the entire Greater Houston metro &mdash; from Conroe and The Woodlands in the north to Sugar Land and Stafford in the south.</p>
     </div>
-    <div class="sa-map-wrap reveal">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1LhLIpW-zz8NlB5EiPDURBrFma7WREZI&ehbc=2E312F&noprof=1" title="Iron Volt Electric Service Area Map" loading="lazy" allowfullscreen></iframe>
+
+    <!-- Map + Cities Split Layout -->
+    <div class="sa-split reveal" style="display:flex; gap:1.75rem; align-items:stretch; flex-wrap:wrap;">
+
+      <!-- LEFT: Map Image -->
+      <div style="flex:1.4; min-width:300px; border-radius:16px; overflow:hidden; box-shadow:0 10px 44px rgba(0,0,0,0.5); border:2px solid rgba(232,160,32,0.3);">
+        <img src="images/servicearea.png" alt="Iron Volt Electric Service Area Map — Greater Houston" style="width:100%; height:100%; object-fit:cover; display:block; min-height:460px;">
+      </div>
+
+      <!-- RIGHT: Cities Panel -->
+      <div style="flex:1; min-width:280px; background:#fff; border-radius:16px; padding:2.75rem 2.5rem; display:flex; flex-direction:column; justify-content:center; box-shadow:0 10px 44px rgba(0,0,0,0.35);">
+        <h3 style="font-family:var(--font-head); font-size:1.85rem; font-weight:900; text-transform:uppercase; line-height:1.12; color:var(--navy,#0a1e3c); margin-bottom:1.5rem; letter-spacing:-0.01em;">Proudly Serving the<br>Greater Houston Area</h3>
+
+        <p style="font-size:0.96rem; color:#444; line-height:2.1; margin-bottom:0;">
+          Houston | Conroe | Magnolia | Montgomery | Willis | The Woodlands | Shenandoah | Oak Ridge North | Spring | Klein | Tomball | Cypress | Jersey Village | Hedwig Village | Bunker Hill Village | Piney Point Village | Bellaire | West University Place | Katy | Cinco Ranch | Cleveland | Dayton | Liberty | Baytown | Highlands | Crosby | Sugar Land | Missouri City | Stafford
+        </p>
+
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+          <a href="booking" style="background:var(--gold,#e8a020); color:#0a1e3c; font-family:var(--font-head); font-weight:900; text-transform:uppercase; letter-spacing:0.07em; border-radius:50px; padding:0.85rem 2rem; text-decoration:none; font-size:0.9rem; display:inline-block;">Book Service</a>
+          <a href="tel:8326108081" style="color:var(--navy,#0a1e3c); font-weight:700; font-size:0.92rem; text-decoration:none;">(832) 610-8081</a>
+        </div>
+
+        <p style="color:#aaa; font-size:0.8rem; margin-top:1.1rem; margin-bottom:0;">Don&rsquo;t see your city? <a href="tel:8326108081" style="color:var(--gold-dark,#b8820f); font-weight:600;">Call us &mdash; we likely cover you.</a></p>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- AREAS BY REGION -->
+<!-- AREAS BY REGION — keep this section below the map block -->
 <section class="bg-light" aria-labelledby="regions-heading">
   <div class="container">
     <div class="section-header reveal">
@@ -205,102 +234,123 @@
       <div class="sa-region">
         <h3>North Houston</h3>
         <ul>
-          <li>Spring</li>
-          <li>The Woodlands</li>
           <li>Conroe</li>
-          <li>Tomball</li>
-          <li>Aldine</li>
+          <li>Magnolia</li>
+          <li>Montgomery</li>
+          <li>Willis</li>
+          <li>The Woodlands</li>
+          <li>Shenandoah</li>
+          <li>Oak Ridge North</li>
         </ul>
       </div>
       <div class="sa-region">
-        <h3>Northeast Houston</h3>
+        <h3>Northwest Houston</h3>
         <ul>
-          <li>Humble</li>
-          <li>Kingwood</li>
-          <li>Atascocita</li>
-          <li>Baytown</li>
-          <li>Crosby</li>
+          <li>Tomball</li>
+          <li>Cypress</li>
+          <li>Spring</li>
+          <li>Klein</li>
+          <li>Jersey Village</li>
+          <li>Hedwig Village</li>
+          <li>Bunker Hill Village</li>
+          <li>Piney Point Village</li>
+        </ul>
+      </div>
+      <div class="sa-region">
+        <h3>Central Houston</h3>
+        <ul>
+          <li>Houston</li>
+          <li>Bellaire</li>
+          <li>West University Place</li>
+          <li>Heights</li>
+          <li>River Oaks</li>
+          <li>Memorial</li>
+          <li>Montrose</li>
         </ul>
       </div>
       <div class="sa-region">
         <h3>West Houston</h3>
         <ul>
           <li>Katy</li>
-          <li>Cypress</li>
-          <li>Jersey Village</li>
-          <li>Memorial</li>
+          <li>Cinco Ranch</li>
           <li>Energy Corridor</li>
         </ul>
       </div>
       <div class="sa-region">
-        <h3>Central Houston</h3>
+        <h3>Northeast Houston</h3>
         <ul>
-          <li>Houston Heights</li>
-          <li>River Oaks</li>
-          <li>Bellaire</li>
-          <li>West University</li>
-          <li>Montrose</li>
+          <li>Cleveland</li>
+          <li>Dayton</li>
+          <li>Liberty</li>
+          <li>Baytown</li>
+          <li>Highlands</li>
+          <li>Crosby</li>
+          <li>Humble</li>
+          <li>Kingwood</li>
+          <li>Atascocita</li>
         </ul>
       </div>
       <div class="sa-region">
-        <h3>South Houston</h3>
+        <h3>Southwest Houston</h3>
         <ul>
           <li>Sugar Land</li>
-          <li>Pearland</li>
           <li>Missouri City</li>
-          <li>Friendswood</li>
-          <li>Alvin</li>
-        </ul>
-      </div>
-      <div class="sa-region">
-        <h3>Southeast Houston</h3>
-        <ul>
-          <li>Clear Lake</li>
-          <li>League City</li>
-          <li>Webster</li>
-          <li>Pasadena</li>
-          <li>La Porte</li>
+          <li>Stafford</li>
         </ul>
       </div>
     </div>
 
     <div class="sa-all-tags reveal">
       <span class="sa-tag">Houston</span>
-      <span class="sa-tag">Spring</span>
-      <span class="sa-tag">The Woodlands</span>
       <span class="sa-tag">Conroe</span>
-      <span class="sa-tag">Cypress</span>
+      <span class="sa-tag">Magnolia</span>
+      <span class="sa-tag">Montgomery</span>
+      <span class="sa-tag">Willis</span>
+      <span class="sa-tag">The Woodlands</span>
+      <span class="sa-tag">Shenandoah</span>
+      <span class="sa-tag">Oak Ridge North</span>
+      <span class="sa-tag">Spring</span>
+      <span class="sa-tag">Klein</span>
       <span class="sa-tag">Tomball</span>
+      <span class="sa-tag">Cypress</span>
+      <span class="sa-tag">Jersey Village</span>
+      <span class="sa-tag">Hedwig Village</span>
+      <span class="sa-tag">Bunker Hill Village</span>
+      <span class="sa-tag">Piney Point Village</span>
+      <span class="sa-tag">Bellaire</span>
+      <span class="sa-tag">West University Place</span>
       <span class="sa-tag">Katy</span>
+      <span class="sa-tag">Cinco Ranch</span>
+      <span class="sa-tag">Cleveland</span>
+      <span class="sa-tag">Dayton</span>
+      <span class="sa-tag">Liberty</span>
+      <span class="sa-tag">Baytown</span>
+      <span class="sa-tag">Highlands</span>
+      <span class="sa-tag">Crosby</span>
       <span class="sa-tag">Humble</span>
       <span class="sa-tag">Kingwood</span>
       <span class="sa-tag">Atascocita</span>
-      <span class="sa-tag">Bellaire</span>
-      <span class="sa-tag">West University</span>
-      <span class="sa-tag">Jersey Village</span>
-      <span class="sa-tag">Aldine</span>
+      <span class="sa-tag">Sugar Land</span>
+      <span class="sa-tag">Missouri City</span>
+      <span class="sa-tag">Stafford</span>
       <span class="sa-tag">Heights</span>
       <span class="sa-tag">River Oaks</span>
       <span class="sa-tag">Memorial</span>
-      <span class="sa-tag">Clear Lake</span>
-      <span class="sa-tag">Sugar Land</span>
-      <span class="sa-tag">Pearland</span>
-      <span class="sa-tag">Baytown</span>
-      <span class="sa-tag">League City</span>
-      <span class="sa-tag">Friendswood</span>
-      <span class="sa-tag">Missouri City</span>
-      <span class="sa-tag">Pasadena</span>
-      <span class="sa-tag">Crosby</span>
-      <span class="sa-tag">La Porte</span>
-      <span class="sa-tag">Webster</span>
-      <span class="sa-tag">Alvin</span>
       <span class="sa-tag">Montrose</span>
-      <span class="sa-tag">Energy Corridor</span>
     </div>
 
     <p style="text-align:center; color:var(--gray); font-size:0.92rem; margin-top:2rem;">Don&rsquo;t see your area listed? <a href="tel:8326108081" style="color:var(--gold-dark); font-weight:600;">Give us a call at (832) 610-8081</a> &mdash; we likely cover your location.</p>
   </div>
 </section>
+
+<style>
+@media (max-width:720px){
+  .sa-split{flex-direction:column !important;}
+  .sa-split > div:first-child img{min-height:260px !important;}
+}
+</style>
+
+<!-- ============================================================ END ============================================================ -->
 
 <!-- WHY LOCAL MATTERS -->
 <section aria-labelledby="local-heading">
