@@ -295,7 +295,13 @@ p:last-child { margin-bottom: 0; }
   line-height: 1.45;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+.marquee-track {
+  display: inline-block;
+}
+@keyframes marquee-scroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 /* Hazard-stripe texture on emergency banner */
 .emergency-banner a:hover { opacity: 0.85; }
@@ -1552,7 +1558,9 @@ select.form-control { cursor: pointer; }
     padding: 0.4rem 0.75rem;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+  }
+  .emergency-banner .marquee-track {
+    animation: marquee-scroll 12s linear infinite;
   }
 
   .trust-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -1613,6 +1621,9 @@ select.form-control { cursor: pointer; }
   .section-header { margin-bottom: 2rem; }
   .card { padding: 1.45rem; }
   .emergency-banner { font-size: 0.65rem; padding: 0.35rem 0.5rem; }
+  .emergency-banner .marquee-track {
+    animation: marquee-scroll 10s linear infinite;
+  }
 }
 
 /* ============================================================
