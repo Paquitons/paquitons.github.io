@@ -19,6 +19,11 @@ function refreshCaptcha() {
 document.addEventListener('DOMContentLoaded', () => {
   refreshCaptcha();
 
+  // Set min date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('preferredDate').min = today;
+  document.getElementById('altDate').min = today;
+
   const form = document.getElementById('bookingForm');
   if (!form) return;
 
