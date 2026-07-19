@@ -1,24 +1,25 @@
 /* ============================================================
    IRON VOLT ELECTRIC — booking.js
-   Captcha + Form submission
+   reCAPTCHA v3 + Form submission
    ============================================================ */
 
-let captchaA, captchaB;
+const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_V3_SITE_KEY';
 
-function refreshCaptcha() {
-  captchaA = Math.floor(Math.random() * 9) + 1;
-  captchaB = Math.floor(Math.random() * 9) + 1;
-  const q = document.getElementById('captchaQuestion');
-  if (q) q.textContent = captchaA + ' + ' + captchaB;
-  const ans = document.getElementById('captchaAnswer');
-  if (ans) ans.value = '';
-  const err = document.getElementById('captchaError');
-  if (err) err.style.display = 'none';
+function getRecaptchaToken() {
+  return new Promise((resolve) => {
+    if (RECAPTCHA_SITE_KEY === 'YOUR_RECAPTCHA_V3_SITE_KEY' || typeof grecaptcha === 'undefined') {
+      resolve(''); // reCAPTCHA not configured yet — server treats this as dev mode
+      return;
+    }
+    grecaptcha.ready(() => {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit_booking' })
+        .then(resolve)
+        .catch(() => resolve(''));
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  refreshCaptcha();
-
   // Set min date to today
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('preferredDate').min = today;
@@ -30,21 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Captcha check
-    const answer = parseInt(document.getElementById('captchaAnswer').value, 10);
-    if (answer !== captchaA + captchaB) {
-      document.getElementById('captchaError').style.display = 'block';
-      refreshCaptcha();
-      return;
-    }
-
     const submitBtn = form.querySelector('button[type="submit"]');
     const origText = submitBtn.textContent;
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';
 
     try {
+      const recaptchaToken = await getRecaptchaToken();
+
       const formData = new URLSearchParams(new FormData(form));
+      formData.set('recaptchaToken', recaptchaToken);
+
       const response = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -54,18 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const err = await response.json();
         console.log('Server error:', err);
         alert(err.error);
+        submitBtn.disabled = false;
+        submitBtn.textContent = origText;
         return;
       }
 
-      if (response.ok) {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        alert('Something went wrong. Please call us at (832) 610-8081 to book directly.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = origText;
-      }
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       alert('Connection error. Please call us at (832) 610-8081 to book directly.');
       submitBtn.disabled = false;

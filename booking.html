@@ -72,11 +72,12 @@
       color: var(--gold); flex-shrink: 0; width: 1.4rem; text-align: left;
     }
     .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .captcha-wrap {
-      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    .hp-field {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px; height: 1px;
+      overflow: hidden;
     }
-    .captcha-question { font-size: 0.95rem; font-weight: 600; color: var(--navy); }
-    .captcha-input { width: 80px; text-align: center; }
     @media (max-width: 768px) {
       .booking-layout { flex-direction: column; }
       .booking-sidebar { width: 100%; position: static; }
@@ -147,6 +148,12 @@
 
           <form id="bookingForm" method="POST" action="https://ironvolt.omnemarchy.online/booking" novalidate>
             <input type="hidden" name="subject" value="New Booking Request — Iron Volt Electric">
+
+            <!-- Honeypot: hidden from real visitors, bots that auto-fill every field trip it -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
 
             <!-- Personal Info -->
             <div class="form-section-title">Personal Information</div>
@@ -272,20 +279,13 @@
               </label>
             </div>
 
-            <!-- Captcha -->
-            <div class="form-group">
-              <label class="form-label">Spam Check</label>
-              <div class="captcha-wrap">
-                <span class="captcha-question" id="captchaQuestion">Loading&hellip;</span>
-                <span>=</span>
-                <input type="text" id="captchaAnswer" class="form-control captcha-input" placeholder="?" aria-label="Math answer" autocomplete="off">
-                <button type="button" class="btn btn-sm btn-outline" onclick="refreshCaptcha()" aria-label="New question">&#8635;</button>
-              </div>
-              <p id="captchaError" style="color:var(--danger); font-size:0.85rem; margin-top:0.4rem; display:none;">Incorrect. Please try again.</p>
-            </div>
-
             <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:0.5rem;">Submit Booking Request</button>
-            <p style="text-align:center; font-size:0.82rem; color:var(--gray); margin-top:0.9rem;">We&rsquo;ll respond within 24 hours to confirm your appointment.</p>
+            <p style="text-align:center; font-size:0.82rem; color:var(--gray); margin-top:0.9rem;">
+              We&rsquo;ll respond within 24 hours to confirm your appointment.<br>
+              This site is protected by reCAPTCHA and the Google
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.
+            </p>
           </form>
         </div>
       </div>
@@ -424,6 +424,8 @@
   <a href="booking" class="btn btn-secondary">Book Online</a>
 </div>
 
+<!-- reCAPTCHA v3: replace YOUR_RECAPTCHA_V3_SITE_KEY with the real site key once registered at google.com/recaptcha -->
+<script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_V3_SITE_KEY"></script>
 <script src="js/main.js"></script>
 <script src="js/booking.js"></script>
 </body>
