@@ -3,7 +3,7 @@
    reCAPTCHA v3 + Form submission
    ============================================================ */
 
-const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_V3_SITE_KEY';
+const RECAPTCHA_SITE_KEY = '6LePfFstAAAAAN2BhRaic_0Oei5qy1sNxbY-3X1B';
 
 function getRecaptchaToken() {
   return new Promise((resolve) => {
