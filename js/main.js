@@ -118,4 +118,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  /* ---- Keep the Rosie chat widget clear of the sticky mobile CTA bar ----
+     The widget re-asserts its own inline position, so a plain stylesheet
+     rule gets overwritten. Re-pin it with !important on every mutation. */
+  const stickyCtaQuery = window.matchMedia('(max-width: 768px)');
+  function pinRosieWidget() {
+    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(el => {
+      if (stickyCtaQuery.matches) {
+        el.style.setProperty('bottom', '84px', 'important');
+      } else {
+        el.style.removeProperty('bottom');
+      }
+    });
+  }
+  new MutationObserver(pinRosieWidget).observe(document.documentElement, { childList: true, subtree: true });
+  stickyCtaQuery.addEventListener('change', pinRosieWidget);
+  pinRosieWidget();
+
 });
