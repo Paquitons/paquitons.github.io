@@ -1607,6 +1607,10 @@ select.form-control { cursor: pointer; }
   body { padding-bottom: 72px; }
   .booking-sidebar { position: static !important; }
 
+  /* Rosie chat widget floats bottom-right by default and covers the
+     sticky mobile CTA bar's "Book Online" button — push it above the bar. */
+  rosie-widget, rosie-widget-minimized { bottom: 84px !important; }
+
   .footer-socials { gap: 0.5rem; }
   .footer-socials-label { width: 100%; margin-right: 0; margin-bottom: 0.25rem; }
 }
