@@ -119,20 +119,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---- Keep the Rosie chat widget clear of the sticky mobile CTA bar ----
-     The widget re-asserts its own inline position, so a plain stylesheet
-     rule gets overwritten. Re-pin it with !important on every mutation. */
+     The actual fixed-position element (.widget-container) lives inside
+     the widget's open shadow root, not on the <rosie-widget> host itself —
+     targeting the host (via CSS or JS) does nothing. Reach into the
+     shadow root and pin the real container instead. */
   const stickyCtaQuery = window.matchMedia('(max-width: 768px)');
-  function pinRosieWidget() {
-    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(el => {
-      if (stickyCtaQuery.matches) {
-        el.style.setProperty('bottom', '84px', 'important');
-      } else {
-        el.style.removeProperty('bottom');
-      }
+  const rosieHostsWatched = new WeakSet();
+
+  function pinRosieContainer(container) {
+    if (stickyCtaQuery.matches) {
+      container.style.setProperty('bottom', '84px', 'important');
+    } else {
+      container.style.removeProperty('bottom');
+    }
+  }
+
+  function watchRosieHost(host) {
+    if (rosieHostsWatched.has(host) || !host.shadowRoot) return;
+    rosieHostsWatched.add(host);
+    const root = host.shadowRoot;
+    const apply = () => {
+      const container = root.querySelector('.widget-container');
+      if (container) pinRosieContainer(container);
+    };
+    apply();
+    new MutationObserver(apply).observe(root, {
+      childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style']
     });
   }
-  new MutationObserver(pinRosieWidget).observe(document.documentElement, { childList: true, subtree: true });
-  stickyCtaQuery.addEventListener('change', pinRosieWidget);
-  pinRosieWidget();
+
+  function scanForRosie() {
+    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watchRosieHost);
+  }
+
+  new MutationObserver(scanForRosie).observe(document.documentElement, { childList: true, subtree: true });
+  stickyCtaQuery.addEventListener('change', scanForRosie);
+  scanForRosie();
 
 });
