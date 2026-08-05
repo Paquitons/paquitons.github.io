@@ -1387,11 +1387,11 @@ select.form-control { cursor: pointer; }
 }
 
 .footer-links li { margin-bottom: 0.58rem; }
-.footer-links a { color: rgba(255,255,255,0.3); font-size: 0.9rem; transition: color var(--trans); font-weight: 400; }
+.footer-links a { color: rgba(255,255,255,0.62); font-size: 0.9rem; transition: color var(--trans); font-weight: 400; }
 .footer-links a:hover { color: var(--gold); }
 
 .footer-section p { margin-bottom: 0.58rem; font-size: 0.9rem; }
-.footer-section a { color: rgba(255,255,255,0.3); transition: color var(--trans); }
+.footer-section a { color: rgba(255,255,255,0.62); transition: color var(--trans); }
 .footer-section a:hover { color: var(--gold); }
 
 .footer-tecl {
@@ -1606,6 +1606,10 @@ select.form-control { cursor: pointer; }
   .sticky-cta { display: flex; }
   body { padding-bottom: 72px; }
   .booking-sidebar { position: static !important; }
+
+  /* Rosie chat widget floats bottom-right by default and covers the
+     sticky mobile CTA bar's "Book Online" button — push it above the bar. */
+  rosie-widget, rosie-widget-minimized { bottom: 84px !important; }
 
   .footer-socials { gap: 0.5rem; }
   .footer-socials-label { width: 100%; margin-right: 0; margin-bottom: 0.25rem; }
