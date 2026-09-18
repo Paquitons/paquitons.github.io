@@ -19,338 +19,353 @@
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<div class="emergency-banner" role="alert"><span class="marquee-track">
-  Electrical Emergency? We Answer 24/7 &mdash; <a href="tel:8326108081">(832) 610-8081</a> &mdash; Licensed &amp; Insured &middot; TECL #41098
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="emergency-bar">
+  Electrical emergency? We answer 24/7.
+  <span class="sep">&middot;</span>
+  <a href="tel:8326108081" class="tnum">(832) 610-8081</a>
 </div>
 
 <header>
-  <nav class="navbar container">
-    <button class="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
+  <nav class="navbar container" aria-label="Main">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path class="icon-open" d="M3 6h18M3 12h18M3 18h18"/>
+        <path class="icon-close" d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+    </button>
     <div class="logo">
-      <a href="/"><img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric"></a>
+      <a href="/" aria-label="Iron Volt Electric, home">
+        <img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric" width="440" height="143">
+      </a>
     </div>
     <div class="nav-spacer"></div>
-    <ul class="nav-menu">
+    <ul class="nav-menu" id="nav-menu">
       <li><a href="/">Home</a></li>
-      <li><a href="services" class="active">Services</a></li>
+      <li><a href="services" aria-current="page">Services</a></li>
+      <li><a href="servicearea">Service area</a></li>
       <li><a href="about">About</a></li>
       <li><a href="contact">Contact</a></li>
-      <li><a href="booking" class="nav-book">Book Now</a></li>
+      <li><a href="booking" class="nav-book">Book now</a></li>
     </ul>
+    <a href="tel:8326108081" class="nav-phone tnum">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      (832) 610-8081
+    </a>
   </nav>
 </header>
+<main id="main">
 
 <div class="page-banner">
   <div class="container">
-    <div class="breadcrumb"><a href="/">Home</a> / Services</div>
-    <h1>Our <span>Electrical Services</span></h1>
-    <p>Residential and commercial electrical solutions done right, done to code, and backed by our satisfaction guarantee.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Services</nav>
+    <h1>Electrical <span>services</span></h1>
+    <p>Residential and commercial work across Greater Houston, done to NEC code and
+       backed by our guarantee.</p>
   </div>
 </div>
 
-<!-- Quick Nav -->
-<section class="tight" style="background:var(--light-bg); border-bottom:1px solid var(--border);">
+<!-- Jump links. Two sections, so two links. -->
+<nav class="section-nav" aria-label="Sections on this page">
   <div class="container">
-    <div style="display:flex; gap:0.55rem; flex-wrap:wrap; justify-content:center;">
-      <a href="#residential" class="btn btn-outline btn-sm">Residential</a>
-      <a href="#commercial" class="btn btn-outline btn-sm">Commercial</a>
-    </div>
+    <a href="#residential">Residential</a>
+    <a href="#commercial">Commercial</a>
+    <a href="#service-faq">Questions</a>
   </div>
-</section>
+</nav>
 
-<!-- Residential Services -->
+<!-- ============================================================
+     RESIDENTIAL
+     ============================================================ -->
 <section id="residential" aria-labelledby="residential-heading">
-  <div class="container service-category">
-    <div style="margin-bottom:2rem;">
-      <span class="section-label">For Your Home</span>
-      <h2 id="residential-heading" class="section-title left">Residential Electrical Services</h2>
-      <p style="color:var(--gray); max-width:680px; font-size:1rem; margin-top:0.75rem;">From quick repairs to full rewires, Iron Volt Electric handles every residential electrical need across the Houston area. All work is performed to NEC code standards and backed by our satisfaction guarantee.</p>
+  <div class="container">
+    <div class="section-header">
+      <h2 id="residential-heading">For your home</h2>
+      <p>From a single repair to a full rewire. Every job meets NEC code and is covered by
+         our guarantee.</p>
     </div>
-    <img src="images/residential.png" alt="Residential electrical services Houston TX" class="service-category-image" loading="lazy">
 
-    <div class="grid grid-2">
-      <div class="service-detail-card reveal" id="repairs">
-        <h3>Electrical Repairs</h3>
-        <p>Fast, safe diagnosis and repair of any electrical problem — from a single dead outlet to a complete circuit failure.</p>
-        <div class="service-features">
-          <span class="service-feature">Tripped and failed breakers</span>
-          <span class="service-feature">Dead outlets and switches</span>
-          <span class="service-feature">Flickering and dim lights</span>
-          <span class="service-feature">Burning smells or hot outlets</span>
-          <span class="service-feature">Circuit troubleshooting and diagnostics</span>
-          <span class="service-feature">GFCI outlet repair and replacement</span>
-        </div>
-      </div>
+    <img src="images/residential.jpg" class="section-figure"
+         alt="An electrician working on residential wiring"
+         width="900" height="320" loading="lazy" decoding="async">
 
-      <div class="service-detail-card reveal" id="panels">
-        <h3>Panel &amp; Breaker Upgrades</h3>
-        <p>Outdated panels are a safety risk. We install new panels and breakers that power today's homes safely and reliably.</p>
-        <div class="service-features">
-          <span class="service-feature">100A to 200A service upgrades</span>
-          <span class="service-feature">Full panel replacements</span>
-          <span class="service-feature">Individual breaker replacement</span>
-          <span class="service-feature">AFCI and GFCI breaker upgrades</span>
-          <span class="service-feature">Panel labeling and organization</span>
-          <span class="service-feature">Load analysis and balancing</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal" id="lighting">
-        <h3>Indoor &amp; Outdoor Lighting</h3>
-        <p>Professional lighting installation — from recessed LED to landscape and security systems that transform your home's look and safety.</p>
-        <div class="service-features">
-          <span class="service-feature">Recessed and track lighting</span>
-          <span class="service-feature">LED retrofit and upgrades</span>
-          <span class="service-feature">Landscape and pathway lighting</span>
-          <span class="service-feature">Security and flood lighting</span>
-          <span class="service-feature">Patio, deck, and pergola lighting</span>
-          <span class="service-feature">Dimmer switch installation</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal" id="ev">
-        <h3>EV Charger Installation</h3>
-        <p>Level 2 home EV charging stations for all major electric vehicle brands — Tesla, Ford, GM, Rivian, and more. We handle permitting.</p>
-        <div class="service-features">
-          <span class="service-feature">Level 2 (240V) charger installation</span>
-          <span class="service-feature">Dedicated circuit installation</span>
-          <span class="service-feature">Compatible with all major EV brands</span>
-          <span class="service-feature">Hardwired or outlet-based options</span>
-          <span class="service-feature">Permit handling included</span>
-          <span class="service-feature">Garage and outdoor mounting</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal" id="generators">
-        <h3>Generator Installation</h3>
-        <p>Don't lose power during Houston storms. We install whole-home standby generators and portable hookups with proper transfer switches.</p>
-        <div class="service-features">
-          <span class="service-feature">Whole-home standby generators</span>
-          <span class="service-feature">Portable generator hookup</span>
-          <span class="service-feature">Automatic transfer switch (ATS)</span>
-          <span class="service-feature">Manual transfer switch</span>
-          <span class="service-feature">All major brands: Generac, Briggs, Kohler</span>
-          <span class="service-feature">Permit coordination included</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Surge Protection</h3>
-        <p>A single power surge can destroy electronics, appliances, and HVAC systems. Whole-home surge protection stops damage at the source.</p>
-        <div class="service-features">
-          <span class="service-feature">Whole-home surge protection panels</span>
-          <span class="service-feature">Point-of-use protection</span>
-          <span class="service-feature">HVAC and appliance protection</span>
-          <span class="service-feature">Lightning surge protection</span>
-          <span class="service-feature">Panel-mounted installation</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Outlet &amp; Switch Work</h3>
-        <p>Upgrades and new installation for any outlet or switch type — standard, GFCI, AFCI, USB, smart, or 240V.</p>
-        <div class="service-features">
-          <span class="service-feature">GFCI outlet installation (kitchens, baths)</span>
-          <span class="service-feature">USB and smart outlet installation</span>
-          <span class="service-feature">240V outlet installation</span>
-          <span class="service-feature">Smart switch installation</span>
-          <span class="service-feature">Childproof outlet replacement</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Ceiling Fan Installation</h3>
-        <p>Professional installation and wiring — including adding ceiling fan boxes where none exist and installing remote-controlled fans.</p>
-        <div class="service-features">
-          <span class="service-feature">New fan installation with wiring</span>
-          <span class="service-feature">Fan box installation in existing ceilings</span>
-          <span class="service-feature">Remote and smart fan wiring</span>
-          <span class="service-feature">Old fan replacement and disposal</span>
-          <span class="service-feature">Outdoor-rated fan installation</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Wiring Repair &amp; Replacement</h3>
-        <p>Old, damaged, or aluminum wiring is a serious fire hazard. We assess, repair, and replace wiring to restore safety and code compliance.</p>
-        <div class="service-features">
-          <span class="service-feature">Aluminum wiring remediation</span>
-          <span class="service-feature">Partial and full home rewiring</span>
-          <span class="service-feature">Knob-and-tube wiring replacement</span>
-          <span class="service-feature">Wire repair after damage</span>
-          <span class="service-feature">Attic and crawlspace wiring</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Dedicated Circuits</h3>
-        <p>Large appliances, home offices, and high-draw equipment need their own circuits. We install dedicated circuits correctly and to code.</p>
-        <div class="service-features">
-          <span class="service-feature">Kitchen appliance circuits</span>
-          <span class="service-feature">Washer and dryer circuits</span>
-          <span class="service-feature">Home office and server room circuits</span>
-          <span class="service-feature">Hot tub and pool equipment circuits</span>
-          <span class="service-feature">Workshop and garage circuits</span>
-        </div>
-      </div>
-
-    </div>
+    <article class="service-detail" id="repairs">
+      <h3>Electrical repairs</h3>
+      <p>Diagnosis and repair of any electrical fault, from one dead outlet to a whole circuit down.</p>
+      <ul class="spec-list">
+        <li>Tripped and failed breakers</li>
+        <li>Dead outlets and switches</li>
+        <li>Flickering and dim lights</li>
+        <li>Burning smells or hot outlets</li>
+        <li>Circuit troubleshooting</li>
+        <li>GFCI repair and replacement</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="panels">
+      <h3>Panel and breaker upgrades</h3>
+      <p>Outdated panels are a safety risk. We fit panels and breakers that carry a modern household load.</p>
+      <ul class="spec-list">
+        <li>100A to 200A service upgrades</li>
+        <li>Full panel replacement</li>
+        <li>Individual breaker replacement</li>
+        <li>AFCI and GFCI breaker upgrades</li>
+        <li>Panel labelling</li>
+        <li>Load analysis and balancing</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="lighting">
+      <h3>Indoor and outdoor lighting</h3>
+      <p>Recessed, landscape and security lighting, plus LED retrofits of existing fixtures.</p>
+      <ul class="spec-list">
+        <li>Recessed and track lighting</li>
+        <li>LED retrofit and upgrades</li>
+        <li>Landscape and pathway lighting</li>
+        <li>Security and flood lighting</li>
+        <li>Patio, deck and pergola lighting</li>
+        <li>Dimmer switches</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="ev">
+      <h3>EV charger installation</h3>
+      <p>Level 2 home charging for every major brand, including Tesla, Ford, GM and Rivian. We handle the permit.</p>
+      <ul class="spec-list">
+        <li>Level 2 (240V) charger installation</li>
+        <li>Dedicated circuit installation</li>
+        <li>All major EV brands</li>
+        <li>Hardwired or outlet-based</li>
+        <li>Permit handling included</li>
+        <li>Garage and outdoor mounting</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="generators">
+      <h3>Generator installation</h3>
+      <p>Standby generators and portable hookups with the transfer switch fitted correctly.</p>
+      <ul class="spec-list">
+        <li>Whole-home standby generators</li>
+        <li>Portable generator hookup</li>
+        <li>Automatic transfer switch</li>
+        <li>Manual transfer switch</li>
+        <li>Generac, Briggs and Kohler</li>
+        <li>Permit coordination included</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="surge">
+      <h3>Surge protection</h3>
+      <p>One surge can take out electronics, appliances and HVAC. Whole-home protection stops it at the panel.</p>
+      <ul class="spec-list">
+        <li>Whole-home surge protection</li>
+        <li>Point-of-use protection</li>
+        <li>HVAC and appliance protection</li>
+        <li>Lightning surge protection</li>
+        <li>Panel-mounted installation</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="outlets">
+      <h3>Outlets and switches</h3>
+      <p>New installation or replacement for any outlet or switch type.</p>
+      <ul class="spec-list">
+        <li>GFCI outlets for kitchens and baths</li>
+        <li>USB and smart outlets</li>
+        <li>240V outlets</li>
+        <li>Smart switches</li>
+        <li>Childproof outlet replacement</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="fans">
+      <h3>Ceiling fans</h3>
+      <p>Installation and wiring, including fitting a fan box where the ceiling has none.</p>
+      <ul class="spec-list">
+        <li>New fan installation and wiring</li>
+        <li>Fan box fitted in existing ceilings</li>
+        <li>Remote and smart fan wiring</li>
+        <li>Old fan removal and disposal</li>
+        <li>Outdoor-rated fans</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="wiring">
+      <h3>Wiring repair and replacement</h3>
+      <p>Old, damaged or aluminium wiring is a fire risk. We assess it, then repair or replace to code.</p>
+      <ul class="spec-list">
+        <li>Aluminium wiring remediation</li>
+        <li>Partial and full rewiring</li>
+        <li>Knob-and-tube replacement</li>
+        <li>Wire repair after damage</li>
+        <li>Attic and crawlspace wiring</li>
+      </ul>
+    </article>
+    <article class="service-detail" id="circuits">
+      <h3>Dedicated circuits</h3>
+      <p>Large appliances and high-draw equipment need their own circuit. We run them to code.</p>
+      <ul class="spec-list">
+        <li>Kitchen appliance circuits</li>
+        <li>Washer and dryer circuits</li>
+        <li>Home office and server circuits</li>
+        <li>Hot tub and pool equipment</li>
+        <li>Workshop and garage circuits</li>
+      </ul>
+    </article>
   </div>
 </section>
 
-<!-- Commercial Services -->
-<section id="commercial" class="bg-light" aria-labelledby="commercial-heading">
-  <div class="container service-category">
-    <div style="margin-bottom:2rem;">
-      <span class="section-label">For Your Business</span>
-      <h2 id="commercial-heading" class="section-title left">Commercial Electrical Services</h2>
-      <p style="color:var(--gray); max-width:680px; font-size:1rem; margin-top:0.75rem;">We minimize downtime and maximize reliability for Houston businesses of all sizes — from retail and office spaces to warehouses and restaurants. Licensed for commercial work across Harris, Fort Bend, and Montgomery counties.</p>
+<!-- ============================================================
+     COMMERCIAL
+     ============================================================ -->
+<section id="commercial" class="band-alt" aria-labelledby="commercial-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="commercial-heading">For your business</h2>
+      <p>Retail, offices, warehouses and restaurants. Licensed for commercial work across
+         Harris, Fort Bend and Montgomery counties.</p>
     </div>
-    <img src="images/commercial.png" alt="Commercial electrical services Houston TX" class="service-category-image" loading="lazy">
 
-    <div class="grid grid-2">
-      <div class="service-detail-card reveal">
-        <h3>Commercial Electrical Repairs</h3>
-        <p>Fast response to minimize business downtime. We diagnose and fix commercial electrical failures efficiently — getting you back up and running.</p>
-        <div class="service-features">
-          <span class="service-feature">Emergency commercial repairs</span>
-          <span class="service-feature">Circuit troubleshooting and replacement</span>
-          <span class="service-feature">Outlet and switch repairs</span>
-          <span class="service-feature">Panel and breaker repairs</span>
-        </div>
-      </div>
+    <img src="images/commercial.jpg" class="section-figure"
+         alt="Commercial electrical installation in progress"
+         width="900" height="320" loading="lazy" decoding="async">
 
-      <div class="service-detail-card reveal">
-        <h3>Commercial Lighting Upgrades</h3>
-        <p>LED retrofits, warehouse lighting, office lighting design — we upgrade commercial lighting for efficiency, safety, and compliance.</p>
-        <div class="service-features">
-          <span class="service-feature">LED retrofit and energy upgrades</span>
-          <span class="service-feature">Warehouse and industrial lighting</span>
-          <span class="service-feature">Parking lot and exterior lighting</span>
-          <span class="service-feature">Emergency and exit lighting</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Panel &amp; Service Upgrades</h3>
-        <p>Aging commercial panels can't handle modern electrical loads. We upgrade to higher-capacity panels for growing business operations.</p>
-        <div class="service-features">
-          <span class="service-feature">200A–400A commercial upgrades</span>
-          <span class="service-feature">Three-phase panel installation</span>
-          <span class="service-feature">Sub-panel installation</span>
-          <span class="service-feature">Load analysis and planning</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Tenant Build-Outs</h3>
-        <p>Complete electrical for new and renovated commercial tenant spaces — from rough-in to final finish, permit-ready and inspection-approved.</p>
-        <div class="service-features">
-          <span class="service-feature">New construction rough-in</span>
-          <span class="service-feature">Tenant finish-out wiring</span>
-          <span class="service-feature">Permit and inspection coordination</span>
-          <span class="service-feature">ADA-compliant outlet placement</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Equipment Hookups</h3>
-        <p>Commercial kitchen equipment, HVAC systems, industrial machinery — dedicated circuits and connections installed to manufacturer specs.</p>
-        <div class="service-features">
-          <span class="service-feature">Commercial kitchen equipment wiring</span>
-          <span class="service-feature">HVAC and refrigeration hookups</span>
-          <span class="service-feature">Industrial machinery connections</span>
-          <span class="service-feature">220V / 480V equipment installation</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Commercial Surge Protection</h3>
-        <p>Protect your business equipment and servers from power surges and lightning strikes. Panel-level protection for entire facilities.</p>
-        <div class="service-features">
-          <span class="service-feature">Panel-mounted surge protection</span>
-          <span class="service-feature">Server and IT equipment protection</span>
-          <span class="service-feature">Industrial equipment protection</span>
-          <span class="service-feature">Lightning and utility surge protection</span>
-        </div>
-      </div>
-
-      <div class="service-detail-card reveal">
-        <h3>Code Corrections &amp; Inspections</h3>
-        <p>Failed inspection or pre-sale assessment needed? We identify and correct code violations to bring your building into full compliance.</p>
-        <div class="service-features">
-          <span class="service-feature">Electrical inspection preparation</span>
-          <span class="service-feature">Code violation identification and correction</span>
-          <span class="service-feature">Pre-sale electrical assessment</span>
-          <span class="service-feature">GFCI / AFCI compliance upgrades</span>
-        </div>
-      </div>
-
-    </div>
+    <article class="service-detail">
+      <h3>Commercial repairs</h3>
+      <p>Fast response to keep downtime short. We find the fault and get you running again.</p>
+      <ul class="spec-list">
+        <li>Emergency commercial repairs</li>
+        <li>Circuit troubleshooting and replacement</li>
+        <li>Outlet and switch repairs</li>
+        <li>Panel and breaker repairs</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Commercial lighting</h3>
+      <p>LED retrofits, warehouse and office lighting, upgraded for efficiency and compliance.</p>
+      <ul class="spec-list">
+        <li>LED retrofit and energy upgrades</li>
+        <li>Warehouse and industrial lighting</li>
+        <li>Parking lot and exterior lighting</li>
+        <li>Emergency and exit lighting</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Commercial panel and service upgrades</h3>
+      <p>Ageing commercial panels cannot carry modern loads. We upgrade capacity as the business grows.</p>
+      <ul class="spec-list">
+        <li>200A to 400A commercial upgrades</li>
+        <li>Three-phase panel installation</li>
+        <li>Sub-panel installation</li>
+        <li>Load analysis and planning</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Tenant build-outs</h3>
+      <p>Full electrical for new and renovated tenant spaces, from rough-in to final finish.</p>
+      <ul class="spec-list">
+        <li>New construction rough-in</li>
+        <li>Tenant finish-out wiring</li>
+        <li>Permit and inspection coordination</li>
+        <li>ADA-compliant outlet placement</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Equipment hookups</h3>
+      <p>Kitchen equipment, HVAC and industrial machinery wired to the manufacturer spec.</p>
+      <ul class="spec-list">
+        <li>Commercial kitchen equipment</li>
+        <li>HVAC and refrigeration hookups</li>
+        <li>Industrial machinery connections</li>
+        <li>220V and 480V equipment</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Commercial surge protection</h3>
+      <p>Panel-level protection for equipment and servers across a whole facility.</p>
+      <ul class="spec-list">
+        <li>Panel-mounted surge protection</li>
+        <li>Server and IT equipment protection</li>
+        <li>Industrial equipment protection</li>
+        <li>Lightning and utility surge protection</li>
+      </ul>
+    </article>
+    <article class="service-detail">
+      <h3>Code corrections and inspections</h3>
+      <p>Failed an inspection, or need a pre-sale assessment? We find the violations and correct them.</p>
+      <ul class="spec-list">
+        <li>Inspection preparation</li>
+        <li>Code violation correction</li>
+        <li>Pre-sale electrical assessment</li>
+        <li>GFCI and AFCI compliance upgrades</li>
+      </ul>
+    </article>
   </div>
 </section>
 
-<!-- Service FAQ -->
+<!-- ============================================================
+     QUESTIONS
+     ============================================================ -->
 <section id="service-faq" aria-labelledby="sfaq-heading">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Common Questions</span>
-      <h2 class="section-title" id="sfaq-heading">Service FAQ</h2>
-      <p class="section-subtitle">Answers to our most common service questions.</p>
+    <div class="section-header">
+      <h2 id="sfaq-heading">Questions about the work</h2>
     </div>
-    <div class="faq-list reveal">
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          How long does a panel upgrade take?
-          <span class="faq-arrow">+</span>
+    <div class="faq" itemscope itemtype="https://schema.org/FAQPage">
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="sq1" aria-expanded="false" aria-controls="sa1">
+          <span itemprop="name">How long does a panel upgrade take?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Most residential panel upgrades (100A to 200A) are completed in a single day — typically 4–8 hours. You'll be without power during a portion of that time. We schedule permits in advance so there are no delays on your project day.</div>
+        <div class="faq-a" id="sa1" role="region" aria-labelledby="sq1"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Most residential upgrades from 100A to 200A are done in a single day, usually four to eight hours. You will be without power for part of that. We arrange permits in advance so nothing holds up the day itself.</p></div>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Can my existing EV charger transfer to a new panel?
-          <span class="faq-arrow">+</span>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="sq2" aria-expanded="false" aria-controls="sa2">
+          <span itemprop="name">Can my existing EV charger move to a new panel?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yes, in most cases. We assess circuit requirements during the estimate and let you know if any changes are needed. When installing an EV charger and upgrading a panel simultaneously, we plan both as a single project to save time and money.</div>
+        <div class="faq-a" id="sa2" role="region" aria-labelledby="sq2"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Usually, yes. We check the circuit requirements during the estimate and tell you if anything needs to change. If you are adding a charger and upgrading the panel, we plan both as one project, which saves time and money.</p></div>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          What size generator does my Houston home need?
-          <span class="faq-arrow">+</span>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="sq3" aria-expanded="false" aria-controls="sa3">
+          <span itemprop="name">What size generator does my house need?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Generator sizing depends on what you need to power. A 7–12kW unit handles essential circuits — lights, refrigerator, key outlets. A 20–22kW unit can run most of your home including HVAC. Larger homes may need 24–30kW+. We perform a load calculation during the estimate to recommend the right size for your needs and budget.</div>
+        <div class="faq-a" id="sa3" role="region" aria-labelledby="sq3"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">It depends what you want to keep running. A 7 to 12kW unit covers essentials: lights, fridge and key outlets. A 20 to 22kW unit runs most of a house including HVAC. Larger homes may need 24 to 30kW or more. We run a load calculation during the estimate and recommend a size.</p></div>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          Do you work on older Houston homes with aluminum wiring?
-          <span class="faq-arrow">+</span>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="sq4" aria-expanded="false" aria-controls="sa4">
+          <span itemprop="name">Do you work on older homes with aluminium wiring?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Yes. Many Houston homes from the 1960s and 70s have aluminum wiring, which poses a documented fire hazard at connection points. We assess the extent of aluminum wiring and provide options — from full rewiring to using anti-oxidant compounds with CO/ALR-rated devices. We give honest options at different price points after inspecting in person.</div>
+        <div class="faq-a" id="sa4" role="region" aria-labelledby="sq4"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Yes. Plenty of Houston homes from the 1960s and 70s have aluminium wiring, which is a documented fire hazard at the connection points. We assess how much there is and give you options, from full rewiring to anti-oxidant compounds with CO/ALR-rated devices, at different price points, after inspecting in person.</p></div>
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">
-          How much does recessed lighting installation cost in Houston?
-          <span class="faq-arrow">+</span>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="sq5" aria-expanded="false" aria-controls="sa5">
+          <span itemprop="name">How much does recessed lighting cost?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a">
-          <div class="faq-a-inner">Costs vary based on the number of lights, ceiling height, attic access, and existing wiring. Most Houston homeowners spend $100–$200 per light installed, including fixtures and labor. A typical living room or kitchen with 10–12 recessed lights generally runs $1,200–$2,200. Contact us to schedule a free estimate specific to your home.</div>
+        <div class="faq-a" id="sa5" role="region" aria-labelledby="sq5"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">It depends on the number of lights, ceiling height, attic access and the existing wiring. Most Houston homeowners spend $100 to $200 per light installed, fixtures and labour included. A living room or kitchen with 10 to 12 lights generally runs $1,200 to $2,200. Book a free estimate for a number specific to your home.</p></div>
         </div>
       </div>
 
@@ -358,111 +373,93 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" aria-labelledby="services-cta-heading">
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="cta-band">
   <div class="container">
-    <span class="section-label" style="color:var(--gold-light); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Request Service</span>
-    <h2 id="services-cta-heading">Ready to Schedule?</h2>
-    <p>A technician will come out to inspect the work, assess exactly what's needed, and provide a clear written estimate — at no charge.</p>
-    <div class="cta-btns reveal">
-      <a href="booking" class="btn btn-primary btn-lg">Book a Free Estimate</a>
-      <a href="tel:8326108081" class="btn btn-secondary btn-lg">(832) 610-8081</a>
+    <h2>Get a written estimate</h2>
+    <p>A technician comes out, looks at the job and tells you what it costs, in writing,
+       before any work starts.</p>
+    <div class="cta-actions">
+      <a href="booking" class="btn btn-primary btn-lg">Book a free estimate</a>
+      <a href="tel:8326108081" class="btn btn-ghost btn-lg tnum">(832) 610-8081</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="site-footer" role="contentinfo">
+</main>
+
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-section footer-brand">
+      <div class="footer-brand">
         <h2>Iron Volt Electric</h2>
-        <p>Licensed and insured electrical contractor serving homes and businesses throughout Greater Houston &mdash; Spring, The Woodlands, Conroe, Cypress, Katy, Sugar Land, Pearland, Baytown, and beyond. </p>
-        <span class="footer-tecl">TECL #41098</span>
+        <p>Licensed electrical contractor for homes and businesses across Greater Houston,
+        from Conroe and The Woodlands down to Sugar Land and Pearland.</p>
+        <span class="footer-licence">TECL #41098</span>
       </div>
-      <div class="footer-section">
+
+      <div class="footer-col">
         <h3>Services</h3>
-        <ul class="footer-links">
-          <li><a href="services#repairs">Electrical Repairs</a></li>
-          <li><a href="services#panels">Panel Upgrades</a></li>
+        <ul>
+          <li><a href="services#repairs">Repairs</a></li>
+          <li><a href="services#panels">Panel upgrades</a></li>
           <li><a href="services#lighting">Lighting</a></li>
           <li><a href="services#generators">Generators</a></li>
-          <li><a href="services#ev">EV Chargers</a></li>
-          <li><a href="services">All Services</a></li>
+          <li><a href="services#ev">EV chargers</a></li>
+          <li><a href="services">All services</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Company</h3>
-        <ul class="footer-links">
-          <li><a href="about">About Us</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="booking">Book Now</a></li>
-          <li><a href="reviews">Reviews</a></li>
-          <li><a href="servicearea">Service Areas</a></li>
-          <li><a href="/#faq-heading">FAQ</a></li>
-        </ul>
 
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about">About</a></li>
+          <li><a href="servicearea">Service area</a></li>
+          <li><a href="reviews">Reviews</a></li>
+          <li><a href="contact">Contact</a></li>
+          <li><a href="booking">Book an appointment</a></li>
+          <li><a href="/#faq">Questions</a></li>
+        </ul>
       </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p><a href="tel:8326108081">(832) 610-8081</a></p>
-        <p><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></p>
-        <p style="color:#5a7a92;">Houston &amp; Surrounding Areas</p>
-        <p style="color:#5a7a92;">Mon&ndash;Sat: 8AM&ndash;6PM</p>
-        <p style="color:#5a7a92;">24/7 Emergency Line</p>
+
+      <div class="footer-col">
+        <h3>Get in touch</h3>
+        <ul>
+          <li><a href="tel:8326108081" class="tnum">(832) 610-8081</a></li>
+          <li><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></li>
+        </ul>
+        <p class="note stack-sm">Monday to Saturday, 8am to 6pm</p>
+        <p class="note">Emergency line answered 24/7</p>
       </div>
     </div>
-    <div class="footer-socials">
-      <span class="footer-socials-label">Follow Us</span>
- 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Instagram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
- 
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/profile.php?id=61587192351664" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Facebook">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
- 
-      <!-- Threads -->
-      <a href="https://www.threads.net/@ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Threads">
-        <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg>
-      </a>
- 
-      <!-- Yelp -->
-      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Yelp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg>
-      </a>
- 
-      <!-- Nextdoor -->
-      <a href="https://nextdoor.com/page/iron-volt-electric/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Nextdoor">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg>
-      </a>
- 
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61587192351664" class="social-btn" aria-label="Iron Volt Electric on Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" class="social-btn" aria-label="Iron Volt Electric on Yelp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg></a>
+      <a href="https://nextdoor.com/page/iron-volt-electric/" class="social-btn" aria-label="Iron Volt Electric on Nextdoor" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg></a>
+      <a href="https://www.threads.net/@ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Threads" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 192 192" aria-hidden="true"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg></a>
     </div>
+
     <div class="footer-bottom">
-      <span>&copy; 2026 Iron Volt Electric LLC. All rights reserved.</span>
-      <div class="footer-bottom-links">
+      <span>&copy; 2026 Iron Volt Electric LLC</span>
+      <nav aria-label="Legal">
         <a href="privacy">Privacy</a>
-        <a href="booking">Book Service</a>
-      </div>
+        <a href="booking">Book an appointment</a>
+      </nav>
     </div>
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" aria-label="Quick contact">
-  <a href="tel:8326108081" class="btn btn-primary">Call Now</a>
-  <a href="booking" class="btn btn-secondary">Book Online</a>
+<div class="sticky-cta">
+  <a href="tel:8326108081" class="btn btn-primary tnum">Call now</a>
+  <a href="booking" class="btn btn-ghost">Book online</a>
 </div>
 
-<script src="js/main.js"></script>
-
-<script
-    src="https://widget.heyrosie.com/widget.js"
-    async
-    data-rosie-business-id="dd1f3068-c9d5-4acc-9618-78165fdaea94">
-    </script>
+<script src="js/main.js" defer></script>
+<script src="https://widget.heyrosie.com/widget.js" async
+        data-rosie-business-id="dd1f3068-c9d5-4acc-9618-78165fdaea94"></script>
 </body>
 </html>
