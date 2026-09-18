@@ -1,197 +1,159 @@
-# Iron Volt Electric Website
+# Iron Volt Electric
 
-A professional, multi-page website for Iron Volt Electric - showcasing electrical services with a modern, responsive design.
+The website for Iron Volt Electric LLC, a licensed electrical contractor serving
+Greater Houston. Static HTML, CSS and vanilla JavaScript, served from GitHub Pages
+at [www.ironvoltelectric.com](https://www.ironvoltelectric.com).
 
-## 📁 Project Structure
+## What this site is for
+
+It is a lead-generation site for a trade business, not a brochure. In priority order
+it has to:
+
+1. Put the phone number and the booking link within reach on every screen.
+2. Let someone scan what we do and check whether we cover their address.
+3. Establish that we are licensed and insured, with the number to verify it.
+
+Every design decision below serves one of those three. If a change does not, it
+does not belong.
+
+## Structure
 
 ```
-ironvoltelectric/
-├── index.html          # Home page with hero section and featured services
-├── about.html          # About page with company vision, mission, and team
-├── services.html       # Services page with comprehensive service listings
-├── contact.html        # Contact page with form and contact information
-├── booking.html        # Booking page with appointment scheduling form
-├── css/
-│   └── styles.css      # Main stylesheet with complete design system
-├── js/
-│   └── main.js         # JavaScript for navigation and form validation
-└── images/
-    └── team-member.jpg # Team member photo
+index.html         Home: hero, services, how we work, reviews, coverage, FAQ
+services.html      Residential and commercial services, with spec lists
+servicearea.html   Coverage map and towns by region
+about.html         Company background, credentials, guarantees
+contact.html       Ways to reach us, details, emergency callout, process
+booking.html       Booking request form with client-side validation
+reviews.html       Google reviews embed
+privacy.html       Privacy policy
+404.html           Not-found page
+review.html        Redirect to the Google review form
+css/styles.css     The whole design system. There is no other stylesheet.
+js/main.js         Nav, FAQ accordion, slideshows, chat-widget positioning
+js/booking.js      Booking form validation and submission
 ```
 
-## 🎨 Design Features
+There are no inline `style` attributes and no per-page `<style>` blocks anywhere
+in the site. If something needs styling, it gets a class in `css/styles.css`.
 
-### Color Palette
-- **Primary Blue**: #1a4d8f (Professional, trustworthy)
-- **Secondary Orange**: #f39c12 (Energy, electric theme)
-- **Accent Dark**: #2c3e50 (Contrast and depth)
-- **Light Background**: #f8f9fa (Clean, modern)
+## Design system
 
-### Typography
-- **Primary Font**: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
-- **Headings**: Arial, Helvetica, sans-serif
-- Clear hierarchy with responsive font sizes
+Everything is defined as a custom property at the top of `css/styles.css`. Use the
+tokens; do not introduce new raw values.
 
-### Key Components
-- **Sticky Navigation**: Professional header with mobile-responsive menu
-- **Hero Section**: Full-screen hero with gradient background and CTAs
-- **Service Cards**: Hover effects and shadow transitions
-- **Contact Forms**: Validated forms with user-friendly inputs
-- **Footer**: Comprehensive footer with quick links and contact info
+### Colour
 
-## 📄 Pages Overview
+Four surfaces, three text steps per surface, one accent.
 
-### 1. Home Page (index.html)
-- Full-screen hero section with engaging tagline
-- "Book Now" call-to-action button
-- Horizontal scrolling carousel for featured services
-- Why Choose Us section with key benefits
-- Trust badges and certifications
-- Call-to-action sections
+| Token | Value | Use |
+|---|---|---|
+| `--ink` | `#10161f` | Dark sections, header |
+| `--ink-strong` | `#0a0f16` | Footer |
+| `--surface` | `#ffffff` | Default page background |
+| `--surface-alt` | `#f5f4f1` | Alternating band |
+| `--text` / `--text-muted` | `#171c24` / `#55606e` | Text on light (17.1:1, 6.4:1) |
+| `--on-dark` / `--on-dark-muted` / `--on-dark-subtle` | `#ffffff` / `#b8c0cb` / `#8c96a4` | Text on dark (21:1, 9.9:1, 6.1:1) |
+| `--accent` | `#e8a020` | The logo gold |
+| `--accent-strong` | `#8a5b0d` | Gold **text** on light surfaces |
 
-### 2. About Page (about.html)
-- Company story and background
-- Vision and mission statements
-- Core values presentation
-- Team section featuring professionals
-- Why work with us section
+Every text colour above clears WCAG AA (4.5:1) on the surfaces it is used on.
 
-### 3. Services Page (services.html)
-- Comprehensive service listings:
-  - Residential electrical services
-  - Commercial electrical services
-  - Specialized services
-- Service process explanation
-- Service guarantees
-- Clear service descriptions with icons
+**`--accent` is a fill, not a text colour, on light backgrounds.** It only reaches
+2.2:1 on white. For gold-coloured text on a light surface use `--accent-strong`
+(5.9:1). On `--ink`, `--accent` is 8.2:1 and safe as text.
 
-### 4. Contact Page (contact.html)
-- Contact form with validation
-- Contact information display
-- Click-to-call functionality
-- Emergency contact section
-- Map placeholder
-- FAQ section
+Colour carries meaning: gold means "this is the action", red means emergency,
+green means a completed booking. It is not used to make sections look livelier.
 
-### 5. Booking Page (booking.html)
-- User-friendly booking form
-- Clear 4-step booking process timeline
-- Comprehensive form fields:
-  - Personal information
-  - Property details
-  - Service selection
-  - Preferred scheduling
-- What to expect section
-- Alternative contact options
+### Type
 
-## 🔧 Technical Features
+Archivo for headings, IBM Plex Sans for text. Nine sizes, `--text-xs` through
+`--text-4xl`; three line-heights, `--leading-tight|snug|normal`; four weights,
+400 to 700. Headings are sentence case.
 
-### Responsive Design
-- Mobile-first approach
-- Breakpoints at 768px and 480px
-- Responsive navigation with mobile menu toggle
-- Flexible grid layouts that adapt to screen sizes
+### Spacing, radius, elevation
 
-### Cross-Browser Compatibility
-- Modern CSS3 with fallbacks
-- Standard HTML5 semantic elements
-- Compatible with all major browsers
+`--space-1` (4px) through `--space-9` (96px), on a 4px base. Three radii:
+`--radius-sm` (4px) for controls, `--radius` (8px) for cards and buttons,
+`--radius-lg` (16px) for media panels. One shadow, used only to lift a card on
+hover; everything else is separated with hairlines.
 
-### Performance
-- Optimized CSS with CSS custom properties (variables)
-- Minimal JavaScript for better performance
-- Clean, maintainable code structure
+### Motion
 
-### Accessibility
-- Semantic HTML5 elements
-- ARIA labels for interactive elements
-- Keyboard navigation support
-- Clear visual hierarchy
+`--dur` (160ms) and `--dur-slow` (240ms) on `--ease`. Hover movement stays within
+2px. There is no scroll-triggered animation anywhere on the site. Everything is
+disabled under `prefers-reduced-motion`.
 
-## 🚀 Getting Started
+## Components
 
-### Viewing the Website
-1. Open `index.html` in a web browser
-2. Navigate through pages using the header menu
-3. All pages are interlinked and functional
+One component per job. Before adding a variant, check whether an existing one
+already covers it.
 
-### Customization
-1. **Colors**: Update CSS variables in `:root` section of `styles.css`
-2. **Content**: Edit HTML files directly to update text and information
-3. **Images**: Replace images in the `images/` folder
-4. **Contact Info**: Update phone numbers, email, and address throughout all pages
+- **`.btn`** with `.btn-primary` (gold), `.btn-outline` (light surfaces) and
+  `.btn-ghost` (dark surfaces). Sizes `.btn-sm` / `.btn-lg` / `.btn-full`.
+  Minimum target 44px.
+- **`.card`** for discrete units of content. A list of claims is a list, not a
+  row of boxes; use `.feature-list`, `.check-list` or `.spec-list` instead.
+- **`.facts`** for licence, experience and hours claims. It replaced four
+  components that all did this.
+- **`.steps`** for the one process description, shared by contact and booking.
+- **`.faq`** accordion. State lives in `aria-expanded` on the button; CSS keys
+  off that attribute, so markup and presentation cannot drift apart.
+- **`.section-header`** is left-aligned. There is no eyebrow badge and no rule
+  under the heading.
 
-## 📱 Features Implemented
+Icons are inline SVG on a 24px grid with a 1.5px stroke, sized through `.icon`,
+`.icon-sm` (15px) and `.icon-lg` (24px). No icon library.
 
-### Common Components
-✅ Sticky navigation bar with company logo and menu  
-✅ Mobile-responsive menu with toggle button  
-✅ Professional footer with quick links, social media, and contact info  
-✅ Consistent design across all pages  
-✅ Modern typography and color palette  
+## Accessibility
 
-### Home Page
-✅ Full-screen hero section with tagline  
-✅ "Book Now" call-to-action button  
-✅ Horizontal scroll carousel for featured services  
-✅ Trust logos/certifications section  
-✅ Why Choose Us section  
+- Skip link is the first tab stop on every page.
+- One `:focus-visible` treatment site-wide.
+- All body text clears WCAG AA against its surface.
+- The booking form validates in JavaScript, with messages tied to fields through
+  `aria-describedby` and `aria-invalid`, and a summary in an `aria-live` region.
+  (The form carries `novalidate` so it can show its own messages; that means the
+  JavaScript is the only validation there is. Do not remove it.)
+- Slideshow dots are real buttons with `aria-current` and accessible names.
+- Motion is disabled under `prefers-reduced-motion`.
 
-### About Page
-✅ Company story and vision  
-✅ Mission statement  
-✅ Core values  
-✅ Team section with professional photo  
+## Images
 
-### Services Page
-✅ Comprehensive service listings  
-✅ Service descriptions with icons  
-✅ Residential services section  
-✅ Commercial services section  
-✅ Specialized services section  
-✅ Service process explanation  
+Source images are sized to roughly 2x their displayed dimensions and encoded as
+JPEG, except the logo and badge, which need transparency and stay PNG. The whole
+`images/` directory is about 4MB.
 
-### Contact Page
-✅ Contact form with validation  
-✅ Contact details display  
-✅ Click-to-call functionality  
-✅ Emergency contact section  
-✅ Map placeholder  
-✅ FAQ section  
+Before committing a new image, resize it. A 42px-tall header logo does not need
+to be a 17431px-wide PNG, which is what it used to be.
 
-### Booking Page
-✅ Simple, user-friendly interface  
-✅ Clear booking process (4-step timeline)  
-✅ Comprehensive booking form  
-✅ Preferred scheduling options  
-✅ Alternative contact methods  
+Every `<img>` carries `width`, `height` and `loading="lazy"` so the browser
+reserves the right box and nothing shifts as the page loads.
 
-## 🌐 Browser Support
+## Third-party embeds
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
+- **Rosie** chat widget. It fixes itself to the bottom-right, where it covers the
+  sticky mobile call-to-action. The element that actually carries the fixed
+  position lives inside the widget's open shadow root, so styling the
+  `<rosie-widget>` host does nothing; `js/main.js` reaches into the shadow root
+  and pins the real container. Do not replace that with a plain CSS rule.
+- **Common Ninja** reviews embed on the home and reviews pages.
+- **reCAPTCHA v3** on the booking form.
 
-## 📝 Notes
+## Local development
 
-- All forms include client-side validation
-- Phone numbers are clickable (click-to-call)
-- Email addresses are clickable (mailto links)
-- Social media icons are placeholders (update links as needed)
-- Map section is a styled placeholder (integrate Google Maps or similar)
+```sh
+python3 -m http.server 8000
+```
 
-## 🔐 Best Practices
+Then open <http://localhost:8000>. There is no build step.
 
-- Clean, semantic HTML5
-- BEM-like CSS class naming conventions
-- Commented code sections for clarity
-- Consistent spacing and indentation
-- Responsive images
-- Accessible form labels
-- Cross-browser compatible CSS
+Note that the site uses extensionless links (`href="services"`), which GitHub
+Pages resolves but `http.server` does not. Add `.html` when clicking through
+locally, or use a server that does extensionless resolution.
 
-## 📄 License
+## Editing content
 
-Copyright © 2026 Iron Volt Electric. All rights reserved.
+Phone number, email, hours and the TECL licence number appear in the shared
+header and footer on every page, and in page copy. Search across all HTML files
+when changing any of them.

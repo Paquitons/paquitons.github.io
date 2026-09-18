@@ -18,319 +18,305 @@
 
     <link rel="icon" href="images/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
-    <link rel="stylesheet" href="css/styles.css">
-  <style>
-    .booking-layout {
-      display: flex;
-      gap: 2.5rem;
-      align-items: flex-start;
-    }
-    .booking-form-wrap {
-      flex: 1;
-      min-width: 0;
-    }
-    .booking-sidebar {
-      width: 300px;
-      flex-shrink: 0;
-      position: sticky;
-      top: 100px;
-    }
-    .booking-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 1.6rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-    }
-    .booking-card h4 {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 2px solid var(--gold);
-      color: var(--navy);
-    }
-    .booking-trust-card {
-      background: var(--navy);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-    }
-    .booking-trust-card h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 1rem; }
-    .booking-trust-item {
-      display: flex; align-items: center; gap: 0.55rem;
-      font-size: 0.85rem; color: rgba(255,255,255,0.65);
-      margin-bottom: 0.55rem;
-    }
-    .booking-trust-item::before { content: '\2713'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-    .next-steps li {
-      display: flex; gap: 0.75rem;
-      align-items: flex-start; margin-bottom: 0.9rem;
-      font-size: 0.88rem; color: var(--gray); line-height: 1.55;
-    }
-    .next-step-num {
-      font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
-      color: var(--gold); flex-shrink: 0; width: 1.4rem; text-align: left;
-    }
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .hp-field {
-      position: absolute !important;
-      left: -9999px !important;
-      width: 1px; height: 1px;
-      overflow: hidden;
-    }
-    @media (max-width: 768px) {
-      .booking-layout { flex-direction: column; }
-      .booking-sidebar { width: 100%; position: static; }
-      .form-grid-2 { grid-template-columns: 1fr; }
-    }
-  </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<div class="emergency-banner" role="alert"><span class="marquee-track">
-  Electrical Emergency? We Answer 24/7 &mdash; <a href="tel:8326108081">(832) 610-8081</a> &mdash; Licensed &amp; Insured &middot; TECL #41098
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="emergency-bar">
+  Electrical emergency? We answer 24/7.
+  <span class="sep">&middot;</span>
+  <a href="tel:8326108081" class="tnum">(832) 610-8081</a>
 </div>
 
 <header>
-  <nav class="navbar container">
-    <button class="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
+  <nav class="navbar container" aria-label="Main">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path class="icon-open" d="M3 6h18M3 12h18M3 18h18"/>
+        <path class="icon-close" d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+    </button>
     <div class="logo">
-      <a href="/"><img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric"></a>
+      <a href="/" aria-label="Iron Volt Electric, home">
+        <img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric" width="440" height="143">
+      </a>
     </div>
     <div class="nav-spacer"></div>
-    <ul class="nav-menu">
+    <ul class="nav-menu" id="nav-menu">
       <li><a href="/">Home</a></li>
       <li><a href="services">Services</a></li>
+      <li><a href="servicearea">Service area</a></li>
       <li><a href="about">About</a></li>
       <li><a href="contact">Contact</a></li>
-      <li><a href="booking" class="nav-book active">Book Now</a></li>
+      <li><a href="booking" class="nav-book" aria-current="page">Book now</a></li>
     </ul>
+    <a href="tel:8326108081" class="nav-phone tnum">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      (832) 610-8081
+    </a>
   </nav>
 </header>
+<main id="main">
 
 <div class="page-banner">
   <div class="container">
-    <div class="breadcrumb"><a href="/">Home</a> / Book Appointment</div>
-    <h1>Book an <span>Appointment</span></h1>
-    <p>Submit your request below and a technician will come out to inspect and provide a free written estimate.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / Book an appointment</nav>
+    <h1>Book an <span>appointment</span></h1>
+    <p>Send us the details and a technician comes out to look at the job and write you an
+       estimate. It costs nothing and commits you to nothing.</p>
   </div>
 </div>
 
-<!-- Trust Bar -->
-<div class="trust-bar">
+<div class="claim-band">
   <div class="container">
-    <div class="trust-bar-inner">
-      <span class="trust-item"><span class="check">&#10003;</span> Free Estimates</span>
-      <span class="trust-item"><span class="check">&#10003;</span> No Obligation</span>
-      <span class="trust-item"><span class="check">&#10003;</span> TECL #41098 Licensed</span>
-      <span class="trust-item"><span class="check">&#10003;</span> Fully Insured</span>
-      <span class="trust-item"><span class="check">&#10003;</span> Satisfaction Guaranteed</span>
-    </div>
+    <ul class="claim-row">
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>
+        Free estimates
+      </li>
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>
+        No obligation
+      </li>
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>
+        TECL #41098
+      </li>
+      <li>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>
+        Insured and bonded
+      </li>
+    </ul>
   </div>
 </div>
 
-<!-- Booking Form + Sidebar -->
-<section aria-labelledby="booking-form-heading">
+<!-- ============================================================
+     FORM
+     ============================================================ -->
+<section aria-labelledby="form-heading">
   <div class="container">
     <div class="booking-layout">
 
-      <!-- Form -->
-      <div class="booking-form-wrap">
-        <div class="card" style="padding:2rem;">
+      <div>
+        <!-- Confirmation, shown in place of the form on success. -->
+        <div id="formSuccess" class="form-success">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>
+          <h2>Request received</h2>
+          <p>We'll review it and contact you within 24 hours to confirm a time and arrange
+             the technician visit. If it's urgent, call (832) 610-8081 rather than waiting
+             on us.</p>
+          <a href="/" class="btn btn-outline">Back to home</a>
+        </div>
 
-          <!-- Success Message -->
-          <div id="formSuccess" class="form-success">
-            <div style="font-size:3rem; color:var(--success); margin-bottom:1rem;">&#10003;</div>
-            <h3>Booking Request Submitted</h3>
-            <p>Thank you &mdash; we&rsquo;ll review your request and contact you within 24 hours to confirm your appointment and arrange a technician visit.</p>
-            <a href="/" class="btn btn-outline" style="margin-top:1.5rem;">&larr; Back to Home</a>
+        <h2 id="form-heading" class="visually-hidden">Booking request form</h2>
+
+        <form id="bookingForm" method="POST" action="https://ironvolt.omnemarchy.online/booking" novalidate>
+          <input type="hidden" name="subject" value="New booking request, Iron Volt Electric">
+
+          <!-- Honeypot. Hidden from people, filled in by bots. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <form id="bookingForm" method="POST" action="https://ironvolt.omnemarchy.online/booking" novalidate>
-            <input type="hidden" name="subject" value="New Booking Request — Iron Volt Electric">
+          <!-- Submit-level errors are announced here. -->
+          <div id="formAlert" class="form-alert" role="alert" aria-live="assertive">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span id="formAlertText"></span>
+          </div>
 
-            <!-- Honeypot: hidden from real visitors, bots that auto-fill every field trip it -->
-            <div class="hp-field" aria-hidden="true">
-              <label for="website">Website</label>
-              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-            </div>
-
-            <!-- Personal Info -->
-            <div class="form-section-title">Personal Information</div>
-            <div class="form-grid-2">
+          <fieldset class="form-section">
+            <legend>Your details</legend>
+            <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="firstName">First Name <span style="color:var(--danger);">*</span></label>
-                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="John" required autocomplete="given-name">
+                <label class="form-label" for="firstName">First name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="firstName" name="firstName" class="form-control"
+                       required autocomplete="given-name" aria-describedby="firstName-error">
+                <p class="field-error" id="firstName-error"></p>
               </div>
               <div class="form-group">
-                <label class="form-label" for="lastName">Last Name <span style="color:var(--danger);">*</span></label>
-                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Smith" required autocomplete="family-name">
-              </div>
-            </div>
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label class="form-label" for="phone">Phone Number <span style="color:var(--danger);">*</span></label>
-                <input type="tel" id="phone" name="phone" class="form-control" placeholder="(832) 555-0100" required autocomplete="tel">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="john@email.com" autocomplete="email">
+                <label class="form-label" for="lastName">Last name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="lastName" name="lastName" class="form-control"
+                       required autocomplete="family-name" aria-describedby="lastName-error">
+                <p class="field-error" id="lastName-error"></p>
               </div>
             </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-control"
+                       required autocomplete="tel" aria-describedby="phone-error">
+                <p class="field-error" id="phone-error"></p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email <span class="opt">(optional)</span></label>
+                <input type="email" id="email" name="email" class="form-control"
+                       autocomplete="email" aria-describedby="email-error">
+                <p class="field-error" id="email-error"></p>
+              </div>
+            </div>
+          </fieldset>
 
-            <!-- Property Info -->
-            <div class="form-section-title" style="margin-top:0.5rem;">Property Information</div>
+          <fieldset class="form-section">
+            <legend>The property</legend>
             <div class="form-group">
-              <label class="form-label" for="address">Property Address <span style="color:var(--danger);">*</span></label>
-              <input type="text" id="address" name="address" class="form-control" placeholder="123 Main Street, Houston, TX 77001" required autocomplete="street-address">
+              <label class="form-label" for="address">Address where the work is needed <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="address" name="address" class="form-control"
+                     required autocomplete="street-address" aria-describedby="address-error">
+              <p class="field-error" id="address-error"></p>
             </div>
             <div class="form-group">
-              <label class="form-label" for="propertyType">Property Type</label>
+              <label class="form-label" for="propertyType">Property type <span class="opt">(optional)</span></label>
               <select id="propertyType" name="propertyType" class="form-control">
-                <option value="">Select property type&hellip;</option>
-                <option value="residential-house">Residential &mdash; House</option>
-                <option value="residential-apartment">Residential &mdash; Apartment / Condo</option>
-                <option value="commercial-office">Commercial &mdash; Office</option>
-                <option value="commercial-retail">Commercial &mdash; Retail</option>
-                <option value="commercial-warehouse">Commercial &mdash; Warehouse / Industrial</option>
-                <option value="commercial-restaurant">Commercial &mdash; Restaurant / Food Service</option>
-                <option value="other">Other</option>
+                <option value="">Choose one</option>
+                <option value="residential-house">House</option>
+                <option value="residential-apartment">Apartment or condo</option>
+                <option value="commercial-office">Commercial, office</option>
+                <option value="commercial-retail">Commercial, retail</option>
+                <option value="commercial-warehouse">Commercial, warehouse or industrial</option>
+                <option value="commercial-restaurant">Commercial, restaurant or food service</option>
+                <option value="other">Something else</option>
               </select>
             </div>
+          </fieldset>
 
-            <!-- Service Details -->
-            <div class="form-section-title" style="margin-top:0.5rem;">Service Details</div>
+          <fieldset class="form-section">
+            <legend>The job</legend>
             <div class="form-group">
-              <label class="form-label" for="serviceType">Service Needed <span style="color:var(--danger);">*</span></label>
-              <select id="serviceType" name="serviceType" class="form-control" required>
-                <option value="">Select service type&hellip;</option>
+              <label class="form-label" for="serviceType">What do you need? <span class="req" aria-hidden="true">*</span></label>
+              <select id="serviceType" name="serviceType" class="form-control"
+                      required aria-describedby="serviceType-error">
+                <option value="">Choose a service</option>
                 <optgroup label="Residential">
-                  <option value="res-repairs">Electrical Repairs</option>
-                  <option value="res-panel">Panel / Breaker Upgrade</option>
-                  <option value="res-lighting">Lighting Installation</option>
-                  <option value="res-ev">EV Charger Installation</option>
-                  <option value="res-generator">Generator Installation</option>
-                  <option value="res-surge">Surge Protection</option>
-                  <option value="res-outlets">Outlets &amp; Switches</option>
-                  <option value="res-fan">Ceiling Fan Installation</option>
-                  <option value="res-wiring">Wiring Repair / Replacement</option>
-                  <option value="res-circuit">Dedicated Circuit</option>
+                  <option value="res-repairs">Electrical repairs</option>
+                  <option value="res-panel">Panel or breaker upgrade</option>
+                  <option value="res-lighting">Lighting</option>
+                  <option value="res-ev">EV charger</option>
+                  <option value="res-generator">Generator</option>
+                  <option value="res-surge">Surge protection</option>
+                  <option value="res-outlets">Outlets and switches</option>
+                  <option value="res-fan">Ceiling fan</option>
+                  <option value="res-wiring">Wiring repair or replacement</option>
+                  <option value="res-circuit">Dedicated circuit</option>
                 </optgroup>
                 <optgroup label="Commercial">
-                  <option value="com-repairs">Commercial Repairs</option>
-                  <option value="com-lighting">Commercial Lighting</option>
-                  <option value="com-panel">Commercial Panel Upgrade</option>
-
-                  <option value="com-buildout">Tenant Build-Out</option>
-                  <option value="com-equipment">Equipment Hookup</option>
-                  <option value="com-code">Code Corrections</option>
+                  <option value="com-repairs">Commercial repairs</option>
+                  <option value="com-lighting">Commercial lighting</option>
+                  <option value="com-panel">Commercial panel upgrade</option>
+                  <option value="com-buildout">Tenant build-out</option>
+                  <option value="com-equipment">Equipment hookup</option>
+                  <option value="com-code">Code corrections</option>
                 </optgroup>
-                <option value="other">Other / Not Listed</option>
+                <option value="other">Other, or not sure</option>
               </select>
+              <p class="field-error" id="serviceType-error"></p>
             </div>
             <div class="form-group">
-              <label class="form-label" for="urgency">Urgency Level</label>
+              <label class="form-label" for="urgency">How soon? <span class="opt">(optional)</span></label>
               <select id="urgency" name="urgency" class="form-control">
-                <option value="">Select urgency level&hellip;</option>
-                <option value="emergency">Emergency &mdash; Need help ASAP (please also call us)</option>
-                <option value="urgent">Urgent &mdash; Within 1&ndash;2 days</option>
-                <option value="normal">Normal &mdash; Within the next week</option>
-                <option value="flexible">Flexible &mdash; Anytime that works</option>
+                <option value="">Choose one</option>
+                <option value="emergency">Emergency, today (please call us as well)</option>
+                <option value="urgent">Within a day or two</option>
+                <option value="normal">Within the week</option>
+                <option value="flexible">Whenever suits you</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label" for="description">Describe the Issue <span style="color:var(--danger);">*</span></label>
-              <textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe what's happening or what you need. The more detail, the better we can prepare for your appointment." required></textarea>
+              <label class="form-label" for="description">What's happening? <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="description" name="description" class="form-control" rows="4"
+                        required aria-describedby="description-hint description-error"></textarea>
+              <p class="form-note stack-sm" id="description-hint">The more
+                detail you give, the better we can prepare and the more accurate the estimate.</p>
+              <p class="field-error" id="description-error"></p>
             </div>
+          </fieldset>
 
-            <!-- Schedule -->
-            <div class="form-section-title" style="margin-top:0.5rem;">Preferred Schedule</div>
-            <div class="form-grid-2">
+          <fieldset class="form-section">
+            <legend>When suits you</legend>
+            <div class="form-row">
               <div class="form-group">
-                <label class="form-label" for="preferredDate">Preferred Date</label>
+                <label class="form-label" for="preferredDate">Preferred date <span class="opt">(optional)</span></label>
                 <input type="date" id="preferredDate" name="preferredDate" class="form-control">
               </div>
               <div class="form-group">
-                <label class="form-label" for="preferredTime">Preferred Time</label>
+                <label class="form-label" for="preferredTime">Preferred time <span class="opt">(optional)</span></label>
                 <select id="preferredTime" name="preferredTime" class="form-control">
-                  <option value="">Select time slot&hellip;</option>
-                  <option value="8am-10am">8:00 AM &ndash; 10:00 AM</option>
-                  <option value="10am-12pm">10:00 AM &ndash; 12:00 PM</option>
-                  <option value="12pm-2pm">12:00 PM &ndash; 2:00 PM</option>
-                  <option value="2pm-4pm">2:00 PM &ndash; 4:00 PM</option>
-                  <option value="4pm-6pm">4:00 PM &ndash; 6:00 PM</option>
+                  <option value="">Choose a slot</option>
+                  <option value="8am-10am">8am to 10am</option>
+                  <option value="10am-12pm">10am to 12pm</option>
+                  <option value="12pm-2pm">12pm to 2pm</option>
+                  <option value="2pm-4pm">2pm to 4pm</option>
+                  <option value="4pm-6pm">4pm to 6pm</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-              <label class="form-label" for="altDate">Alternate Date (optional)</label>
+              <label class="form-label" for="altDate">A second date that works <span class="opt">(optional)</span></label>
               <input type="date" id="altDate" name="altDate" class="form-control">
             </div>
-
-            <!-- Notes + Terms -->
             <div class="form-group">
-              <label class="form-label" for="notes">Additional Notes</label>
-              <textarea id="notes" name="notes" class="form-control" rows="2" placeholder="Gate code, parking instructions, or anything else we should know&hellip;"></textarea>
+              <label class="form-label" for="notes">Anything else we should know? <span class="opt">(optional)</span></label>
+              <textarea id="notes" name="notes" class="form-control" rows="2"
+                        placeholder="Gate code, where to park, dogs in the yard"></textarea>
             </div>
-            <div class="form-group">
-              <label class="form-check">
-                <input type="checkbox" name="terms" id="terms" required>
-                <span>I understand that all estimates require an technician visit. By submitting this form I agree to be contacted by Iron Volt Electric to schedule my appointment.</span>
-              </label>
-            </div>
+          </fieldset>
 
-            <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:0.5rem;">Submit Booking Request</button>
-            <p style="text-align:center; font-size:0.82rem; color:var(--gray); margin-top:0.9rem;">
-              We&rsquo;ll respond within 24 hours to confirm your appointment.<br>
-              This site is protected by reCAPTCHA and the Google
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and
-              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> apply.
-            </p>
-          </form>
-        </div>
+          <div class="form-group stack">
+            <label class="form-check">
+              <input type="checkbox" name="terms" id="terms" required aria-describedby="terms-error">
+              <span>I understand an estimate needs a technician to visit, and I agree to be
+                contacted by Iron Volt Electric to arrange it.</span>
+            </label>
+            <p class="field-error" id="terms-error"></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-full">
+            <span class="spinner" aria-hidden="true" hidden></span>
+            <span class="btn-label">Request my appointment</span>
+          </button>
+
+          <p class="form-note">We reply within 24 hours to confirm. This form is protected by
+            reCAPTCHA; Google's <a href="https://policies.google.com/privacy" target="_blank"
+            rel="noopener noreferrer">privacy policy</a> and <a href="https://policies.google.com/terms"
+            target="_blank" rel="noopener noreferrer">terms</a> apply.</p>
+        </form>
       </div>
 
-      <!-- Sidebar -->
+      <!-- ------------------------------------------------------
+           SIDEBAR
+           ------------------------------------------------------ -->
       <aside class="booking-sidebar">
-        <div class="booking-card reveal">
-          <h4>Prefer to Call?</h4>
-          <a href="tel:8326108081" class="btn btn-primary btn-full" style="margin-bottom:0.75rem;">(832) 610-8081</a>
-          <p style="font-size:0.84rem; color:var(--gray); text-align:center; margin:0;">Mon&ndash;Sat 8AM&ndash;6PM &middot; 24/7 Emergencies</p>
+        <div class="booking-panel">
+          <h2>Rather just call?</h2>
+          <a href="tel:8326108081" class="btn btn-primary tnum">(832) 610-8081</a>
+          <p class="note">Monday to Saturday, 8am to 6pm.<br>Emergencies answered 24/7.</p>
         </div>
 
-        <div class="booking-card reveal">
-          <h4>What Happens Next</h4>
-          <ul class="next-steps" style="list-style:none;">
+        <div class="booking-panel">
+          <h2>What happens next</h2>
+          <ol class="steps">
             <li>
-              <span class="next-step-num">1.</span>
-              <span>We receive your request and confirm availability.</span>
+              <h3>We confirm</h3>
+              <p>We check we cover the work and come back to you on timing.</p>
             </li>
             <li>
-              <span class="next-step-num">2.</span>
-              <span>A technician contacts you to schedule a convenient visit time.</span>
+              <h3>A technician visits</h3>
+              <p>They inspect the job in person at the time you agreed.</p>
             </li>
             <li>
-              <span class="next-step-num">3.</span>
-              <span>Your technician arrives, inspects the issue in person, and provides a clear written estimate on the spot.</span>
+              <h3>You get the price in writing</h3>
+              <p>On the spot, with no obligation to go ahead.</p>
             </li>
             <li>
-              <span class="next-step-num">4.</span>
-              <span>You approve the estimate and we schedule the work. No surprises.</span>
+              <h3>The work gets done</h3>
+              <p>To code, with permits where needed, backed by our guarantee.</p>
             </li>
-            <li>
-              <span class="next-step-num">5.</span>
-              <span>Work completed to code, backed by our satisfaction guarantee.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="booking-trust-card">
-          <h4>Why Choose Iron Volt</h4>
-          <div class="booking-trust-item">TECL Licensed #41098</div>
-          <div class="booking-trust-item">Fully Insured &amp; Bonded</div>
-          <div class="booking-trust-item">Free Estimates</div>
-          <div class="booking-trust-item">25+ Years Experience</div>
-          <div class="booking-trust-item">Satisfaction Guaranteed</div>
+          </ol>
         </div>
       </aside>
 
@@ -338,95 +324,80 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="site-footer" role="contentinfo">
+</main>
+
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-section footer-brand">
+      <div class="footer-brand">
         <h2>Iron Volt Electric</h2>
-        <p>Licensed and insured electrical contractor serving homes and businesses throughout Greater Houston &mdash; Spring, The Woodlands, Conroe, Cypress, Katy, Sugar Land, Pearland, Baytown, and beyond.</p>
-        <span class="footer-tecl">TECL #41098</span>
+        <p>Licensed electrical contractor for homes and businesses across Greater Houston,
+        from Conroe and The Woodlands down to Sugar Land and Pearland.</p>
+        <span class="footer-licence">TECL #41098</span>
       </div>
-      <div class="footer-section">
+
+      <div class="footer-col">
         <h3>Services</h3>
-        <ul class="footer-links">
-          <li><a href="services#repairs">Electrical Repairs</a></li>
-          <li><a href="services#panels">Panel Upgrades</a></li>
+        <ul>
+          <li><a href="services#repairs">Repairs</a></li>
+          <li><a href="services#panels">Panel upgrades</a></li>
           <li><a href="services#lighting">Lighting</a></li>
           <li><a href="services#generators">Generators</a></li>
-          <li><a href="services#ev">EV Chargers</a></li>
-          <li><a href="services">All Services</a></li>
+          <li><a href="services#ev">EV chargers</a></li>
+          <li><a href="services">All services</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Company</h3>
-        <ul class="footer-links">
-          <li><a href="about">About Us</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="booking">Book Now</a></li>
-          <li><a href="reviews">Reviews</a></li>
-          <li><a href="servicearea">Service Areas</a></li>
-          <li><a href="/#faq-heading">FAQ</a></li>
-        </ul>
 
+      <div class="footer-col">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about">About</a></li>
+          <li><a href="servicearea">Service area</a></li>
+          <li><a href="reviews">Reviews</a></li>
+          <li><a href="contact">Contact</a></li>
+          <li><a href="booking">Book an appointment</a></li>
+          <li><a href="/#faq">Questions</a></li>
+        </ul>
       </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p><a href="tel:8326108081">(832) 610-8081</a></p>
-        <p><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></p>
-        <p style="color:#5a7a92;">Houston &amp; Surrounding Areas</p>
-        <p style="color:#5a7a92;">Mon&ndash;Sat: 8AM&ndash;6PM</p>
-        <p style="color:#5a7a92;">24/7 Emergency Line</p>
+
+      <div class="footer-col">
+        <h3>Get in touch</h3>
+        <ul>
+          <li><a href="tel:8326108081" class="tnum">(832) 610-8081</a></li>
+          <li><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></li>
+        </ul>
+        <p class="note stack-sm">Monday to Saturday, 8am to 6pm</p>
+        <p class="note">Emergency line answered 24/7</p>
       </div>
     </div>
-    <div class="footer-socials">
-      <span class="footer-socials-label">Follow Us</span>
- 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Instagram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
- 
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/profile.php?id=61587192351664" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Facebook">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
- 
-      <!-- Threads -->
-      <a href="https://www.threads.net/@ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Threads">
-        <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg>
-      </a>
- 
-      <!-- Yelp -->
-      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Yelp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg>
-      </a>
- 
-      <!-- Nextdoor -->
-      <a href="https://nextdoor.com/page/iron-volt-electric/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Nextdoor">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg>
-      </a>
- 
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61587192351664" class="social-btn" aria-label="Iron Volt Electric on Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" class="social-btn" aria-label="Iron Volt Electric on Yelp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg></a>
+      <a href="https://nextdoor.com/page/iron-volt-electric/" class="social-btn" aria-label="Iron Volt Electric on Nextdoor" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg></a>
+      <a href="https://www.threads.net/@ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Threads" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 192 192" aria-hidden="true"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg></a>
     </div>
+
     <div class="footer-bottom">
-      <span>&copy; 2026 Iron Volt Electric LLC. All rights reserved.</span>
-      <div class="footer-bottom-links">
+      <span>&copy; 2026 Iron Volt Electric LLC</span>
+      <nav aria-label="Legal">
         <a href="privacy">Privacy</a>
-        <a href="booking">Book Service</a>
-      </div>
+        <a href="booking">Book an appointment</a>
+      </nav>
     </div>
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" aria-label="Quick contact">
-  <a href="tel:8326108081" class="btn btn-primary">Call Now</a>
-  <a href="booking" class="btn btn-secondary">Book Online</a>
+<div class="sticky-cta">
+  <a href="tel:8326108081" class="btn btn-primary tnum">Call now</a>
+  <a href="booking" class="btn btn-ghost">Book online</a>
 </div>
 
-<!-- reCAPTCHA v3: replace YOUR_RECAPTCHA_V3_SITE_KEY with the real site key once registered at google.com/recaptcha -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LePfFstAAAAAN2BhRaic_0Oei5qy1sNxbY-3X1B"></script>
-<script src="js/main.js"></script>
-<script src="js/booking.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LePfFstAAAAAN2BhRaic_0Oei5qy1sNxbY-3X1B" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/booking.js" defer></script>
+<script src="https://widget.heyrosie.com/widget.js" async
+        data-rosie-business-id="dd1f3068-c9d5-4acc-9618-78165fdaea94"></script>
 </body>
 </html>

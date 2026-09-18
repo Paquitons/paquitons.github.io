@@ -1,146 +1,166 @@
 /* ============================================================
-   IRON VOLT ELECTRIC — main.js v6.0
-   Scroll Reveals, FAQ, Mobile Menu, Slideshows
+   IRON VOLT ELECTRIC — main.js
+
+   Mobile navigation, FAQ accordion, service-card slideshows.
+
+   Deliberately not here any more:
+   - Scroll-reveal observer. Every section header, grid and card
+     carried a .reveal class, so the whole site faded up as you
+     scrolled and content that was already on screen at load
+     started invisible.
+   - Header shadow-on-scroll. It ran on every scroll event to
+     move a shadow's alpha from 0.30 to 0.35, which nobody can
+     see. The header now uses one static border.
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---- Scroll Reveal via IntersectionObserver ---- */
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-  }
+  /* ---------------------------------------------------------
+     MOBILE NAVIGATION
+     --------------------------------------------------------- */
+  const toggle = document.querySelector('.menu-toggle');
+  const menu   = document.querySelector('.nav-menu');
 
-  /* ---- Mobile Menu Toggle ---- */
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const isOpen = navMenu.classList.contains('active');
-      menuToggle.setAttribute('aria-expanded', isOpen);
-      menuToggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
+  if (toggle && menu) {
+    const setMenu = (open) => {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    toggle.addEventListener('click', () => {
+      setMenu(!menu.classList.contains('open'));
     });
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuToggle.innerHTML = '&#9776;';
-      });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setMenu(false);
     });
-  }
 
-  /* ---- FAQ Accordion ---- */
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-a');
-      const isOpen = btn.classList.contains('active');
-
-      // Close all others
-      document.querySelectorAll('.faq-q.active').forEach(other => {
-        if (other !== btn) {
-          other.classList.remove('active');
-          other.setAttribute('aria-expanded', 'false');
-          other.closest('.faq-item').querySelector('.faq-a').classList.remove('open');
-        }
-      });
-
-      // Toggle current
-      btn.classList.toggle('active', !isOpen);
-      btn.setAttribute('aria-expanded', !isOpen);
-      answer.classList.toggle('open', !isOpen);
-    });
-  });
-
-  /* ---- Slideshows ---- */
-  document.querySelectorAll('.card-slideshow').forEach(ss => {
-    const track = ss.querySelector('.slideshow-track');
-    const slides = ss.querySelectorAll('.slide-img');
-    const dotsWrap = ss.querySelector('.slide-dots');
-    const prevBtn = ss.querySelector('.slide-prev');
-    const nextBtn = ss.querySelector('.slide-next');
-    let current = 0;
-    const total = slides.length;
-
-    if (!total) return;
-
-    // Build dots
-    if (dotsWrap) {
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('span');
-        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(dot);
+    // Escape closes the menu and returns focus to the button.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        setMenu(false);
+        toggle.focus();
       }
-    }
+    });
 
-    function goTo(idx) {
-      current = ((idx % total) + total) % total;
-      track.style.transform = `translateX(-${current * 100}%)`;
-      if (dotsWrap) {
-        dotsWrap.querySelectorAll('.slide-dot').forEach((d, i) => {
-          d.classList.toggle('active', i === current);
+    // Reset when resizing up to the full nav, so the menu can't stay
+    // stuck open behind a layout that no longer shows a toggle.
+    // Must match the breakpoint that reveals .menu-toggle in the CSS.
+    window.matchMedia('(min-width: 861px)').addEventListener('change', (e) => {
+      if (e.matches) setMenu(false);
+    });
+  }
+
+  /* ---------------------------------------------------------
+     FAQ ACCORDION
+     The button owns aria-expanded; CSS keys the open state off
+     that attribute, so markup and presentation cannot drift.
+     --------------------------------------------------------- */
+  const questions = document.querySelectorAll('.faq-q');
+
+  questions.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // One answer open at a time, within this FAQ list only.
+      const list = btn.closest('.faq');
+      if (list) {
+        list.querySelectorAll('.faq-q[aria-expanded="true"]').forEach((other) => {
+          if (other !== btn) other.setAttribute('aria-expanded', 'false');
         });
       }
-    }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
-
-    // Auto-advance every 4s
-    let autoTimer = setInterval(() => goTo(current + 1), 4000);
-    ss.addEventListener('mouseenter', () => clearInterval(autoTimer));
-    ss.addEventListener('mouseleave', () => {
-      autoTimer = setInterval(() => goTo(current + 1), 4000);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 
-  /* ---- Navbar shrink on scroll ---- */
-  const header = document.querySelector('header');
-  if (header) {
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const st = window.scrollY;
-      if (st > 80) {
-        header.style.boxShadow = '0 4px 40px rgba(0,0,0,0.35)';
-      } else {
-        header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+  /* ---------------------------------------------------------
+     SLIDESHOWS
+     Dots are rendered as real buttons with aria-current so they
+     are reachable by keyboard and meaningful to assistive tech.
+     Auto-advance pauses on hover and on focus, and never starts
+     for visitors who have asked for reduced motion.
+     --------------------------------------------------------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll('.slideshow').forEach((show) => {
+    const track  = show.querySelector('.slideshow-track');
+    const slides = show.querySelectorAll('img');
+    const dots   = show.querySelector('.slide-dots');
+    const total  = slides.length;
+    if (!track || total < 2) return;
+
+    let index = 0;
+    let timer = null;
+
+    // Build one dot per slide.
+    const buttons = [];
+    if (dots) {
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Show image ${i + 1} of ${total}`);
+        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+        dot.addEventListener('click', () => { goTo(i); stop(); });
+        dots.appendChild(dot);
+        buttons.push(dot);
       }
-      lastScroll = st;
-    }, { passive: true });
-  }
-
-  /* ---- Keep the Rosie chat widget clear of the sticky mobile CTA bar ----
-     The actual fixed-position element (.widget-container) lives inside
-     the widget's open shadow root, not on the <rosie-widget> host itself —
-     targeting the host (via CSS or JS) does nothing. Reach into the
-     shadow root and pin the real container instead. */
-  const stickyCtaQuery = window.matchMedia('(max-width: 768px)');
-  const rosieHostsWatched = new WeakSet();
-
-  function pinRosieContainer(container) {
-    if (stickyCtaQuery.matches) {
-      container.style.setProperty('bottom', '84px', 'important');
-    } else {
-      container.style.removeProperty('bottom');
     }
+
+    function goTo(next) {
+      index = ((next % total) + total) % total;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      buttons.forEach((dot, i) => {
+        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+    }
+
+    function start() {
+      if (reduceMotion.matches || timer) return;
+      timer = setInterval(() => goTo(index + 1), 5000);
+    }
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    show.querySelector('.slide-prev')?.addEventListener('click', () => { goTo(index - 1); stop(); });
+    show.querySelector('.slide-next')?.addEventListener('click', () => { goTo(index + 1); stop(); });
+
+    show.addEventListener('mouseenter', stop);
+    show.addEventListener('mouseleave', start);
+    show.addEventListener('focusin', stop);
+
+    // Stop cycling entirely once the card scrolls out of view.
+    new IntersectionObserver((entries) => {
+      entries[0].isIntersecting ? start() : stop();
+    }, { threshold: 0.4 }).observe(show);
+  });
+
+  /* ---------------------------------------------------------
+     CHAT WIDGET POSITION
+     The Rosie widget fixes itself to the bottom-right, where it
+     covers the sticky mobile CTA. The element that actually
+     carries the fixed position lives inside the widget's open
+     shadow root, so styling the <rosie-widget> host does
+     nothing; we have to reach in and pin the real container.
+     --------------------------------------------------------- */
+  const isPhone = window.matchMedia('(max-width: 768px)');
+  const watched = new WeakSet();
+
+  function pin(container) {
+    if (isPhone.matches) container.style.setProperty('bottom', '84px', 'important');
+    else container.style.removeProperty('bottom');
   }
 
-  function watchRosieHost(host) {
-    if (rosieHostsWatched.has(host) || !host.shadowRoot) return;
-    rosieHostsWatched.add(host);
-    const root = host.shadowRoot;
+  function watch(host) {
+    if (watched.has(host) || !host.shadowRoot) return;
+    watched.add(host);
+    const root  = host.shadowRoot;
     const apply = () => {
       const container = root.querySelector('.widget-container');
-      if (container) pinRosieContainer(container);
+      if (container) pin(container);
     };
     apply();
     new MutationObserver(apply).observe(root, {
@@ -148,12 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function scanForRosie() {
-    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watchRosieHost);
+  function scan() {
+    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watch);
   }
 
-  new MutationObserver(scanForRosie).observe(document.documentElement, { childList: true, subtree: true });
-  stickyCtaQuery.addEventListener('change', scanForRosie);
-  scanForRosie();
+  new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+  isPhone.addEventListener('change', scan);
+  scan();
 
 });

@@ -18,6 +18,9 @@
 <meta name="twitter:image" content="https://www.ironvoltelectric.com/images/IronVoltElectricBadge.png">
 <link rel="icon" href="images/favicon.ico">
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/styles.css">
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
 <script type="application/ld+json">
@@ -36,418 +39,495 @@
 </head>
 <body>
 
-<!-- EMERGENCY BANNER -->
-<div class="emergency-banner" role="alert"><span class="marquee-track">
-  Electrical Emergency? We Answer 24/7 &mdash; <a href="tel:8326108081">(832) 610-8081</a> &mdash; Licensed &amp; Insured &middot; TECL #41098
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="emergency-bar">
+  Electrical emergency? We answer 24/7.
+  <span class="sep">&middot;</span>
+  <a href="tel:8326108081" class="tnum">(832) 610-8081</a>
 </div>
 
-<!-- HEADER -->
 <header>
-  <nav class="navbar container">
-    <button class="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
+  <nav class="navbar container" aria-label="Main">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path class="icon-open" d="M3 6h18M3 12h18M3 18h18"/>
+        <path class="icon-close" d="M6 6l12 12M18 6 6 18"/>
+      </svg>
+    </button>
     <div class="logo">
-      <a href="/"><img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric — Licensed Houston Electrician"></a>
+      <a href="/" aria-label="Iron Volt Electric, home">
+        <img src="images/IronVoltElectricFinal2.png" alt="Iron Volt Electric" width="440" height="143">
+      </a>
     </div>
     <div class="nav-spacer"></div>
-    <ul class="nav-menu">
-      <li><a href="/" class="active">Home</a></li>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="/" aria-current="page">Home</a></li>
       <li><a href="services">Services</a></li>
+      <li><a href="servicearea">Service area</a></li>
       <li><a href="about">About</a></li>
       <li><a href="contact">Contact</a></li>
-      <li><a href="booking" class="nav-book">Book Now</a></li>
+      <li><a href="booking" class="nav-book">Book now</a></li>
     </ul>
+    <a href="tel:8326108081" class="nav-phone tnum">
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      (832) 610-8081
+    </a>
   </nav>
 </header>
+<main id="main">
 
-<!-- HERO -->
-<section class="hero" aria-label="Hero">
-  <div class="hero-lines" aria-hidden="true"></div>
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-bg-overlay" aria-hidden="true"></div>
-  <div class="hero-content">
-    <h1>Wired Right.<br><em>Done Right.</em></h1>
-    <p class="hero-sub">Houston residential and commercial electrical services &mdash; led by a licensed electrician with over 25 years of hands-on field experience. Fast response, honest pricing, work done to code.</p>
-    <div class="hero-btns">
-      <a href="booking" class="btn btn-primary btn-lg">Book a Free Estimate</a>
-      <a href="tel:8326108081" class="btn btn-secondary btn-lg">(832) 610-8081</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="stat-num">25+</span>
-        <span class="stat-label">Years Field Experience</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-num">TECL</span>
-        <span class="stat-label">#41098 Licensed</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-num">24/7</span>
-        <span class="stat-label">Emergency Line</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Insured &amp; Bonded</span>
-      </div>
-    </div>
-    <p style="text-align:center; color:rgba(255,255,255,0.45); font-size:0.82rem; margin-top:1.5rem;">Iron Volt Electric LLC is a new company &mdash; built on 25+ years of our lead electrician&rsquo;s hands-on field experience.</p>
-  </div>
-</section>
-
-<!-- FEATURED SERVICES -->
-<section class="bg-light" aria-labelledby="services-heading">
+<!-- ============================================================
+     HERO
+     One headline, one sentence, two ways to act, and the four
+     facts a homeowner checks before calling a contractor.
+     ============================================================ -->
+<section class="hero">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">What We Do</span>
-      <h2 class="section-title" id="services-heading">Electrical Services You Can Count On</h2>
-      <p class="section-subtitle">Comprehensive residential and commercial electrical solutions across the entire Greater Houston area.</p>
+    <h1>Wired right.<br><em>Done right.</em></h1>
+    <p>Licensed residential and commercial electrical work across Greater Houston,
+       led by an electrician with 25 years in the field. You get a written estimate
+       before anything starts.</p>
+
+    <div class="hero-actions">
+      <a href="booking" class="btn btn-primary btn-lg">Book a free estimate</a>
+      <a href="tel:8326108081" class="btn btn-ghost btn-lg tnum">(832) 610-8081</a>
     </div>
-    <div class="services-grid reveal">
-      <article class="service-card reveal">
-        <div class="service-card-img-wrap">
-          <img src="images/Untitled-4.png" alt="Electrical repair service Houston" class="card-image" loading="lazy">
-        </div>
-        <div class="service-card-body">
-          <h3 class="card-title">Electrical Repairs</h3>
-          <p class="card-text">Faulty outlets, tripped breakers, flickering lights, dead circuits &mdash; diagnosed and fixed fast.</p>
-        </div>
-        <div class="service-card-footer">
-          <a href="services#repairs" class="service-card-link">Learn More &rarr;</a>
-        </div>
-      </article>
-      <article class="service-card reveal">
-        <div class="card-slideshow">
-          <div class="slideshow-track">
-            <img src="images/services/lighting/Untitled-4.png" alt="Indoor lighting installation Houston" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-2.png" alt="Recessed lighting installation" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-3.png" alt="LED lighting upgrade Houston" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-9.jpeg.png" alt="Outdoor lighting Houston" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-5.png" alt="Landscape lighting Houston" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-6.png" alt="Security lighting installation" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-7.png" alt="Ceiling lighting Houston" class="slide-img" loading="lazy">
-            <img src="images/services/lighting/Untitled-8.png" alt="Commercial lighting upgrade" class="slide-img" loading="lazy">
-          </div>
-          <button class="slide-btn slide-prev" aria-label="Previous">&#8249;</button>
-          <button class="slide-btn slide-next" aria-label="Next">&#8250;</button>
-          <div class="slide-dots" aria-hidden="true"></div>
-        </div>
-        <div class="service-card-body">
-          <h3 class="card-title">Lighting Installation</h3>
-          <p class="card-text">Indoor, outdoor, recessed, landscape, and energy-efficient LED systems for every space.</p>
-        </div>
-        <div class="service-card-footer">
-          <a href="services#lighting" class="service-card-link">Learn More &rarr;</a>
-        </div>
-      </article>
-      <article class="service-card reveal">
-        <div class="card-slideshow">
-          <div class="slideshow-track">
-            <img src="images/services/panels/Untitled-1.png" alt="Electrical panel upgrade Houston TX" class="slide-img" loading="lazy">
-            <img src="images/services/panels/panel-breaker-install.png" alt="Breaker panel replacement Houston" class="slide-img" loading="lazy">
-            <img src="images/services/panels/panel-wiring-detail.png" alt="Panel installation Houston" class="slide-img" loading="lazy">
-            <img src="images/services/panels/service-upgrade-complete.png" alt="Electrical service upgrade" class="slide-img" loading="lazy">
-            <img src="images/services/panels/Untitled2.png" alt="Circuit breaker service Houston" class="slide-img" loading="lazy">
-            <img src="images/services/panels/IronImage1.png" alt="Panel upgrade completed" class="slide-img" loading="lazy">
-          </div>
-          <button class="slide-btn slide-prev" aria-label="Previous">&#8249;</button>
-          <button class="slide-btn slide-next" aria-label="Next">&#8250;</button>
-          <div class="slide-dots" aria-hidden="true"></div>
-        </div>
-        <div class="service-card-body">
-          <h3 class="card-title">Panel &amp; Breaker Upgrades</h3>
-          <p class="card-text">Modern panels and circuits that handle today&rsquo;s electrical demands safely and reliably.</p>
-        </div>
-        <div class="service-card-footer">
-          <a href="services#panels" class="service-card-link">Learn More &rarr;</a>
-        </div>
-      </article>
-      <article class="service-card reveal">
-        <div class="card-slideshow">
-          <div class="slideshow-track">
-            <img src="images/services/backup/IronImage-69.png" alt="Generator installation Houston TX" class="slide-img" loading="lazy">
-            <img src="images/services/backup/Untitled-2.png" alt="Backup power solutions Houston" class="slide-img" loading="lazy">
-            <img src="images/services/backup/generator-outdoor-install.png" alt="Home generator Houston" class="slide-img" loading="lazy">
-            <img src="images/services/backup/IronImage-4.jpg.png" alt="Surge protection Houston" class="slide-img" loading="lazy">
-            <img src="images/services/backup/IronImage-5.png" alt="Standby generator Houston" class="slide-img" loading="lazy">
-          </div>
-          <button class="slide-btn slide-prev" aria-label="Previous">&#8249;</button>
-          <button class="slide-btn slide-next" aria-label="Next">&#8250;</button>
-          <div class="slide-dots" aria-hidden="true"></div>
-        </div>
-        <div class="service-card-body">
-          <h3 class="card-title">Backup Power &amp; Generators</h3>
-          <p class="card-text">Generators, transfer switches, and whole-home surge protection to keep you powered when it counts.</p>
-        </div>
-        <div class="service-card-footer">
-          <a href="services#generators" class="service-card-link">Learn More &rarr;</a>
-        </div>
-      </article>
-    </div>
-    <div style="text-align:center; margin-top:2.5rem;">
-      <a href="services" class="btn btn-outline">View All Services</a>
-    </div>
+
+    <dl class="facts">
+      <div>
+        <dt class="fact-label">Field experience</dt>
+        <dd class="fact-value">25 years</dd>
+      </div>
+      <div>
+        <dt class="fact-label">Texas licence</dt>
+        <dd class="fact-value">TECL #41098</dd>
+      </div>
+      <div>
+        <dt class="fact-label">Emergency line</dt>
+        <dd class="fact-value">24/7</dd>
+      </div>
+      <div>
+        <dt class="fact-label">Cover</dt>
+        <dd class="fact-value">Insured &amp; bonded</dd>
+      </div>
+    </dl>
+
+    <p class="hero-note">Iron Volt Electric LLC is a new company, built on 25 years of
+       our lead electrician's hands-on field experience.</p>
   </div>
 </section>
 
-<!-- GOOGLE REVIEWS -->
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section class="band-alt" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="services-heading">What we do</h2>
+      <p>Repairs, upgrades and installations for homes and businesses, all to NEC code.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <div class="service-card-media">
+          <img src="images/Untitled-4.jpg" alt="An electrician repairing a wall outlet"
+               width="1050" height="1400" loading="lazy" decoding="async">
+        </div>
+        <div class="service-card-body">
+          <h3>Electrical repairs</h3>
+          <p>Faulty outlets, tripped breakers, flickering lights and dead circuits,
+             diagnosed and fixed.</p>
+        </div>
+        <div class="service-card-foot">
+          <a href="services#repairs" class="link-arrow">Repairs</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-media slideshow">
+          <div class="slideshow-track">
+            <img src="images/services/lighting/Untitled-4.jpg" alt="Recessed ceiling lights in a finished room" width="627" height="900" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-2.jpg" alt="Recessed lighting during installation" width="675" height="900" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-3.jpg" alt="LED fixtures fitted to a kitchen ceiling" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-9.jpg" alt="Exterior lighting on a house at dusk" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-5.jpg" alt="Landscape lighting along a garden path" width="675" height="900" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-6.jpg" alt="Security floodlight mounted under a roof line" width="675" height="900" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-7.jpg" alt="Ceiling light fitting installed indoors" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/lighting/Untitled-8.jpg" alt="Overhead lighting in a commercial space" width="900" height="506" loading="lazy" decoding="async">
+          </div>
+          <button class="slide-btn slide-prev" type="button" aria-label="Previous image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="slide-btn slide-next" type="button" aria-label="Next image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="slide-dots"></div>
+        </div>
+        <div class="service-card-body">
+          <h3>Lighting</h3>
+          <p>Recessed, outdoor, landscape and LED retrofits, indoors and out.</p>
+        </div>
+        <div class="service-card-foot">
+          <a href="services#lighting" class="link-arrow">Lighting</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-media slideshow">
+          <div class="slideshow-track">
+            <img src="images/services/panels/Untitled-1.jpg" alt="A newly installed electrical panel" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/panels/panel-breaker-install.jpg" alt="Breakers being fitted into a panel" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/panels/panel-wiring-detail.jpg" alt="Close view of panel wiring" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/panels/service-upgrade-complete.jpg" alt="Completed electrical service upgrade" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/panels/Untitled2.jpg" alt="Circuit breaker panel with labelled circuits" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/panels/IronImage1.jpg" alt="Finished panel upgrade on an exterior wall" width="900" height="507" loading="lazy" decoding="async">
+          </div>
+          <button class="slide-btn slide-prev" type="button" aria-label="Previous image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="slide-btn slide-next" type="button" aria-label="Next image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="slide-dots"></div>
+        </div>
+        <div class="service-card-body">
+          <h3>Panels and breakers</h3>
+          <p>Service upgrades from 100A to 200A, panel replacements and breaker work.</p>
+        </div>
+        <div class="service-card-foot">
+          <a href="services#panels" class="link-arrow">Panel upgrades</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-card-media slideshow">
+          <div class="slideshow-track">
+            <img src="images/services/backup/IronImage-69.jpg" alt="Standby generator installed beside a house" width="900" height="860" loading="lazy" decoding="async">
+            <img src="images/services/backup/Untitled-2.jpg" alt="Backup power equipment fitted to an exterior wall" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/backup/generator-outdoor-install.jpg" alt="Generator on a concrete pad outdoors" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/backup/IronImage-4.jpg" alt="Surge protection device fitted at the panel" width="900" height="506" loading="lazy" decoding="async">
+            <img src="images/services/backup/IronImage-5.jpg" alt="Transfer switch mounted next to a meter" width="900" height="507" loading="lazy" decoding="async">
+          </div>
+          <button class="slide-btn slide-prev" type="button" aria-label="Previous image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="slide-btn slide-next" type="button" aria-label="Next image">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="slide-dots"></div>
+        </div>
+        <div class="service-card-body">
+          <h3>Backup power</h3>
+          <p>Standby generators, transfer switches and whole-home surge protection.</p>
+        </div>
+        <div class="service-card-foot">
+          <a href="services#generators" class="link-arrow">Generators</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="stack">
+      <a href="services" class="btn btn-outline">See all services</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW WE WORK
+     Six claims about the business. A list of claims is a list,
+     not six boxes with gold edges.
+     ============================================================ -->
+<section class="band-dark" aria-labelledby="how-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="how-heading">How we work</h2>
+      <p>Six things we hold to on every job, from a single dead outlet to a full rewire.</p>
+    </div>
+
+    <ul class="feature-list">
+      <li>
+        <h3>Licensed and insured</h3>
+        <p>Texas Electrical Contractor Licence #41098, with liability cover and
+           workers' compensation on every job.</p>
+      </li>
+      <li>
+        <h3>25 years in Houston</h3>
+        <p>Our lead electrician has worked Houston homes, businesses, parks and
+           community properties for over two decades.</p>
+      </li>
+      <li>
+        <h3>Written estimates</h3>
+        <p>You see the price in writing before work starts. No hidden fees and no
+           charges that appear on the invoice.</p>
+      </li>
+      <li>
+        <h3>Work to code</h3>
+        <p>Every job meets current NEC standards and local Houston requirements.
+           We pull the permits and handle the inspections.</p>
+      </li>
+      <li>
+        <h3>Scheduling that fits</h3>
+        <p>Monday to Saturday, 8am to 6pm, with a 24/7 line for genuine
+           electrical emergencies.</p>
+      </li>
+      <li>
+        <h3>We come back if it's wrong</h3>
+        <p>If something isn't right after we've finished, call us and we return
+           to fix it at no charge.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
 <section aria-labelledby="reviews-heading">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Customer Reviews</span>
-      <h2 class="section-title" id="reviews-heading">What Our Customers Say</h2>
-      <p class="section-subtitle">Verified Google reviews from Houston homeowners and businesses.</p>
+    <div class="section-header">
+      <h2 id="reviews-heading">Reviews</h2>
+      <p>Verified Google reviews from Houston homeowners and businesses.</p>
     </div>
-   <div class="reviews-widget-wrap">
+
+    <div class="reviews-embed">
       <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
-  <div class="commonninja_component pid-5f24c4ec-6d59-458d-b2c3-5e9d4336353e"></div>
+      <div class="commonninja_component pid-5f24c4ec-6d59-458d-b2c3-5e9d4336353e"></div>
     </div>
-    <div style="text-align:center; margin-top:2rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-      <a href="reviews" class="btn btn-outline">View All Reviews</a>
-      <a href="https://g.page/r/CXlaNGHGERuGEBM/review" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Leave a Review</a>
-    </div>
+
+    <p class="stack actions">
+      <a href="reviews" class="btn btn-outline">Read all reviews</a>
+      <a href="https://g.page/r/CXlaNGHGERuGEBM/review" class="btn btn-outline"
+         target="_blank" rel="noopener noreferrer">Leave a review</a>
+    </p>
   </div>
 </section>
 
-<!-- WHY CHOOSE US -->
-<section class="areas-map-section" aria-labelledby="why-heading" style="padding:5rem 0;">
+<!-- ============================================================
+     COVERAGE
+     A map, the list of towns and a way to check. The full
+     breakdown by region lives on the service area page; this is
+     the short answer to "do you come out to me?".
+     ============================================================ -->
+<section class="band-dark" aria-labelledby="coverage-heading">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label" style="color:var(--gold); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Why Iron Volt</span>
-      <h2 class="section-title" id="why-heading" style="color:#fff;">Why Houston Trusts Us</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">We earn our reputation one job at a time &mdash; and we back every single one.</p>
+    <div class="section-header">
+      <h2 id="coverage-heading">Where we work</h2>
+      <p>The whole Greater Houston metro, from Conroe and The Woodlands in the north
+         to Sugar Land and Stafford in the south.</p>
     </div>
-    <div class="why-grid reveal">
-      <div class="why-card reveal">
-        <h3>State-Licensed &amp; Insured</h3>
-        <p>Texas Electrical Contractor License #41098. Fully bonded and insured on every job.</p>
+
+    <div class="coverage">
+      <div class="coverage-map">
+        <img src="images/ServiceArea.jpg"
+             alt="Map of the Greater Houston area covered by Iron Volt Electric"
+             width="1400" height="1400" loading="lazy" decoding="async">
       </div>
-      <div class="why-card reveal">
-        <h3>25+ Years of Expertise</h3>
-        <p>Our lead electrician brings over 25 years of hands-on residential and commercial experience in the Houston market.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>Homes, Businesses &amp; Communities</h3>
-        <p>Trusted by homeowners, local businesses, parks, and community properties throughout Greater Houston.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>Flexible Scheduling</h3>
-        <p>Monday through Saturday, 8AM&ndash;6PM. We work around your schedule &mdash; not the other way around.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>Satisfaction Guarantee</h3>
-        <p>Every job is done to code and backed by our guarantee. If it&rsquo;s not right, we make it right &mdash; no charge.</p>
-      </div>
-      <div class="why-card reveal">
-        <h3>Upfront, Honest Pricing</h3>
-        <p>Clear written estimates before any work begins. No hidden fees, no surprise charges.</p>
+
+      <div class="coverage-panel">
+        <h2>Towns we cover</h2>
+        <ul class="city-columns">
+          <li>Houston</li><li>Baytown</li><li>Bellaire</li><li>Conroe</li>
+          <li>Crosby</li><li>Cypress</li><li>Katy</li><li>Klein</li>
+          <li>Magnolia</li><li>Missouri City</li><li>Montgomery</li><li>Spring</li>
+          <li>Stafford</li><li>Sugar Land</li><li>The Woodlands</li><li>Tomball</li>
+        </ul>
+        <a href="servicearea" class="btn btn-primary">See the full service area</a>
+        <p class="note">Not sure we reach you?
+          <a href="tel:8326108081" class="tnum">Call (832) 610-8081</a> and ask.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICE AREAS -->
-<section class="areas-map-section compact" aria-labelledby="areas-heading" style="padding:4rem 0;">
+<!-- ============================================================
+     QUESTIONS
+     ============================================================ -->
+<section class="band-alt" id="faq" aria-labelledby="faq-heading">
   <div class="container">
-
-    <!-- Section Header -->
-    <div class="section-header reveal" style="margin-bottom:2rem;">
-      <span class="section-label" style="color:var(--gold); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Coverage Area</span>
-      <h2 class="section-title" id="areas-heading" style="color:#fff;">Serving All of Greater Houston</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,0.6);">From The Woodlands to Sugar Land, from Katy to Baytown &mdash; we cover the entire metro area.</p>
+    <div class="section-header">
+      <h2 id="faq-heading">Questions we get asked</h2>
     </div>
 
-    <!-- Map + Cities Split Layout -->
-    <div class="sa-split reveal" style="display:flex; gap:1.5rem; align-items:stretch; flex-wrap:wrap;">
+    <div class="faq" itemscope itemtype="https://schema.org/FAQPage">
 
-      <!-- LEFT: Map Image -->
-      <div style="flex:1.3; min-width:280px; border-radius:14px; overflow:hidden; box-shadow:0 8px 36px rgba(0,0,0,0.45); border:2px solid rgba(232,160,32,0.25);">
-        <img src="images/ServiceArea.png" alt="Iron Volt Electric Service Area Map — Greater Houston" style="width:100%; height:100%; object-fit:cover; display:block; min-height:400px;">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q1" aria-expanded="false" aria-controls="a1">
+          <span itemprop="name">Are you licensed and insured to work in Texas?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Yes. We hold Texas Electrical Contractor Licence #41098 and carry
+            full liability insurance and workers' compensation cover. You can verify the licence
+            at any time through the Texas Department of Licensing and Regulation. We provide proof
+            of insurance before any work begins.</p></div>
+        </div>
       </div>
 
-      <!-- RIGHT: Cities Panel -->
-      <div style="flex:1; min-width:260px; background:#fff; border-radius:14px; padding:2.5rem 2.25rem; display:flex; flex-direction:column; justify-content:center; box-shadow:0 8px 36px rgba(0,0,0,0.3);">
-        <h3 style="font-family:var(--font-head); font-size:1.65rem; font-weight:900; text-transform:uppercase; line-height:1.15; color:var(--navy); margin-bottom:1.25rem; letter-spacing:-0.01em;">Proudly Serving the<br>Greater Houston Area</h3>
-        <p style="font-size:0.95rem; color:#444; line-height:2.0; margin-bottom:0;">
-          Houston | Conroe | Magnolia | Montgomery | Willis | The Woodlands | Shenandoah | Oak Ridge North | Spring | Klein | Tomball | Cypress | Jersey Village | Hedwig Village | Bunker Hill Village | Piney Point Village | Bellaire | West University Place | Katy | Cinco Ranch | Cleveland | Dayton | Liberty | Baytown | Highlands | Crosby | Sugar Land | Missouri City | Stafford
-        </p>
-        <div style="margin-top:1.75rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
-          <a href="servicearea" style="background:var(--gold); color:#0a1e3c; font-family:var(--font-head); font-weight:900; text-transform:uppercase; letter-spacing:0.07em; border-radius:50px; padding:0.75rem 1.75rem; text-decoration:none; font-size:0.88rem; display:inline-block;">View Full Map &rarr;</a>
-          <a href="tel:8326108081" style="color:var(--navy); font-weight:700; font-size:0.9rem; text-decoration:none; padding:0.5rem 0.25rem;">(832) 610-8081</a>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q2" aria-expanded="false" aria-controls="a2">
+          <span itemprop="name">How do estimates work?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Estimates are free. A technician comes out, inspects the work
+            firsthand and gives you a written quote before anything starts. There is no obligation.
+            We don't quote over the phone, because an accurate number needs someone to see the job.</p></div>
         </div>
-        <p style="color:#999; font-size:0.78rem; margin-top:1rem; margin-bottom:0;">Not sure if we cover your area? <a href="tel:8326108081" style="color:var(--gold-dark,#b8820f); font-weight:600;">Give us a call.</a></p>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q3" aria-expanded="false" aria-controls="a3">
+          <span itemprop="name">How quickly can you respond to an emergency?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a3" role="region" aria-labelledby="q3"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Our line at (832) 610-8081 is answered 24/7. Sparks, burning
+            smells, complete power loss and breakers that trip repeatedly are prioritised and
+            dispatched as fast as we can get there. Don't wait on these; they turn into fire
+            hazards quickly.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q4" aria-expanded="false" aria-controls="a4">
+          <span itemprop="name">Do you pull permits?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Yes. Panel upgrades, new circuits, generator installs and major
+            rewiring normally need permits and inspections, and we handle that as part of the job.
+            Be wary of any electrician offering to skip the permit: unpermitted work can void your
+            homeowner's insurance and cause problems when you sell.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q5" aria-expanded="false" aria-controls="a5">
+          <span itemprop="name">Do I need a panel upgrade?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a5" role="region" aria-labelledby="q5"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">Signs point that way if breakers trip often, lights dim when an
+            appliance starts, you have a 100A panel in a modern house, you want to add an EV charger
+            or large appliance, or the panel is 25 years old or more. We'll assess it and give you
+            an honest answer. Not every house needs one, and we'll say so if yours doesn't.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="faq-q" type="button" id="q6" aria-expanded="false" aria-controls="a6">
+          <span itemprop="name">Which areas do you serve?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"
+             itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div><p itemprop="text">The Greater Houston area: Spring, The Woodlands and Conroe in the
+            north; Clear Lake and Friendswood in the south; Katy and Cypress in the west; Humble and
+            Kingwood in the east. Also Houston itself, Tomball, Jersey Village, Memorial, Bellaire,
+            West University and the communities in between. See the
+            <a href="servicearea">full service area</a>, or call (832) 610-8081 to check.</p></div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<style>
-@media (max-width:720px){
-  .sa-split{flex-direction:column !important;}
-  .sa-split > div:first-child img{min-height:240px !important;}
-}
-</style>
-
-
-<!-- FAQ -->
-<section class="bg-light" aria-labelledby="faq-heading">
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="cta-band">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Common Questions</span>
-      <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
-      <p class="section-subtitle">Straight answers to what Houston homeowners ask us most.</p>
-    </div>
-    <div class="faq-list reveal" role="list">
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          Are you licensed and insured to work in Texas?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">Yes. Iron Volt Electric holds Texas Electrical Contractor License #41098 and carries full liability insurance and workers&rsquo; compensation coverage. You can verify our license at any time through the Texas Department of Licensing and Regulation (TDLR). We&rsquo;ll provide proof of insurance before any work begins.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          How do estimates work?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">We provide free estimates. A technician will come out to inspect the work firsthand, assess what&rsquo;s needed, and provide a clear, written quote before any work begins. There&rsquo;s no obligation, and we believe an accurate estimate can only come from seeing the job in person.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          How quickly can you respond to an electrical emergency?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">We maintain a 24/7 emergency line at (832) 610-8081. For true electrical emergencies &mdash; sparks, burning smells, complete power loss, or breakers that repeatedly trip &mdash; we prioritize these calls and dispatch as quickly as possible. Do not ignore electrical emergencies; they can become fire hazards quickly.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          Do you pull permits for electrical work?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">Yes. Panel upgrades, new circuits, generator installations, and major rewiring work all typically require permits and inspections. We handle the permitting process as part of your project. Be cautious of any electrician who offers to skip the permit &mdash; unpermitted work can void your homeowner&rsquo;s insurance and cause problems when selling your home.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          Do I need a panel upgrade?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">Signs you may need an upgrade include: breakers that trip frequently, lights that dim when appliances run, a 100-amp panel in a modern home, wanting to add an EV charger or large appliance, or a panel that&rsquo;s 25+ years old. We&rsquo;ll come out, assess your panel, and give you an honest recommendation. Not every home needs an upgrade &mdash; we&rsquo;ll tell you if yours doesn&rsquo;t.</div>
-        </div>
-      </div>
-      <div class="faq-item" role="listitem" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <button class="faq-q" aria-expanded="false" itemprop="name">
-          What areas of Greater Houston do you serve?
-          <span class="faq-arrow" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a" role="region" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div class="faq-a-inner" itemprop="text">We serve the Greater Houston area — Spring, The Woodlands, and Conroe in the north; Clear Lake and Friendswood in the south; Katy and Cypress in the west; and Humble and Kingwood in the east. Our service area includes Houston, Tomball, Jersey Village, Memorial, Bellaire, West University, and nearby communities. Not sure? Call us at (832) 610-8081.</div>
-        </div>
-      </div>
+    <h2>Ready to book?</h2>
+    <p>Request an appointment online or call us. A technician comes out, looks at the job
+       and leaves you with a written estimate at no charge.</p>
+    <div class="cta-actions">
+      <a href="booking" class="btn btn-primary btn-lg">Book online</a>
+      <a href="tel:8326108081" class="btn btn-ghost btn-lg tnum">(832) 610-8081</a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" aria-labelledby="cta-heading">
-  <div class="container">
-    <span class="section-label" style="color:var(--gold-light); background:rgba(240,165,0,0.12); border-color:rgba(240,165,0,0.35);">Get Started</span>
-    <h2 id="cta-heading">Ready to Schedule Service?</h2>
-    <p>Book an appointment online or call us directly. A technician will come out to inspect the job and provide a free, written estimate with no obligation.</p>
-    <div class="cta-btns reveal">
-      <a href="booking" class="btn btn-primary btn-lg">Book Online</a>
-      <a href="tel:8326108081" class="btn btn-secondary btn-lg">(832) 610-8081</a>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- FOOTER -->
-<footer class="site-footer" role="contentinfo">
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-section footer-brand">
+      <div class="footer-brand">
         <h2>Iron Volt Electric</h2>
-        <p>Licensed and insured electrical contractor serving homes and businesses throughout Greater Houston &mdash; Spring, The Woodlands, Conroe, Cypress, Katy, Sugar Land, Pearland, Baytown, and beyond.</p>
-        <span class="footer-tecl">TECL #41098</span>
+        <p>Licensed electrical contractor for homes and businesses across Greater Houston,
+        from Conroe and The Woodlands down to Sugar Land and Pearland.</p>
+        <span class="footer-licence">TECL #41098</span>
       </div>
-      <div class="footer-section">
+
+      <div class="footer-col">
         <h3>Services</h3>
-        <ul class="footer-links">
-          <li><a href="services#repairs">Electrical Repairs</a></li>
-          <li><a href="services#panels">Panel Upgrades</a></li>
+        <ul>
+          <li><a href="services#repairs">Repairs</a></li>
+          <li><a href="services#panels">Panel upgrades</a></li>
           <li><a href="services#lighting">Lighting</a></li>
           <li><a href="services#generators">Generators</a></li>
-          <li><a href="services#ev">EV Chargers</a></li>
-          <li><a href="services">All Services</a></li>
+          <li><a href="services#ev">EV chargers</a></li>
+          <li><a href="services">All services</a></li>
         </ul>
       </div>
-      <div class="footer-section">
+
+      <div class="footer-col">
         <h3>Company</h3>
-        <ul class="footer-links">
-          <li><a href="about">About Us</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="booking">Book Now</a></li>
+        <ul>
+          <li><a href="about">About</a></li>
+          <li><a href="servicearea">Service area</a></li>
           <li><a href="reviews">Reviews</a></li>
-          <li><a href="servicearea">Service Areas</a></li>
-          <li><a href="/#faq-heading">FAQ</a></li>
+          <li><a href="contact">Contact</a></li>
+          <li><a href="booking">Book an appointment</a></li>
+          <li><a href="/#faq">Questions</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <p><a href="tel:8326108081">(832) 610-8081</a></p>
-        <p><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></p>
-        <p style="color:#5a7a92;">Houston &amp; Surrounding Areas</p>
-        <p style="color:#5a7a92;">Mon&ndash;Sat: 8AM&ndash;6PM</p>
-        <p style="color:#5a7a92;">24/7 Emergency Line</p>
+
+      <div class="footer-col">
+        <h3>Get in touch</h3>
+        <ul>
+          <li><a href="tel:8326108081" class="tnum">(832) 610-8081</a></li>
+          <li><a href="mailto:contact@ironvoltelectric.com">contact@ironvoltelectric.com</a></li>
+        </ul>
+        <p class="note stack-sm">Monday to Saturday, 8am to 6pm</p>
+        <p class="note">Emergency line answered 24/7</p>
       </div>
     </div>
-    <div class="footer-socials">
-      <span class="footer-socials-label">Follow Us</span>
-      <a href="https://www.instagram.com/ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Instagram">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=61587192351664" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Facebook">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-      <a href="https://www.threads.net/@ironvoltelectric" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Threads">
-        <svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg>
-      </a>
-      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Yelp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg>
-      </a>
-      <a href="https://nextdoor.com/page/iron-volt-electric/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Iron Volt Electric on Nextdoor">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg>
-      </a>
+
+    <div class="footer-social">
+      <a href="https://www.instagram.com/ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Instagram" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61587192351664" class="social-btn" aria-label="Iron Volt Electric on Facebook" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.yelp.com/biz/iron-volt-electric-spring" class="social-btn" aria-label="Iron Volt Electric on Yelp" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 3.066 4.63c.153.608-.807 1.093-1.396.081zm-8.32 3.87l-1.327 4.849a1.073 1.073 0 0 1-1.397.732 9.19 9.19 0 0 1-4.315-2.985 1.072 1.072 0 0 1 .285-1.586l4.308-2.906c.83-.561 1.907.223 1.446 1.896zM12 13.378a1.378 1.378 0 1 1 0-2.756 1.378 1.378 0 0 1 0 2.756zm-4.5-9.7a9.19 9.19 0 0 1 5.07-.677 1.072 1.072 0 0 1 .89 1.294L12.134 9.2c-.231.985-1.497 1.16-1.973.276L7.938 5.085a1.072 1.072 0 0 1 .562-1.407zm-3.351 5.49a9.19 9.19 0 0 1 2.701-4.396 1.073 1.073 0 0 1 1.596.207l2.905 4.308c.561.83-.218 1.907-1.176 1.63L5.18 9.484c-.588-.168-.853-1.04-.031-1.316z"/></svg></a>
+      <a href="https://nextdoor.com/page/iron-volt-electric/" class="social-btn" aria-label="Iron Volt Electric on Nextdoor" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.456 8.748H7.873L6.418 8.248C7.824 6.878 9.807 6 12 6s4.176.878 5.562 2.248zm-9.45 1.004.96 5.766h5.876l.96-5.766A7.44 7.44 0 0 0 12 8.4a7.44 7.44 0 0 0-3.888.852z"/></svg></a>
+      <a href="https://www.threads.net/@ironvoltelectric" class="social-btn" aria-label="Iron Volt Electric on Threads" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 192 192" aria-hidden="true"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-43.246-41.457-43.398h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.141-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.208 125.202.195 97.07 0h-.113C68.882.195 47.292 10.243 32.788 29.817 19.882 47.22 13.224 71.787 13.001 95.932L13 96v.067c.224 24.146 6.882 48.712 19.788 66.115 14.504 19.574 36.094 29.622 64.199 29.818h.113c25.168-.174 43.08-6.768 57.699-21.383 19.256-19.252 18.644-43.394 12.315-58.182-4.591-10.703-13.626-19.38-25.577-24.447Z"/></svg></a>
     </div>
+
     <div class="footer-bottom">
-      <span>&copy; 2026 Iron Volt Electric LLC. All rights reserved.</span>
-      <div class="footer-bottom-links">
+      <span>&copy; 2026 Iron Volt Electric LLC</span>
+      <nav aria-label="Legal">
         <a href="privacy">Privacy</a>
-        <a href="booking">Book Service</a>
-      </div>
+        <a href="booking">Book an appointment</a>
+      </nav>
     </div>
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta" aria-label="Quick contact">
-  <a href="tel:8326108081" class="btn btn-primary">Call Now</a>
-  <a href="booking" class="btn btn-secondary">Book Online</a>
+<div class="sticky-cta">
+  <a href="tel:8326108081" class="btn btn-primary tnum">Call now</a>
+  <a href="booking" class="btn btn-ghost">Book online</a>
 </div>
 
-<script src="js/main.js"></script>
-
-<script
-    src="https://widget.heyrosie.com/widget.js"
-    async
-    data-rosie-business-id="dd1f3068-c9d5-4acc-9618-78165fdaea94">
-    </script>
+<script src="js/main.js" defer></script>
+<script src="https://widget.heyrosie.com/widget.js" async
+        data-rosie-business-id="dd1f3068-c9d5-4acc-9618-78165fdaea94"></script>
 </body>
 </html>
