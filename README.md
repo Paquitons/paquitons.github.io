@@ -48,36 +48,49 @@ Four surfaces, three text steps per surface, one accent.
 
 | Token | Value | Use |
 |---|---|---|
-| `--ink` | `#10161f` | Dark sections, header |
-| `--ink-strong` | `#0a0f16` | Footer |
-| `--surface` | `#ffffff` | Default page background |
-| `--surface-alt` | `#f5f4f1` | Alternating band |
-| `--text` / `--text-muted` | `#171c24` / `#55606e` | Text on light (17.1:1, 6.4:1) |
-| `--on-dark` / `--on-dark-muted` / `--on-dark-subtle` | `#ffffff` / `#b8c0cb` / `#8c96a4` | Text on dark (21:1, 9.9:1, 6.1:1) |
-| `--accent` | `#e8a020` | The logo gold |
-| `--accent-strong` | `#8a5b0d` | Gold **text** on light surfaces |
+| `--ink` | `#060e1a` | Dark sections, header |
+| `--ink-deep` | `#04090f` | Footer |
+| `--page` | `#faf8f5` | The page itself, warm cream |
+| `--surface` | `#ffffff` | Cards sitting on the page |
+| `--surface-alt` | `#f4f2ef` | Alternating band |
+| `--text` / `--text-muted` | `#121a26` / `#57636f` | Text on light (17.5:1, 6.1:1) |
+| `--on-dark` / `--on-dark-muted` / `--on-dark-subtle` | `#ffffff` / `#b3bcc9` / `#8793a3` | Text on dark (19.4:1, 10.1:1, 6.2:1) |
+| `--gold` | `#e8a020` | The brand amber |
+| `--gold-ink` | `#8a5b0d` | Amber **text** on light surfaces |
+
+These are the colours the site has always used. They are not up for redesign.
+The page background is warm cream, not white: pure white makes the whole site
+read cold.
 
 Every text colour above clears WCAG AA (4.5:1) on the surfaces it is used on.
 
-**`--accent` is a fill, not a text colour, on light backgrounds.** It only reaches
-2.2:1 on white. For gold-coloured text on a light surface use `--accent-strong`
-(5.9:1). On `--ink`, `--accent` is 8.2:1 and safe as text.
+**`--gold` is a fill, not a text colour, on light backgrounds.** It only reaches
+2.2:1 on white. For amber text on a light surface use `--gold-ink` (5.9:1). On
+`--ink`, the amber is 8.7:1 and safe as text.
 
-Colour carries meaning: gold means "this is the action", red means emergency,
-green means a completed booking. It is not used to make sections look livelier.
+**Amber is for buttons, links, icons and active markers only.** Structural rules
+are near-black on light surfaces and `--rule-dark` on dark ones. An earlier pass
+put thick amber rules under every heading, on every card edge and on every list
+row, and the site turned into a wall of gold. Red means emergency, green means a
+completed booking. Colour is never used to make a section look livelier.
 
 ### Type
 
-Archivo for headings, IBM Plex Sans for text. Nine sizes, `--text-xs` through
-`--text-4xl`; three line-heights, `--leading-tight|snug|normal`; four weights,
-400 to 700. Headings are sentence case.
+One family, Archivo, at every size. Hierarchy comes from weight and case, not
+from a second typeface. `h1`/`h2` are UPPERCASE at 900 with tight tracking and
+0.96 line-height; `h3` is the component title, uppercase 800 at body size. Ten
+sizes, `--text-2xs` through `--text-4xl`, and four line-heights.
+
+The display type is the brand: the logo is heavy italic caps on a trade badge,
+and the headings have to carry the same weight. Do not set them in sentence
+case.
 
 ### Spacing, radius, elevation
 
-`--space-1` (4px) through `--space-9` (96px), on a 4px base. Three radii:
-`--radius-sm` (4px) for controls, `--radius` (8px) for cards and buttons,
-`--radius-lg` (16px) for media panels. One shadow, used only to lift a card on
-hover; everything else is separated with hairlines.
+`--space-1` (4px) through `--space-9` (80px), on a 4px base. Three radii, all
+small: `--radius-sm` (2px), `--radius` (4px), `--radius-lg` (8px). This is a
+trade brand; soft corners read as consumer software. One shadow, used only to
+lift a card on hover; everything else is separated with visible rules.
 
 ### Motion
 
@@ -100,11 +113,13 @@ already covers it.
 - **`.steps`** for the one process description, shared by contact and booking.
 - **`.faq`** accordion. State lives in `aria-expanded` on the button; CSS keys
   off that attribute, so markup and presentation cannot drift apart.
-- **`.section-header`** is left-aligned. There is no eyebrow badge and no rule
-  under the heading.
+- **`.section-header`** centres a heading and its supporting line on the page's
+  middle axis. There is no eyebrow badge and no decorative rule under it.
+- **`.hero`** puts the company van full-bleed behind the content, blurred and
+  held back to 20% so it sets the scene without competing with the headline.
 
-Icons are inline SVG on a 24px grid with a 1.5px stroke, sized through `.icon`,
-`.icon-sm` (15px) and `.icon-lg` (24px). No icon library.
+Icons are inline SVG on a 24px grid with a 2px stroke, sized through `.icon`
+(20px), `.icon-sm` (15px) and `.icon-lg` (26px). No icon library.
 
 ## Accessibility
 
@@ -123,6 +138,8 @@ Icons are inline SVG on a 24px grid with a 1.5px stroke, sized through `.icon`,
 Source images are sized to roughly 2x their displayed dimensions and encoded as
 JPEG, except the logo and badge, which need transparency and stay PNG. The whole
 `images/` directory is about 4MB.
+
+`ironvoltvan.jpg` is the hero backdrop, referenced from CSS rather than markup.
 
 Before committing a new image, resize it. A 42px-tall header logo does not need
 to be a 17431px-wide PNG, which is what it used to be.

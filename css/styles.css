@@ -2,109 +2,134 @@
    IRON VOLT ELECTRIC
    A licensed electrical contractor in Greater Houston.
 
-   Design intent: this is a lead-generation site for a trade
-   business. Three jobs, in order: (1) make the phone number and
-   booking link impossible to miss, (2) let someone scan what we
-   do and whether we cover their address, (3) establish that we
-   are licensed and insured. Everything below serves one of those.
+   IDENTITY
+   The logo is a trade badge: a deep indigo-navy hex, heavy
+   italic caps, a gold bolt through the V. It belongs on the
+   side of a van and on a tool case. The site has to carry the
+   same weight, so:
 
-   The look is a spec sheet, not a brochure: hairlines instead of
-   card chrome, left-aligned headings, dense but legible text,
-   and gold used only where we want a click.
+   - Display type is UPPERCASE Archivo 900, tight and heavy.
+     Hierarchy comes from weight and case, not from a second
+     typeface.
+   - Colour is the near-black navy and amber gold the company
+     already used. The palette was not up for redesign.
+   - Edges are hard (2/4/8px radius), rules are thick (2-3px),
+     borders are visible. No hairlines that disappear.
+   - Layout is dense and left-aligned on a single grid. Every
+     block on every page starts at the same x.
 
-   Type:  Archivo (headings) + IBM Plex Sans (text)
-   Color: near-black ink, warm off-white, one gold accent
+   JOBS, IN ORDER
+   1. Phone number and booking link in reach on every screen.
+   2. Scan what we do, check we cover your address.
+   3. Prove the licence.
    ============================================================ */
 
 /* ============================================================
    TOKENS
    ============================================================ */
 :root {
-  /* --- Surfaces & ink --------------------------------------
-     Two dark surfaces (sections, footer) and two light ones.
-     Nothing else. Every background on the site is one of these. */
-  --ink:          #10161f;
-  --ink-strong:   #0a0f16;
-  --surface:      #ffffff;
-  --surface-alt:  #f5f4f1;
+  /* --- Brand -----------------------------------------------
+     The colours the site has always used: near-black navy and
+     amber gold. Keep them. An earlier pass sampled brighter
+     values straight out of the logo file (#182050 / #e8c818)
+     and the whole site went cold and lemony. */
+  --navy:        #060e1a;
+  --gold:        #e8a020;
+
+  /* --- Surfaces --------------------------------------------
+     Two dark, two light. Every background is one of these. */
+  --ink:         #060e1a;   /* dark sections, header */
+  --ink-deep:    #04090f;   /* footer, deepest */
+  --ink-raised:  #0c1829;   /* a raised block on a dark section */
+  --page:        #faf8f5;   /* warm cream, the page itself */
+  --surface:     #ffffff;   /* cards sitting on the page */
+  --surface-alt: #f4f2ef;   /* warm alternating band */
 
   /* --- Text on light --------------------------------------- */
-  --text:         #171c24;   /* 17.1:1 on white */
-  --text-muted:   #55606e;   /*  6.4:1 on white, 5.8:1 on alt */
+  --text:        #121a26;   /* 17.5:1 on white */
+  --text-muted:  #57636f;   /*  6.1:1 on white, 5.5:1 on alt */
 
   /* --- Text on dark ----------------------------------------
-     Three steps, all >= 4.5:1 on --ink. The old file used a
-     dozen rgba(255,255,255,.18 … .62) values, most of which
-     failed contrast outright. Do not add a fourth step. */
-  --on-dark:        #ffffff;
-  --on-dark-muted:  #b8c0cb;  /* 9.9:1 on ink */
-  --on-dark-subtle: #8c96a4;  /* 6.1:1 on ink */
+     Three steps, all >= 4.5:1 on --ink. Do not add a fourth. */
+  --on-dark:        #ffffff;  /* 19.4:1 */
+  --on-dark-muted:  #b3bcc9;  /* 10.1:1 */
+  --on-dark-subtle: #8793a3;  /*  6.2:1 */
 
   /* --- Accent ----------------------------------------------
-     --accent is the logo gold. It has 2.2:1 on white, so it is
-     a FILL ONLY on light backgrounds (buttons, bars, markers).
-     For gold-coloured *text* on light, use --accent-strong.
-     On dark surfaces --accent has 8.2:1 and is safe as text. */
-  --accent:        #e8a020;
-  --accent-hover:  #cf8c15;
-  --accent-strong: #8a5b0d;   /* 5.9:1 on white */
+     --gold is 2.2:1 on white, so on light surfaces it is a
+     FILL ONLY: buttons, rules, markers. For gold-coloured
+     TEXT on a light surface use --gold-ink (5.9:1).
+     On --ink the amber is 8.7:1 and safe as text. */
+  --gold-hover:  #c58c18;
+  --gold-ink:    #8a5b0d;
 
-  --danger:        #b3261e;
-  --success:       #16704a;
+  --danger:      #c23030;
+  --danger-text: #b3261e;
+  --success:     #166b45;
 
-  /* --- Lines ----------------------------------------------- */
-  --line:       #dcd8d1;
-  --line-soft:  #e9e6e1;
-  --line-dark:  #232c38;   /* borders on dark surfaces */
+  /* --- Lines -----------------------------------------------
+     Visible. A previous palette used #e9e6e1 on a #f5f4f1
+     band, which made every card border disappear. */
+  --line:        #ddd8d0;
+  --line-strong: #aaa397;
+  --line-dark:   #1c2a3d;
+  --rule-dark:   rgba(255,255,255,0.16);  /* structural rule on a dark band */
 
-  /* --- Type ------------------------------------------------ */
-  --font-head: 'Archivo', system-ui, sans-serif;
-  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  /* --- Type ------------------------------------------------
+     One family. Display is the same typeface at 900 in caps,
+     which is what keeps the voice consistent. */
+  --font: 'Archivo', system-ui, -apple-system, sans-serif;
 
-  /* One scale. Every font-size in this file is one of these. */
-  --text-xs:   0.75rem;    /* 12 - legal, meta */
-  --text-sm:   0.8125rem;  /* 13 - labels, captions */
+  --text-2xs:  0.6875rem;  /* 11 - micro labels */
+  --text-xs:   0.75rem;    /* 12 - legal */
+  --text-sm:   0.8125rem;  /* 13 - spec labels */
   --text-base: 0.9375rem;  /* 15 - dense UI text */
-  --text-md:   1.0625rem;  /* 17 - body copy */
-  --text-lg:   1.1875rem;  /* 19 - lead paragraphs */
-  --text-xl:   1.375rem;   /* 22 - h3 */
-  --text-2xl:  1.75rem;    /* 28 - h2 on small screens */
-  --text-3xl:  2.25rem;    /* 36 - h2 */
-  --text-4xl:  3.25rem;    /* 52 - h1 */
+  --text-md:   1.0625rem;  /* 17 - body */
+  --text-lg:   1.1875rem;  /* 19 - lead */
+  --text-xl:   1.375rem;   /* 22 - large sub-head */
+  --text-2xl:  1.875rem;   /* 30 - h2 small */
+  --text-3xl:  2.75rem;    /* 44 - h2 */
+  --text-4xl:  4rem;       /* 64 - h1 */
 
-  /* Three line-heights. Not nine. */
-  --leading-tight:  1.15;
-  --leading-snug:   1.35;
-  --leading-normal: 1.6;
+  --leading-display: 0.96;
+  --leading-tight:   1.2;
+  --leading-snug:    1.4;
+  --leading-normal:  1.6;
+
+  /* Tracking. Display type is tightened; small caps labels are
+     opened up, which is what makes them read as labels. */
+  --track-display: -0.025em;
+  --track-title:    0.01em;
+  --track-label:    0.1em;
 
   /* --- Spacing ---------------------------------------------
-     4px base. Every margin, padding and gap uses one of these. */
+     4px base. Every margin, padding and gap is one of these. */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
-  --space-7: 3rem;
+  --space-7: 2.75rem;
   --space-8: 4rem;
-  --space-9: 6rem;
+  --space-9: 5rem;
 
   /* --- Radius ----------------------------------------------
-     Three values, full stop. Small for controls and chips,
-     base for cards and buttons, large for media panels. */
-  --radius-sm: 4px;
-  --radius:    8px;
-  --radius-lg: 16px;
+     Three values, all small. This is a trade brand; soft
+     corners read as consumer software. */
+  --radius-sm: 2px;
+  --radius:    4px;
+  --radius-lg: 8px;
 
   /* --- Elevation -------------------------------------------
-     One shadow. This design separates things with hairlines, so
-     elevation is only ever used to lift a card on hover. */
-  --shadow-sm: 0 1px 2px rgba(16,22,31,0.06), 0 1px 3px rgba(16,22,31,0.08);
+     One shadow, used only to lift an interactive card. The
+     design separates things with rules, not with blur. */
+  --shadow: 0 2px 0 rgba(6,14,26,0.06), 0 8px 20px rgba(6,14,26,0.12);
 
   /* --- Motion ---------------------------------------------- */
-  --ease:      cubic-bezier(0.2, 0, 0, 1);
-  --dur:       160ms;
-  --dur-slow:  240ms;
+  --ease:     cubic-bezier(0.2, 0, 0, 1);
+  --dur:      140ms;
+  --dur-slow: 220ms;
 }
 
 /* ============================================================
@@ -114,17 +139,18 @@
 
 html {
   scroll-behavior: smooth;
-  /* Sticky header is 64px; keep anchor targets clear of it. */
-  scroll-padding-top: 80px;
+  scroll-padding-top: 88px;   /* clears the sticky header */
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: var(--font-body);
+  overflow-wrap: break-word;
+  font-family: var(--font);
   font-size: var(--text-md);
+  font-weight: 400;
   line-height: var(--leading-normal);
   color: var(--text);
-  background: var(--surface);
+  background: var(--page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -137,21 +163,13 @@ fieldset { border: 0; min-width: 0; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
 input, select, textarea { font: inherit; color: inherit; }
 
-/* Phone numbers and stats read as figures, so lock the digits
-   to a single width to stop them shimmering between states. */
 .tnum { font-variant-numeric: tabular-nums; }
 
-/* One focus treatment for the whole site. The old file had none
-   outside of form fields, which left keyboard users with nothing
-   on every link, button and nav item. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 3px solid var(--gold);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
-header :focus-visible,
-.site-footer :focus-visible,
-.band-dark :focus-visible { outline-color: var(--accent); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px;
@@ -159,145 +177,154 @@ header :focus-visible,
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Skip link: first tab stop on every page. */
 .skip-link {
   position: absolute; left: var(--space-4); top: -100%;
   z-index: 1200;
-  background: var(--accent); color: var(--ink);
-  font-family: var(--font-head); font-weight: 600;
-  font-size: var(--text-base);
+  background: var(--gold); color: var(--ink);
+  font-weight: 800; font-size: var(--text-sm);
+  text-transform: uppercase; letter-spacing: var(--track-label);
   padding: var(--space-3) var(--space-5);
-  border-radius: 0 0 var(--radius) var(--radius);
 }
 .skip-link:focus { top: 0; }
 
 /* ============================================================
    TYPOGRAPHY
-   Headings are sentence case, weight 600-700, tight leading.
-   The previous system set every heading to 800/900 weight in
-   all-caps at up to 6rem, which shouted at the reader and made
-   the body text look thin by comparison.
    ============================================================ */
-h1, h2, h3, h4 {
-  font-family: var(--font-head);
-  line-height: var(--leading-tight);
-  letter-spacing: -0.015em;
+h1, h2 {
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
   color: var(--ink);
   text-wrap: balance;
 }
-h1 { font-size: clamp(2.125rem, 5.5vw, var(--text-4xl)); font-weight: 700; }
-h2 { font-size: clamp(var(--text-2xl), 3.5vw, var(--text-3xl)); font-weight: 700; }
-h3 { font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.01em; }
-h4 { font-size: var(--text-md); font-weight: 600; letter-spacing: 0; }
+h1 { font-size: clamp(2.375rem, 6vw, var(--text-4xl)); }
+h2 { font-size: clamp(1.75rem, 3.8vw, var(--text-3xl)); }
+
+/* h3 is the component title: card headings, list items, steps.
+   Uppercase 800 at body size, opened slightly, so it reads as a
+   label on a spec sheet rather than as a small heading. */
+h3 {
+  font-size: var(--text-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--track-title);
+  line-height: var(--leading-tight);
+  color: var(--ink);
+}
+h4 { font-size: var(--text-base); font-weight: 700; color: var(--ink); }
 
 p { text-wrap: pretty; }
 p + p { margin-top: var(--space-4); }
-
-strong { font-weight: 600; color: var(--text); }
-
-/* Inline links inside running text are underlined. Colour alone
-   is not a sufficient affordance. */
-.prose a,
-.policy-content a {
-  color: var(--accent-strong);
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
-}
-.prose a:hover,
-.policy-content a:hover { color: var(--ink); }
+strong { font-weight: 700; color: var(--text); }
 
 .lead {
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
   color: var(--text-muted);
-  max-width: 56ch;
+  max-width: 54ch;
 }
-
 .muted { color: var(--text-muted); }
+
+/* Links inside running text are underlined. Colour alone is not
+   a sufficient affordance. */
+.prose a, .policy-content a, .note a, .form-note a {
+  color: var(--gold-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
+}
+.prose a:hover, .policy-content a:hover,
+.note a:hover, .form-note a:hover { color: var(--ink); }
+
+/* A small uppercase caption. One style, used everywhere a label
+   sits above a value. */
+.note {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--text-muted);
+}
 
 /* ============================================================
    LAYOUT
    ============================================================ */
 .container {
   width: 100%;
-  max-width: 1160px;
+  max-width: 1200px;
   margin-inline: auto;
-  padding-inline: var(--space-5);
+  padding-inline: var(--space-6);
 }
 
 section { padding-block: var(--space-9); }
 section.compact { padding-block: var(--space-8); }
 section.tight   { padding-block: var(--space-6); }
 
-/* The two light surfaces. A hairline, not a shadow, separates
-   them, so stacked sections read as one continuous sheet. */
-.band-alt  { background: var(--surface-alt); border-block: 1px solid var(--line-soft); }
+.band-alt  { background: var(--surface-alt); }
 .band-dark { background: var(--ink); color: var(--on-dark-muted); }
-.band-dark h2, .band-dark h3, .band-dark h4 { color: var(--on-dark); }
+.band-dark h1, .band-dark h2, .band-dark h3, .band-dark h4 { color: var(--on-dark); }
 
 .grid { display: grid; gap: var(--space-5); }
+.grid > *, .grid-split > * { min-width: 0; }
 .grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-split { gap: var(--space-8); align-items: center; }
 
-/* Two columns of prose plus a figure, so they need air between
-   them and should align to the top rather than centre. */
-.grid-split { gap: var(--space-8); align-items: start; }
-
-/* ------------------------------------------------------------
-   SPACING UTILITIES
-   The only way to apply a one-off margin. Inline style
-   attributes are not used anywhere on this site; there were 128
-   of them before, carrying hard-coded colours and sizes that
-   drifted from the tokens they were copied from.
-   ------------------------------------------------------------ */
+/* Spacing utilities. There are no inline style attributes in
+   this site; a one-off margin gets one of these. */
 .stack-sm { margin-top: var(--space-3); }
 .stack    { margin-top: var(--space-6); }
 .stack-lg { margin-top: var(--space-7); }
-
-/* A row of buttons or links that wraps on narrow screens. */
-.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-
-/* A portrait-ish image that should not fill its column. */
-.figure-inset { max-width: 320px; margin-inline: auto; }
+.actions  { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+/* Centres a trailing action row under a centred section header. */
+.center { text-align: center; }
+.center.actions, .center .actions { justify-content: center; }
+.figure-inset { max-width: 300px; margin-inline: auto; }
 
 /* ------------------------------------------------------------
    SECTION HEADER
-   Left-aligned by default. The old system centred every heading
-   and stacked an eyebrow pill, a heading, a gold underline rule
-   and a subtitle on all of them, on every page. That stack is
-   the single biggest reason the site read as a template, so the
-   eyebrow and the rule are gone and the default is now left.
-   Centre it only where the section is genuinely a full-width
-   statement: the hero and the closing CTA.
+   Heading left, supporting line right, a 3px rule under both.
+   The rule spans the whole container, so it states the grid the
+   rest of the page is built on. Previously the heading and its
+   lead stacked in a narrow left column, which left the right
+   half of every section empty and made the page feel thin.
    ------------------------------------------------------------ */
-.section-header { max-width: 60ch; margin-bottom: var(--space-7); }
-.section-header p { margin-top: var(--space-3); color: var(--text-muted); }
+/* Heading and its supporting line stack and centre on the page's
+   middle, so every section opens on the same axis instead of a
+   heading hanging left and a sentence floating right. */
+.section-header {
+  max-width: 62ch;
+  margin: 0 auto var(--space-7);
+  text-align: center;
+}
+.section-header p {
+  margin-top: var(--space-3);
+  font-size: var(--text-md);
+  color: var(--text-muted);
+}
 .band-dark .section-header p { color: var(--on-dark-muted); }
-/* A header sitting directly above its own content rather than a
-   full section, so it needs less air beneath it. */
-.section-header.tight-header { margin-bottom: var(--space-5); }
+.section-header.tight-header { margin-bottom: var(--space-6); }
+.band-dark .section-header p { color: var(--on-dark-muted); }
 
 /* ============================================================
    BUTTONS
-   Feedback is a real state change (background, border, a 1px
-   press), not an opacity fade. Minimum target 44px tall.
+   Uppercase, heavy, square-ish. Feedback is a real state
+   change and a 1px press, never an opacity fade.
    ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  min-height: 44px;
-  padding: var(--space-3) var(--space-5);
-  font-family: var(--font-head);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
   font-size: var(--text-base);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   text-align: center;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: var(--radius);
   transition: background var(--dur) var(--ease),
               border-color var(--dur) var(--ease),
@@ -307,32 +334,29 @@ section.tight   { padding-block: var(--space-6); }
 .btn:active { transform: translateY(1px); }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--ink);
-  border-color: var(--accent);
+  border-color: var(--gold);
 }
-.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn-primary:hover { background: var(--gold-hover); border-color: var(--gold-hover); }
 
-/* Outline button, light surfaces. */
+/* Outline, light surfaces. */
 .btn-outline {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+  border-color: var(--ink);
 }
-.btn-outline:hover { background: var(--ink); border-color: var(--ink); color: var(--on-dark); }
+.btn-outline:hover { background: var(--ink); color: var(--on-dark); }
 
-/* Outline button, dark surfaces. Replaces the old .btn-secondary,
-   which relied on a backdrop-blur over a solid colour, i.e. a
-   blur of nothing. */
+/* Outline, dark surfaces. */
 .btn-ghost {
   background: transparent;
   color: var(--on-dark);
-  border-color: var(--line-dark);
+  border-color: rgba(255,255,255,0.35);
 }
-.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--on-dark-subtle); }
+.btn-ghost:hover { background: var(--on-dark); color: var(--ink); border-color: var(--on-dark); }
 
-.btn-lg { min-height: 52px; padding: var(--space-4) var(--space-6); font-size: var(--text-md); }
-.btn-sm { min-height: 38px; padding: var(--space-2) var(--space-4); font-size: var(--text-sm); }
+.btn-lg { min-height: 56px; padding: var(--space-4) var(--space-6); letter-spacing: 0.08em; }
 .btn-full { width: 100%; }
 
 .btn[disabled], .btn[aria-disabled='true'] {
@@ -342,7 +366,6 @@ section.tight   { padding-block: var(--space-6); }
   color: var(--text-muted);
 }
 
-/* Spinner for in-flight submits. Only shown while [data-busy]. */
 .btn .spinner {
   width: 16px; height: 16px;
   border: 2px solid currentColor;
@@ -357,36 +380,34 @@ section.tight   { padding-block: var(--space-6); }
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--accent-strong);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold-ink);
   transition: color var(--dur) var(--ease);
 }
-.link-arrow::after {
-  content: '\2192';
-  transition: transform var(--dur) var(--ease);
-}
+.link-arrow[href^='mailto:'] { text-transform: none; letter-spacing: 0; }
+.link-arrow::after { content: '\2192'; transition: transform var(--dur) var(--ease); }
 .link-arrow:hover { color: var(--ink); }
 .link-arrow:hover::after { transform: translateX(3px); }
+.band-dark .link-arrow { color: var(--gold); }
+.band-dark .link-arrow:hover { color: var(--on-dark); }
 
 /* ============================================================
    CARDS
-   One card. The old file had five near-identical variants, four
-   of which differed only in which edge carried a gold border.
-   Cards are used where content is genuinely a discrete unit; a
-   list of facts is a list, not a row of boxes.
+   One card. A visible border, a hard corner, no drop shadow at
+   rest. Only a card that is itself a link gets a hover state.
    ============================================================ */
 .card {
   background: var(--surface);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: var(--space-5);
 }
 .card h3 { margin-bottom: var(--space-2); }
 .card > p { color: var(--text-muted); font-size: var(--text-base); }
 
-/* Only a card that is itself a link gets a hover state. */
 a.card {
   display: block;
   transition: border-color var(--dur) var(--ease),
@@ -394,42 +415,40 @@ a.card {
               transform var(--dur) var(--ease);
 }
 a.card:hover {
-  border-color: var(--line);
-  box-shadow: var(--shadow-sm);
+  border-color: var(--ink);
+  box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
 
 /* ============================================================
    EMERGENCY BAR
-   Persistent standing information, not a live alert, so it
-   carries no role="alert" (which made screen readers announce
-   it on every page load). Static: the marquee is gone.
+   Standing information, not a live alert, so no role="alert".
+   Static: there is no marquee.
    ============================================================ */
 .emergency-bar {
   background: var(--danger);
   color: #fff;
   font-size: var(--text-sm);
-  font-weight: 500;
-  line-height: var(--leading-snug);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: var(--leading-tight);
   text-align: center;
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
 }
 .emergency-bar a {
   color: #fff;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
   white-space: nowrap;
 }
-.emergency-bar a:hover { text-decoration-thickness: 2px; }
-.emergency-bar .sep { opacity: 0.6; padding-inline: var(--space-2); }
+.emergency-bar .sep { opacity: 0.55; padding-inline: var(--space-2); }
 
 /* ============================================================
    HEADER
-   Solid, not translucent. The old header stacked a 20px blur and
-   180% saturation over a 92%-opaque near-black, which cost a
-   compositing layer on every scroll to produce a colour
-   indistinguishable from the solid one.
+   Solid navy, a gold rule along the bottom edge. No blur.
    ============================================================ */
 header {
   position: sticky;
@@ -443,100 +462,93 @@ header {
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  min-height: 64px;
-  padding-block: var(--space-2);
+  min-height: 76px;
+  padding-block: var(--space-3);
 }
-.logo img { height: 42px; width: auto; }
+.logo img { height: 52px; width: auto; }
 .nav-spacer { flex: 1; }
 .nav-menu { display: flex; align-items: center; gap: var(--space-1); }
 
 .nav-menu a {
   display: block;
   position: relative;
+  padding: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  padding: var(--space-2) var(--space-3);
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 500;
   color: var(--on-dark-muted);
-  border-radius: var(--radius-sm);
-  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+  transition: color var(--dur) var(--ease);
 }
-.nav-menu a:hover { color: var(--on-dark); background: rgba(255,255,255,0.06); }
+.nav-menu a:hover { color: var(--on-dark); }
 
-/* The current page is marked with a gold rule, not a colour
-   change alone. */
+/* The current page is marked with a gold bar, not colour alone. */
 .nav-menu a[aria-current='page'] { color: var(--on-dark); }
 .nav-menu a[aria-current='page']::after {
   content: '';
   position: absolute;
-  left: var(--space-3); right: var(--space-3); bottom: 2px;
-  height: 2px;
-  background: var(--accent);
+  left: var(--space-3); right: var(--space-3); bottom: 0;
+  height: 3px;
+  background: var(--gold);
 }
 
-/* Book Now is the header's one call to action. */
 .nav-book {
-  background: var(--accent);
+  background: var(--gold);
   color: var(--ink) !important;
-  font-weight: 600;
-  padding: var(--space-2) var(--space-4) !important;
-  border-radius: var(--radius-sm);
+  font-weight: 800;
+  padding: var(--space-3) var(--space-5) !important;
+  border-radius: var(--radius);
   transition: background var(--dur) var(--ease);
 }
-.nav-book:hover { background: var(--accent-hover) !important; }
+.nav-book:hover { background: var(--gold-hover) !important; }
 .nav-book[aria-current='page']::after { display: none; }
 
 .nav-phone {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 600;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  letter-spacing: 0.04em;
   color: var(--on-dark);
-  border: 1px solid var(--line-dark);
-  border-radius: var(--radius-sm);
+  border: 2px solid var(--line-dark);
+  border-radius: var(--radius);
   white-space: nowrap;
   transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
-.nav-phone:hover { border-color: var(--on-dark-subtle); background: rgba(255,255,255,0.06); }
+.nav-phone:hover { border-color: var(--gold); background: rgba(232,160,32,0.10); }
 .nav-phone svg { width: 15px; height: 15px; }
 
 .menu-toggle {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   color: var(--on-dark);
-  border-radius: var(--radius-sm);
   flex-shrink: 0;
 }
-.menu-toggle svg { width: 22px; height: 22px; }
+.menu-toggle svg { width: 26px; height: 26px; }
 .menu-toggle .icon-close { display: none; }
 .menu-toggle[aria-expanded='true'] .icon-open  { display: none; }
 .menu-toggle[aria-expanded='true'] .icon-close { display: block; }
 
 /* ============================================================
    ICONS
-   All icons are 1.5px-stroke outlines on a 24px grid, drawn
-   inline. Sizes come from three steps only: 15px inline with
-   text, 20px next to a label, 24px standalone. The old markup
-   mixed filled paths with stroke-only rendering, so some icons
-   drew as doubled outlines.
+   Inline SVG on a 24px grid, 2px stroke. Three sizes only.
    ============================================================ */
 .icon {
   width: 20px; height: 20px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   flex-shrink: 0;
 }
 .icon-sm { width: 15px; height: 15px; }
-.icon-lg { width: 24px; height: 24px; }
+.icon-lg { width: 26px; height: 26px; }
 
 /* ============================================================
    PAGE BANNER
@@ -545,154 +557,168 @@ header {
   background: var(--ink);
   color: var(--on-dark-muted);
   padding-block: var(--space-8);
+  border-bottom: 1px solid var(--line-dark);
 }
-.page-banner h1 { color: var(--on-dark); }
-.page-banner h1 span { color: var(--accent); }
+.page-banner h1 {
+  color: var(--on-dark);
+  font-size: clamp(2rem, 5.5vw, var(--text-4xl));
+}
+.page-banner h1 span { color: var(--gold); }
 .page-banner p {
   margin-top: var(--space-4);
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
   color: var(--on-dark-muted);
-  max-width: 56ch;
+  max-width: 54ch;
 }
-
-/* The banner already carries 64px of bottom padding, so a section's
-   full 96px on top of that left ~160px of empty space between the page
-   title and the first heading. */
-.page-banner + section,
-.page-banner + .claim-band + section { padding-top: var(--space-7); }
 
 .breadcrumb {
   margin-bottom: var(--space-4);
   font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
   color: var(--on-dark-subtle);
 }
-.breadcrumb a { color: var(--on-dark-muted); }
-.breadcrumb a:hover { color: var(--accent); text-decoration: underline; }
+.breadcrumb a { color: var(--gold); }
+.breadcrumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* A section directly after the banner needs less air on top. */
+.page-banner + section,
+.page-banner + .claim-band + section { padding-top: var(--space-8); }
 
 /* ------------------------------------------------------------
-   SECTION NAV
-   In-page jump links on long pages. A row of text links with an
-   underline marker, not a row of outlined buttons pretending to
-   be a segmented control.
+   SECTION NAV — in-page jump links
    ------------------------------------------------------------ */
-.section-nav {
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-}
-.section-nav .container { display: flex; gap: var(--space-5); }
+.section-nav { background: var(--surface-alt); border-bottom: 1px solid var(--line); }
+.section-nav .container { display: flex; gap: var(--space-6); }
 .section-nav a {
   padding: var(--space-4) 0;
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 500;
+  font-size: var(--text-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
   color: var(--text-muted);
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
-.section-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.section-nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
 /* ============================================================
    HERO
-   No background image, no overlay, no animated entrance. The
-   old hero loaded a 2.4MB photo to render it at 4% opacity
-   under a 3px blur, then animated five elements in on a
-   staggered delay before the visitor could read any of it.
+   Left-aligned, on the same grid as every section below it.
+   Centring the hero and left-aligning everything else gave the
+   page two competing axes.
    ============================================================ */
 .hero {
   background: var(--ink);
   padding-block: var(--space-9);
+  border-bottom: 1px solid var(--line-dark);
+}
+/* The van photo fills the whole hero, blurred and held well back, the way
+   the site always treated it. It sets the scene without competing with the
+   headline; the content sits centred on top. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  padding-block: var(--space-9);
+  border-bottom: 1px solid var(--line-dark);
   text-align: center;
 }
-.hero h1 {
-  color: var(--on-dark);
-  max-width: 18ch;
-  margin-inline: auto;
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../images/ironvoltvan.jpg') center center / cover no-repeat;
+  filter: blur(7px);
+  transform: scale(1.08);   /* hides the soft edge the blur leaves */
+  opacity: 0.2;
+  pointer-events: none;
 }
-.hero h1 em { color: var(--accent); font-style: normal; }
+.hero > .container { position: relative; z-index: 1; }
+
+.hero h1 { color: var(--on-dark); margin-inline: auto; }
+.hero h1 em { color: var(--gold); font-style: normal; }
 .hero p {
   margin: var(--space-5) auto 0;
-  max-width: 58ch;
+  max-width: 52ch;
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
   color: var(--on-dark-muted);
 }
 .hero-actions {
   display: flex;
-  gap: var(--space-3);
-  justify-content: center;
+  gap: var(--space-4);
   flex-wrap: wrap;
-  margin-top: var(--space-6);
+  justify-content: center;
+  margin-top: var(--space-7);
 }
 .hero-note {
-  margin-top: var(--space-5);
-  font-size: var(--text-sm);
-  color: var(--on-dark-subtle);
+  margin: var(--space-5) auto 0;
+  font-size: var(--text-base);
+  color: var(--on-dark-muted);
+  max-width: 56ch;
 }
 
 /* ------------------------------------------------------------
    FACTS
-   One component for licence / experience / hours claims. It
-   replaces four that did the same job: .hero-stats,
-   .trust-bar, .trust-badges and .credentials-grid.
+   Licence, experience, hours. One component; it replaced four
+   that all did this job. The gold rule on top ties it to the
+   header and marks it as the credentials strip.
    ------------------------------------------------------------ */
 .facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  text-align: center;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: var(--space-5);
   margin-top: var(--space-8);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--line-dark);
-  text-align: left;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule-dark);
 }
-/* Label reads first, value under it: "Texas licence / TECL #41098". */
 .facts .fact-label {
   display: block;
-  font-size: var(--text-sm);
-  color: var(--on-dark-subtle);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--on-dark-muted);
 }
 .facts .fact-value {
   display: block;
   margin-top: var(--space-2);
-  font-family: var(--font-head);
   font-size: var(--text-xl);
-  font-weight: 700;
+  font-weight: 900;
+  text-transform: uppercase;
   line-height: var(--leading-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--track-display);
   color: var(--on-dark);
   font-variant-numeric: tabular-nums;
 }
-/* Light-surface variant, used on the booking page. */
-.facts-light {
-  border-top-color: var(--line);
-  margin-top: 0;
-}
+.facts-light { border-top-color: var(--ink); margin-top: 0; }
 .facts-light .fact-value { color: var(--ink); }
 .facts-light .fact-label { color: var(--text-muted); }
 
-/* A single row of short claims, used above the booking form. */
-.claim-band {
-  background: var(--surface-alt);
-  border-bottom: 1px solid var(--line-soft);
-}
+/* A row of short claims, above the booking form. */
+.claim-band { background: var(--ink-deep); }
 .claim-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
+  gap: var(--space-3) var(--space-7);
   padding-block: var(--space-4);
 }
 .claim-row li {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--text);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--on-dark);
 }
-.claim-row .icon { color: var(--accent-strong); }
+.claim-row .icon { color: var(--gold); width: 17px; height: 17px; }
 
-/* Third-party review widget. It renders its own card chrome, so
-   all we owe it is a width and somewhere to sit. */
+/* Third-party review widget; all we owe it is somewhere to sit. */
 .reviews-embed { min-height: 200px; }
 
 /* ============================================================
@@ -700,7 +726,7 @@ header {
    ============================================================ */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-5);
 }
 
@@ -708,29 +734,38 @@ header {
   display: flex;
   flex-direction: column;
   background: var(--surface);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
 }
-.service-card:hover { border-color: var(--line); box-shadow: var(--shadow-sm); }
+.service-card:hover {
+  border-color: var(--ink);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
 .service-card-media {
   aspect-ratio: 4 / 3;
   background: var(--ink);
   flex: none;
-  min-height: 0;   /* or a portrait image's own aspect overrides the 4:3 box */
+  min-height: 0;   /* or a portrait image's own aspect beats the 4:3 box */
   overflow: hidden;
 }
 .service-card-media img { width: 100%; height: 100%; object-fit: cover; }
-.service-card-body { padding: var(--space-4) var(--space-5); flex: 1; }
-.service-card-body h3 { font-size: var(--text-md); margin-bottom: var(--space-2); }
+.service-card-body { padding: var(--space-5); flex: 1; }
+.service-card-body h3 {
+  margin-bottom: var(--space-2);
+  min-height: calc(2 * var(--leading-tight) * 1em);  /* keeps card bodies aligned */
+}
 .service-card-body p { font-size: var(--text-base); color: var(--text-muted); }
 .service-card-foot { padding: 0 var(--space-5) var(--space-5); }
 
 /* ------------------------------------------------------------
    SLIDESHOW
    ------------------------------------------------------------ */
-.slideshow { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--ink); }
+.slideshow { position: relative; }
 .slideshow-track {
   display: flex;
   height: 100%;
@@ -750,17 +785,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px; height: 32px;
-  color: #fff;
-  background: rgba(16,22,31,0.72);
-  border-radius: 50%;
+  width: 34px; height: 34px;
+  color: var(--ink);
+  background: var(--gold);
+  border-radius: var(--radius-sm);
   opacity: 0;
-  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+  transition: opacity var(--dur) var(--ease);
 }
-.slide-btn svg { width: 16px; height: 16px; }
+.slide-btn svg { width: 17px; height: 17px; }
 .slideshow:hover .slide-btn,
 .slide-btn:focus-visible { opacity: 1; }
-.slide-btn:hover { background: var(--ink); }
 .slide-prev { left: var(--space-2); }
 .slide-next { right: var(--space-2); }
 
@@ -770,32 +804,27 @@ header {
   left: 50%;
   translate: -50% 0;
   display: flex;
-  gap: var(--space-1);
+  gap: 3px;
+  padding: 3px var(--space-1);
+  background: rgba(6,14,26,0.55);
+  border-radius: var(--radius-sm);
 }
-/* Dots are real buttons: the old ones were <span>s with click
-   handlers inside an aria-hidden wrapper, so they were
-   unreachable by keyboard and invisible to assistive tech. */
-.slide-dots button {
-  width: 22px; height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-}
+/* Real buttons: the originals were <span>s with click handlers
+   inside an aria-hidden wrapper, unreachable by keyboard. */
+.slide-dots button { width: 14px; height: 18px; display: grid; place-items: center; }
 .slide-dots button::before {
   content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.45);
+  width: 8px; height: 3px;
+  background: rgba(255,255,255,0.5);
   transition: background var(--dur) var(--ease);
 }
-.slide-dots button[aria-current='true']::before { background: var(--accent); }
+.slide-dots button[aria-current='true']::before { background: var(--gold); }
 
 /* ============================================================
    FEATURE LIST
-   Replaces the repeated three- and six-up "why choose us" card
-   grids. The content is a list of claims, so it is marked up
-   and styled as a list: a hairline per row, no box, no shadow,
-   no gold edge. Denser and faster to scan than cards.
+   A list of claims is a list, not a row of boxes. A 3px ink
+   rule per row, heavy uppercase title, so it reads as a spec
+   sheet rather than as six cards with gold edges.
    ============================================================ */
 .feature-list {
   display: grid;
@@ -804,75 +833,82 @@ header {
 }
 .feature-list > li {
   padding-block: var(--space-5);
-  border-top: 1px solid var(--line-soft);
+  border-top: 3px solid var(--ink);
 }
-.feature-list h3 {
-  font-size: var(--text-md);
-  margin-bottom: var(--space-2);
-}
+.feature-list h3 { margin-bottom: var(--space-2); }
 .feature-list p { font-size: var(--text-base); color: var(--text-muted); }
-.band-dark .feature-list > li { border-top-color: var(--line-dark); }
+.band-dark .feature-list > li { border-top-color: var(--rule-dark); }
 .band-dark .feature-list p { color: var(--on-dark-muted); }
 
 /* ------------------------------------------------------------
    NUMBERED STEPS
-   One process description, shared by the contact and booking
-   pages. Those pages previously carried two different accounts
-   of the same process, one in four steps and one in five.
+   One process description, shared by contact and booking.
    ------------------------------------------------------------ */
 .steps { counter-reset: step; display: grid; gap: var(--space-5); }
 .steps.steps-row { grid-template-columns: repeat(4, 1fr); }
 .steps > li {
   counter-increment: step;
   padding-top: var(--space-4);
-  border-top: 2px solid var(--accent);
+  border-top: 3px solid var(--ink);
 }
 .steps > li::before {
   content: counter(step, decimal-leading-zero);
   display: block;
-  font-family: var(--font-head);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  color: var(--accent-strong);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: var(--track-display);
+  color: var(--gold-ink);
   font-variant-numeric: tabular-nums;
 }
-.steps h3 { font-size: var(--text-md); margin-bottom: var(--space-2); }
+.steps h3 { margin-bottom: var(--space-2); }
 .steps p { font-size: var(--text-base); color: var(--text-muted); }
 .band-dark .steps p { color: var(--on-dark-muted); }
-.band-dark .steps > li::before { color: var(--accent); }
+.band-dark .steps > li { border-top-color: var(--rule-dark); }
+.band-dark .steps > li::before { color: var(--gold); }
 
 /* ------------------------------------------------------------
    CHECK LIST — credentials, inclusions
    ------------------------------------------------------------ */
-.check-list { display: grid; gap: var(--space-3); max-width: 72ch; }
+.check-list { display: grid; gap: 0; max-width: 76ch; }
 .check-list li {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-3);
-  font-size: var(--text-base);
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  font-size: var(--text-md);
   color: var(--text-muted);
+  border-bottom: 1px solid var(--line);
 }
-.check-list .icon { color: var(--accent-strong); margin-top: 2px; }
-.band-dark .check-list li { color: var(--on-dark-muted); }
-.band-dark .check-list .icon { color: var(--accent); }
+.check-list li:first-child { border-top: 1px solid var(--line); }
+.check-list .icon { color: var(--gold-ink); margin-top: 3px; }
+.check-list strong { text-transform: uppercase; letter-spacing: var(--track-title); }
+.band-dark .check-list li { color: var(--on-dark-muted); border-color: var(--line-dark); }
+.band-dark .check-list .icon { color: var(--gold); }
 
 /* ============================================================
    SERVICE DETAIL (services page)
-   A service is a heading plus a spec list. Rendering each as a
-   card with a gold left border produced 17 boxes down the page
-   with no hierarchy between them.
+   Title and summary left, the spec list right. Seventeen
+   full-width stacked blocks read as one undifferentiated
+   column; two columns give each service a shape and halve the
+   page length.
    ============================================================ */
-.service-detail { padding-block: var(--space-6); border-top: 1px solid var(--line-soft); }
-.service-detail h3 { margin-bottom: var(--space-2); }
-.service-detail > p { color: var(--text-muted); max-width: 60ch; }
-
-.spec-list {
+.service-detail {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 var(--space-6);
-  margin-top: var(--space-4);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: var(--space-5) var(--space-8);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--line);
 }
+.service-detail:first-of-type { border-top: 3px solid var(--ink); }
+.service-detail h3        { grid-column: 1; grid-row: 1; }
+.service-detail > p       { grid-column: 1; grid-row: 2; }
+.service-detail .spec-list { grid-column: 2; grid-row: 1 / 3; align-self: start; }
+.service-detail h3 { font-size: var(--text-xl); margin-bottom: var(--space-3); }
+.service-detail > p { color: var(--text-muted); }
+
+.spec-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 var(--space-6); }
 .spec-list li {
   display: flex;
   align-items: baseline;
@@ -880,33 +916,29 @@ header {
   padding-block: var(--space-2);
   font-size: var(--text-base);
   color: var(--text-muted);
-  border-top: 1px solid var(--line-soft);
 }
 .spec-list li::before {
   content: '';
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
+  width: 7px; height: 3px;
+  background: var(--gold);
   flex-shrink: 0;
-  translate: 0 -2px;
+  translate: 0 -3px;
 }
 
 .section-figure {
   width: 100%;
   aspect-ratio: 3 / 1;
   object-fit: cover;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   margin-bottom: var(--space-7);
 }
 
 /* ============================================================
    FAQ
-   Uses a grid-rows transition rather than animating max-height
-   to an arbitrary 600px ceiling, which clipped longer answers.
+   grid-template-rows rather than a fixed max-height, which
+   previously clipped answers over 600px.
    ============================================================ */
-/* Capped measure, left-aligned: long question text should not run
-   the full 1160px container. */
-.faq { max-width: 76ch; border-top: 1px solid var(--line); }
+.faq { max-width: 82ch; border-top: 3px solid var(--ink); }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-q {
   width: 100%;
@@ -914,27 +946,22 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding: var(--space-4) 0;
+  padding: var(--space-5) 0;
   text-align: left;
-  font-family: var(--font-head);
   font-size: var(--text-md);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
   transition: color var(--dur) var(--ease);
 }
-.faq-q:hover { color: var(--accent-strong); }
-.faq-icon {
-  position: relative;
-  width: 16px; height: 16px;
-  flex-shrink: 0;
-}
+.faq-q:hover { color: var(--gold-ink); }
+.faq-icon { position: relative; width: 18px; height: 18px; flex-shrink: 0; }
 .faq-icon::before, .faq-icon::after {
   content: '';
   position: absolute;
   inset: 50% 0 auto 0;
-  height: 2px;
-  background: var(--accent-strong);
-  translate: 0 -1px;
+  height: 3px;
+  background: var(--gold-ink);
+  translate: 0 -1.5px;
   transition: transform var(--dur) var(--ease);
 }
 .faq-icon::after { rotate: 90deg; }
@@ -947,28 +974,22 @@ header {
 }
 .faq-a > div { overflow: hidden; }
 .faq-q[aria-expanded='true'] + .faq-a { grid-template-rows: 1fr; }
-.faq-a p {
-  padding-bottom: var(--space-5);
-  font-size: var(--text-base);
-  color: var(--text-muted);
-  max-width: 72ch;
-}
+.faq-a p { padding-bottom: var(--space-5); color: var(--text-muted); max-width: 72ch; }
 
 /* ============================================================
    CTA BAND
+   Heading and line left, buttons right. A centred block here
+   would be the only centred thing on the page.
    ============================================================ */
-.cta-band { background: var(--ink); padding-block: var(--space-8); text-align: center; }
+.cta-band { background: var(--ink); padding-block: var(--space-8); }
+.cta-band .container { text-align: center; }
 .cta-band h2 { color: var(--on-dark); }
-.cta-band p {
-  margin: var(--space-4) auto 0;
-  max-width: 54ch;
-  color: var(--on-dark-muted);
-}
+.cta-band p { margin: var(--space-3) auto 0; max-width: 52ch; color: var(--on-dark-muted); }
 .cta-actions {
   display: flex;
-  gap: var(--space-3);
-  justify-content: center;
+  gap: var(--space-4);
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: var(--space-6);
 }
 
@@ -977,48 +998,52 @@ header {
    ============================================================ */
 .contact-methods {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-6);
 }
-.contact-method { padding-top: var(--space-4); border-top: 2px solid var(--ink); }
-.contact-method .icon { color: var(--accent-strong); margin-bottom: var(--space-3); }
-.contact-method h3 { font-size: var(--text-md); margin-bottom: var(--space-2); }
-.contact-method p { font-size: var(--text-base); color: var(--text-muted); margin-bottom: var(--space-3); }
-.contact-method a { display: block; margin-top: var(--space-1); }
+.contact-method { padding-top: var(--space-4); border-top: 3px solid var(--ink); }
+.contact-method .icon { color: var(--gold-ink); margin-bottom: var(--space-3); }
+.contact-method h3 { margin-bottom: var(--space-2); }
+.contact-method p { font-size: var(--text-base); color: var(--text-muted); margin-bottom: var(--space-4); }
+.contact-method .link-arrow { display: flex; margin-top: var(--space-2); }
 
-.contact-details { display: grid; gap: var(--space-5); }
-.contact-row { display: flex; gap: var(--space-4); align-items: flex-start; }
-.contact-row .icon { color: var(--accent-strong); margin-top: 3px; }
+.contact-details { display: grid; gap: 0; }
+.contact-row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.contact-row:first-child { border-top: 1px solid var(--line); }
+.contact-row > div { min-width: 0; }
+.contact-row .icon { color: var(--gold-ink); margin-top: 3px; }
 .contact-row dt {
-  font-size: var(--text-sm);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
   color: var(--text-muted);
   margin-bottom: var(--space-1);
 }
-.contact-row dd { font-size: var(--text-md); font-weight: 500; color: var(--ink); }
-.contact-row dd a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
-.contact-row dd a:hover { color: var(--accent-strong); }
-.contact-row .note { font-size: var(--text-sm); font-weight: 400; color: var(--text-muted); margin-top: var(--space-1); }
+.contact-row dd { font-size: var(--text-md); font-weight: 600; color: var(--ink); }
+.contact-row dd a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.contact-row dd a:hover { color: var(--gold-ink); }
 
-/* Emergency callout: flat red, no gradient, no shadow bloom. */
+/* Flat red. No gradient, no shadow bloom. */
 .emergency-callout {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
-  flex-wrap: wrap;
+  gap: var(--space-5) var(--space-6);
   background: var(--danger);
   color: #fff;
   border-radius: var(--radius);
   padding: var(--space-6);
 }
-.emergency-callout h2 { color: #fff; font-size: var(--text-xl); margin-bottom: var(--space-2); }
-.emergency-callout p { font-size: var(--text-base); max-width: 60ch; }
-.emergency-callout .btn {
-  background: #fff;
-  color: var(--danger);
-  border-color: #fff;
-  flex-shrink: 0;
-}
+.emergency-callout h2 { color: #fff; font-size: var(--text-2xl); }
+.emergency-callout p { margin-top: var(--space-2); font-size: var(--text-base); max-width: 62ch; }
+.emergency-callout .btn { background: #fff; color: var(--danger); border-color: #fff; }
 .emergency-callout .btn:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
 
 /* ============================================================
@@ -1027,82 +1052,72 @@ header {
 .form-section {
   margin-top: var(--space-7);
   padding-top: var(--space-4);
-  border-top: 1px solid var(--line);
+  border-top: 3px solid var(--ink);
 }
 .form-section:first-of-type { margin-top: 0; }
 .form-section legend {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: var(--space-4);
-  font-family: var(--font-head);
+  margin-bottom: var(--space-5);
   font-size: var(--text-md);
-  font-weight: 600;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--track-title);
   color: var(--ink);
 }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-.form-group { margin-bottom: var(--space-4); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.form-group { margin-bottom: var(--space-5); }
 
 .form-label {
   display: block;
   margin-bottom: var(--space-2);
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--text);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
 }
-.form-label .req { color: var(--danger); }
-.form-label .opt { color: var(--text-muted); font-weight: 400; }
+.form-label .req { color: var(--danger-text); }
+.form-label .opt { color: var(--text-muted); font-weight: 500; text-transform: none; letter-spacing: 0; }
 
 .form-control {
   width: 100%;
-  min-height: 46px;
-  padding: var(--space-3);
+  min-height: 50px;
+  padding: var(--space-3) var(--space-4);
   font-size: var(--text-md);
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.form-control:hover { border-color: var(--text-muted); }
+.form-control:hover { border-color: var(--line-strong); }
 .form-control:focus {
   outline: none;
   border-color: var(--ink);
-  box-shadow: 0 0 0 3px rgba(16,22,31,0.10);
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
-.form-control::placeholder { color: #9aa3ae; }
-textarea.form-control { min-height: 120px; resize: vertical; }
+.form-control::placeholder { color: #98a0b0; }
+textarea.form-control { min-height: 130px; resize: vertical; }
 
-/* Invalid state: red border plus a message. Colour is never the
-   only signal. */
-.form-control[aria-invalid='true'] { border-color: var(--danger); }
-.form-control[aria-invalid='true']:focus { box-shadow: 0 0 0 3px rgba(179,38,30,0.15); }
+/* Invalid: a red border AND a message. Colour is never the only signal. */
+.form-control[aria-invalid='true'] { border-color: var(--danger-text); }
 .field-error {
   display: none;
   margin-top: var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--danger);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--danger-text);
 }
 .field-error.show { display: block; }
 
-.form-check {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  cursor: pointer;
-}
-.form-check input {
-  width: 20px; height: 20px;
-  margin-top: 2px;
-  accent-color: var(--ink);
-  flex-shrink: 0;
-}
+.form-check { display: flex; align-items: flex-start; gap: var(--space-3); cursor: pointer; }
+.form-check input { width: 22px; height: 22px; margin-top: 1px; accent-color: var(--ink); flex-shrink: 0; }
 .form-check span { font-size: var(--text-base); color: var(--text-muted); }
 
-.form-note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--text-muted); }
-.form-note a { text-decoration: underline; text-underline-offset: 2px; }
+.form-note { margin-top: var(--space-4); font-size: var(--text-base); color: var(--text-muted); }
 
 /* Submit-level error, announced via aria-live. Replaces alert(). */
 .form-alert {
@@ -1112,22 +1127,22 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   margin-bottom: var(--space-5);
   padding: var(--space-4);
   font-size: var(--text-base);
-  background: #fdf1f0;
-  border: 1px solid var(--danger);
-  border-radius: var(--radius-sm);
+  font-weight: 600;
+  background: #fdf0ef;
+  border: 2px solid var(--danger-text);
+  border-radius: var(--radius);
   color: #7d1a14;
 }
 .form-alert.show { display: flex; }
-.form-alert .icon { color: var(--danger); margin-top: 2px; }
+.form-alert .icon { color: var(--danger-text); margin-top: 2px; }
 
 .form-success { display: none; padding-block: var(--space-6); }
 .form-success.show { display: block; }
-.form-success .icon { width: 40px; height: 40px; color: var(--success); margin-bottom: var(--space-4); }
+.form-success .icon { width: 44px; height: 44px; color: var(--success); margin-bottom: var(--space-4); }
 .form-success h2 { margin-bottom: var(--space-3); }
 .form-success p { color: var(--text-muted); max-width: 52ch; }
 .form-success .btn { margin-top: var(--space-5); }
 
-/* Honeypot: off-screen, never focusable. */
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* ============================================================
@@ -1135,132 +1150,123 @@ textarea.form-control { min-height: 120px; resize: vertical; }
    ============================================================ */
 .booking-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: var(--space-7);
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--space-8);
   align-items: start;
 }
-.booking-sidebar { position: sticky; top: 88px; display: grid; gap: var(--space-5); }
+.booking-sidebar { position: sticky; top: 100px; display: grid; gap: var(--space-5); }
 .booking-panel {
   background: var(--surface-alt);
-  border: 1px solid var(--line-soft);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--ink);
   border-radius: var(--radius);
   padding: var(--space-5);
 }
 .booking-panel h2 { font-size: var(--text-md); margin-bottom: var(--space-4); }
 .booking-panel .btn { width: 100%; }
-.booking-panel .note {
-  margin-top: var(--space-3);
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-  text-align: center;
-}
+.booking-panel .note { margin-top: var(--space-3); text-align: center; }
+.booking-panel .steps { gap: var(--space-4); }
 .booking-panel .steps > li { border-top-width: 1px; border-top-color: var(--line); padding-top: var(--space-3); }
-.booking-panel .steps > li:first-child { border-top-color: var(--accent); border-top-width: 2px; }
-.booking-panel .steps p { font-size: var(--text-sm); }
+.booking-panel .steps > li:first-child { border-top: 2px solid var(--ink); }
+.booking-panel .steps > li::before { font-size: var(--text-md); margin-bottom: var(--space-1); }
+.booking-panel .steps p { font-size: var(--text-base); }
 
 /* ============================================================
    SERVICE AREA
    ============================================================ */
 .coverage {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.35fr 1fr;
   gap: var(--space-6);
   align-items: stretch;
 }
 .coverage-map {
   position: relative;
-  min-height: 360px;
-  border-radius: var(--radius-lg);
+  min-height: 380px;
+  border-radius: var(--radius);
   overflow: hidden;
-  background: var(--ink-strong);
+  border: 1px solid var(--line-dark);
+  background: var(--ink-deep);
 }
-.coverage-map img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* A light panel sitting inside .band-dark. It has to opt back out of the
-   dark-surface text colours, or `.band-dark h2 { color: white }` lands a
-   white heading on this white background and the heading disappears. */
+.coverage-map img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* A light panel inside .band-dark has to opt back out of the
+   dark-surface text colours, or `.band-dark h2 { color: white }`
+   puts a white heading on this white background. */
 .coverage-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   background: var(--surface);
   color: var(--text);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   padding: var(--space-6);
 }
 .band-dark .coverage-panel h2,
 .band-dark .coverage-panel h3 { color: var(--ink); }
 .band-dark .coverage-panel p { color: var(--text-muted); }
 .coverage-panel h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
-.coverage-panel .btn { align-self: flex-start; }
-.coverage-panel > .note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--text-muted); }
+.coverage-panel .btn { align-self: center; }
+.coverage-panel > .note { margin-top: var(--space-4); }
 
-/* Cities as columns of hairline rows, not a bag of pills. A
-   homeowner is scanning for one name; alphabetical columns make
-   that a two-second job. */
-.city-columns {
-  columns: 3;
-  column-gap: var(--space-6);
-  margin-bottom: var(--space-5);
-}
+/* Towns as columns of ruled rows. Someone is scanning for one
+   name; alphabetical columns make that a two-second job. */
+.city-columns { columns: 3; column-gap: var(--space-7); margin-bottom: var(--space-5); }
 .city-columns li {
   break-inside: avoid;
   padding-block: var(--space-2);
   font-size: var(--text-base);
+  font-weight: 500;
   color: var(--text-muted);
-  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line);
 }
-.coverage-panel .city-columns { columns: 2; }
+.coverage-panel .city-columns li { text-align: center; }
+.coverage-panel .city-columns { columns: 2; width: 100%; margin-bottom: var(--space-6); }
 
-.region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+.region-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5) var(--space-7); }
 .region h3 {
-  font-size: var(--text-md);
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-2);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 3px solid var(--ink);
 }
 .region li {
   padding-block: var(--space-2);
   font-size: var(--text-base);
   color: var(--text-muted);
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line);
 }
-.region li:last-child { border-bottom: none; }
 
 /* ============================================================
    POLICY PAGES
    ============================================================ */
-.policy-content { max-width: 68ch; }
+.policy-content { max-width: 72ch; }
 .policy-content h2 {
   font-size: var(--text-xl);
-  margin: var(--space-7) 0 var(--space-3);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--line-soft);
+  margin: var(--space-7) 0 var(--space-4);
+  padding-top: var(--space-5);
+  border-top: 3px solid var(--ink);
 }
 .policy-content h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
 .policy-content p, .policy-content li { color: var(--text-muted); }
 .policy-content ul { margin-bottom: var(--space-4); }
-.policy-content li {
-  position: relative;
-  padding: var(--space-1) 0 var(--space-1) var(--space-5);
-}
+.policy-content li { position: relative; padding: var(--space-1) 0 var(--space-1) var(--space-5); }
 .policy-content li::before {
   content: '';
   position: absolute;
-  left: 0; top: 0.75em;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
+  left: 0; top: 0.85em;
+  width: 7px; height: 3px;
+  background: var(--gold);
 }
 .policy-updated {
   display: block;
   margin-bottom: var(--space-6);
   font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
   color: var(--text-muted);
 }
 
@@ -1268,43 +1274,41 @@ textarea.form-control { min-height: 120px; resize: vertical; }
    FOOTER
    ============================================================ */
 .site-footer {
-  background: var(--ink-strong);
+  background: var(--ink-deep);
   color: var(--on-dark-muted);
   padding-top: var(--space-8);
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1.45fr;
   gap: var(--space-7);
   padding-bottom: var(--space-7);
   border-bottom: 1px solid var(--line-dark);
 }
 .footer-brand h2 { font-size: var(--text-xl); color: var(--on-dark); margin-bottom: var(--space-3); }
-.footer-brand p { font-size: var(--text-base); color: var(--on-dark-muted); }
+.footer-brand p { font-size: var(--text-base); color: var(--on-dark-muted); max-width: 42ch; }
 
 .footer-col h3 {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--track-label);
   color: var(--on-dark-subtle);
   margin-bottom: var(--space-4);
 }
 .footer-col li { margin-bottom: var(--space-2); }
 .footer-col a, .footer-col p { font-size: var(--text-base); color: var(--on-dark-muted); }
 .footer-col a { transition: color var(--dur) var(--ease); }
-.footer-col a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.footer-col a:hover { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 .footer-col .note { color: var(--on-dark-subtle); }
 
 .footer-licence {
   display: inline-block;
   margin-top: var(--space-4);
-  padding: var(--space-1) var(--space-3);
-  font-family: var(--font-head);
+  padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--accent);
-  border: 1px solid var(--line-dark);
+  font-weight: 800;
+  letter-spacing: var(--track-label);
+  color: var(--gold);
+  border: 1px solid rgba(232,160,32,0.4);
   border-radius: var(--radius-sm);
 }
 
@@ -1318,14 +1322,14 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 .social-btn {
   display: grid;
   place-items: center;
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   color: var(--on-dark-subtle);
-  border: 1px solid var(--line-dark);
-  border-radius: var(--radius-sm);
+  border: 2px solid var(--line-dark);
+  border-radius: var(--radius);
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 .social-btn svg { width: 18px; height: 18px; fill: currentColor; }
-.social-btn:hover { color: var(--accent); border-color: var(--on-dark-subtle); }
+.social-btn:hover { color: var(--gold); border-color: var(--gold); }
 
 .footer-bottom {
   display: flex;
@@ -1338,7 +1342,7 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   color: var(--on-dark-subtle);
 }
 .footer-bottom nav { display: flex; gap: var(--space-5); }
-.footer-bottom a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.footer-bottom a:hover { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ============================================================
    STICKY MOBILE CTA
@@ -1349,35 +1353,39 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   inset: auto 0 0 0;
   z-index: 900;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  padding-bottom: max(var(--space-2), env(safe-area-inset-bottom));
+  padding: var(--space-3) var(--space-4);
+  padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
   background: var(--ink);
   border-top: 1px solid var(--line-dark);
 }
-.sticky-cta .btn { flex: 1; }
+.sticky-cta .btn { flex: 1; min-height: 46px; padding-inline: var(--space-3); }
 
 /* ============================================================
    RESPONSIVE
-   Breakpoints: 1024 (tablet landscape), 768 (tablet portrait),
-   560 (phone). Each one exists because a specific layout breaks
-   there, not on a round number.
+   Breakpoints exist where a specific layout breaks, not on
+   round numbers. The rule is that a grid never leaves a lone
+   orphan in its last row: counts go 4->2->1 and 3->1.
    ============================================================ */
-@media (max-width: 1024px) {
-  /* Phone button goes first: the same number sits in the bar above. */
-  .nav-phone { display: none; }
-  .booking-layout { grid-template-columns: 1fr; }
-  .booking-sidebar { position: static; grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-  .footer-brand { grid-column: 1 / -1; }
-  .region-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1140px) {
+  .booking-layout { grid-template-columns: minmax(0, 1fr) 280px; gap: var(--space-6); }
   .city-columns { columns: 2; }
 }
 
-@media (max-width: 860px) {
-  /* Collapse the nav here, while the labels still fit on one line. */
-  .navbar { min-height: 56px; gap: 0; }
+@media (max-width: 1024px) {
+  /* Phone button goes first; the same number sits in the bar above. */
+  .nav-phone { display: none; }
+  .booking-layout { grid-template-columns: 1fr; }
+  .booking-sidebar { position: static; grid-template-columns: repeat(2, 1fr); }
+  .hero-actions .btn, .cta-actions .btn { width: 100%; }
+  .hero-actions, .cta-actions { max-width: 420px; }
+  .region-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  /* Collapse the nav here, while every label still fits on one line. */
+  .navbar { min-height: 64px; gap: 0; }
   .logo { flex: 1; display: flex; justify-content: center; }
-  .logo img { height: 34px; }
+  .logo img { height: 40px; }
   .nav-spacer { display: none; }
   .menu-toggle { display: flex; }
 
@@ -1386,62 +1394,78 @@ textarea.form-control { min-height: 120px; resize: vertical; }
     top: 100%; left: 0; right: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: var(--space-1);
+    gap: 0;
     background: var(--ink);
-    border-bottom: 1px solid var(--line-dark);
-    padding-inline: var(--space-4);
+    border-bottom: 3px solid var(--gold);
+    padding-inline: var(--space-5);
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--dur-slow) var(--ease),
                 padding var(--dur-slow) var(--ease);
   }
-  .nav-menu.open { max-height: 440px; padding-block: var(--space-3) var(--space-4); }
-  .nav-menu a { padding: var(--space-3) var(--space-4); }
-  .nav-menu a[aria-current='page']::after { left: var(--space-4); right: auto; width: 20px; bottom: var(--space-2); }
-  .nav-book { text-align: center; margin-top: var(--space-2); }
+  .nav-menu.open { max-height: 480px; padding-block: var(--space-3) var(--space-5); }
+  .nav-menu a { padding: var(--space-4) 0; border-bottom: 1px solid var(--line-dark); }
+  .nav-menu a[aria-current='page']::after { left: 0; right: auto; width: 24px; bottom: -1px; }
+  .nav-book {
+    text-align: center;
+    margin-top: var(--space-4);
+    padding: var(--space-4) !important;
+    border-bottom: 0 !important;
+  }
 
-  /* Four-up grids go to two here rather than holding four until
-     they collapse to one, which left tablets with 160px cards. */
-  .grid-4, .steps.steps-row { grid-template-columns: repeat(2, 1fr); }
-  .grid-3, .contact-methods, .region-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Four-up goes to two here, not down to one at the last moment. */
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  .steps.steps-row { grid-template-columns: repeat(2, 1fr); }
   .coverage { grid-template-columns: 1fr; }
-  .coverage-map img { min-height: 280px; }
+  .coverage-map { min-height: 300px; }
+  .service-detail { grid-template-columns: 1fr; gap: var(--space-4); }
+  .service-detail h3, .service-detail > p, .service-detail .spec-list {
+    grid-column: 1; grid-row: auto;
+  }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-brand { grid-column: 1 / -1; }
+  .emergency-callout { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
   section { padding-block: var(--space-8); }
   section.compact { padding-block: var(--space-7); }
   section.tight { padding-block: var(--space-5); }
+  .page-banner { padding-block: var(--space-7); }
+  .page-banner + section,
+  .page-banner + .claim-band + section { padding-top: var(--space-7); }
 
-  .grid-2, .grid-3, .grid-4,
+  /* Section headers stack; the rule still spans the container. */
+  .section-header { margin-bottom: var(--space-6); }
+
+  .grid-2, .grid-split,
   .feature-list, .spec-list,
-  .contact-methods, .region-grid,
-  .steps.steps-row, .form-row,
+  .region-grid, .form-row,
   .booking-sidebar { grid-template-columns: 1fr; }
+  .grid-split { gap: var(--space-6); }
 
-  .city-columns, .coverage-panel .city-columns { columns: 2; }
-  .coverage-panel { padding: var(--space-5); }
-
-  .emergency-callout { flex-direction: column; align-items: flex-start; }
+  .emergency-callout { grid-template-columns: 1fr; }
   .emergency-callout .btn { width: 100%; }
 
-  .hero-actions .btn, .cta-actions .btn { width: 100%; max-width: 340px; }
+  .hero-actions .btn, .cta-actions .btn { width: 100%; }
   .section-figure { aspect-ratio: 16 / 9; }
+  .section-nav .container { gap: var(--space-5); overflow-x: auto; }
 
-  /* Sticky CTA occupies the bottom of the viewport on phones, so
-     reserve room for it and lift the chat widget above it. */
+  /* Sticky CTA owns the bottom of the viewport on phones. */
   .sticky-cta { display: flex; }
-  body { padding-bottom: 76px; }
-  rosie-widget, rosie-widget-minimized { bottom: 84px !important; }
+  body { padding-bottom: 78px; }
+  rosie-widget, rosie-widget-minimized { bottom: 88px !important; }
 }
 
 @media (max-width: 560px) {
   .container { padding-inline: var(--space-4); }
+  .hero-bg { filter: blur(5px); opacity: 0.16; }
+  .steps.steps-row { grid-template-columns: 1fr; }
   .city-columns, .coverage-panel .city-columns { columns: 1; }
-  .services-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-6); }
   .footer-bottom { justify-content: flex-start; }
-  .emergency-bar { font-size: var(--text-xs); }
+  .emergency-bar { font-size: var(--text-xs); letter-spacing: 0.02em; }
+  .coverage-panel, .booking-panel { padding: var(--space-5); }
 }
 
 /* ============================================================
@@ -1458,14 +1482,17 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 
 /* ============================================================
    PRINT
-   Someone printing this page wants the phone number and the
-   licence number, not the navigation.
+   Someone printing this wants the number and the licence, not
+   the navigation.
    ============================================================ */
 @media print {
   header, .sticky-cta, .emergency-bar, .slide-btn, .slide-dots,
-  .cta-band, .footer-social { display: none !important; }
+  .cta-band, .footer-social, .section-nav { display: none !important; }
   body { padding-bottom: 0; color: #000; }
-  .page-banner, .band-dark, .site-footer { background: #fff !important; color: #000 !important; }
-  .page-banner h1, .band-dark h2, .site-footer h2, .site-footer h3 { color: #000 !important; }
+  .page-banner, .band-dark, .site-footer, .hero {
+    background: #fff !important; color: #000 !important;
+  }
+  .page-banner h1, .band-dark h2, .band-dark h3,
+  .site-footer h2, .site-footer h3, .hero h1 { color: #000 !important; }
   .faq-a { grid-template-rows: 1fr !important; }
 }
