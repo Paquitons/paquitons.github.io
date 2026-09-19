@@ -117,6 +117,15 @@ already covers it.
   middle axis. There is no eyebrow badge and no decorative rule under it.
 - **`.hero`** puts the company van full-bleed behind the content, blurred and
   held back to 20% so it sets the scene without competing with the headline.
+- **`.emergency-bar`** is a continuous right-to-left ticker. The whole bar is a
+  single `<a href="tel:...">` carrying the accessible name, and the moving text
+  inside is `aria-hidden`, so a screen reader hears the message once rather than
+  once per repeated copy, and it costs one tab stop. The track holds two
+  identical groups and slides by exactly one group width, which is what makes
+  the loop seamless; each group repeats the message enough times to be wider
+  than any viewport, so no gap ever opens up. It pauses on hover so the number
+  can be clicked, and under `prefers-reduced-motion` it becomes one static
+  centred line.
 
 Icons are inline SVG on a 24px grid with a 2px stroke, sized through `.icon`
 (20px), `.icon-sm` (15px) and `.icon-lg` (26px). No icon library.
