@@ -422,10 +422,16 @@ a.card:hover {
 
 /* ============================================================
    EMERGENCY BAR
-   Standing information, not a live alert, so no role="alert".
-   Static: there is no marquee.
+   A continuous right-to-left ticker. The whole bar is one link,
+   so it is tappable anywhere and costs a single tab stop; the
+   moving text is aria-hidden and the link carries the label, so
+   a screen reader hears the message once instead of eight times.
+   No role="alert": this is standing information, not something
+   that just happened.
    ============================================================ */
 .emergency-bar {
+  display: block;
+  overflow: hidden;
   background: var(--danger);
   color: #fff;
   font-size: var(--text-sm);
@@ -433,18 +439,41 @@ a.card:hover {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: var(--leading-tight);
-  text-align: center;
-  padding: var(--space-3) var(--space-4);
+  padding-block: var(--space-3);
 }
-.emergency-bar a {
-  color: #fff;
+
+.ticker { display: block; overflow: hidden; }
+
+/* Two identical groups sit side by side and the track slides by
+   exactly one group width, so the loop has no seam and no gap. */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 38s linear infinite;
+}
+.ticker-group { display: flex; flex-shrink: 0; }
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-5);
+  white-space: nowrap;
+}
+.ticker-num {
   font-weight: 800;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
-  white-space: nowrap;
 }
-.emergency-bar .sep { opacity: 0.55; padding-inline: var(--space-2); }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Hold it still while someone is trying to hit the number. */
+.emergency-bar:hover .ticker-track,
+.emergency-bar:focus-visible .ticker-track { animation-play-state: paused; }
 
 /* ============================================================
    HEADER
@@ -1386,8 +1415,10 @@ textarea.form-control { min-height: 130px; resize: vertical; }
   .navbar { min-height: 64px; gap: 0; }
   .logo { flex: 1; display: flex; justify-content: center; }
   .logo img { height: 40px; }
-  .nav-spacer { display: none; }
   .menu-toggle { display: flex; }
+  /* Balances the 48px menu button so the logo centres on the bar,
+     not on the space left over beside the button. */
+  .nav-spacer { display: block; flex: 0 0 48px; }
 
   .nav-menu {
     position: absolute;
@@ -1396,14 +1427,20 @@ textarea.form-control { min-height: 130px; resize: vertical; }
     align-items: stretch;
     gap: 0;
     background: var(--ink);
-    border-bottom: 3px solid var(--gold);
     padding-inline: var(--space-5);
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--dur-slow) var(--ease),
                 padding var(--dur-slow) var(--ease);
   }
-  .nav-menu.open { max-height: 480px; padding-block: var(--space-3) var(--space-5); }
+  /* The border belongs to the open panel. Left on the collapsed one it
+     still painted a rule under the header, because max-height:0 hides the
+     content but not the box's own border. */
+  .nav-menu.open {
+    max-height: 480px;
+    padding-block: var(--space-3) var(--space-5);
+    border-bottom: 1px solid var(--line-dark);
+  }
   .nav-menu a { padding: var(--space-4) 0; border-bottom: 1px solid var(--line-dark); }
   .nav-menu a[aria-current='page']::after { left: 0; right: auto; width: 24px; bottom: -1px; }
   .nav-book {
@@ -1478,6 +1515,16 @@ textarea.form-control { min-height: 130px; resize: vertical; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Show the message once, centred and still, rather than freezing the
+     track mid-slide (which the blanket rule above would otherwise do). */
+  .ticker-track {
+    animation: none !important;
+    width: 100%;
+    justify-content: center;
+  }
+  .ticker-group + .ticker-group { display: none; }
+  .ticker-item + .ticker-item { display: none; }
 }
 
 /* ============================================================
