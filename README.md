@@ -53,6 +53,8 @@ src/
 scripts/
   build.mjs             Renders the site, writes sitemap.xml and robots.txt, checks links
   optimize-images.py    Makes WebP derivatives of photos (needs Pillow)
+  brand-assets.py       Makes the /branding logo previews, downloads and type crops
+                        from the brand folder (needs Pillow)
 css/styles.css          The design system. The only stylesheet.
 js/main.js              Navigation, mobile action bar, lazy reviews embed, chat-widget fix
 js/form.js              Request form validation and submission
@@ -67,6 +69,7 @@ fonts/                  Archivo, self-hosted and subset
 | `/services/` and `/services/<service>` | `pages/services-index.mjs`, `templates/service.mjs` + `data/services.mjs` |
 | `/service-area/` and `/service-area/<town>` | `pages/service-area-index.mjs`, `templates/area.mjs` + `data/areas.mjs` |
 | `/about`, `/contact`, `/reviews`, `/privacy`, `/404` | `src/pages/` |
+| `/branding` | `src/pages/branding.mjs`: brand guidelines, from the `ironvoltbranding` repository. Images in `images/brand/` come from `python3 scripts/brand-assets.py <path to ironvoltbranding>`. Rules the brand files don't support are tagged “Recommended standard”. |
 | `/booking` | Redirect to the request form on `/contact#request`, kept for old links |
 | `/servicearea` | Redirect to `/service-area/`, kept for old links |
 | `/review` | Redirect to the Google review form (hand-written, not generated) |
