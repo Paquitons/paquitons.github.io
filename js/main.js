@@ -18,6 +18,20 @@
   const desktopNav = window.matchMedia('(min-width: 75em)');
   const phone = window.matchMedia('(max-width: 44.99em)');
 
+  // True while a form field has focus. On a phone the keyboard takes
+  // half the screen, so anything fixed to the bottom (our action bar,
+  // the chat button) gets out of the way until typing stops.
+  let typing = false;
+  const onTypingChange = new Set();
+  document.addEventListener('focusin', (e) => {
+    typing = e.target.matches('input, textarea, select');
+    onTypingChange.forEach((fn) => fn());
+  });
+  document.addEventListener('focusout', () => {
+    typing = false;
+    onTypingChange.forEach((fn) => fn());
+  });
+
   /* ---------------------------------------------------------
      1. NAVIGATION
      Both toggles are disclosure buttons: aria-expanded is the
@@ -80,7 +94,6 @@
     const footer = document.querySelector('.site-footer');
     let pastTop = false;
     let atFooter = false;
-    let typing = false;
 
     const update = () => {
       const show = pastTop && !atFooter && !typing;
@@ -99,11 +112,7 @@
       new IntersectionObserver(([entry]) => { atFooter = entry.isIntersecting; update(); })
         .observe(footer);
     }
-    document.addEventListener('focusin', (e) => {
-      typing = e.target.matches('input, textarea, select');
-      update();
-    });
-    document.addEventListener('focusout', () => { typing = false; update(); });
+    onTypingChange.add(update);
     phone.addEventListener('change', update);
     update();
   }
@@ -112,7 +121,9 @@
      3. LAZY EMBEDS
      A third-party script is attached only when its container
      comes within a screen of the viewport. The reviews widget
-     alone is heavier than the rest of the page.
+     alone is heavier than the rest of the page. There is no
+     loading message: the widget renders into its own shadow root
+     when it is ready, and the page never claims otherwise.
      --------------------------------------------------------- */
   const embeds = document.querySelectorAll('[data-lazy-embed]');
   const attach = (el) => {
@@ -120,20 +131,6 @@
     s.src = el.dataset.lazyEmbed;
     s.defer = true;
     document.body.appendChild(s);
-    // The widget counts as loaded once it has actually drawn
-    // something. If it hasn't after a while (blocked, offline, or
-    // not serving this domain), the reserved space collapses and
-    // the fallback link to Google is all that remains.
-    const target = el.firstElementChild;
-    if (target && 'ResizeObserver' in window) {
-      const ro = new ResizeObserver(() => {
-        if (target.offsetHeight > 40) { el.classList.add('is-loaded'); ro.disconnect(); }
-      });
-      ro.observe(target);
-      setTimeout(() => {
-        if (!el.classList.contains('is-loaded')) el.classList.add('is-unavailable');
-      }, 10000);
-    }
   };
   if (embeds.length) {
     if ('IntersectionObserver' in window) {
@@ -156,14 +153,21 @@
      covers the mobile action bar. The element that carries the
      fixed position lives inside the widget's open shadow root,
      so styling the <rosie-widget> host does nothing; we reach in
-     and pin the real container above the bar on phones.
+     and pin the real container above the bar on phones, and hide
+     it while someone is typing into a form so it can't sit on top
+     of the field they're filling in.
      --------------------------------------------------------- */
   const watched = new WeakSet();
+  const containers = new Set();
 
   function pin(container) {
+    containers.add(container);
     if (phone.matches) container.style.setProperty('bottom', '84px', 'important');
     else container.style.removeProperty('bottom');
+    if (phone.matches && typing) container.style.setProperty('visibility', 'hidden', 'important');
+    else container.style.removeProperty('visibility');
   }
+  onTypingChange.add(() => containers.forEach(pin));
 
   function watch(host) {
     if (watched.has(host) || !host.shadowRoot) return;
@@ -181,10 +185,6 @@
 
   const scan = () => document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watch);
   new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
-  phone.addEventListener('change', () => {
-    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach((host) => {
-      host.shadowRoot?.querySelector('.widget-container') && pin(host.shadowRoot.querySelector('.widget-container'));
-    });
-  });
+  phone.addEventListener('change', () => containers.forEach(pin));
   scan();
 })();

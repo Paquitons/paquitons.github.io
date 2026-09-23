@@ -16,7 +16,7 @@ to call. Every page is built to answer their questions in the order they ask the
 5. **Why should I trust you?** License number with a link to verify it, insurance, written
    estimates, real job photos, Google reviews.
 
-If a change doesn't help with one of those, it doesn't belong.
+If a change doesn't help with one of those, it doesn't belong. The same goes for repetition: each fact appears once per screen. Section labels that repeat their heading, fact strips that repeat the header, a footer that repeats the band above it, all came out for that reason.
 
 ## How it's built
 
@@ -134,8 +134,9 @@ Named for what they do. There is deliberately no generic "card".
 
 | Component | Use |
 |---|---|
-| `.utility-bar` | Emergency line, hours, license. Static. |
-| `.site-header`, `.site-nav`, `.mega` | Header; services open as a disclosure (button + `aria-expanded`), hover also opens it for mouse users. Below 1200px the nav is a drawer; the phone number stays in the header at every width. |
+| `.utility-bar` | Emergency availability, hours, license. Static; no phone number, since the header carries it. |
+| `.site-header`, `.site-nav`, `.mega` | Header; the phone number is in it at every width, and nowhere else in the page chrome. The services menu is names only, sized to its content (about a third of the screen); it opens from its button, or on hover after a 90ms beat so it doesn't flash when the pointer crosses the nav. Below 1200px the nav is a drawer. |
+| `.site-footer` | One grid: a brand row (logo and tagline, description) on a shared center line, five link columns on one top line, one line of small print. It never repeats the closing CTA band above it. |
 | `.hero` | Home only. Split: brand, what and where, two actions, a real job photo. |
 | `.credentials` | License, insurance, experience, estimates, emergency line. |
 | `.page-header` | Inner pages. Variants: `--media`, `--portrait`, `--compact`, `--emergency`. |

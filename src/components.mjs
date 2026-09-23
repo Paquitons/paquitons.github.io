@@ -165,11 +165,15 @@ export function ctaBand({ heading, body, emergency = false, email = false } = {}
 export function reviewsEmbed() {
   return html`<div class="reviews__embed" data-lazy-embed="https://cdn.commoninja.com/sdk/latest/commonninja.js">
   <div class="commonninja_component ${site.embeds.commonNinjaReviews}"></div>
-  <p class="reviews__fallback"><span class="reviews__loading">Loading reviews from Google.</span> <a class="link-arrow" href="https://g.page/r/CXlaNGHGERuGEBM" target="_blank" rel="noopener noreferrer">Read our reviews on Google ${icon('external')}<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+  <p class="reviews__more"><a class="link-arrow" href="https://g.page/r/CXlaNGHGERuGEBM" target="_blank" rel="noopener noreferrer">Read all our reviews on Google ${icon('external')}<span class="visually-hidden"> (opens in a new tab)</span></a></p>
 </div>`;
 }
 
-export function profileLinks() {
+export function profileLinks({ inline = false } = {}) {
+  if (inline) {
+    const l = (name) => html`<a href="${site.social.find((s) => s.name === name).href}" target="_blank" rel="noopener noreferrer">${name}<span class="visually-hidden"> (opens in a new tab)</span></a>`;
+    return html`${l('Yelp')}, ${l('Nextdoor')} and ${l('Facebook')}`;
+  }
   const links = [
     { label: 'Leave a Google review', href: site.reviewUrl },
     { label: 'Yelp', href: site.social.find((s) => s.name === 'Yelp').href },

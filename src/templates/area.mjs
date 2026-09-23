@@ -7,10 +7,10 @@
    ============================================================ */
 
 import { html, icon, picture } from '../lib/html.mjs';
-import { site, regions } from '../site.mjs';
+import { site } from '../site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { areaBySlug } from '../data/areas.mjs';
-import { pageHeader, faqSection, ctaBand, serviceIndex, townLinks } from '../components.mjs';
+import { pageHeader, faqSection, ctaBand, serviceIndex } from '../components.mjs';
 import { breadcrumbSchema, faqSchema } from '../schema.mjs';
 
 export function areaPage(a) {
@@ -20,7 +20,6 @@ export function areaPage(a) {
     { name: 'Service area', href: '/service-area/' },
     { name: a.name },
   ];
-  const region = regions.find((r) => r.towns.some((t) => t.name === a.name));
 
   const faq = [
     ...a.faq,
@@ -33,12 +32,6 @@ ${pageHeader({
     crumbs,
     title: `Electrician in ${a.name}, TX`,
     lead: a.lead,
-    facts: [
-      ['License', site.license.short],
-      ['Emergency line', 'Answered 24/7'],
-      ['Estimates', 'Free and in writing'],
-      ['Region', `${region.name}, Greater Houston`],
-    ],
   })}
 
 <section class="section" aria-labelledby="local-title">
@@ -87,12 +80,6 @@ ${pageHeader({
 
 ${faqSection({ id: 'questions', heading: `${a.name} questions`, items: faq })}
 
-<section class="section section--tight" aria-labelledby="other-areas-title">
-  <div class="container split split--center">
-    <h2 id="other-areas-title">Other areas we cover</h2>
-    ${townLinks(a.slug)}
-  </div>
-</section>
 
 ${ctaBand({
     heading: `Need an electrician in ${a.name}?`,

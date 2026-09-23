@@ -59,10 +59,7 @@ ${credentials()}
 <section class="section" aria-labelledby="services-title">
   <div class="container">
     <header class="section-head section-head--split">
-      <div>
-        <p class="kicker">Services</p>
-        <h2 id="services-title">Electrical work for homes and businesses</h2>
-      </div>
+      <h2 id="services-title">Electrical work for homes and businesses</h2>
       <div class="section-head__aside">
         <p>Everything is done to the National Electrical Code, permitted where it needs to be, and priced in writing before it starts.</p>
         <a class="link-arrow" href="/services/">All services ${icon('arrow')}</a>
@@ -97,7 +94,6 @@ ${credentials()}
       ${picture('service-rack', { alt: 'A freestanding commercial service, meter and distribution panel on a steel rack, with its green inspection tag', sizes: '(min-width: 60em) 45vw, 100vw' })}
     </div>
     <div class="feature-band__body">
-      <p class="kicker">Commercial</p>
       <h2 id="commercial-title">Electrical contracting for businesses</h2>
       <p>Retail, offices, warehouses and restaurants across ${site.counties}. We plan shutdowns around your hours and keep them short.</p>
       <ul class="tick-list tick-list--columns">
@@ -122,10 +118,7 @@ ${credentials()}
 <section class="section section--alt" aria-labelledby="process-title">
   <div class="container">
     <header class="section-head section-head--split">
-      <div>
-        <p class="kicker">How it works</p>
-        <h2 id="process-title">From your call to a finished job</h2>
-      </div>
+      <h2 id="process-title">From your call to a finished job</h2>
       <p class="section-head__aside">The same four steps whether it’s a dead outlet or a full rewire. You know the price before any work starts.</p>
     </header>
     ${processList([
@@ -143,7 +136,6 @@ ${credentials()}
       ${picture('generator-brick-home', { alt: 'A standby generator on a pad beside a brick house, below the meter and transfer switch', sizes: '(min-width: 60em) 45vw, 100vw' })}
     </div>
     <div class="feature-band__body">
-      <p class="kicker">The company</p>
       <h2 id="company-title">A local contractor, not a call center</h2>
       <p>${site.legalName} was founded in ${site.foundedLabel} by a licensed electrician with ${site.experience} of field experience in Houston homes, businesses, parks and community properties. We’re not a franchise, and we’re not a lead service passing your number along.</p>
       <dl class="fact-grid">
@@ -160,13 +152,9 @@ ${credentials()}
 <section class="section section--white" aria-labelledby="reviews-title">
   <div class="container">
     <header class="section-head section-head--split reviews__head">
-      <div>
-        <p class="kicker">Reviews</p>
-        <h2 id="reviews-title">What customers say</h2>
-      </div>
+      <h2 id="reviews-title">What customers say</h2>
       <div class="section-head__aside">
-        <p>Reviews left by customers on our Google Business Profile.</p>
-        ${profileLinks()}
+        <p>Left by customers on our Google Business Profile. We’re also on ${profileLinks({ inline: true })}.</p>
       </div>
     </header>
     ${reviewsEmbed()}
@@ -180,7 +168,6 @@ ${credentials()}
       <figcaption>Pins mark towns we work in regularly. It’s not a boundary; call if you’re nearby.</figcaption>
     </figure>
     <div>
-      <p class="kicker">Service area</p>
       <h2 id="area-title">Spring, The Woodlands and Greater Houston</h2>
       <p class="mt-4 muted">Based in Spring and working across the metro, from Conroe in the north to Sugar Land in the southwest and Baytown in the east.</p>
       <div class="mt-6">${townLinks()}</div>
