@@ -66,11 +66,7 @@ ${pageHeader({
   </div>
 </section>
 
-<section class="section" aria-labelledby="emergency-title" id="emergency">
-  <div class="container">
-    ${emergencyPanel()}
-  </div>
-</section>
+${emergencyPanel({ id: 'emergency' })}
 
 ${ctaBand({
     heading: 'Get a written estimate',

@@ -119,7 +119,7 @@ components don't need dark variants.
 75–100%) plus a tiny italic cut for the tagline. `h1`/`h2` are condensed heavy capitals,
 which is the brand; body copy is regular width. Ten sizes, fluid from phone to desktop.
 
-**Space and shape.** 4px spacing scale, fluid section spacing, radii of 2, 4 and 6px.
+**Space and shape.** 4px spacing scale, fluid section spacing, one column gap (`--split-gap`) for every two-column layout so heading rows and the content under them share the same edges, radii of 2, 4 and 6px.
 Content is separated with rules, not shadows; shadows are only for things that float
 (menu, form panel, mobile bar).
 
@@ -137,14 +137,14 @@ Named for what they do. There is deliberately no generic "card".
 |---|---|
 | `.utility-bar` | Emergency availability, hours, license. Static; no phone number, since the header carries it. |
 | `.site-header`, `.site-nav`, `.mega` | Header; the phone number is in it at every width, and nowhere else in the page chrome. The services menu is names only, sized to its content (about a third of the screen); it opens from its button, or on hover after a 90ms beat so it doesn't flash when the pointer crosses the nav. Below 1200px the nav is a drawer. |
-| `.site-footer` | One grid: a brand row (logo and tagline, description) on a shared center line, five link columns on one top line, one line of small print. It never repeats the closing CTA band above it. |
+| `.site-footer` | One grid: the logo centered with the tagline under it, five link columns on one top line, one line of small print. It never repeats the closing CTA band above it. |
 | `.hero` | Home only. Split: brand, what and where, two actions, a real job photo. |
-| `.credentials` | License, insurance, experience, estimates, emergency line. |
+| `.credentials` | License, insurance, estimates, emergency line. Four, so it sits as 4 across or 2×2. |
 | `.page-header` | Inner pages. Variants: `--media`, `--portrait`, `--compact`, `--emergency`. |
 | `.service-feature` + `.service-index` | Home services: one featured with a photo, the rest as an index. |
 | `.service-directory` | Services hub: name, summary, scope, link. |
 | `.feature-band` | Photo beside text. |
-| `.emergency-panel` | White panel with a red rule, not a red section. |
+| `.emergency` | An open section like the others: heading, one red call button, and the warning signs in two columns under a red rule. Not a boxed alert. |
 | `.process` | Numbered steps (`<ol>`). |
 | `.options` | Two-way comparison. |
 | `.callout` | Safety information; `--emergency` variant. |
@@ -153,7 +153,7 @@ Named for what they do. There is deliberately no generic "card".
 | `.focus-list` | Three or four short points with a heavy rule. |
 | `.town-links`, `.region-grid` | Service area. |
 | `.faq` | Native `<details name>`: an exclusive accordion without JavaScript. |
-| `.cta-band` | Page close: reason on the left, phone number large on the right. |
+| `.cta-band` | Page close: reason on the left, the same Call / Request service button pair as the hero on the right. |
 | `.form-panel`, `.field`, `.form-more` | The request form. Optional fields live in a disclosure. |
 | `.mobile-actions` | Call / Request bar on phones. |
 | `.button` | `--primary`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--block`. Minimum 48px tall. |

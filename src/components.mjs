@@ -12,8 +12,8 @@ import { areas } from './data/areas.mjs';
    PAGE HEADER
    variant: 'plain' | 'media' | 'emergency' | 'compact'
    ------------------------------------------------------------ */
-export function pageHeader({ crumbs, title, lead, actions = true, image, portrait = false, facts, variant, children = '' }) {
-  const hasMedia = Boolean(image);
+export function pageHeader({ crumbs, title, lead, actions = true, image, media, portrait = false, facts, variant, children = '' }) {
+  const hasMedia = Boolean(image || media);
   const classes = ['page-header', 'surface-dark'];
   if (hasMedia) classes.push('page-header--media');
   if (portrait) classes.push('page-header--portrait');
@@ -33,7 +33,8 @@ export function pageHeader({ crumbs, title, lead, actions = true, image, portrai
         </div>`}
         ${typeof actions === 'string' && actions}
       </div>
-      ${hasMedia && html`<div class="page-header__media">${picture(image.key, { alt: image.alt, eager: true, priority: true, sizes: '(min-width: 60em) 45vw, 100vw' })}</div>`}
+      ${media && html`<div class="page-header__media page-header__media--mark">${media}</div>`}
+      ${image && html`<div class="page-header__media">${picture(image.key, { alt: image.alt, eager: true, priority: true, sizes: '(min-width: 60em) 45vw, 100vw' })}</div>`}
     </div>
     ${facts && html`<dl class="header-facts">
       ${facts.map(([label, value]) => html`<div><dt>${label}</dt><dd>${value}</dd></div>`)}
@@ -59,7 +60,6 @@ export function credentials() {
   const items = [
     ['Texas license', site.license.short],
     ['Coverage', 'Licensed, bonded & insured'],
-    ['Lead electrician', `${site.experience} in the field`],
     ['Estimates', 'Free and in writing'],
     ['Emergency line', 'Answered 24/7'],
   ];
@@ -112,44 +112,53 @@ export function faqSection({ id = 'faq', heading = 'Questions we get asked', int
 export const hazards = [
   'Sparks or arcing from an outlet, switch or panel',
   'A burning or hot-plastic smell',
-  'An outlet, switch or panel that is hot to the touch',
-  'Power out to part of the house while the neighbors have power',
-  'A breaker that trips again every time it’s reset',
+  'An outlet, switch or panel that’s hot to the touch',
+  'Power out to part of the house',
+  'A breaker that trips every time it’s reset',
   'Storm or tree damage to the wiring on your house',
 ];
 
-export function emergencyPanel({ headingId = 'emergency-title' } = {}) {
-  return html`<div class="emergency-panel">
-  <div class="emergency-panel__intro">
-    <p class="kicker kicker--emergency">Answered 24/7</p>
-    <h2 id="${headingId}">Electrical emergency?</h2>
-    <p>Don’t wait on these. They turn into fire hazards quickly. If there’s smoke or fire, call 911 first.</p>
-    <a class="button button--emergency button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-    <a class="link-arrow" href="/services/emergency">What to do while you wait ${icon('arrow')}</a>
-  </div>
-  <div>
-    <p class="emergency-panel__list-title">Call now if you have</p>
-    <ul class="hazard-list">
+/* An open section, set like the rest of the site: heading and one
+   action on the left, the list on the right. Red is used once, on
+   the call button and the rule above the list; nothing is boxed. */
+export function emergencyPanel({ id, alt = false } = {}) {
+  return html`<section class="section emergency${alt ? ' section--alt' : ''}"${id ? ` id="${id}"` : ''} aria-labelledby="emergency-title">
+  <div class="container split">
+    <div class="emergency__intro">
+      <h2 id="emergency-title">Electrical emergency?</h2>
+      <p class="section-intro">Call right away if you have any of these. The line is answered 24 hours a day. If there’s smoke or fire, get out and call 911 first.</p>
+      <div class="button-row button-row--stack-sm">
+        <a class="button button--emergency button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
+      </div>
+      <p class="emergency__more"><a href="/services/emergency">What to do while you wait</a></p>
+    </div>
+    <ul class="emergency__list">
       ${hazards.map((h) => html`<li>${h}</li>`)}
     </ul>
   </div>
-</div>`;
+</section>`;
 }
 
 /* ------------------------------------------------------------
    CTA BAND
    ------------------------------------------------------------ */
 export function ctaBand({ heading, body, emergency = false, email = false } = {}) {
+  // Reason on the left; the two ways to act on the right, as one
+  // button row, the same pair the hero and page headers use.
+  const second = emergency
+    ? ''
+    : email
+      ? html`<a class="button button--outline-inverse button--lg" href="mailto:${site.email}">${icon('mail')}Email us</a>`
+      : html`<a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>`;
   return html`<section class="cta-band surface-dark${emergency ? ' cta-band--emergency' : ''}" aria-labelledby="cta-title">
   <div class="container cta-band__inner">
     <div class="cta-band__body">
       <h2 id="cta-title">${heading}</h2>
       ${body && html`<p>${body}</p>`}
     </div>
-    <div class="cta-band__actions">
-      <a class="cta-band__phone tnum" href="${site.phoneHref}">${icon('phone')}${site.phone}</a>
-      ${email && html`<a class="button button--outline-inverse" href="mailto:${site.email}">${icon('mail')}Email us</a>`}
-      ${!email && !emergency && html`<a class="button button--primary" href="${site.requestHref}">Request service</a>`}
+    <div class="button-row button-row--stack-sm cta-band__actions">
+      <a class="button ${emergency ? 'button--emergency' : 'button--primary'} button--lg tnum" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
+      ${second}
     </div>
   </div>
 </section>`;

@@ -19,13 +19,12 @@ ${pageHeader({
 
 <section class="section" aria-labelledby="towns-title">
   <div class="container split split--center">
-    <figure class="area-map">
+    <div class="area-map">
       ${picture('service-area-map', { alt: 'Map of Greater Houston with pins marking the towns Iron Volt Electric covers, from Conroe in the north to Sugar Land in the southwest and Baytown in the east', eager: true, sizes: '(min-width: 60em) 45vw, 100vw' })}
-      <figcaption>Pins mark towns we work in regularly. It’s not a boundary.</figcaption>
-    </figure>
+    </div>
     <div>
       <h2 id="towns-title">Where we work most</h2>
-      <p class="mt-4 muted">Each of these has its own page with what’s worth knowing locally: the housing, who issues permits, and what the weather does to electrical systems there.</p>
+      <p class="section-intro">Each of these has its own page with what’s worth knowing locally: the housing, who issues permits, and what the weather does to electrical systems there.</p>
       <div class="mt-6">${townLinks()}</div>
     </div>
   </div>

@@ -185,7 +185,6 @@ function footer() {
         </a>
         <p class="site-footer__tagline">${site.tagline}</p>
       </div>
-      <p class="site-footer__about">Licensed electrical contractor for homes and businesses in Spring and across Greater Houston.</p>
     </div>
 
     <nav class="site-footer__nav" aria-label="Footer">
