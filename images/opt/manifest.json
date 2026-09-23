@@ -1,39 +1,16 @@
 {
-  "electrician-panel-test": {
-    "fallback": "/images/Untitled-4.jpg",
-    "width": 1050,
-    "height": 1400,
+  "panel-test-hands": {
+    "fallback": "/images/opt/panel-test-hands.jpg",
+    "width": 720,
+    "height": 1000,
     "webp": [
       {
         "w": 480,
-        "src": "/images/opt/electrician-panel-test-480.webp"
+        "src": "/images/opt/panel-test-hands-480.webp"
       },
       {
-        "w": 800,
-        "src": "/images/opt/electrician-panel-test-800.webp"
-      },
-      {
-        "w": 1050,
-        "src": "/images/opt/electrician-panel-test-1050.webp"
-      }
-    ]
-  },
-  "van": {
-    "fallback": "/images/ironvoltvan.jpg",
-    "width": 1400,
-    "height": 933,
-    "webp": [
-      {
-        "w": 480,
-        "src": "/images/opt/van-480.webp"
-      },
-      {
-        "w": 800,
-        "src": "/images/opt/van-800.webp"
-      },
-      {
-        "w": 1200,
-        "src": "/images/opt/van-1200.webp"
+        "w": 720,
+        "src": "/images/opt/panel-test-hands-720.webp"
       }
     ]
   },

@@ -15,7 +15,7 @@ ${pageHeader({
     crumbs,
     title: 'About Iron Volt Electric',
     lead: `A licensed electrical contractor in Spring, Texas. A new company, built on ${site.experience} of field work.`,
-    image: { key: 'van', alt: 'The navy Iron Volt Electric work van parked outside a commercial building' },
+    image: { key: 'service-stucco-wall', alt: 'Two service enclosures with conduit runs on a stucco wall' },
     actions: false,
   })}
 
@@ -109,7 +109,7 @@ ${ctaBand({
     section: 'about',
     title: 'About Iron Volt Electric | Licensed Electrical Contractor in Spring, TX',
     description: `About Iron Volt Electric LLC: a licensed Spring, TX electrical contractor founded in 2026 on ${site.experience} of field experience. TECL #41098, bonded and insured.`,
-    preload: 'van',
+    preload: 'service-stucco-wall',
     preloadSizes: '(min-width: 60em) 45vw, 100vw',
     schema: [breadcrumbSchema(crumbs)],
     main,

@@ -44,8 +44,8 @@ export function homePage() {
       <p class="hero__emergency"><span>Sparks, a burning smell or no power? <a href="/services/emergency">Our emergency line</a> is answered 24/7.</span></p>
     </div>
     <div class="hero__media">
-      ${picture('electrician-panel-test', {
-        alt: 'An electrician testing wiring inside an exterior panel with a clamp meter',
+      ${picture('panel-test-hands', {
+        alt: 'An electrician’s hands testing wiring inside an exterior panel with a clamp meter',
         eager: true,
         priority: true,
         sizes: '(min-width: 60em) 38vw, 100vw',
@@ -140,7 +140,7 @@ ${credentials()}
 <section class="section" aria-labelledby="company-title">
   <div class="container feature-band feature-band--reverse">
     <div class="feature-band__media">
-      ${picture('van', { alt: 'The navy Iron Volt Electric work van parked outside a commercial building', sizes: '(min-width: 60em) 45vw, 100vw' })}
+      ${picture('generator-brick-home', { alt: 'A standby generator on a pad beside a brick house, below the meter and transfer switch', sizes: '(min-width: 60em) 45vw, 100vw' })}
     </div>
     <div class="feature-band__body">
       <p class="kicker">The company</p>
@@ -202,7 +202,7 @@ ${ctaBand({
     title: 'Electrician in Spring & Greater Houston | Iron Volt Electric | TECL #41098',
     ogTitle: 'Iron Volt Electric | Licensed Electrician, Spring & Greater Houston',
     description: `Licensed residential and commercial electrician serving Spring, The Woodlands, Cypress and Greater Houston. Repairs, panel upgrades, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
-    preload: 'electrician-panel-test',
+    preload: 'panel-test-hands',
     preloadSizes: '(min-width: 60em) 38vw, 100vw',
     schema: [faqSchema(faq)],
     main,

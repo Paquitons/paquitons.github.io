@@ -195,7 +195,15 @@ Photos are job photos supplied by the business. `scripts/optimize-images.py` wri
 WebP copies at 480, 800 and 1200px to `images/opt/` plus a manifest the build reads, so
 every image is a `<picture>` with `srcset`, `sizes`, `width` and `height`. Only the
 first-screen image loads eagerly. `images/og-iron-volt-electric.jpg` is the social share
-card, cropped from the van photo.
+card, cropped from the standby generator job.
+
+Two rules for photos:
+
+- **No faces.** The hero photo (`panel-test-hands`) is a crop of `images/Untitled-4.jpg`
+  that keeps the hands, meter and panel. Crops are defined in the image script, which
+  writes a cropped JPEG fallback too, so the uncropped original is never served.
+- **Nothing staged or edited.** `images/ironvoltvan.jpg` is a mock-up, not a photo of
+  a real van, and must not be used anywhere, including social cards.
 
 `images/electric-panel-replacement.jpg` is a stock photo of European equipment and is
 deliberately not used. The `residential.jpg` and `commercial.jpg` collages are no longer

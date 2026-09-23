@@ -31,7 +31,7 @@ export const services = [
     },
     hero: {
       lead: 'Breakers that won’t stay on, outlets that quit, lights that flicker when the AC kicks in. We trace the fault to its cause, fix it to code and tell you what we found.',
-      image: { key: 'electrician-panel-test', alt: 'An electrician testing wiring inside an exterior panel with a clamp meter' },
+      image: { key: 'panel-test-hands', alt: 'An electrician’s hands testing wiring inside an exterior panel with a clamp meter' },
     },
     intro: {
       heading: 'Fix the cause, not the symptom',

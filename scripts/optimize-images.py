@@ -26,11 +26,15 @@ OUT = ROOT / "images" / "opt"
 WIDTHS = (480, 800, 1200)
 QUALITY = 62
 
-# key -> source path (relative to the repo root). The key is what page
-# templates refer to, so a photo can be re-shot without touching markup.
+# key -> source path (relative to the repo root), or (path, crop box).
+# The key is what page templates refer to, so a photo can be re-shot or
+# re-cropped without touching markup.
+#
+# Site rules for photos: no faces, and nothing staged or edited. The
+# branded-van image in images/ is a mock-up and must not be used.
 SOURCES = {
-    "electrician-panel-test": "images/Untitled-4.jpg",
-    "van": "images/ironvoltvan.jpg",
+    # Cropped to the hands, meter and panel; the original shows a face.
+    "panel-test-hands": ("images/Untitled-4.jpg", (330, 0, 1050, 1000)),
     "service-area-map": "images/ServiceArea.jpg",
     # Panels and services
     "panelboards-pair": "images/services/panels/panel-wiring-detail.jpg",
@@ -60,8 +64,8 @@ SOURCES = {
 LOGO_SOURCE = "images/IronVoltElectricFinal2.png"
 LOGO_OUT = OUT / "logo.webp"
 
-# Social sharing card: 1200x630, cropped from the van photo.
-OG_SOURCE = "images/ironvoltvan.jpg"
+# Social sharing card: 1200x630, cropped from the standby generator job.
+OG_SOURCE = "images/generator-install.jpg"
 OG_OUT = ROOT / "images" / "og-iron-volt-electric.jpg"
 
 
@@ -69,9 +73,17 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = {}
 
-    for key, rel in SOURCES.items():
-        src = ROOT / rel
-        im = ImageOps.exif_transpose(Image.open(src)).convert("RGB")
+    for key, spec in SOURCES.items():
+        rel, box = spec if isinstance(spec, tuple) else (spec, None)
+        im = ImageOps.exif_transpose(Image.open(ROOT / rel)).convert("RGB")
+        fallback = "/" + rel
+        if box:
+            # A cropped image needs its own JPEG fallback: pointing <img>
+            # at the original would show what the crop removed.
+            im = im.crop(box)
+            out = OUT / f"{key}.jpg"
+            im.save(out, "JPEG", quality=80, optimize=True, progressive=True)
+            fallback = "/" + out.relative_to(ROOT).as_posix()
         w, h = im.size
         widths = [x for x in WIDTHS if x < w] + [min(w, WIDTHS[-1])]
         widths = sorted(set(widths))
@@ -81,7 +93,7 @@ def main():
             out = OUT / f"{key}-{tw}.webp"
             im.resize((tw, th), Image.LANCZOS).save(out, "WEBP", quality=QUALITY, method=6)
             variants.append({"w": tw, "src": "/" + out.relative_to(ROOT).as_posix()})
-        manifest[key] = {"fallback": "/" + rel, "width": w, "height": h, "webp": variants}
+        manifest[key] = {"fallback": fallback, "width": w, "height": h, "webp": variants}
         print(f"{key:28s} {w}x{h} -> {[v['w'] for v in variants]}")
 
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
@@ -89,7 +101,7 @@ def main():
     Image.open(ROOT / LOGO_SOURCE).save(LOGO_OUT, "WEBP", quality=88, method=6, alpha_quality=90)
     print("logo", LOGO_OUT.relative_to(ROOT))
 
-    og = ImageOps.fit(Image.open(ROOT / OG_SOURCE).convert("RGB"), (1200, 630), Image.LANCZOS, centering=(0.5, 0.55))
+    og = ImageOps.fit(Image.open(ROOT / OG_SOURCE).convert("RGB"), (1200, 630), Image.LANCZOS, centering=(0.5, 0.45))
     og.save(OG_OUT, "JPEG", quality=82, optimize=True, progressive=True)
     print("og image", OG_OUT.relative_to(ROOT))
 

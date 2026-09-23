@@ -97,7 +97,7 @@ function header(s, crumbs) {
     title: s.titleHtml ?? s.title,
     lead: s.hero.lead,
     image: s.hero.image,
-    portrait: ['foyer-chandelier', 'electrician-panel-test'].includes(s.hero.image?.key),
+    portrait: ['foyer-chandelier', 'panel-test-hands'].includes(s.hero.image?.key),
     facts: s.hero.facts ?? [
       ['License', site.license.short],
       ['Estimates', 'Free and in writing'],
