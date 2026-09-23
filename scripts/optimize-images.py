@@ -63,6 +63,7 @@ SOURCES = {
 # converted on its own rather than resized like the photographs.
 LOGO_SOURCE = "images/IronVoltElectricFinal2.png"
 LOGO_OUT = OUT / "logo.webp"
+BADGE_SOURCE = "images/IronVoltElectricBadgeSmaller.png"
 
 # Social sharing card: 1200x630, cropped from the standby generator job.
 OG_SOURCE = "images/generator-install.jpg"
@@ -98,8 +99,20 @@ def main():
 
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
-    Image.open(ROOT / LOGO_SOURCE).save(LOGO_OUT, "WEBP", quality=88, method=6, alpha_quality=90)
+    # Lossless, so the gold in the lettering renders exactly as in the
+    # source file wherever the logo appears.
+    Image.open(ROOT / LOGO_SOURCE).save(LOGO_OUT, "WEBP", lossless=True, method=6)
     print("logo", LOGO_OUT.relative_to(ROOT))
+
+    # The hexagon badge, cropped to its edges, transparent, with a PNG
+    # fallback. Used as the About page's header image.
+    badge = Image.open(ROOT / BADGE_SOURCE).convert("RGBA")
+    badge = badge.crop(badge.split()[-1].getbbox())
+    badge.save(OUT / "badge.png", "PNG", optimize=True)
+    for w in (320, 550):
+        b = badge.resize((w, round(badge.height * w / badge.width)), Image.LANCZOS)
+        b.save(OUT / f"badge-{w}.webp", "WEBP", quality=90, method=6, alpha_quality=95)
+    print("badge", badge.size)
 
     og = ImageOps.fit(Image.open(ROOT / OG_SOURCE).convert("RGB"), (1200, 630), Image.LANCZOS, centering=(0.5, 0.45))
     og.save(OG_OUT, "JPEG", quality=82, optimize=True, progressive=True)

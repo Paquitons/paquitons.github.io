@@ -24,7 +24,7 @@ import { html, icon, picture } from '../lib/html.mjs';
 import { site } from '../site.mjs';
 import { serviceBySlug } from '../data/services.mjs';
 import { areas } from '../data/areas.mjs';
-import { pageHeader, processList, faqSection, ctaBand, emergencyPanel } from '../components.mjs';
+import { pageHeader, processList, faqSection, ctaBand } from '../components.mjs';
 import { serviceSchema, breadcrumbSchema, faqSchema } from '../schema.mjs';
 
 export function servicePage(s) {
@@ -276,10 +276,9 @@ function local(s, bg) {
   <div class="container split split--center">
     <div>
       <h2 id="local-title">Where we do this work</h2>
-      <p class="mt-4 muted">Based in Spring and working across Greater Houston, in ${site.counties}. ${s.group === 'commercial'
+      <p class="section-intro">Based in Spring and working across Greater Houston, in ${site.counties}. ${s.group === 'commercial'
         ? 'Commercial work covers the same area.'
         : 'Whether a permit comes from a city or the county depends on your address; we check before we quote.'}</p>
-      <p class="mt-4"><a class="link-arrow" href="/service-area/">Full service area ${icon('arrow')}</a></p>
     </div>
     <ul class="town-links">
       ${ordered.map((a) => html`<li><a href="/service-area/${a.slug}">${a.name}${icon('arrow')}</a></li>`)}
@@ -300,4 +299,3 @@ function related(s, bg) {
 </section>`;
 }
 
-export { emergencyPanel };

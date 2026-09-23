@@ -57,10 +57,7 @@ ${credentials()}
   <div class="container">
     <header class="section-head section-head--split">
       <h2 id="services-title">Electrical work for homes and businesses</h2>
-      <div class="section-head__aside">
-        <p>Everything is done to the National Electrical Code, permitted where it needs to be, and priced in writing before it starts.</p>
-        <a class="link-arrow" href="/services/">All services ${icon('arrow')}</a>
-      </div>
+      <a class="link-arrow section-head__link" href="/services/">All services ${icon('arrow')}</a>
     </header>
 
     <div class="service-overview">
@@ -118,11 +115,7 @@ ${credentials()}
   </div>
 </section>
 
-<section class="section" aria-labelledby="emergency-title">
-  <div class="container">
-    ${emergencyPanel()}
-  </div>
-</section>
+${emergencyPanel()}
 
 
 <section class="section section--alt" aria-labelledby="company-title">
@@ -133,11 +126,6 @@ ${credentials()}
     <div class="feature-band__body">
       <h2 id="company-title">A local contractor, not a call center</h2>
       <p>${site.legalName} was founded in ${site.foundedLabel} by a licensed electrician with ${site.experience} of field experience in Houston homes, businesses, parks and community properties. We’re not a franchise, and we’re not a lead service passing your number along.</p>
-      <dl class="fact-grid fact-grid--3">
-        <div><dt>Founded</dt><dd>${site.foundedLabel}</dd></div>
-        <div><dt>Field experience</dt><dd>${site.experience}</dd></div>
-        <div><dt>Based in</dt><dd>${site.base}</dd></div>
-      </dl>
       <a class="link-arrow" href="/about">About Iron Volt Electric ${icon('arrow')}</a>
     </div>
   </div>
@@ -146,13 +134,12 @@ ${credentials()}
 
 <section class="section" aria-labelledby="area-title">
   <div class="container split split--center">
-    <figure class="area-map">
+    <div class="area-map">
       ${picture('service-area-map', { alt: 'Map of Greater Houston with pins marking the towns Iron Volt Electric covers, from Conroe in the north to Sugar Land in the southwest and Baytown in the east', sizes: '(min-width: 60em) 45vw, 100vw' })}
-      <figcaption>Pins mark towns we work in regularly. It’s not a boundary; call if you’re nearby.</figcaption>
-    </figure>
+    </div>
     <div>
       <h2 id="area-title">Spring, The Woodlands and Greater Houston</h2>
-      <p class="mt-4 muted">Based in Spring and working across the metro, from Conroe in the north to Sugar Land in the southwest and Baytown in the east.</p>
+      <p class="section-intro">Based in Spring and working across the metro, from Conroe in the north to Sugar Land in the southwest and Baytown in the east.</p>
       <div class="mt-6">${townLinks()}</div>
     </div>
   </div>

@@ -15,30 +15,22 @@ ${pageHeader({
     crumbs,
     title: 'About Iron Volt Electric',
     lead: `A licensed electrical contractor in Spring, Texas. A new company, built on ${site.experience} of field work.`,
-    image: { key: 'service-stucco-wall', alt: 'Two service enclosures with conduit runs on a stucco wall' },
+    media: html`<picture>
+      <source type="image/webp" srcset="/images/opt/badge-320.webp 320w, /images/opt/badge-550.webp 550w" sizes="(min-width: 60em) 20rem, 60vw">
+      <img src="/images/opt/badge.png" alt="The Iron Volt Electric badge" width="550" height="480" fetchpriority="high">
+    </picture>`,
     actions: false,
   })}
 
 <section class="section" aria-labelledby="story-title">
-  <div class="container split split--wide-start">
+  <div class="container split split--wide-end">
+    <h2 id="story-title">Where the company came from</h2>
     <div class="prose">
-      <h2 id="story-title">Where the company came from</h2>
       <p class="lead">Iron Volt Electric was founded on January 12, 2026, by a licensed electrician who had spent ${site.experience} working in Houston homes, businesses, parks and community properties.</p>
       <p>That career, across every kind of residential and commercial project, is what the company is built on. The LLC is new; the experience behind it isn’t, and we’d rather tell you both plainly than let one stand in for the other.</p>
       <p>“Iron” is durability. “Volt” is the electricity. Together they describe what we’re trying to deliver: work that lasts.</p>
       <p>We’re not a call center or a franchise. We’re a local electrical contractor who knows the local codes, how these houses were built, and what the Houston climate does to an electrical system over twenty years.</p>
     </div>
-    <aside class="aside-panel" aria-labelledby="facts-title">
-      <h2 id="facts-title">At a glance</h2>
-      <dl class="detail-list">
-        <div><dt>Company</dt><dd>${site.legalName}</dd></div>
-        <div><dt>Founded</dt><dd>${site.foundedLabel}</dd></div>
-        <div><dt>Experience</dt><dd>${site.experience} in the field</dd></div>
-        <div><dt>License</dt><dd>${site.license.short}</dd></div>
-        <div><dt>Based in</dt><dd>${site.base}</dd></div>
-        <div><dt>Work</dt><dd>Residential and commercial</dd></div>
-      </dl>
-    </aside>
   </div>
 </section>
 
@@ -46,7 +38,7 @@ ${pageHeader({
   <div class="container split split--wide-end">
     <header>
       <h2 id="license-title">Licensed, bonded and insured</h2>
-      <p class="mt-4 muted">What we carry, and what it protects you against.</p>
+      <p class="section-intro">What we carry, and what it protects you against.</p>
       <p class="mt-6"><a class="button button--outline" href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Verify our license with TDLR ${icon('external')}</a></p>
     </header>
     <ul class="spec-list">
@@ -109,8 +101,6 @@ ${ctaBand({
     section: 'about',
     title: 'About Iron Volt Electric | Licensed Electrical Contractor in Spring, TX',
     description: `About Iron Volt Electric LLC: a licensed Spring, TX electrical contractor founded in 2026 on ${site.experience} of field experience. TECL #41098, bonded and insured.`,
-    preload: 'service-stucco-wall',
-    preloadSizes: '(min-width: 60em) 45vw, 100vw',
     schema: [breadcrumbSchema(crumbs)],
     main,
   };
