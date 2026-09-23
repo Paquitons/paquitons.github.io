@@ -14,7 +14,7 @@ export function serviceAreaIndexPage() {
 ${pageHeader({
     crumbs,
     title: 'Service area',
-    lead: `Residential and commercial electrical work across Greater Houston, in ${site.counties}. We’re based in ${site.base}.`,
+    lead: `Residential and commercial electrical work across Greater Houston, in ${site.counties}.`,
   })}
 
 <section class="section" aria-labelledby="towns-title">

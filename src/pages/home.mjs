@@ -139,7 +139,7 @@ ${emergencyPanel()}
     </div>
     <div>
       <h2 id="area-title">Serving Greater Houston</h2>
-      <p class="section-intro">From Conroe in the north to Sugar Land in the southwest and Baytown in the east, for homes and businesses across the metro. We’re based in Spring, TX.</p>
+      <p class="section-intro">From Conroe in the north to Sugar Land in the southwest and Baytown in the east, for homes and businesses across the metro.</p>
       <div class="mt-6">${townLinks()}</div>
     </div>
   </div>

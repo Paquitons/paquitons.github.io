@@ -93,8 +93,8 @@ matching row of the services hub.
 **Location.** The company is *based in* Spring, TX; its *service area* is Greater Houston.
 Keep the two apart: say "Greater Houston" wherever the site talks about who we serve
 (headings, titles, descriptions), and "based in Spring, TX" only where it talks about
-where the company is. Never "Spring and Greater Houston". Spring still has its own town
-page, like the other towns.
+where the company is, which is only on the About page. Never "Spring and Greater
+Houston". Spring still has its own town page, like the other towns.
 
 The business is new (founded January 2026); the lead electrician's 25 years of field
 experience is not. Always say both, and never let "25 years" read as the age of the
