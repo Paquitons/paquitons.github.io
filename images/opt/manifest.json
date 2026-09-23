@@ -1,0 +1,385 @@
+{
+  "electrician-panel-test": {
+    "fallback": "/images/Untitled-4.jpg",
+    "width": 1050,
+    "height": 1400,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/electrician-panel-test-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/electrician-panel-test-800.webp"
+      },
+      {
+        "w": 1050,
+        "src": "/images/opt/electrician-panel-test-1050.webp"
+      }
+    ]
+  },
+  "van": {
+    "fallback": "/images/ironvoltvan.jpg",
+    "width": 1400,
+    "height": 933,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/van-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/van-800.webp"
+      },
+      {
+        "w": 1200,
+        "src": "/images/opt/van-1200.webp"
+      }
+    ]
+  },
+  "service-area-map": {
+    "fallback": "/images/ServiceArea.jpg",
+    "width": 1400,
+    "height": 1400,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-area-map-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-area-map-800.webp"
+      },
+      {
+        "w": 1200,
+        "src": "/images/opt/service-area-map-1200.webp"
+      }
+    ]
+  },
+  "panelboards-pair": {
+    "fallback": "/images/services/panels/panel-wiring-detail.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/panelboards-pair-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/panelboards-pair-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/panelboards-pair-900.webp"
+      }
+    ]
+  },
+  "service-disconnect": {
+    "fallback": "/images/services/panels/panel-breaker-install.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-disconnect-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-disconnect-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/service-disconnect-900.webp"
+      }
+    ]
+  },
+  "service-metal-building": {
+    "fallback": "/images/services/panels/service-upgrade-complete.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-metal-building-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-metal-building-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/service-metal-building-900.webp"
+      }
+    ]
+  },
+  "service-rack": {
+    "fallback": "/images/services/panels/Untitled2.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-rack-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-rack-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/service-rack-900.webp"
+      }
+    ]
+  },
+  "service-rack-meter": {
+    "fallback": "/images/services/panels/IronImage1.jpg",
+    "width": 900,
+    "height": 507,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-rack-meter-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-rack-meter-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/service-rack-meter-900.webp"
+      }
+    ]
+  },
+  "service-stucco-wall": {
+    "fallback": "/images/services/panels/Untitled-1.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/service-stucco-wall-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/service-stucco-wall-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/service-stucco-wall-900.webp"
+      }
+    ]
+  },
+  "generator-brick-home": {
+    "fallback": "/images/generator-install.jpg",
+    "width": 1284,
+    "height": 1265,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/generator-brick-home-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/generator-brick-home-800.webp"
+      },
+      {
+        "w": 1200,
+        "src": "/images/opt/generator-brick-home-1200.webp"
+      }
+    ]
+  },
+  "generator-side-yard": {
+    "fallback": "/images/services/backup/Untitled-2.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/generator-side-yard-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/generator-side-yard-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/generator-side-yard-900.webp"
+      }
+    ]
+  },
+  "generator-setting": {
+    "fallback": "/images/services/backup/generator-outdoor-install.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/generator-setting-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/generator-setting-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/generator-setting-900.webp"
+      }
+    ]
+  },
+  "generator-cummins": {
+    "fallback": "/images/services/backup/IronImage-4.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/generator-cummins-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/generator-cummins-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/generator-cummins-900.webp"
+      }
+    ]
+  },
+  "transfer-switch": {
+    "fallback": "/images/services/backup/IronImage-5.jpg",
+    "width": 900,
+    "height": 507,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/transfer-switch-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/transfer-switch-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/transfer-switch-900.webp"
+      }
+    ]
+  },
+  "foyer-crystal-chandelier": {
+    "fallback": "/images/services/lighting/Untitled-2.jpg",
+    "width": 675,
+    "height": 900,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/foyer-crystal-chandelier-480.webp"
+      },
+      {
+        "w": 675,
+        "src": "/images/opt/foyer-crystal-chandelier-675.webp"
+      }
+    ]
+  },
+  "led-ceiling-fixture": {
+    "fallback": "/images/services/lighting/Untitled-3.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/led-ceiling-fixture-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/led-ceiling-fixture-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/led-ceiling-fixture-900.webp"
+      }
+    ]
+  },
+  "foyer-chandelier": {
+    "fallback": "/images/services/lighting/Untitled-4.jpg",
+    "width": 627,
+    "height": 900,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/foyer-chandelier-480.webp"
+      },
+      {
+        "w": 627,
+        "src": "/images/opt/foyer-chandelier-627.webp"
+      }
+    ]
+  },
+  "stairwell-chandelier": {
+    "fallback": "/images/services/lighting/Untitled-5.jpg",
+    "width": 675,
+    "height": 900,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/stairwell-chandelier-480.webp"
+      },
+      {
+        "w": 675,
+        "src": "/images/opt/stairwell-chandelier-675.webp"
+      }
+    ]
+  },
+  "dining-pendant": {
+    "fallback": "/images/services/lighting/Untitled-6.jpg",
+    "width": 675,
+    "height": 900,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/dining-pendant-480.webp"
+      },
+      {
+        "w": 675,
+        "src": "/images/opt/dining-pendant-675.webp"
+      }
+    ]
+  },
+  "linear-crystal-chandelier": {
+    "fallback": "/images/services/lighting/Untitled-7.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/linear-crystal-chandelier-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/linear-crystal-chandelier-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/linear-crystal-chandelier-900.webp"
+      }
+    ]
+  },
+  "ring-chandelier": {
+    "fallback": "/images/services/lighting/Untitled-8.jpg",
+    "width": 900,
+    "height": 506,
+    "webp": [
+      {
+        "w": 480,
+        "src": "/images/opt/ring-chandelier-480.webp"
+      },
+      {
+        "w": 800,
+        "src": "/images/opt/ring-chandelier-800.webp"
+      },
+      {
+        "w": 900,
+        "src": "/images/opt/ring-chandelier-900.webp"
+      }
+    ]
+  }
+}

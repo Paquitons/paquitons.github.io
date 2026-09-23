@@ -1,185 +1,209 @@
 # Iron Volt Electric
 
-The website for Iron Volt Electric LLC, a licensed electrical contractor serving
-Greater Houston. Static HTML, CSS and vanilla JavaScript, served from GitHub Pages
-at [www.ironvoltelectric.com](https://www.ironvoltelectric.com).
+The website for Iron Volt Electric LLC, a licensed electrical contractor (TECL #41098)
+based in Spring, Texas and serving Greater Houston. Served from GitHub Pages at
+[www.ironvoltelectric.com](https://www.ironvoltelectric.com).
 
-## What this site is for
+## What the site is for
 
-It is a lead-generation site for a trade business, not a brochure. In priority order
-it has to:
+Someone who needs an electrician lands here and decides, in under a minute, whether
+to call. Every page is built to answer their questions in the order they ask them:
 
-1. Put the phone number and the booking link within reach on every screen.
-2. Let someone scan what we do and check whether we cover their address.
-3. Establish that we are licensed and insured, with the number to verify it.
+1. **Who are you?** A licensed electrical contractor, residential and commercial.
+2. **Where do you work?** Spring and Greater Houston, with the towns named.
+3. **What do you do?** Services, each with its own page.
+4. **How do I reach you?** Phone number visible on every screen; request form two clicks away.
+5. **Why should I trust you?** License number with a link to verify it, insurance, written
+   estimates, real job photos, Google reviews.
 
-Every design decision below serves one of those three. If a change does not, it
-does not belong.
+If a change doesn't help with one of those, it doesn't belong.
 
-## Structure
+## How it's built
 
-```
-index.html         Home: hero, services, how we work, reviews, coverage, FAQ
-services.html      Residential and commercial services, with spec lists
-servicearea.html   Coverage map and towns by region
-about.html         Company background, credentials, guarantees
-contact.html       Ways to reach us, details, emergency callout, process
-booking.html       Booking request form with client-side validation
-reviews.html       Google reviews embed
-privacy.html       Privacy policy
-404.html           Not-found page
-review.html        Redirect to the Google review form
-css/styles.css     The whole design system. There is no other stylesheet.
-js/main.js         Nav, FAQ accordion, slideshows, chat-widget positioning
-js/booking.js      Booking form validation and submission
+Plain HTML, CSS and JavaScript. The HTML is **generated** from `src/` by a small Node
+script with no dependencies, and the output is committed, so GitHub Pages serves static
+files with no build step on its side.
+
+```sh
+npm run build     # or: node scripts/build.mjs
+npm run serve     # build, then serve on http://localhost:8000
 ```
 
-There are no inline `style` attributes and no per-page `<style>` blocks anywhere
-in the site. If something needs styling, it gets a class in `css/styles.css`.
+`npm run serve` resolves URLs the way GitHub Pages does (`/about` serves `about.html`,
+`/services/` serves `services/index.html`, a missing path serves `404.html`), so every
+link works locally as it will in production.
+
+**Edit `src/`, not the generated `.html` files.** Each generated file says so in its
+`<head>`. The build also checks every internal link and `#anchor` and fails if one is
+broken.
+
+```
+src/
+  site.mjs              Business facts: phone, email, license, hours, towns. One place.
+  data/services.mjs     Content for each service page
+  data/areas.mjs        Content for each town page
+  layout.mjs            <head>, utility bar, header, footer, mobile action bar
+  components.mjs        Blocks used on more than one page (page header, FAQ, CTA, form…)
+  schema.mjs            JSON-LD structured data, built from site.mjs
+  templates/service.mjs One service page
+  templates/area.mjs    One town page
+  pages/*.mjs           Home, services hub, service-area hub, about, contact, booking,
+                        reviews, privacy, 404
+  lib/html.mjs          Template helper, responsive <picture>, icon set
+scripts/
+  build.mjs             Renders the site, writes sitemap.xml and robots.txt, checks links
+  optimize-images.py    Makes WebP derivatives of photos (needs Pillow)
+css/styles.css          The design system. The only stylesheet.
+js/main.js              Navigation, mobile action bar, lazy reviews embed, chat-widget fix
+js/form.js              Request form validation and submission
+fonts/                  Archivo, self-hosted and subset
+```
+
+### Pages
+
+| URL | Source |
+|---|---|
+| `/` | `src/pages/home.mjs` |
+| `/services/` and `/services/<service>` | `pages/services-index.mjs`, `templates/service.mjs` + `data/services.mjs` |
+| `/service-area/` and `/service-area/<town>` | `pages/service-area-index.mjs`, `templates/area.mjs` + `data/areas.mjs` |
+| `/about`, `/contact`, `/booking`, `/reviews`, `/privacy`, `/404` | `src/pages/` |
+| `/servicearea` | Redirect to `/service-area/`, kept for old links |
+| `/review` | Redirect to the Google review form (hand-written, not generated) |
+
+The old single-page anchors (`/services#panels`, `#ev`, `#repairs`…) still land on the
+matching row of the services hub.
+
+### Common edits
+
+- **Phone, email, hours, license:** `src/site.mjs`, then build.
+- **A service's copy:** its entry in `src/data/services.mjs`. A page renders only the
+  blocks its entry provides (signs, options, table, gallery, safety, FAQ…), so services
+  don't all look the same. Section backgrounds alternate automatically.
+- **A new town page:** add an entry to `src/data/areas.mjs` and a `slug` to that town in
+  `regions` in `src/site.mjs`. A town page has to say something true about that town
+  that isn't true of the next one; if the copy would still read correctly with the name
+  swapped, don't publish it.
+- **A new photo:** add it under `images/`, give it a key in `scripts/optimize-images.py`,
+  run `npm run images`, then use `picture('key', { alt: '…' })`. The build refuses an
+  image without alt text.
+
+## Content rules
+
+The business is new (founded January 2026); the lead electrician's 25 years of field
+experience is not. Always say both, and never let "25 years" read as the age of the
+company.
+
+Nothing is published that the business hasn't supplied or that isn't general, verifiable
+electrical practice: no invented review counts, ratings, awards, statistics, customer
+names or prices. The only prices on the site are the recessed-lighting figures the
+business provided. Structured data carries no ratings.
+
+Copy is American English, direct, and specific. "Written estimate before work starts" is
+a claim; "unmatched quality" is not.
 
 ## Design system
 
-Everything is defined as a custom property at the top of `css/styles.css`. Use the
-tokens; do not introduce new raw values.
+Everything is a custom property at the top of `css/styles.css`, organized in cascade
+layers (`reset, tokens, base, layout, components, utilities`). Components use semantic
+tokens (`--color-text-muted`, `--color-accent`), never raw palette values.
 
-### Colour
+**Color.** Navy `#060e1a` and amber `#e8a020` are the brand. The page is warm cream
+`#faf8f5`, not white. Amber marks action (buttons, links, active states); red marks
+emergency; nothing else gets a color of its own. Amber is a fill on light surfaces; for
+amber *text* on light use `--color-accent-text` (`#8a5b0d`, 5.9:1). Dark sections are
+`.section--dark` / `.surface-dark`, which also re-point the text and border tokens, so
+components don't need dark variants.
 
-Four surfaces, three text steps per surface, one accent.
+**Type.** Archivo only, self-hosted as one variable file (weights 400–900, widths
+75–100%) plus a tiny italic cut for the tagline. `h1`/`h2` are condensed heavy capitals,
+which is the brand; body copy is regular width. Ten sizes, fluid from phone to desktop.
 
-| Token | Value | Use |
-|---|---|---|
-| `--ink` | `#060e1a` | Dark sections, header |
-| `--ink-deep` | `#04090f` | Footer |
-| `--page` | `#faf8f5` | The page itself, warm cream |
-| `--surface` | `#ffffff` | Cards sitting on the page |
-| `--surface-alt` | `#f4f2ef` | Alternating band |
-| `--text` / `--text-muted` | `#121a26` / `#57636f` | Text on light (17.5:1, 6.1:1) |
-| `--on-dark` / `--on-dark-muted` / `--on-dark-subtle` | `#ffffff` / `#b3bcc9` / `#8793a3` | Text on dark (19.4:1, 10.1:1, 6.2:1) |
-| `--gold` | `#e8a020` | The brand amber |
-| `--gold-ink` | `#8a5b0d` | Amber **text** on light surfaces |
+**Space and shape.** 4px spacing scale, fluid section spacing, radii of 2, 4 and 6px.
+Content is separated with rules, not shadows; shadows are only for things that float
+(menu, form panel, mobile bar).
 
-These are the colours the site has always used. They are not up for redesign.
-The page background is warm cream, not white: pure white makes the whole site
-read cold.
+**Breakpoints.** 30em, 45em, 60em and 75em (480, 720, 960, 1200px). Nothing else.
 
-Every text colour above clears WCAG AA (4.5:1) on the surfaces it is used on.
+**Motion.** Color and small position changes on hover, a 1px button press. No scroll
+animations, carousels or tickers. Everything is disabled under
+`prefers-reduced-motion`, and nothing depends on it.
 
-**`--gold` is a fill, not a text colour, on light backgrounds.** It only reaches
-2.2:1 on white. For amber text on a light surface use `--gold-ink` (5.9:1). On
-`--ink`, the amber is 8.7:1 and safe as text.
+### Components
 
-**Amber is for buttons, links, icons and active markers only.** Structural rules
-are near-black on light surfaces and `--rule-dark` on dark ones. An earlier pass
-put thick amber rules under every heading, on every card edge and on every list
-row, and the site turned into a wall of gold. Red means emergency, green means a
-completed booking. Colour is never used to make a section look livelier.
+Named for what they do. There is deliberately no generic "card".
 
-### Type
+| Component | Use |
+|---|---|
+| `.utility-bar` | Emergency line, hours, license. Static. |
+| `.site-header`, `.site-nav`, `.mega` | Header; services open as a disclosure (button + `aria-expanded`), hover also opens it for mouse users. Below 1200px the nav is a drawer; the phone number stays in the header at every width. |
+| `.hero` | Home only. Split: brand, what and where, two actions, a real job photo. |
+| `.credentials` | License, insurance, experience, estimates, emergency line. |
+| `.page-header` | Inner pages. Variants: `--media`, `--portrait`, `--compact`, `--emergency`. |
+| `.service-feature` + `.service-index` | Home services: one featured with a photo, the rest as an index. |
+| `.service-directory` | Services hub: name, summary, scope, link. |
+| `.feature-band` | Photo beside text. |
+| `.emergency-panel` | White panel with a red rule, not a red section. |
+| `.process` | Numbered steps (`<ol>`). |
+| `.options` | Two-way comparison. |
+| `.callout` | Safety information; `--emergency` variant. |
+| `.data-table`, `.spec-list`, `.tick-list`, `.hazard-list` | Tables and lists. |
+| `.gallery` | Real job photos, plain grid. |
+| `.focus-list` | Three or four short points with a heavy rule. |
+| `.town-links`, `.region-grid` | Service area. |
+| `.faq` | Native `<details name>`: an exclusive accordion without JavaScript. |
+| `.cta-band` | Page close: reason on the left, phone number large on the right. |
+| `.form-panel`, `.field`, `.form-more` | The request form. Optional fields live in a disclosure. |
+| `.mobile-actions` | Call / Request bar on phones. |
+| `.button` | `--primary`, `--dark`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--sm`, `--block`. Minimum 48px tall. |
 
-One family, Archivo, at every size. Hierarchy comes from weight and case, not
-from a second typeface. `h1`/`h2` are UPPERCASE at 900 with tight tracking and
-0.96 line-height; `h3` is the component title, uppercase 800 at body size. Ten
-sizes, `--text-2xs` through `--text-4xl`, and four line-heights.
+## Behaviour
 
-The display type is the brand: the logo is heavy italic caps on a trade badge,
-and the headings have to carry the same weight. Do not set them in sentence
-case.
-
-### Spacing, radius, elevation
-
-`--space-1` (4px) through `--space-9` (80px), on a 4px base. Three radii, all
-small: `--radius-sm` (2px), `--radius` (4px), `--radius-lg` (8px). This is a
-trade brand; soft corners read as consumer software. One shadow, used only to
-lift a card on hover; everything else is separated with visible rules.
-
-### Motion
-
-`--dur` (160ms) and `--dur-slow` (240ms) on `--ease`. Hover movement stays within
-2px. There is no scroll-triggered animation anywhere on the site. Everything is
-disabled under `prefers-reduced-motion`.
-
-## Components
-
-One component per job. Before adding a variant, check whether an existing one
-already covers it.
-
-- **`.btn`** with `.btn-primary` (gold), `.btn-outline` (light surfaces) and
-  `.btn-ghost` (dark surfaces). Sizes `.btn-sm` / `.btn-lg` / `.btn-full`.
-  Minimum target 44px.
-- **`.card`** for discrete units of content. A list of claims is a list, not a
-  row of boxes; use `.feature-list`, `.check-list` or `.spec-list` instead.
-- **`.facts`** for licence, experience and hours claims. It replaced four
-  components that all did this.
-- **`.steps`** for the one process description, shared by contact and booking.
-- **`.faq`** accordion. State lives in `aria-expanded` on the button; CSS keys
-  off that attribute, so markup and presentation cannot drift apart.
-- **`.section-header`** centres a heading and its supporting line on the page's
-  middle axis. There is no eyebrow badge and no decorative rule under it.
-- **`.hero`** puts the company van full-bleed behind the content, blurred and
-  held back to 20% so it sets the scene without competing with the headline.
-- **`.emergency-bar`** is a continuous right-to-left ticker. The whole bar is a
-  single `<a href="tel:...">` carrying the accessible name, and the moving text
-  inside is `aria-hidden`, so a screen reader hears the message once rather than
-  once per repeated copy, and it costs one tab stop. The track holds two
-  identical groups and slides by exactly one group width, which is what makes
-  the loop seamless; each group repeats the message enough times to be wider
-  than any viewport, so no gap ever opens up. It pauses on hover so the number
-  can be clicked, and under `prefers-reduced-motion` it becomes one static
-  centred line.
-
-Icons are inline SVG on a 24px grid with a 2px stroke, sized through `.icon`
-(20px), `.icon-sm` (15px) and `.icon-lg` (26px). No icon library.
+- **Mobile action bar** appears only after the page header's own buttons scroll away,
+  hides while the footer is on screen and while someone is typing in a form, and pads the
+  page so it never covers content.
+- **Request form** (`/booking` and `/contact`) posts the same field names to the same
+  endpoint as before. It carries `novalidate`; `js/form.js` is the only validation, with
+  messages tied to fields through `aria-describedby` and `aria-invalid`, and a summary
+  in a `role="alert"` region. reCAPTCHA v3 loads on first interaction with the form,
+  not on page load; its badge is hidden because the required notice is printed under
+  the submit button.
+- **Reviews** use the existing Common Ninja widget (Google reviews). Its script loads when
+  the section nears the viewport. If the widget hasn't drawn anything after ten seconds,
+  the reserved space collapses to a link to the Google profile.
+- **Rosie chat widget** fixes itself bottom-right over the mobile action bar. The element
+  that carries the fixed position is inside the widget's shadow root, so `js/main.js`
+  reaches in and moves it up on phones. A plain CSS rule on `<rosie-widget>` does nothing.
 
 ## Accessibility
 
-- Skip link is the first tab stop on every page.
-- One `:focus-visible` treatment site-wide.
-- All body text clears WCAG AA against its surface.
-- The booking form validates in JavaScript, with messages tied to fields through
-  `aria-describedby` and `aria-invalid`, and a summary in an `aria-live` region.
-  (The form carries `novalidate` so it can show its own messages; that means the
-  JavaScript is the only validation there is. Do not remove it.)
-- Slideshow dots are real buttons with `aria-current` and accessible names.
-- Motion is disabled under `prefers-reduced-motion`.
+Skip link; one `<h1>` per page and no skipped heading levels; landmarks for everything;
+one visible `:focus-visible` style; disclosure buttons with `aria-expanded`; Escape
+closes menus and returns focus; touch targets at least 44px; every text color clears
+WCAG AA on its background; meaningful alt text on every photo (the build enforces it);
+reduced motion respected.
+
+## SEO
+
+Unique title and description per page, canonical URLs, clean extensionless URLs,
+`sitemap.xml` and `robots.txt` generated on build, and JSON-LD for the business
+(`Electrician`, with license credential, hours, service area and profiles), each service
+(`Service`), breadcrumbs and FAQs. No ratings in structured data.
 
 ## Images
 
-Source images are sized to roughly 2x their displayed dimensions and encoded as
-JPEG, except the logo and badge, which need transparency and stay PNG. The whole
-`images/` directory is about 4MB.
+Photos are job photos supplied by the business. `scripts/optimize-images.py` writes
+WebP copies at 480, 800 and 1200px to `images/opt/` plus a manifest the build reads, so
+every image is a `<picture>` with `srcset`, `sizes`, `width` and `height`. Only the
+first-screen image loads eagerly. `images/og-iron-volt-electric.jpg` is the social share
+card, cropped from the van photo.
 
-`ironvoltvan.jpg` is the hero backdrop, referenced from CSS rather than markup.
+`images/electric-panel-replacement.jpg` is a stock photo of European equipment and is
+deliberately not used. The `residential.jpg` and `commercial.jpg` collages are no longer
+used either.
 
-Before committing a new image, resize it. A 42px-tall header logo does not need
-to be a 17431px-wide PNG, which is what it used to be.
+## Third-party services
 
-Every `<img>` carries `width`, `height` and `loading="lazy"` so the browser
-reserves the right box and nothing shifts as the page loads.
-
-## Third-party embeds
-
-- **Rosie** chat widget. It fixes itself to the bottom-right, where it covers the
-  sticky mobile call-to-action. The element that actually carries the fixed
-  position lives inside the widget's open shadow root, so styling the
-  `<rosie-widget>` host does nothing; `js/main.js` reaches into the shadow root
-  and pins the real container. Do not replace that with a plain CSS rule.
-- **Common Ninja** reviews embed on the home and reviews pages.
-- **reCAPTCHA v3** on the booking form.
-
-## Local development
-
-```sh
-python3 -m http.server 8000
-```
-
-Then open <http://localhost:8000>. There is no build step.
-
-Note that the site uses extensionless links (`href="services"`), which GitHub
-Pages resolves but `http.server` does not. Add `.html` when clicking through
-locally, or use a server that does extensionless resolution.
-
-## Editing content
-
-Phone number, email, hours and the TECL licence number appear in the shared
-header and footer on every page, and in page copy. Search across all HTML files
-when changing any of them.
+- Common Ninja reviews embed (`/`, `/reviews`)
+- Rosie chat widget (every page)
+- reCAPTCHA v3 (`/booking`, `/contact`, on interaction)
+- Booking endpoint: `https://ironvolt.omnemarchy.online/booking`

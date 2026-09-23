@@ -1,0 +1,12 @@
+{
+  "name": "ironvoltelectric.com",
+  "private": true,
+  "description": "Website for Iron Volt Electric LLC. Static HTML generated from src/ by a zero-dependency Node script.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/build.mjs --serve",
+    "images": "python3 scripts/optimize-images.py"
+  }
+}
