@@ -41,7 +41,7 @@ ${pageHeader({
       <p class="section-intro">What we carry, and what it protects you against.</p>
       <p class="mt-6"><a class="button button--outline" href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Verify our license with TDLR ${icon('external')}</a></p>
     </header>
-    <ul class="spec-list">
+    <ul class="rule-list">
       <li><span><strong>${site.license.full}.</strong> Issued and maintained by the ${site.license.issuer}. You can look it up at any time.</span></li>
       <li><span><strong>Insured.</strong> General liability and workers’ compensation on every job, with proof provided before work starts.</span></li>
       <li><span><strong>Bonded.</strong> A surety bond, for additional protection for customers.</span></li>

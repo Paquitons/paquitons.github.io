@@ -976,7 +976,7 @@
   .service-feature__title { font-size: var(--text-xl); }
   .service-feature__title a:hover { color: var(--color-accent-text); }
   .service-feature__body > p { margin-top: var(--space-3); color: var(--color-text-muted); max-width: var(--measure-narrow); }
-  .service-feature__body .tick-list { margin-block: var(--space-5); }
+  .service-feature__body .rule-list { margin-block: var(--space-5); }
 
   .service-index { list-style: none; padding: 0; border-top: var(--rule-heavy); }
   .service-index__item { border-bottom: var(--rule); }
@@ -1008,51 +1008,36 @@
   }
 
   /* ----------------------------------------------------------
-     TICK LIST
-     Short claims or inclusions. Amber tick, no box around it.
-     ---------------------------------------------------------- */
-  .tick-list { list-style: none; padding: 0; display: grid; gap: var(--space-2); }
-  .tick-list li {
-    position: relative;
-    padding-left: 1.75rem;
-    line-height: var(--leading-snug);
-  }
-  .tick-list li::before {
-    content: '';
-    position: absolute;
-    left: 0.125rem;
-    top: 0.3em;
-    width: 0.8rem;
-    height: 0.45rem;
-    border-left: 2.5px solid var(--color-accent-text);
-    border-bottom: 2.5px solid var(--color-accent-text);
-    transform: rotate(-45deg);
-  }
-  .surface-dark .tick-list li::before { border-color: var(--color-accent); }
-  @media (min-width: 45em) {
-    .tick-list--columns { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); row-gap: var(--space-3); }
-  }
+     RULE LIST
+     The one list treatment on the site: a heavy rule on top, rows
+     separated by hairlines, no bullets, no icons. It is the same
+     shape as the service index, the town links and the FAQ, so a
+     list never looks like it came from another template. The
+     emergency variant swaps the top rule for red.
 
-  /* Ruled list: scope of work, spec lists. */
-  .spec-list { list-style: none; padding: 0; border-top: var(--rule-heavy); }
-  .spec-list li {
-    display: flex;
-    gap: var(--space-3);
+     Rules are drawn from the color tokens directly (not --rule),
+     so they re-color correctly on dark surfaces.
+     ---------------------------------------------------------- */
+  .rule-list {
+    list-style: none;
+    padding: 0;
+    border-top: 3px solid var(--color-border-heavy);
+  }
+  .rule-list li {
     padding-block: var(--space-3);
-    border-bottom: var(--rule);
+    border-bottom: 1px solid var(--color-border);
     line-height: var(--leading-snug);
   }
-  .spec-list li::before {
-    content: '';
-    flex-shrink: 0;
-    width: 0.5rem;
-    height: 3px;
-    margin-top: 0.6em;
-    background: var(--color-accent);
-  }
+  .rule-list--emergency { border-top-color: var(--color-emergency); }
   @media (min-width: 45em) {
-    .spec-list--columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); border-top: 0; }
-    .spec-list--columns li:nth-child(-n + 2) { border-top: var(--rule-heavy); }
+    .rule-list--columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-6);
+      border-top: 0;
+    }
+    .rule-list--columns li:nth-child(-n + 2) { border-top: 3px solid var(--color-border-heavy); }
+    .rule-list--emergency.rule-list--columns li:nth-child(-n + 2) { border-top-color: var(--color-emergency); }
   }
 
   /* ----------------------------------------------------------
@@ -1061,7 +1046,7 @@
   .feature-band { display: grid; gap: var(--space-7); align-items: center; }
   .feature-band__media img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-sm); }
   .feature-band__body > p { margin-top: var(--space-4); max-width: var(--measure-narrow); }
-  .feature-band__body .tick-list { margin-block: var(--space-5) var(--space-6); }
+  .feature-band__body .rule-list { margin-block: var(--space-5) var(--space-6); }
   @media (min-width: 60em) {
     .feature-band { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--split-gap); }
     .feature-band--reverse .feature-band__media { order: 2; }
@@ -1078,40 +1063,7 @@
   .emergency__more { margin-top: var(--space-4); font-size: var(--text-sm); }
   .emergency__more a { color: var(--color-text); font-weight: 600; text-decoration: underline; text-decoration-color: var(--color-border-strong); text-underline-offset: 0.2em; }
   .emergency__more a:hover { text-decoration-color: currentColor; }
-  .emergency__list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    border-top: 3px solid var(--color-emergency);
-  }
-  .emergency__list li {
-    padding-block: var(--space-4);
-    border-bottom: var(--rule);
-    font-weight: 600;
-    line-height: var(--leading-snug);
-  }
-  @media (min-width: 45em) {
-    .emergency__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); }
-  }
 
-  .hazard-list { list-style: none; padding: 0; }
-  .hazard-list li {
-    display: flex;
-    gap: var(--space-3);
-    padding-block: var(--space-3);
-    border-bottom: var(--rule);
-    line-height: var(--leading-snug);
-  }
-  .hazard-list li:first-child { border-top: var(--rule); }
-  .hazard-list li::before {
-    content: '';
-    flex-shrink: 0;
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-top: 0.4em;
-    background: var(--color-emergency);
-    border-radius: 1px;
-  }
 
   /* ----------------------------------------------------------
      PROCESS
@@ -1362,17 +1314,10 @@
      A bordered panel that sits beside prose: "call us if you
      notice", credentials, nearby towns.
      ---------------------------------------------------------- */
-  .aside-panel {
-    padding: var(--space-5) var(--space-5) var(--space-6);
-    background: var(--color-surface);
-    border: var(--rule);
-    border-top: var(--rule-heavy);
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-  }
   .aside-panel h2,
-  .aside-panel h3 { font-size: var(--text-md); margin-bottom: var(--space-4); }
-  .aside-panel .tick-list { gap: var(--space-3); }
+  .aside-panel h3 { font-size: var(--text-md); font-stretch: 88%; margin-bottom: var(--space-4); }
   .aside-panel .button { margin-top: var(--space-5); }
+  @media (min-width: 60em) { .aside-panel { padding-top: var(--space-2); } }
 
   .urgent-note {
     display: block;
@@ -1392,7 +1337,8 @@
   .options__item { padding-top: var(--space-5); border-top: var(--rule-heavy); }
   .options__item h3 { margin-bottom: var(--space-3); font-size: var(--text-lg); }
   .options__item p { color: var(--color-text-muted); }
-  .options__note { margin-top: var(--space-6); color: var(--color-text-muted); font-style: italic; }
+  .options__item .rule-list { border-top: 1px solid var(--color-border); }
+  .options__note { margin-top: var(--space-6); color: var(--color-text-muted); }
 
   /* ----------------------------------------------------------
      CALLOUT
@@ -1469,8 +1415,7 @@
   .scope-groups { display: grid; gap: var(--space-6) var(--space-7); }
   @media (min-width: 45em) { .scope-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 60em) { .scope-groups--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-  .scope-group h3 { padding-bottom: var(--space-3); margin-bottom: var(--space-3); border-bottom: var(--rule-heavy); }
-  .scope-group .tick-list { gap: var(--space-3); color: var(--color-text-muted); }
+  .scope-group h3 { margin-bottom: var(--space-3); }
 
   /* ----------------------------------------------------------
      GALLERY
@@ -1565,8 +1510,7 @@
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-md);
   }
-  .form-panel__title { font-size: var(--text-xl); }
-  .form-panel__intro { margin-top: var(--space-2); margin-bottom: var(--space-6); color: var(--color-text-muted); }
+  .form-panel__title { font-size: var(--text-xl); margin-bottom: var(--space-6); }
 
   .form-grid { display: grid; gap: var(--space-5); }
   @media (min-width: 30em) {
@@ -1762,8 +1706,10 @@
     font-stretch: 85%;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: var(--color-accent);
+    color: #fff;
   }
+  /* Same two-tone treatment as the hero: white, then gold. */
+  .site-footer__tagline em { font-style: inherit; color: var(--color-accent); }
 
   .site-footer__nav {
     display: grid;

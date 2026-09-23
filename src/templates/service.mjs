@@ -99,7 +99,7 @@ function header(s, crumbs) {
 function intro(s, bg) {
   const signs = s.signs && html`<aside class="aside-panel" aria-labelledby="signs-title">
     <h2 id="signs-title">${s.signs.heading}</h2>
-    <ul class="${s.emergency ? 'hazard-list' : 'tick-list'}">
+    <ul class="rule-list${s.emergency ? ' rule-list--emergency' : ''}">
       ${s.signs.items.map((item) => typeof item === 'string'
         ? html`<li>${item}</li>`
         : html`<li>${item.text}<span class="urgent-note">${item.urgent}</span></li>`)}
@@ -142,7 +142,7 @@ function options(o, bg) {
       ${o.items.map((item) => html`<div class="options__item">
         <h3>${item.title}</h3>
         ${item.body && html`<p>${item.body}</p>`}
-        ${item.list && html`<ul class="tick-list">${item.list.map((li) => html`<li>${li}</li>`)}</ul>`}
+        ${item.list && html`<ul class="rule-list">${item.list.map((li) => html`<li>${li}</li>`)}</ul>`}
       </div>`)}
     </div>
     ${o.note && html`<p class="options__note">${o.note}</p>`}
@@ -187,7 +187,7 @@ function scope(sc, bg) {
   <div class="container">
     <header class="section-head"><h2 id="scope-title">${sc.heading}</h2></header>
     <div class="scope-groups scope-groups--3">
-      ${sc.groups.map((g) => html`<div class="scope-group"><h3>${g.title}</h3><ul class="tick-list">${g.items.map((i) => html`<li>${i}</li>`)}</ul></div>`)}
+      ${sc.groups.map((g) => html`<div class="scope-group"><h3>${g.title}</h3><ul class="rule-list">${g.items.map((i) => html`<li>${i}</li>`)}</ul></div>`)}
     </div>
   </div>
 </section>`;
@@ -195,7 +195,7 @@ function scope(sc, bg) {
   return html`<section class="section${bg}" aria-labelledby="scope-title">
   <div class="container split split--wide-end">
     <header><h2 id="scope-title">${sc.heading}</h2></header>
-    <ul class="spec-list spec-list--columns">${sc.items.map((i) => html`<li>${i}</li>`)}</ul>
+    <ul class="rule-list rule-list--columns">${sc.items.map((i) => html`<li>${i}</li>`)}</ul>
   </div>
 </section>`;
 }
@@ -205,7 +205,7 @@ function capabilities(c, bg) {
   <div class="container">
     <header class="section-head"><h2 id="cap-title">${c.heading}</h2></header>
     <div class="scope-groups scope-groups--3">
-      ${c.groups.map((g) => html`<div class="scope-group"><h3>${g.title}</h3><ul class="tick-list">${g.items.map((i) => html`<li>${i}</li>`)}</ul></div>`)}
+      ${c.groups.map((g) => html`<div class="scope-group"><h3>${g.title}</h3><ul class="rule-list">${g.items.map((i) => html`<li>${i}</li>`)}</ul></div>`)}
     </div>
   </div>
 </section>`;

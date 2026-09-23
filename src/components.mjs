@@ -132,7 +132,7 @@ export function emergencyPanel({ id, alt = false } = {}) {
       </div>
       <p class="emergency__more"><a href="/services/emergency">What to do while you wait</a></p>
     </div>
-    <ul class="emergency__list">
+    <ul class="rule-list rule-list--columns rule-list--emergency">
       ${hazards.map((h) => html`<li>${h}</li>`)}
     </ul>
   </div>

@@ -154,7 +154,8 @@ Named for what they do. There is deliberately no generic "card".
 | `.process` | Numbered steps (`<ol>`). |
 | `.options` | Two-way comparison. |
 | `.callout` | Safety information; `--emergency` variant. |
-| `.data-table`, `.spec-list`, `.tick-list`, `.hazard-list` | Tables and lists. |
+| `.rule-list` | The only list style: heavy rule on top, hairline rows, no bullets or icons (the same shape as the service index, town links and FAQ). `--columns` for two columns, `--emergency` for a red top rule. Don't add checkmarks, dashes or other markers. |
+| `.data-table` | Tables (generator sizing). |
 | `.gallery` | Real job photos, plain grid. |
 | `.focus-list` | Three or four short points with a heavy rule. |
 | `.town-links`, `.region-grid` | Service area. |

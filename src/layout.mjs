@@ -183,7 +183,7 @@ function footer() {
         <a href="/" aria-label="${site.name}, home">
           <picture><source type="image/webp" srcset="/images/opt/logo.webp"><img src="/images/IronVoltElectricFinal2.png" alt="${site.name}" width="440" height="143" loading="lazy"></picture>
         </a>
-        <p class="site-footer__tagline">${site.tagline}</p>
+        <p class="site-footer__tagline">Wired right. <em>Done right.</em></p>
       </div>
     </div>
 
