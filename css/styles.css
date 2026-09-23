@@ -325,18 +325,15 @@
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
-  .container--narrow { max-width: calc(var(--container-narrow) + 2 * var(--gutter)); }
 
   /* Sections. The surface modifier sets background and the text
      colors that go with it, so nothing inside has to know which
      band it sits on. */
   .section { padding-block: var(--section-space); }
   .section--tight { padding-block: var(--section-space-sm); }
-  .section--flush-top { padding-top: 0; }
 
   .section--alt { background: var(--color-surface-alt); }
   .section--white { background: var(--color-surface); }
-  .section--dark,
   .surface-dark {
     background: var(--color-surface-dark);
     color: var(--color-text-inverse-muted);
@@ -346,7 +343,6 @@
     --color-border-heavy: rgba(255, 255, 255, 0.28);
     --color-accent-text: var(--gold-500);
   }
-  .section--dark :is(h1, h2, h3, h4, strong),
   .surface-dark :is(h1, h2, h3, h4, strong) { color: var(--color-text-inverse); }
 
   /* Split: two columns that stack on small screens. Ratios are
@@ -402,8 +398,6 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-  .icon-sm { width: 1em; height: 1em; }
-  .icon-lg { width: 1.75rem; height: 1.75rem; }
 
   /* ----------------------------------------------------------
      KICKER
@@ -422,8 +416,7 @@
     color: var(--color-accent-text);
   }
   .kicker--emergency { color: var(--color-emergency-text); }
-  .surface-dark .kicker--emergency,
-  .section--dark .kicker--emergency { color: #fff; }
+  .surface-dark .kicker--emergency { color: #fff; }
 
   /* ----------------------------------------------------------
      BUTTONS
@@ -475,13 +468,6 @@
     --button-bg-hover: var(--color-accent-hover);
     --button-border-hover: var(--color-accent-hover);
   }
-  .button--dark {
-    --button-bg: var(--navy-950);
-    --button-fg: #fff;
-    --button-border: var(--navy-950);
-    --button-bg-hover: var(--navy-850);
-    --button-border-hover: var(--navy-850);
-  }
   .button--outline {
     --button-fg: var(--navy-950);
     --button-border: var(--navy-950);
@@ -504,7 +490,6 @@
   }
 
   .button--lg { min-height: 3.5rem; padding-inline: 1.75rem; font-size: var(--text-base); }
-  .button--sm { min-height: 2.5rem; padding: 0.375rem 1rem; font-size: var(--text-xs); }
   .button--block { width: 100%; }
 
   .button[disabled] {
@@ -884,22 +869,7 @@
     letter-spacing: 0;
     color: #fff;
   }
-  .hero__lead {
-    margin-top: var(--space-5);
-    max-width: var(--measure-narrow);
-    font-size: var(--text-md);
-    line-height: var(--leading-snug);
-  }
   .hero__actions { margin-top: var(--space-6); }
-  .hero__emergency {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-top: var(--space-5);
-    font-size: var(--text-sm);
-    color: var(--color-text-inverse-muted);
-  }
-  .hero__emergency a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; }
 
   .hero__media { position: relative; }
   .hero__media img {
@@ -914,19 +884,6 @@
   }
   @media (min-width: 60em) {
     .hero__media img { aspect-ratio: 4 / 5; }
-  }
-  .hero__caption {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: var(--space-2) var(--space-3);
-    background: var(--navy-950);
-    color: var(--color-text-inverse-muted);
-    font-size: var(--text-2xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-label);
-    border-top-right-radius: var(--radius-sm);
   }
 
   /* ----------------------------------------------------------
@@ -1059,13 +1016,9 @@
     border-bottom: 2.5px solid var(--color-accent-text);
     transform: rotate(-45deg);
   }
-  .surface-dark .tick-list li::before,
-  .section--dark .tick-list li::before { border-color: var(--color-accent); }
+  .surface-dark .tick-list li::before { border-color: var(--color-accent); }
   @media (min-width: 45em) {
     .tick-list--columns { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); row-gap: var(--space-3); }
-  }
-  @media (min-width: 75em) {
-    .tick-list--columns-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 
   /* Ruled list: scope of work, spec lists. */
@@ -1111,6 +1064,7 @@
     padding-top: var(--space-5);
     border-top: var(--rule-heavy);
   }
+  .fact-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .fact-grid dt {
     font-size: var(--text-2xs);
     font-weight: 700;
@@ -1350,7 +1304,6 @@
   }
   .cta-band__phone .icon { color: var(--color-accent); width: 0.8em; height: 0.8em; }
   .cta-band__phone:hover { color: var(--color-accent); }
-  .cta-band__note { font-size: var(--text-xs); color: var(--color-text-inverse-subtle); }
   @media (min-width: 60em) {
     .cta-band__inner { grid-template-columns: minmax(0, 1.2fr) auto; gap: var(--space-8); }
   }
@@ -1618,7 +1571,6 @@
   .contact-method__value a { text-decoration: underline; text-decoration-color: var(--color-border-strong); text-underline-offset: 0.2em; }
   .contact-method__value a:hover { color: var(--color-accent-text); text-decoration-color: currentColor; }
   .contact-method .contact-method__value--email { font-size: var(--text-md); font-stretch: 100%; }
-  .contact-method__links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-1); }
 
   .detail-list { display: grid; gap: var(--space-4); margin-top: var(--space-6); }
   .detail-list div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: var(--space-4); }
@@ -1933,8 +1885,6 @@
      MISC
      ---------------------------------------------------------- */
   .note { font-size: var(--text-sm); color: var(--color-text-muted); }
-  .divider-top { padding-top: var(--space-6); border-top: var(--rule); }
-  .logo-badge { width: min(100%, 18rem); margin-inline: auto; }
 }
 
 /* ============================================================
@@ -1957,7 +1907,6 @@
   .tnum { font-variant-numeric: tabular-nums; }
   .mt-4 { margin-top: var(--space-4); }
   .mt-6 { margin-top: var(--space-6); }
-  .mt-7 { margin-top: var(--space-7); }
   .muted { color: var(--color-text-muted); }
 }
 
@@ -1982,13 +1931,13 @@
 @media print {
   .utility-bar, .site-nav, .nav-toggle, .header-cta, .mobile-actions,
   .cta-band, .social-links, .reviews__embed, .skip-link { display: none !important; }
-  .site-header, .section--dark, .surface-dark, .site-footer {
+  .site-header, .surface-dark, .site-footer {
     background: #fff !important;
     color: #000 !important;
     --color-text: #000;
     --color-text-muted: #333;
   }
-  .section--dark :is(h1, h2, h3), .surface-dark :is(h1, h2, h3), .site-footer * { color: #000 !important; }
+  .surface-dark :is(h1, h2, h3), .site-footer * { color: #000 !important; }
   .brand img, .site-footer__brand img { filter: invert(1) grayscale(1); }
   .faq__answer { display: block !important; }
   a[href^='tel:']::after { content: ''; }

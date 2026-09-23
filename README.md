@@ -111,7 +111,7 @@ tokens (`--color-text-muted`, `--color-accent`), never raw palette values.
 `#faf8f5`, not white. Amber marks action (buttons, links, active states); red marks
 emergency; nothing else gets a color of its own. Amber is a fill on light surfaces; for
 amber *text* on light use `--color-accent-text` (`#8a5b0d`, 5.9:1). Dark sections are
-`.section--dark` / `.surface-dark`, which also re-point the text and border tokens, so
+`.surface-dark`, which also re-point the text and border tokens, so
 components don't need dark variants.
 
 **Type.** Archivo only, self-hosted as one variable file (weights 400–900, widths
@@ -155,7 +155,7 @@ Named for what they do. There is deliberately no generic "card".
 | `.cta-band` | Page close: reason on the left, phone number large on the right. |
 | `.form-panel`, `.field`, `.form-more` | The request form. Optional fields live in a disclosure. |
 | `.mobile-actions` | Call / Request bar on phones. |
-| `.button` | `--primary`, `--dark`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--sm`, `--block`. Minimum 48px tall. |
+| `.button` | `--primary`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--block`. Minimum 48px tall. |
 
 ## Behaviour
 

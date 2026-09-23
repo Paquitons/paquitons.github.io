@@ -81,7 +81,7 @@ ${ctaBand({
   return {
     path: '/services/',
     section: 'services',
-    title: 'Electrical Services in Spring & Houston | Iron Volt Electric | TECL #41098',
+    title: 'Electrical Services in Spring & Houston | Iron Volt Electric',
     description: 'Electrical repairs, panel upgrades, rewiring, EV chargers, lighting, generators, inspections and commercial electrical work across Spring and Greater Houston. Licensed, written estimates.',
     schema: [breadcrumbSchema(crumbs)],
     main,
