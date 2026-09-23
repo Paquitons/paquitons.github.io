@@ -171,10 +171,12 @@ Named for what they do. There is deliberately no generic "card".
   hides while the footer is on screen and while someone is typing in a form, and pads the
   page so it never covers content.
 - **Request form** (on `/contact`; every "Request service" button links to
-  `site.requestHref`) posts the same field names to the same endpoint as before. It asks
-  for one Name, which `js/form.js` splits into `firstName`/`lastName` (a single word
-  sends `lastName=(not given)`), and states consent under the button instead of a
-  checkbox, sending `terms=on` as the old ticked box did. It carries `novalidate`; `js/form.js` is the only validation, with
+  `site.requestHref`) posts to the booking endpoint. Required: name, a 10-digit phone number,
+  the street address, the service and a description of at least 10 characters; email
+  is optional but checked if given. These are the booking server's rules
+  (`lib/booking-fields.js` in ironvolt-server) with the same messages, so change both
+  together. It sends `name`, plus `firstName`/`lastName` for the older server. It
+  carries `novalidate`; `js/form.js` is the only browser-side validation, with
   messages tied to fields through `aria-describedby` and `aria-invalid`, and a summary
   in a `role="alert"` region. reCAPTCHA v3 loads on first interaction with the form,
   not on page load; its badge is hidden because the required notice is printed under

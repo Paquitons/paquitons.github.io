@@ -222,8 +222,9 @@ export function serviceIndex(services, { columns = false } = {}) {
    REQUEST FORM
    The service request form on /contact. Only what we
    need to call someone back is shown; scheduling preferences
-   are optional and tucked into a disclosure. Field names match
-   what the booking endpoint has always received.
+   are optional and tucked into a disclosure. The required fields
+   and their rules are the booking server's (lib/booking-fields.js
+   in ironvolt-server); js/form.js checks the same ones first.
    ------------------------------------------------------------ */
 export function requestForm({ id = 'request', headingId, compact = false } = {}) {
   const f = (name) => `${id}-${name}`;
@@ -234,17 +235,11 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
     ${icon('check')}
     <h2>Request received</h2>
     <p>We’ll review it and contact you within 24 hours to confirm a time for the technician visit. If it’s urgent, call <a href="${site.phoneHref}" class="tnum">${site.phone}</a> rather than waiting on us.</p>
+    <p data-form-success-copy hidden></p>
     <a class="button button--outline" href="/">Back to home</a>
   </div>
 
   <form class="form-grid" data-request-form method="POST" action="${site.embeds.bookingEndpoint}" novalidate${headingId ? ` aria-labelledby="${headingId}"` : ''}>
-    <input type="hidden" name="subject" value="New booking request, Iron Volt Electric">
-    <!-- The booking server has always received a first and last name
-         and a ticked consent box. The form asks for one name and
-         states consent in words; form.js fills these in on submit. -->
-    <input type="hidden" name="firstName">
-    <input type="hidden" name="lastName">
-    <input type="hidden" name="terms" value="on">
     <div class="hp-field" aria-hidden="true">
       <label for="${f('website')}">Website</label>
       <input type="text" id="${f('website')}" name="website" tabindex="-1" autocomplete="off">

@@ -1,10 +1,14 @@
 /* ============================================================
    IRON VOLT ELECTRIC — form.js
    Validation and submission for the service request form, used
-   on /contact. The server receives exactly the fields it always
-   has: the single Name field is split into firstName/lastName
-   and the consent line under the button stands in for the old
-   checkbox (a hidden terms=on), both just before sending.
+   on /contact.
+
+   The rules below match the booking server's own checks
+   (lib/booking-fields.js in ironvolt-server), message for
+   message: required are name, phone, address, service and a
+   description; email is optional but must look complete if
+   given. The server checks everything again, and its message is
+   shown if it still refuses. Change one, change the other.
 
    The form carries `novalidate` so messages appear next to each
    field instead of in browser tooltips. That makes this script
@@ -154,12 +158,11 @@
       setBusy(true);
       try {
         const body = new URLSearchParams(new FormData(form));
-        // One name in, first and last out. A single word goes in as the
-        // first name, with the last name marked as not given.
+        // The server reads `name`. firstName/lastName are sent as well
+        // for the older server, which required a first name.
         const [first, ...rest] = body.get('name').trim().split(/\s+/);
         body.set('firstName', first);
-        body.set('lastName', rest.join(' ') || '(not given)');
-        body.delete('name');
+        body.set('lastName', rest.join(' '));
         body.set('recaptchaToken', await getToken());
 
         const response = await fetch(form.action, {
@@ -179,6 +182,12 @@
         // Swap the form for the confirmation and move focus to it,
         // so the outcome is announced rather than silently changing
         // the page.
+        const email = body.get('email').trim();
+        const copy = success.querySelector('[data-form-success-copy]');
+        if (email && copy) {
+          copy.textContent = `A confirmation is on its way to ${email}.`;
+          copy.hidden = false;
+        }
         form.hidden = true;
         success.hidden = false;
         success.focus();
