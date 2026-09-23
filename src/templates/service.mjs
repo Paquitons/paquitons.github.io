@@ -43,12 +43,11 @@ export function servicePage(s) {
     s.intro && ((bg) => intro(s, bg)),
     s.options && ((bg) => options(s.options, bg)),
     s.feature && ((bg) => feature(s, bg)),
-    s.table && ((bg) => table(s.table, bg)),
+    s.table && s.signs && ((bg) => table(s.table, bg)),
     s.scope && ((bg) => scope(s.scope, bg)),
     s.capabilities && ((bg) => capabilities(s.capabilities, bg)),
     s.gallery && !s.feature && ((bg) => gallery(s.gallery, bg)),
     s.process && ((bg) => process(s, bg)),
-    s.safety && ((bg) => safety(s.safety, bg)),
     (bg) => local(s, bg),
     s.faq && ((bg) => faqSection({ id: 'questions', heading: 'Common questions', items: s.faq, alt: bg !== '' })),
     s.related && ((bg) => related(s, bg)),
@@ -85,11 +84,6 @@ function header(s, crumbs) {
       variant: 'emergency',
       actions: false,
       children: html`<a class="page-header__phone tnum" href="${site.phoneHref}">${icon('phone')}${site.phone}</a>`,
-      facts: [
-        ['Emergency line', 'Answered 24 hours, 7 days'],
-        ['Office hours', site.hours.short],
-        ['License', site.license.short],
-      ],
     });
   }
   return pageHeader({
@@ -98,11 +92,7 @@ function header(s, crumbs) {
     lead: s.hero.lead,
     image: s.hero.image,
     portrait: ['foyer-chandelier', 'panel-test-hands'].includes(s.hero.image?.key),
-    facts: s.hero.facts ?? [
-      ['License', site.license.short],
-      ['Estimates', 'Free and in writing'],
-      ['Emergency line', 'Answered 24/7'],
-    ],
+    facts: s.hero.facts,
   });
 }
 
@@ -117,13 +107,29 @@ function intro(s, bg) {
     ${s.emergency && html`<a class="button button--emergency button--block" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>`}
   </aside>`;
 
+  // The right-hand column carries the page's signs list or, failing
+  // that, its table, so the intro never leaves half the row empty.
+  const aside = signs || (s.table && tableBlock(s.table));
+
+  if (!aside) {
+    // Nothing to set beside the copy: heading on the left, text on the right.
+    return html`<section class="section${bg}" aria-labelledby="intro-title">
+  <div class="container split split--wide-end">
+    <h2 id="intro-title">${s.intro.heading}</h2>
+    <div class="prose">
+      ${s.intro.body.map((p, i) => html`<p${i === 0 ? ' class="lead"' : ''}>${p}</p>`)}
+    </div>
+  </div>
+</section>`;
+  }
+
   return html`<section class="section${bg}" aria-labelledby="intro-title">
-  <div class="container${signs ? ' split split--wide-start' : ''}">
+  <div class="container split split--wide-start">
     <div class="prose">
       <h2 id="intro-title">${s.intro.heading}</h2>
       ${s.intro.body.map((p, i) => html`<p${i === 0 ? ' class="lead"' : ''}>${p}</p>`)}
     </div>
-    ${signs}
+    ${aside}
   </div>
 </section>`;
 }
@@ -158,18 +164,20 @@ function feature(s, bg) {
 </section>`;
 }
 
+function tableBlock(t) {
+  return html`<div class="table-block">
+  <h3 id="table-title">${t.heading}</h3>
+  <table class="data-table" aria-labelledby="table-title">
+    <thead><tr>${t.head.map((h) => html`<th scope="col">${h}</th>`)}</tr></thead>
+    <tbody>${t.rows.map(([a, b]) => html`<tr><th scope="row">${a}</th><td>${b}</td></tr>`)}</tbody>
+  </table>
+  ${t.note && html`<p class="table-note">${t.note}</p>`}
+</div>`;
+}
+
 function table(t, bg) {
-  return html`<section class="section${bg}" aria-labelledby="table-title">
-  <div class="container split split--wide-end">
-    <header><h2 id="table-title">${t.heading}</h2></header>
-    <div>
-      <table class="data-table">
-        <thead><tr>${t.head.map((h) => html`<th scope="col">${h}</th>`)}</tr></thead>
-        <tbody>${t.rows.map(([a, b]) => html`<tr><th scope="row">${a}</th><td>${b}</td></tr>`)}</tbody>
-      </table>
-      ${t.note && html`<p class="table-note">${t.note}</p>`}
-    </div>
-  </div>
+  return html`<section class="section${bg}">
+  <div class="container">${tableBlock(t)}</div>
 </section>`;
 }
 
@@ -240,23 +248,22 @@ function process(s, bg) {
   <div class="container">
     <header class="section-head"><h2 id="process-title">${s.emergency ? 'What happens when you call' : 'How the job runs'}</h2></header>
     ${processList(s.process)}
+    ${s.safety && safetyNote(s.safety)}
   </div>
 </section>`;
 }
 
-function safety(sf, bg) {
-  return html`<section class="section section--tight${bg}" aria-labelledby="safety-title">
-  <div class="container container--narrow">
-    <div class="callout">
-      ${icon('info')}
-      <div>
-        <h2 id="safety-title">${sf.heading}</h2>
-        ${sf.body && sf.body.map((p) => html`<p>${p}</p>`)}
-        ${sf.items && html`<ul>${sf.items.map((i) => html`<li>${i}</li>`)}</ul>`}
-      </div>
-    </div>
+/* Safety notes sit under the steps, on the same left edge as the
+   rest of the page, not centered in a band of their own. */
+function safetyNote(sf) {
+  return html`<aside class="callout callout--after" aria-labelledby="safety-title">
+  ${icon('info')}
+  <div>
+    <h3 id="safety-title">${sf.heading}</h3>
+    ${sf.body && sf.body.map((p) => html`<p>${p}</p>`)}
+    ${sf.items && html`<ul>${sf.items.map((i) => html`<li>${i}</li>`)}</ul>`}
   </div>
-</section>`;
+</aside>`;
 }
 
 /* Service-area context: which towns, linked. Pulls the town

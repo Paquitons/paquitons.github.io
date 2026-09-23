@@ -77,16 +77,15 @@ ${(page.scripts ?? []).join('\n')}
    UTILITY BAR
    ------------------------------------------------------------ */
 function utilityBar() {
-  return html`<aside class="utility-bar" aria-label="Emergency line and office hours">
+  // Facts only. The phone number lives in the header, one line below;
+  // repeating it here put the same number on screen twice.
+  return html`<aside class="utility-bar" aria-label="Hours and license">
   <div class="container utility-bar__inner">
-    <a class="utility-bar__emergency" href="${site.phoneHref}">
-      <span>24/7 emergency line</span>
-      <strong class="tnum">${site.phone}</strong>
-    </a>
+    <a class="utility-bar__emergency" href="${site.phoneHref}">Emergency service, 24 hours a day</a>
     <ul class="utility-bar__facts">
-      <li>Office hours ${site.hours.short}</li>
+      <li>Office ${site.hours.short}</li>
       <li>${site.license.short}</li>
-      <li>Serving Spring &amp; Greater Houston</li>
+      <li>Spring &amp; Greater Houston</li>
     </ul>
   </div>
 </aside>`;
@@ -100,7 +99,7 @@ function utilityBar() {
    ------------------------------------------------------------ */
 function header(page) {
   const current = (section) => (page.section === section ? ' aria-current="page"' : '');
-  const serviceLink = (s) => html`<li><a class="mega__link" href="/services/${s.slug}">${s.name}<span>${s.summary}</span></a></li>`;
+  const serviceLink = (s) => html`<li><a class="mega__link" href="/services/${s.slug}">${s.name}</a></li>`;
 
   return html`<header class="site-header">
   <div class="container site-header__inner">
@@ -116,22 +115,22 @@ function header(page) {
             ${icon('chevron')}<span class="visually-hidden">Show all services</span>
           </button>
           <div class="mega" id="services-menu">
-            <div class="mega__col">
-              <p class="mega__label">For your home</p>
+            <div>
+              <p class="mega__label">Home</p>
               <ul class="mega__list">
                 ${residentialServices.filter((s) => s.group === 'residential').map(serviceLink)}
               </ul>
             </div>
-            <div class="mega__col">
-              <p class="mega__label">For your business</p>
+            <div>
+              <p class="mega__label">Business</p>
               <ul class="mega__list">
                 ${serviceLink(commercialService)}
                 ${serviceLink(serviceBySlug.inspections)}
               </ul>
-              <p class="mega__label mt-6">Any time</p>
-              <ul class="mega__list">
-                <li><a class="mega__link mega__link--emergency" href="/services/${emergencyService.slug}">24/7 emergency service<span>${site.phone}, answered day and night</span></a></li>
-              </ul>
+            </div>
+            <div class="mega__foot">
+              <a class="mega__link" href="/services/${emergencyService.slug}">24/7 emergency service</a>
+              <a class="mega__link mega__link--all" href="/services/">All services</a>
             </div>
           </div>
         </li>
@@ -175,76 +174,69 @@ const socialIcons = {
 
 function footer() {
   const year = new Date().getFullYear();
-  const townPages = areas.map((a) => html`<li><a href="/service-area/${a.slug}">${a.name}</a></li>`);
   const socials = site.social.filter((s) => socialIcons[s.name]);
+  const link = (href, label) => html`<li><a href="${href}">${label}</a></li>`;
 
   return html`<footer class="site-footer">
   <div class="container">
-    <div class="site-footer__top">
+    <div class="site-footer__lead">
       <div class="site-footer__brand">
-        <picture><source type="image/webp" srcset="/images/opt/logo.webp"><img src="/images/IronVoltElectricFinal2.png" alt="${site.name}" width="440" height="143" loading="lazy"></picture>
+        <a href="/" aria-label="${site.name}, home">
+          <picture><source type="image/webp" srcset="/images/opt/logo.webp"><img src="/images/IronVoltElectricFinal2.png" alt="${site.name}" width="440" height="143" loading="lazy"></picture>
+        </a>
         <p class="site-footer__tagline">${site.tagline}</p>
-        <p>Licensed electrical contractor for homes and businesses in Spring and across Greater Houston.</p>
-        <div class="site-footer__contact">
-          <a class="site-footer__phone tnum" href="${site.phoneHref}">${site.phone}</a>
-          <a class="site-footer__email" href="mailto:${site.email}">${site.email}</a>
-        </div>
-        <dl class="site-footer__license">
-          <dt>Texas Electrical Contractor License</dt>
-          <dd>${site.license.short} · <a href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Verify with TDLR</a></dd>
-        </dl>
       </div>
-
-      <nav class="site-footer__nav" aria-label="Footer">
-        <div class="footer-col">
-          <h2 class="footer-col__title">Residential</h2>
-          <ul>
-            ${residentialServices.filter((s) => s.group === 'residential').map((s) => html`<li><a href="/services/${s.slug}">${s.name}</a></li>`)}
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h2 class="footer-col__title">Commercial</h2>
-          <ul>
-            <li><a href="/services/commercial">Commercial electrical</a></li>
-            <li><a href="/services/inspections">Inspections &amp; code corrections</a></li>
-            <li><a href="/services/emergency">24/7 emergency service</a></li>
-            <li><a href="/services/">All services</a></li>
-          </ul>
-          <h2 class="footer-col__title mt-6">Hours</h2>
-          <dl>
-            <div><dt>Office</dt><dd>${site.hours.short}</dd></div>
-            <div><dt>Emergency line</dt><dd>24 hours, 7 days</dd></div>
-          </dl>
-        </div>
-        <div class="footer-col">
-          <h2 class="footer-col__title">Service area</h2>
-          <ul>
-            ${townPages}
-            <li><a href="/service-area/">All of Greater Houston</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h2 class="footer-col__title">Company</h2>
-          <ul>
-            <li><a href="/about">About</a></li>
-            <li><a href="/reviews">Reviews</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/booking">Request service</a></li>
-            <li><a href="${site.reviewUrl}" target="_blank" rel="noopener noreferrer">Leave a review</a></li>
-          </ul>
-        </div>
-      </nav>
+      <p class="site-footer__about">Licensed electrical contractor for homes and businesses in Spring and across Greater Houston.</p>
     </div>
 
+    <nav class="site-footer__nav" aria-label="Footer">
+      <div class="footer-col">
+        <h2 class="footer-col__title">Residential</h2>
+        <ul>${residentialServices.filter((s) => s.group === 'residential').map((s) => link(`/services/${s.slug}`, s.name))}</ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-col__title">Commercial</h2>
+        <ul>
+          ${link('/services/commercial', 'Commercial electrical')}
+          ${link('/services/inspections', 'Inspections &amp; code corrections')}
+          ${link('/services/emergency', '24/7 emergency service')}
+          ${link('/services/', 'All services')}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-col__title">Service area</h2>
+        <ul>
+          ${areas.map((a) => link(`/service-area/${a.slug}`, a.name))}
+          ${link('/service-area/', 'All areas')}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-col__title">Company</h2>
+        <ul>
+          ${link('/about', 'About')}
+          ${link('/reviews', 'Reviews')}
+          ${link('/contact', 'Contact')}
+          ${link('/booking', 'Request service')}
+          ${link('/privacy', 'Privacy policy')}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2 class="footer-col__title">Contact</h2>
+        <dl class="footer-facts">
+          <div><dt>Phone and text</dt><dd><a class="tnum" href="${site.phoneHref}">${site.phone}</a></dd></div>
+          <div class="footer-facts__wide"><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
+          <div><dt>Office</dt><dd>${site.hours.short}</dd></div>
+          <div><dt>Emergency line</dt><dd>24 hours, 7 days</dd></div>
+          <div><dt>License</dt><dd>${site.license.short} · <a href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Verify<span class="visually-hidden"> with TDLR (opens in a new tab)</span></a></dd></div>
+        </dl>
+      </div>
+    </nav>
+
     <div class="site-footer__bottom">
-      <p>&copy; ${year} ${site.legalName}. ${site.license.short}.</p>
+      <p>&copy; ${year} ${site.legalName}. ${site.license.full}.</p>
       <ul class="social-links">
         ${socials.map((s) => html`<li><a href="${s.href}" target="_blank" rel="noopener noreferrer" aria-label="${site.name} on ${s.name}">${socialIcons[s.name]}</a></li>`)}
       </ul>
-      <nav class="site-footer__legal" aria-label="Legal">
-        <a href="/privacy">Privacy policy</a>
-        <a href="/sitemap.xml">Sitemap</a>
-      </nav>
     </div>
   </div>
 </footer>`;

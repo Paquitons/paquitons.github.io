@@ -169,7 +169,11 @@ export function reviewsEmbed() {
 </div>`;
 }
 
-export function profileLinks() {
+export function profileLinks({ inline = false } = {}) {
+  if (inline) {
+    const l = (name) => html`<a href="${site.social.find((s) => s.name === name).href}" target="_blank" rel="noopener noreferrer">${name}<span class="visually-hidden"> (opens in a new tab)</span></a>`;
+    return html`${l('Yelp')}, ${l('Nextdoor')} and ${l('Facebook')}`;
+  }
   const links = [
     { label: 'Leave a Google review', href: site.reviewUrl },
     { label: 'Yelp', href: site.social.find((s) => s.name === 'Yelp').href },

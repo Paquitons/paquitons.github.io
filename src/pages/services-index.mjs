@@ -40,12 +40,6 @@ ${pageHeader({
     crumbs,
     title: 'Electrical services',
     lead: 'Repairs, upgrades and installations for homes and businesses across Spring and Greater Houston. Every job is done to the National Electrical Code, permitted where it needs to be, and priced in writing first.',
-    facts: [
-      ['License', site.license.short],
-      ['Coverage', 'Licensed, bonded & insured'],
-      ['Estimates', 'Free and in writing'],
-      ['Emergency line', 'Answered 24/7'],
-    ],
   })}
 
 <section class="section" aria-labelledby="residential-title" id="residential">
