@@ -42,7 +42,7 @@ ${pageHeader({
     </div>
     <aside class="aside-panel" aria-labelledby="nearby-title">
       <h2 id="nearby-title">Also nearby</h2>
-      <ul class="tick-list">
+      <ul class="rule-list">
         ${a.nearby.map((name) => {
           const page = Object.values(areaBySlug).find((x) => x.name === name);
           return page ? html`<li><a href="/service-area/${page.slug}">${name}</a></li>` : html`<li>${name}</li>`;

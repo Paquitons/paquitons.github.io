@@ -26,7 +26,6 @@ ${pageHeader({
   <div class="container booking-layout">
     <div class="form-panel" id="request">
       <h2 class="form-panel__title" id="request-title">Request service</h2>
-      <p class="form-panel__intro">Tell us what you need and where. Fields marked <span aria-hidden="true">*</span><span class="visually-hidden">as required</span> are all we need to call you back.</p>
       ${requestForm({ id: 'contact', headingId: 'request-title' })}
     </div>
 

@@ -68,7 +68,7 @@ ${credentials()}
         <div class="service-feature__body">
           <h3 class="service-feature__title"><a href="/services/panel-upgrades">Panel upgrades and replacement</a></h3>
           <p>Upgrading an undersized or aging panel is one of the most important electrical jobs a house gets. We start with a load calculation, and we’ll tell you if you don’t need one.</p>
-          <ul class="tick-list">
+          <ul class="rule-list">
             <li>100A to 200A service upgrades</li>
             <li>Federal Pacific and Zinsco panel replacement</li>
             <li>Permit, inspection and utility coordination handled</li>
@@ -102,7 +102,7 @@ ${credentials()}
     <div class="feature-band__body">
       <h2 id="commercial-title">Electrical contracting for businesses</h2>
       <p>Retail, offices, warehouses and restaurants across ${site.counties}. We plan shutdowns around your hours and keep them short.</p>
-      <ul class="tick-list tick-list--columns">
+      <ul class="rule-list rule-list--columns">
         <li>Tenant build-outs</li>
         <li>200A to 400A and three-phase service</li>
         <li>LED, warehouse and site lighting</li>
