@@ -216,6 +216,7 @@ function footer() {
           ${link('/reviews', 'Reviews')}
           ${link('/contact', 'Contact')}
           ${link(site.requestHref, 'Request service')}
+          ${link('/branding', 'Brand guidelines')}
           ${link('/privacy', 'Privacy policy')}
         </ul>
       </div>

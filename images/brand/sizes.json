@@ -1,0 +1,74 @@
+{
+  "logo-primary": [
+    1000,
+    296
+  ],
+  "logo-filled": [
+    1000,
+    296
+  ],
+  "logo-light": [
+    1000,
+    296
+  ],
+  "logo-open": [
+    1000,
+    327
+  ],
+  "logo-open-gold": [
+    1000,
+    327
+  ],
+  "wordmark": [
+    1000,
+    259
+  ],
+  "wordmark-filled": [
+    1000,
+    259
+  ],
+  "badge": [
+    1000,
+    872
+  ],
+  "badge-slim": [
+    1000,
+    872
+  ],
+  "badge-outline": [
+    1000,
+    873
+  ],
+  "badge-square": [
+    1000,
+    872
+  ],
+  "bolt": [
+    328,
+    999
+  ],
+  "card-front": [
+    1083,
+    633
+  ],
+  "card-back": [
+    1083,
+    633
+  ],
+  "type-tagline": [
+    380,
+    46
+  ],
+  "type-electric": [
+    326,
+    44
+  ],
+  "type-wordmark": [
+    560,
+    137
+  ],
+  "type-futura": [
+    532,
+    84
+  ]
+}

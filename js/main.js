@@ -9,6 +9,7 @@
    2. Mobile action bar visibility
    3. Lazy third-party embeds (reviews)
    4. Chat widget position
+   5. Copy buttons (brand guidelines)
 
    Deliberately not here: scroll-reveal animation, carousels,
    header effects on scroll.
@@ -187,4 +188,22 @@
   new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
   phone.addEventListener('change', () => containers.forEach(pin));
   scan();
+
+  /* ---------------------------------------------------------
+     5. COPY BUTTONS
+     [data-copy] puts its value on the clipboard and says so
+     in the button for a moment.
+     --------------------------------------------------------- */
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-copy]');
+    if (!btn || !navigator.clipboard) return;
+    const label = btn.textContent;
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      btn.textContent = 'Copied';
+    } catch {
+      btn.textContent = 'Copy failed';
+    }
+    setTimeout(() => { btn.textContent = label; }, 1500);
+  });
 })();
