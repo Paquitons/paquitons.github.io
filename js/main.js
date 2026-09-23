@@ -1,179 +1,190 @@
 /* ============================================================
    IRON VOLT ELECTRIC — main.js
+   Loaded on every page, deferred. Everything here enhances
+   markup that already works without it: links are links, the
+   FAQ is native <details>, and the phone number is always in
+   the page.
 
-   Mobile navigation, FAQ accordion, service-card slideshows.
+   1. Navigation drawer and services disclosure
+   2. Mobile action bar visibility
+   3. Lazy third-party embeds (reviews)
+   4. Chat widget position
 
-   Deliberately not here any more:
-   - Scroll-reveal observer. Every section header, grid and card
-     carried a .reveal class, so the whole site faded up as you
-     scrolled and content that was already on screen at load
-     started invisible.
-   - Header shadow-on-scroll. It ran on every scroll event to
-     move a shadow's alpha from 0.30 to 0.35, which nobody can
-     see. The header now uses one static border.
+   Deliberately not here: scroll-reveal animation, carousels,
+   header effects on scroll.
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+  const desktopNav = window.matchMedia('(min-width: 75em)');
+  const phone = window.matchMedia('(max-width: 44.99em)');
 
   /* ---------------------------------------------------------
-     MOBILE NAVIGATION
+     1. NAVIGATION
+     Both toggles are disclosure buttons: aria-expanded is the
+     state, CSS reads it. Escape closes whatever is open and
+     returns focus to the button that opened it.
      --------------------------------------------------------- */
-  const toggle = document.querySelector('.menu-toggle');
-  const menu   = document.querySelector('.nav-menu');
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('site-nav');
+  const menuToggle = document.querySelector('.site-nav__toggle');
+  const menuItem = menuToggle?.closest('.site-nav__item');
 
-  if (toggle && menu) {
-    const setMenu = (open) => {
-      menu.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  const setNav = (open) => {
+    if (!navToggle || !nav) return;
+    nav.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+  };
+  const setMenu = (open) => menuToggle?.setAttribute('aria-expanded', String(open));
+
+  navToggle?.addEventListener('click', () => {
+    setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  menuToggle?.addEventListener('click', () => {
+    setMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (menuToggle?.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menuToggle.focus();
+    } else if (navToggle?.getAttribute('aria-expanded') === 'true') {
+      setNav(false);
+      navToggle.focus();
+    }
+  });
+
+  // On desktop, the services panel closes when focus or a click
+  // lands anywhere outside it.
+  document.addEventListener('click', (e) => {
+    if (desktopNav.matches && menuItem && !menuItem.contains(e.target)) setMenu(false);
+  });
+  menuItem?.addEventListener('focusout', (e) => {
+    if (desktopNav.matches && !menuItem.contains(e.relatedTarget)) setMenu(false);
+  });
+
+  // Crossing the breakpoint resets both, so nothing is left open
+  // behind a layout that no longer shows its toggle.
+  desktopNav.addEventListener('change', () => { setNav(false); setMenu(false); });
+
+  /* ---------------------------------------------------------
+     2. MOBILE ACTION BAR
+     Shown once the page header's own call and request buttons
+     have scrolled out of view; hidden again while the footer
+     (which has the same links) is on screen, and while someone
+     is typing in a form, when the keyboard needs the space.
+     --------------------------------------------------------- */
+  const bar = document.querySelector('[data-mobile-actions]');
+  if (bar && 'IntersectionObserver' in window) {
+    const firstSection = document.querySelector('main > section');
+    const footer = document.querySelector('.site-footer');
+    let pastTop = false;
+    let atFooter = false;
+    let typing = false;
+
+    const update = () => {
+      const show = pastTop && !atFooter && !typing;
+      bar.classList.toggle('is-visible', show);
+      bar.toggleAttribute('inert', !show);
+      document.body.style.paddingBottom = show && phone.matches ? `${bar.offsetHeight}px` : '';
     };
 
-    toggle.addEventListener('click', () => {
-      setMenu(!menu.classList.contains('open'));
+    if (firstSection) {
+      new IntersectionObserver(([entry]) => { pastTop = !entry.isIntersecting; update(); })
+        .observe(firstSection);
+    } else {
+      pastTop = true;
+    }
+    if (footer) {
+      new IntersectionObserver(([entry]) => { atFooter = entry.isIntersecting; update(); })
+        .observe(footer);
+    }
+    document.addEventListener('focusin', (e) => {
+      typing = e.target.matches('input, textarea, select');
+      update();
     });
-
-    menu.addEventListener('click', (e) => {
-      if (e.target.closest('a')) setMenu(false);
-    });
-
-    // Escape closes the menu and returns focus to the button.
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.classList.contains('open')) {
-        setMenu(false);
-        toggle.focus();
-      }
-    });
-
-    // Reset when resizing up to the full nav, so the menu can't stay
-    // stuck open behind a layout that no longer shows a toggle.
-    // Must match the breakpoint that reveals .menu-toggle in the CSS.
-    window.matchMedia('(min-width: 861px)').addEventListener('change', (e) => {
-      if (e.matches) setMenu(false);
-    });
+    document.addEventListener('focusout', () => { typing = false; update(); });
+    phone.addEventListener('change', update);
+    update();
   }
 
   /* ---------------------------------------------------------
-     FAQ ACCORDION
-     The button owns aria-expanded; CSS keys the open state off
-     that attribute, so markup and presentation cannot drift.
+     3. LAZY EMBEDS
+     A third-party script is attached only when its container
+     comes within a screen of the viewport. The reviews widget
+     alone is heavier than the rest of the page.
      --------------------------------------------------------- */
-  const questions = document.querySelectorAll('.faq-q');
-
-  questions.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-      // One answer open at a time, within this FAQ list only.
-      const list = btn.closest('.faq');
-      if (list) {
-        list.querySelectorAll('.faq-q[aria-expanded="true"]').forEach((other) => {
-          if (other !== btn) other.setAttribute('aria-expanded', 'false');
-        });
-      }
-
-      btn.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  /* ---------------------------------------------------------
-     SLIDESHOWS
-     Dots are rendered as real buttons with aria-current so they
-     are reachable by keyboard and meaningful to assistive tech.
-     Auto-advance pauses on hover and on focus, and never starts
-     for visitors who have asked for reduced motion.
-     --------------------------------------------------------- */
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  document.querySelectorAll('.slideshow').forEach((show) => {
-    const track  = show.querySelector('.slideshow-track');
-    const slides = show.querySelectorAll('img');
-    const dots   = show.querySelector('.slide-dots');
-    const total  = slides.length;
-    if (!track || total < 2) return;
-
-    let index = 0;
-    let timer = null;
-
-    // Build one dot per slide.
-    const buttons = [];
-    if (dots) {
-      for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Show image ${i + 1} of ${total}`);
-        dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
-        dot.addEventListener('click', () => { goTo(i); stop(); });
-        dots.appendChild(dot);
-        buttons.push(dot);
-      }
-    }
-
-    function goTo(next) {
-      index = ((next % total) + total) % total;
-      track.style.transform = `translateX(-${index * 100}%)`;
-      buttons.forEach((dot, i) => {
-        dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+  const embeds = document.querySelectorAll('[data-lazy-embed]');
+  const attach = (el) => {
+    const s = document.createElement('script');
+    s.src = el.dataset.lazyEmbed;
+    s.defer = true;
+    document.body.appendChild(s);
+    // The widget counts as loaded once it has actually drawn
+    // something. If it hasn't after a while (blocked, offline, or
+    // not serving this domain), the reserved space collapses and
+    // the fallback link to Google is all that remains.
+    const target = el.firstElementChild;
+    if (target && 'ResizeObserver' in window) {
+      const ro = new ResizeObserver(() => {
+        if (target.offsetHeight > 40) { el.classList.add('is-loaded'); ro.disconnect(); }
       });
+      ro.observe(target);
+      setTimeout(() => {
+        if (!el.classList.contains('is-loaded')) el.classList.add('is-unavailable');
+      }, 10000);
     }
-
-    function start() {
-      if (reduceMotion.matches || timer) return;
-      timer = setInterval(() => goTo(index + 1), 5000);
+  };
+  if (embeds.length) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          io.unobserve(entry.target);
+          attach(entry.target);
+        });
+      }, { rootMargin: '100% 0px' });
+      embeds.forEach((el) => io.observe(el));
+    } else {
+      embeds.forEach(attach);
     }
-    function stop() {
-      clearInterval(timer);
-      timer = null;
-    }
-
-    show.querySelector('.slide-prev')?.addEventListener('click', () => { goTo(index - 1); stop(); });
-    show.querySelector('.slide-next')?.addEventListener('click', () => { goTo(index + 1); stop(); });
-
-    show.addEventListener('mouseenter', stop);
-    show.addEventListener('mouseleave', start);
-    show.addEventListener('focusin', stop);
-
-    // Stop cycling entirely once the card scrolls out of view.
-    new IntersectionObserver((entries) => {
-      entries[0].isIntersecting ? start() : stop();
-    }, { threshold: 0.4 }).observe(show);
-  });
+  }
 
   /* ---------------------------------------------------------
-     CHAT WIDGET POSITION
+     4. CHAT WIDGET POSITION
      The Rosie widget fixes itself to the bottom-right, where it
-     covers the sticky mobile CTA. The element that actually
-     carries the fixed position lives inside the widget's open
-     shadow root, so styling the <rosie-widget> host does
-     nothing; we have to reach in and pin the real container.
+     covers the mobile action bar. The element that carries the
+     fixed position lives inside the widget's open shadow root,
+     so styling the <rosie-widget> host does nothing; we reach in
+     and pin the real container above the bar on phones.
      --------------------------------------------------------- */
-  const isPhone = window.matchMedia('(max-width: 768px)');
   const watched = new WeakSet();
 
   function pin(container) {
-    if (isPhone.matches) container.style.setProperty('bottom', '84px', 'important');
+    if (phone.matches) container.style.setProperty('bottom', '84px', 'important');
     else container.style.removeProperty('bottom');
   }
 
   function watch(host) {
     if (watched.has(host) || !host.shadowRoot) return;
     watched.add(host);
-    const root  = host.shadowRoot;
+    const root = host.shadowRoot;
     const apply = () => {
       const container = root.querySelector('.widget-container');
       if (container) pin(container);
     };
     apply();
     new MutationObserver(apply).observe(root, {
-      childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style']
+      childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'],
     });
   }
 
-  function scan() {
-    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watch);
-  }
-
+  const scan = () => document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach(watch);
   new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
-  isPhone.addEventListener('change', scan);
+  phone.addEventListener('change', () => {
+    document.querySelectorAll('rosie-widget, rosie-widget-minimized').forEach((host) => {
+      host.shadowRoot?.querySelector('.widget-container') && pin(host.shadowRoot.querySelector('.widget-container'));
+    });
+  });
   scan();
-
-});
+})();
