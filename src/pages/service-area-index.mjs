@@ -14,7 +14,7 @@ export function serviceAreaIndexPage() {
 ${pageHeader({
     crumbs,
     title: 'Service area',
-    lead: `Based in Spring and working across Greater Houston: ${site.counties}, residential and commercial.`,
+    lead: `Residential and commercial electrical work across Greater Houston, in ${site.counties}. We’re based in ${site.base}.`,
   })}
 
 <section class="section" aria-labelledby="towns-title">
@@ -78,8 +78,8 @@ ${ctaBand({
   return {
     path: '/service-area/',
     section: 'area',
-    title: 'Service Area | Spring, The Woodlands, Cypress, Katy & Greater Houston | Iron Volt Electric',
-    description: 'Iron Volt Electric serves Spring, The Woodlands, Conroe, Cypress, Katy, Humble, Tomball and the rest of Greater Houston. Licensed electrician, TECL #41098.',
+    title: 'Service Area | Greater Houston Electrician | Iron Volt Electric',
+    description: 'Iron Volt Electric serves Greater Houston, including The Woodlands, Conroe, Cypress, Katy, Humble, Tomball and Spring. Licensed electrician, TECL #41098.',
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

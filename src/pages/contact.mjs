@@ -7,7 +7,7 @@
 
 import { html, icon } from '../lib/html.mjs';
 import { site } from '../site.mjs';
-import { pageHeader, processList, requestForm } from '../components.mjs';
+import { pageHeader, requestForm } from '../components.mjs';
 import { breadcrumbSchema } from '../schema.mjs';
 
 export function contactPage(assets) {
@@ -30,24 +30,25 @@ ${pageHeader({
       ${requestForm({ id: 'contact', headingId: 'request-title' })}
     </div>
 
-    <aside class="booking-layout__aside" aria-label="Other ways to reach us">
-      <div class="aside-panel">
-        <h2>Call or text</h2>
+    <aside class="booking-layout__aside contact-aside" aria-label="Other ways to reach us">
+      <div class="contact-aside__block">
+        <h2 class="contact-aside__title">Call or text</h2>
         <a class="button button--primary button--block button--lg tnum" href="${site.phoneHref}">${icon('phone')}${site.phone}</a>
-        <p class="note mt-4">For an emergency, call rather than use the form. The line is answered 24/7. <a href="${site.smsHref}">Send a text</a> for anything else.</p>
+        <p class="contact-aside__note">For an emergency, call rather than use the form. The line is answered 24/7.</p>
         <dl class="detail-list detail-list--stacked">
           <div><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
-          <div><dt>Office</dt><dd>${site.hours.days}, ${site.hours.time}</dd></div>
-          <div><dt>Area</dt><dd>Spring and Greater Houston. <a href="/service-area/">Towns we cover</a></dd></div>
+          <div><dt>Office hours</dt><dd>${site.hours.days}, ${site.hours.time}</dd></div>
+          <div><dt>Service area</dt><dd>Greater Houston · <a href="/service-area/">towns we cover</a></dd></div>
+          <div><dt>Based in</dt><dd>${site.base}</dd></div>
         </dl>
       </div>
-      <div class="aside-panel">
-        <h2>What happens next</h2>
-        ${processList([
-          { title: 'We call you back', body: 'We confirm we cover the work and your address, and agree a time.' },
-          { title: 'A technician visits', body: 'They look at the job in person.' },
-          { title: 'You get the price in writing', body: 'Free, with no obligation to go ahead.' },
-        ])}
+      <div class="contact-aside__block">
+        <h2 class="contact-aside__title">What happens next</h2>
+        <ol class="next-steps">
+          <li><span><strong>We call you back</strong> to confirm the address and agree a time.</span></li>
+          <li><span><strong>A technician visits</strong> and looks at the job in person.</span></li>
+          <li><span><strong>You get the price in writing</strong>, free, with no obligation to go ahead.</span></li>
+        </ol>
       </div>
     </aside>
   </div>
@@ -57,8 +58,8 @@ ${pageHeader({
   return {
     path: '/contact',
     section: 'contact',
-    title: 'Contact & Request Service | Iron Volt Electric | Spring & Houston',
-    description: `Call or text ${site.phone}, email ${site.email}, or request service online. Licensed electrician serving Spring and Greater Houston. Free written estimates.`,
+    title: 'Contact & Request Service | Iron Volt Electric | Greater Houston',
+    description: `Call or text ${site.phone}, email ${site.email}, or request service online. Licensed electrician serving Greater Houston. Free written estimates.`,
     schema: [breadcrumbSchema(crumbs)],
     scripts: [`<script src="${assets.form}" defer></script>`],
     main,

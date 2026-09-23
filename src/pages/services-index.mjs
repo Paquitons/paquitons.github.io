@@ -39,7 +39,7 @@ export function servicesIndexPage() {
 ${pageHeader({
     crumbs,
     title: 'Electrical services',
-    lead: 'Repairs, upgrades and installations for homes and businesses across Spring and Greater Houston. Every job is done to the National Electrical Code, permitted where it needs to be, and priced in writing first.',
+    lead: 'Repairs, upgrades and installations for homes and businesses across Greater Houston. Every job is done to the National Electrical Code, permitted where it needs to be, and priced in writing first.',
   })}
 
 <section class="section" aria-labelledby="residential-title" id="residential">
@@ -77,8 +77,8 @@ ${ctaBand({
   return {
     path: '/services/',
     section: 'services',
-    title: 'Electrical Services in Spring & Houston | Iron Volt Electric',
-    description: 'Electrical repairs, panel upgrades, rewiring, EV chargers, lighting, generators, inspections and commercial electrical work across Spring and Greater Houston. Licensed, written estimates.',
+    title: 'Electrical Services in Greater Houston | Iron Volt Electric',
+    description: 'Electrical repairs, panel upgrades, rewiring, EV chargers, lighting, generators, inspections and commercial electrical work across Greater Houston. Licensed, written estimates.',
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

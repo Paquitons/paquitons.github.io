@@ -84,7 +84,7 @@ function utilityBar() {
     <a class="utility-bar__emergency" href="${site.phoneHref}">Emergency service, 24 hours a day</a>
     <ul class="utility-bar__facts">
       <li>Office ${site.hours.short}</li>
-      <li>Spring &amp; Greater Houston</li>
+      <li>Serving Greater Houston</li>
     </ul>
   </div>
 </aside>`;
