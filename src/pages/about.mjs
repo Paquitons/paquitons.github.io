@@ -63,8 +63,8 @@ ${pageHeader({
         <p>You get a written estimate before work begins. If you don’t need the expensive option, we say so. No upselling and no vague numbers.</p>
       </li>
       <li class="focus-list__item">
-        <h3>Two decades of Houston houses</h3>
-        <p>Knob-and-tube, aluminum wiring, modern smart systems, storm damage. Our lead electrician has worked on all of it, here, for over twenty years.</p>
+        <h3>${site.experience} of Houston houses</h3>
+        <p>Knob-and-tube, aluminum wiring, modern smart systems, storm damage. We’ve worked on all of it, here, for ${site.experience}.</p>
       </li>
       <li class="focus-list__item">
         <h3>Respect for your time</h3>
@@ -99,8 +99,8 @@ ${ctaBand({
   return {
     path: '/about',
     section: 'about',
-    title: 'About Iron Volt Electric | Licensed Electrical Contractor, Greater Houston',
-    description: `About Iron Volt Electric LLC: a licensed electrical contractor serving Greater Houston, based in Spring, TX, and founded in 2026 on ${site.experience} of field experience. TECL #41098, bonded and insured.`,
+    title: 'About | Licensed Electrical Contractor in Greater Houston | Iron Volt Electric',
+    description: `Iron Volt Electric LLC: a licensed electrical contractor serving Greater Houston, based in Spring, TX, with ${site.experience} of field experience. TECL #41098.`,
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

@@ -16,10 +16,10 @@ export const areas = [
     slug: 'spring',
     name: 'Spring',
     meta: {
-      title: 'Electrician in Spring, TX | Iron Volt Electric | (832) 610-8081',
+      title: 'Electrician in Spring, TX | Iron Volt Electric',
       description: 'Licensed electrician in Spring, TX. Panel upgrades, repairs, rewiring, EV chargers and generators for homes and businesses. Emergency line answered 24/7. TECL #41098.',
     },
-    lead: 'Spring is home base. Repairs, panel upgrades, EV chargers, generators and commercial work from Old Town Spring to the Grand Parkway, with an emergency line answered 24/7.',
+    lead: 'Repairs, panel upgrades, EV chargers, generators and commercial work from Old Town Spring to the Grand Parkway, with an emergency line answered 24/7.',
     intro: [
       'Spring covers a lot of ground and a lot of different houses: subdivisions from the 1970s and 80s off FM 1960 and Kuykendahl, newer construction up toward the Grand Parkway, and older properties around Old Town Spring. Each era comes with its own electrical habits, and we know what to look for in all of them.',
       'Much of Spring sits outside any city limits, so the permitting picture is different from a job inside Houston. We confirm what applies to your address before we quote, and the work is done to the National Electrical Code either way.',

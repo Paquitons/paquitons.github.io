@@ -45,7 +45,7 @@ ${ctaBand({
   return {
     path: '/reviews',
     section: 'reviews',
-    title: 'Customer Reviews | Iron Volt Electric | Greater Houston Electrician',
+    title: 'Customer Reviews | Iron Volt Electric',
     description: 'Google reviews from Iron Volt Electric customers across Greater Houston. Licensed electrician, TECL #41098.',
     schema: [breadcrumbSchema(crumbs)],
     main,

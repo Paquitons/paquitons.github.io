@@ -38,7 +38,6 @@ ${pageHeader({
           <div><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
           <div><dt>Office hours</dt><dd>${site.hours.days}, ${site.hours.time}</dd></div>
           <div><dt>Service area</dt><dd>Greater Houston · <a href="/service-area/">towns we cover</a></dd></div>
-          <div><dt>Based in</dt><dd>${site.base}</dd></div>
         </dl>
       </div>
       <div class="contact-aside__block">
@@ -57,7 +56,7 @@ ${pageHeader({
   return {
     path: '/contact',
     section: 'contact',
-    title: 'Contact & Request Service | Iron Volt Electric | Greater Houston',
+    title: 'Contact & Request Service | Iron Volt Electric',
     description: `Call or text ${site.phone}, email ${site.email}, or request service online. Licensed electrician serving Greater Houston. Free written estimates.`,
     schema: [breadcrumbSchema(crumbs)],
     scripts: [`<script src="${assets.form}" defer></script>`],

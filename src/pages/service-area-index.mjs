@@ -14,7 +14,7 @@ export function serviceAreaIndexPage() {
 ${pageHeader({
     crumbs,
     title: 'Service area',
-    lead: `Residential and commercial electrical work across Greater Houston, in ${site.counties}. We’re based in ${site.base}.`,
+    lead: `Residential and commercial electrical work across Greater Houston, in ${site.counties}.`,
   })}
 
 <section class="section" aria-labelledby="towns-title">
@@ -34,7 +34,7 @@ ${pageHeader({
   <div class="container">
     <header class="section-head section-head--split">
       <h2 id="regions-title">Towns by region</h2>
-      <p class="section-head__aside">We serve homes and businesses in all of these, and everywhere between them. Don’t see yours? Call <a class="link-arrow" href="${site.phoneHref}">${site.phone}</a> and ask.</p>
+      <p class="section-head__aside">We serve homes and businesses in all of these, and everywhere between them. Don’t see yours? Call <a class="tnum" href="${site.phoneHref}">${site.phone}</a> and ask.</p>
     </header>
     <div class="region-grid">
       ${regions.map((r) => html`<div class="region">

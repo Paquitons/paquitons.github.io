@@ -23,8 +23,7 @@
 import { html, icon, picture } from '../lib/html.mjs';
 import { site } from '../site.mjs';
 import { serviceBySlug } from '../data/services.mjs';
-import { areas } from '../data/areas.mjs';
-import { pageHeader, processList, faqSection, ctaBand } from '../components.mjs';
+import { pageHeader, processList, faqSection, ctaBand, townLinks } from '../components.mjs';
 import { serviceSchema, breadcrumbSchema, faqSchema } from '../schema.mjs';
 
 export function servicePage(s) {
@@ -233,11 +232,8 @@ function waitSteps(s, bg) {
   return html`<section class="section section--tight${bg}" aria-labelledby="wait-title">
   <div class="container">
     <div class="callout callout--emergency">
-      ${icon('alert')}
-      <div>
-        <h2 id="wait-title">${s.steps.heading}</h2>
-        <ol class="safety-steps">${s.steps.items.map((i) => html`<li>${i}</li>`)}</ol>
-      </div>
+      <h2 id="wait-title">${s.steps.heading}</h2>
+      <ol class="safety-steps">${s.steps.items.map((i) => html`<li>${i}</li>`)}</ol>
     </div>
   </div>
 </section>`;
@@ -257,21 +253,15 @@ function process(s, bg) {
    rest of the page, not centered in a band of their own. */
 function safetyNote(sf) {
   return html`<aside class="callout callout--after" aria-labelledby="safety-title">
-  ${icon('info')}
-  <div>
-    <h3 id="safety-title">${sf.heading}</h3>
-    ${sf.body && sf.body.map((p) => html`<p>${p}</p>`)}
-    ${sf.items && html`<ul>${sf.items.map((i) => html`<li>${i}</li>`)}</ul>`}
-  </div>
+  <h3 id="safety-title">${sf.heading}</h3>
+  ${sf.body && sf.body.map((p) => html`<p>${p}</p>`)}
+  ${sf.items && html`<ul>${sf.items.map((i) => html`<li>${i}</li>`)}</ul>`}
 </aside>`;
 }
 
-/* Service-area context: which towns, linked. Pulls the town
-   pages that single this service out as a local concern first. */
+/* Service-area context: which towns, linked, in the same order as
+   everywhere else on the site. */
 function local(s, bg) {
-  const relevant = areas.filter((a) => a.focus.some((f) => f.service === s.slug));
-  const others = areas.filter((a) => !relevant.includes(a));
-  const ordered = [...relevant, ...others];
   return html`<section class="section${bg}" aria-labelledby="local-title">
   <div class="container split split--center">
     <div>
@@ -280,10 +270,7 @@ function local(s, bg) {
         ? 'Commercial work covers the same area.'
         : 'Whether a permit comes from a city or the county depends on your address; we check before we quote.'}</p>
     </div>
-    <ul class="town-links">
-      ${ordered.map((a) => html`<li><a href="/service-area/${a.slug}">${a.name}${icon('arrow')}</a></li>`)}
-      <li><a href="/service-area/">All areas${icon('arrow')}</a></li>
-    </ul>
+    ${townLinks()}
   </div>
 </section>`;
 }
