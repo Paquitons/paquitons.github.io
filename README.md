@@ -141,7 +141,7 @@ Named for what they do. There is deliberately no generic "card".
 
 | Component | Use |
 |---|---|
-| `.utility-bar` | Emergency availability, hours, license. Static; no phone number, since the header carries it. |
+| `.utility-bar` | Emergency availability, office hours, service area. Static; no phone number, since the header carries it. |
 | `.site-header`, `.site-nav`, `.mega` | Header; the phone number is in it at every width, and nowhere else in the page chrome. The services menu is names only, sized to its content (about a third of the screen); it opens from its button, or on hover after a 90ms beat so it doesn't flash when the pointer crosses the nav. Below 1200px the nav is a drawer. |
 | `.site-footer` | One grid: the logo centered with the tagline under it, five link columns on one top line, one line of small print. It never repeats the closing CTA band above it. |
 | `.hero` | Home only. Split: brand, what and where, two actions, a real job photo. |
@@ -153,16 +153,16 @@ Named for what they do. There is deliberately no generic "card".
 | `.emergency` | An open section like the others: heading, one red call button, and the warning signs in two columns under a red rule. Not a boxed alert. |
 | `.process` | Numbered steps (`<ol>`). |
 | `.options` | Two-way comparison. |
-| `.callout` | Safety information; `--emergency` variant. |
+| `.callout` | Safety information: a heavy amber rule (red for `--emergency`), a heading, text or a ruled list. Not a boxed alert. |
 | `.rule-list` | The only list style: heavy rule on top, hairline rows, no bullets or icons (the same shape as the service index, town links and FAQ). `--columns` for two columns, `--emergency` for a red top rule. Don't add checkmarks, dashes or other markers. |
 | `.data-table` | Tables (generator sizing). |
 | `.gallery` | Real job photos, plain grid. |
 | `.focus-list` | Three or four short points with a heavy rule. |
-| `.town-links`, `.region-grid` | Service area. |
+| `.town-links`, `.region-grid` | Service area. Town links come from `townLinks()` and are in the same order everywhere. |
 | `.faq` | Native `<details name>`: an exclusive accordion without JavaScript. |
 | `.cta-band` | Page close: reason on the left, the same Call / Request service button pair as the hero on the right. |
 | `.form-panel`, `.field`, `.form-more` | The request form. Optional fields live in a disclosure. |
-| `.mobile-actions` | Call / Request bar on phones. |
+| `.mobile-actions` | Call / Request bar on phones; call only on `/contact`, where the form already is. |
 | `.button` | `--primary`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--block`. Minimum 48px tall. |
 
 ## Behaviour
@@ -216,12 +216,9 @@ Two rules for photos:
 - **No faces.** The hero photo (`panel-test-hands`) is a crop of `images/Untitled-4.jpg`
   that keeps the hands, meter and panel. Crops are defined in the image script, which
   writes a cropped JPEG fallback too, so the uncropped original is never served.
-- **Nothing staged or edited.** `images/ironvoltvan.jpg` is a mock-up, not a photo of
-  a real van, and must not be used anywhere, including social cards.
-
-`images/electric-panel-replacement.jpg` is a stock photo of European equipment and is
-deliberately not used. The `residential.jpg` and `commercial.jpg` collages are no longer
-used either.
+- **Nothing staged or edited.** No mock-ups or stock photos, including on social cards.
+  The mocked-up van photo and the unused stock and collage images have been deleted
+  from the repository so they can't be picked up again.
 
 ## Third-party services
 

@@ -67,15 +67,11 @@
        these directly, so a palette change is a one-place edit. */
     --navy-950: #060e1a;   /* brand navy */
     --navy-975: #04090f;
-    --navy-900: #0b1626;
-    --navy-850: #102036;
-    --navy-700: #22354f;
     --navy-600: #3a4d68;
 
     --gold-500: #e8a020;   /* brand amber */
     --gold-600: #d08c12;
     --gold-700: #8a5b0d;   /* amber as text on light: 5.9:1 on white */
-    --gold-50:  #fdf6e7;
 
     --cream-50:  #faf8f5;  /* the page */
     --stone-100: #f2efe9;
@@ -90,7 +86,6 @@
 
     --red-600: #c62828;    /* 5.6:1 with white text */
     --red-700: #a31f1f;    /* red as text on light */
-    --red-50:  #fdf0ef;
     --green-700: #166b45;
 
     /* --- Semantic color -------------------------------------- */
@@ -99,7 +94,6 @@
     --color-surface-alt:     var(--stone-100);
     --color-surface-dark:    var(--navy-950);
     --color-surface-darker:  var(--navy-975);
-    --color-surface-raised-dark: var(--navy-900);
 
     --color-text:            var(--ink-900);
     --color-text-muted:      var(--ink-700);
@@ -115,11 +109,9 @@
     --color-accent:          var(--gold-500);
     --color-accent-hover:    var(--gold-600);
     --color-accent-text:     var(--gold-700);
-    --color-accent-tint:     var(--gold-50);
 
     --color-emergency:       var(--red-600);
     --color-emergency-text:  var(--red-700);
-    --color-emergency-tint:  var(--red-50);
     --color-success:         var(--green-700);
 
     --color-focus:           var(--gold-500);
@@ -174,7 +166,6 @@
 
     /* --- Layout ---------------------------------------------- */
     --container: 76rem;          /* 1216px of content */
-    --container-narrow: 48rem;
     --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
     /* One column gap for every two-column composition, so the edges
        of a heading row and the content below it line up. */
@@ -193,7 +184,6 @@
        Small radii. Trade signage has hard corners. */
     --radius-xs: 2px;
     --radius-sm: 4px;
-    --radius-md: 6px;
 
     --rule: 1px solid var(--color-border);
     --rule-heavy: 3px solid var(--color-border-heavy);
@@ -203,7 +193,6 @@
        Used for things that float above the page: the services
        menu, the mobile action bar, the form panel. Content on
        the page is separated with rules, not shadows. */
-    --shadow-sm: 0 1px 2px rgba(6, 14, 26, 0.08);
     --shadow-md: 0 12px 28px -12px rgba(6, 14, 26, 0.35);
     --shadow-lg: 0 28px 56px -24px rgba(6, 14, 26, 0.45);
 
@@ -211,7 +200,6 @@
     --ease: cubic-bezier(0.2, 0, 0, 1);
     --dur-fast: 120ms;
     --dur: 200ms;
-    --dur-slow: 320ms;
 
     /* --- Layers ---------------------------------------------- */
     --z-mobile-actions: 90;
@@ -243,7 +231,11 @@
    BASE
    ============================================================ */
 @layer base {
+  /* The site is designed in one scheme. This keeps browsers' automatic
+     dark modes (Chrome on Android, Samsung Internet) from recoloring
+     it, and native controls from switching to dark. */
   html {
+    color-scheme: light only;
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--header-height) + var(--space-4));
   }
@@ -297,7 +289,7 @@
 
   /* Links inside running text are underlined; color alone is not
      an affordance. */
-  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside p) a:not(.link-arrow) {
+  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside) a:not(.link-arrow) {
     color: var(--color-accent-text);
     font-weight: 600;
     text-decoration: underline;
@@ -305,7 +297,7 @@
     text-underline-offset: 0.2em;
     transition: color var(--dur-fast) var(--ease);
   }
-  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside p) a:not(.link-arrow):hover { color: var(--color-text); text-decoration-thickness: 2px; }
+  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside) a:not(.link-arrow):hover { color: var(--color-text); text-decoration-thickness: 2px; }
 
   :focus-visible {
     outline: 3px solid var(--color-focus);
@@ -401,25 +393,6 @@
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-
-  /* ----------------------------------------------------------
-     KICKER
-     A short label above a heading that says what the section is,
-     in words. Plain text, no pill, no rule.
-     ---------------------------------------------------------- */
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-    font-size: var(--text-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-label);
-    color: var(--color-accent-text);
-  }
-  .kicker--emergency { color: var(--color-emergency-text); }
-  .surface-dark .kicker--emergency { color: #fff; }
 
   /* ----------------------------------------------------------
      BUTTONS
@@ -940,10 +913,10 @@
      the heading block doesn't leave half the row empty.
      ---------------------------------------------------------- */
   .section-head { max-width: 46rem; margin-bottom: var(--stack-heading); }
-  .section-head > p:not(.kicker) { margin-top: var(--space-4); color: var(--color-text-muted); font-size: var(--text-md); line-height: var(--leading-snug); }
+  .section-head > p { margin-top: var(--space-4); color: var(--color-text-muted); font-size: var(--text-md); line-height: var(--leading-snug); }
   .section-head--split { max-width: none; display: grid; gap: var(--space-4) var(--split-gap); align-items: end; }
   .section-head__link { justify-self: start; }
-  .section-head--split > p:not(.kicker),
+  .section-head--split > p,
   .section-head--split .section-head__aside { margin-top: 0; }
   .section-head__aside { color: var(--color-text-muted); max-width: var(--measure-narrow); }
   /* The sentence under a section heading. */
@@ -1060,9 +1033,7 @@
      ---------------------------------------------------------- */
   @media (min-width: 60em) { .emergency .split { align-items: center; } }
   .emergency__intro .button-row { margin-top: var(--space-6); }
-  .emergency__more { margin-top: var(--space-4); font-size: var(--text-sm); }
-  .emergency__more a { color: var(--color-text); font-weight: 600; text-decoration: underline; text-decoration-color: var(--color-border-strong); text-underline-offset: 0.2em; }
-  .emergency__more a:hover { text-decoration-color: currentColor; }
+  .emergency__more { margin-top: var(--space-5); }
 
 
   /* ----------------------------------------------------------
@@ -1134,6 +1105,11 @@
      ---------------------------------------------------------- */
   .area-map { overflow: hidden; border-radius: var(--radius-sm); border: var(--rule); background: var(--color-surface-alt); }
   .area-map img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  /* Stacked full width on a tablet, a square map is taller than the
+     screen. The crop keeps every pin. */
+  @media (min-width: 45em) and (max-width: 59.99em) {
+    .area-map img { aspect-ratio: 3 / 2; object-position: 50% 40%; }
+  }
 
   .town-links { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-5); border-top: var(--rule-heavy); }
   .town-links a {
@@ -1176,7 +1152,7 @@
     .faq-layout { grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); }
     .faq-layout__head { position: sticky; top: calc(var(--header-height) + var(--space-6)); align-self: start; }
   }
-  .faq-layout__head > p:not(.kicker) { margin-top: var(--space-4); color: var(--color-text-muted); }
+  .faq-layout__head > p { margin-top: var(--space-4); color: var(--color-text-muted); }
 
   .faq { border-top: var(--rule-heavy); }
   .faq__item { border-bottom: var(--rule); }
@@ -1342,52 +1318,34 @@
 
   /* ----------------------------------------------------------
      CALLOUT
-     Safety information. Amber rule, info icon, set apart from the
-     page but not alarming. The emergency variant is red.
+     Safety information, set like the rest of the page: a heavy
+     rule on top (amber, or red for emergencies), a heading, and
+     plain text or a ruled list. Nothing is boxed.
      ---------------------------------------------------------- */
-  .callout {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--space-4);
-    padding: var(--space-5) var(--space-6);
-    background: var(--color-accent-tint);
-    border-left: 4px solid var(--color-accent);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  }
-  .callout > .icon { color: var(--color-accent-text); width: 1.5rem; height: 1.5rem; margin-top: 0.1em; }
-  .callout h2,
-  .callout h3 { font-size: var(--text-md); margin-bottom: var(--space-3); }
-  .callout p, .callout li { color: var(--ink-900); }
-  .callout > div > * + * { margin-top: var(--space-3); }
-  .callout ul { padding-left: 1.1rem; display: grid; gap: var(--space-2); }
-  .callout--after { margin-top: var(--space-8); max-width: 46rem; }
-  .callout--emergency { background: var(--color-emergency-tint); border-left-color: var(--color-emergency); }
-  .callout--emergency > .icon { color: var(--color-emergency-text); }
-  @media (max-width: 29.99em) {
-    .callout { grid-template-columns: 1fr; padding: var(--space-5); }
-  }
+  .callout { max-width: 46rem; padding-top: var(--space-4); border-top: 3px solid var(--color-accent); }
+  .callout h3 { font-size: var(--text-md); }
+  .callout p { margin-top: var(--space-3); color: var(--color-text); }
+  .callout ul { list-style: none; padding: 0; margin-top: var(--space-3); }
+  .callout ul li { padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); line-height: var(--leading-snug); }
+  .callout--after { margin-top: var(--space-8); }
+  .callout--emergency { border-top-color: var(--color-emergency); }
 
-  /* Ordered safety steps (emergency page). */
-  .safety-steps { list-style: none; padding: 0; counter-reset: s; display: grid; gap: var(--space-3); }
+  /* Ordered safety steps (emergency page): numbered rows. */
+  .safety-steps { list-style: none; padding: 0; margin-top: var(--space-5); counter-reset: s; }
   .safety-steps li {
     counter-increment: s;
     display: grid;
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    gap: var(--space-3);
-    align-items: baseline;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
     font-weight: 600;
-    color: var(--ink-900);
+    line-height: var(--leading-snug);
   }
   .safety-steps li::before {
     content: counter(s);
-    display: grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
     font-weight: 800;
-    color: #fff;
-    background: var(--color-emergency);
-    border-radius: var(--radius-sm);
+    color: var(--color-emergency-text);
+    font-variant-numeric: tabular-nums;
   }
 
   /* ----------------------------------------------------------
@@ -1472,22 +1430,6 @@
   /* ----------------------------------------------------------
      CONTACT
      ---------------------------------------------------------- */
-  .contact-methods { list-style: none; padding: 0; border-top: var(--rule-heavy); }
-  .contact-method {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--space-1) var(--space-4);
-    padding-block: var(--space-5);
-    border-bottom: var(--rule);
-  }
-  .contact-method > .icon { grid-row: 1 / span 3; color: var(--color-accent-text); width: 1.5rem; height: 1.5rem; margin-top: 0.15rem; }
-  .contact-method h3 { font-size: var(--text-base); }
-  .contact-method p { color: var(--color-text-muted); font-size: var(--text-sm); }
-  .contact-method .contact-method__value { color: var(--color-text); font-size: var(--text-lg); font-weight: 800; font-stretch: 90%; word-break: break-word; }
-  .contact-method__value a { text-decoration: underline; text-decoration-color: var(--color-border-strong); text-underline-offset: 0.2em; }
-  .contact-method__value a:hover { color: var(--color-accent-text); text-decoration-color: currentColor; }
-  .contact-method .contact-method__value--email { font-size: var(--text-md); font-stretch: 100%; }
-
   .detail-list { display: grid; gap: var(--space-4); margin-top: var(--space-6); }
   .detail-list div { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: var(--space-4); }
   .detail-list dt { font-size: var(--text-2xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--color-text-muted); padding-top: 0.2em; }
@@ -1508,7 +1450,6 @@
     border: var(--rule);
     border-top: 4px solid var(--color-accent);
     border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-md);
   }
   .form-panel__title { font-size: var(--text-xl); margin-bottom: var(--space-6); }
 
@@ -1521,7 +1462,8 @@
   .field { display: grid; gap: var(--space-2); align-content: start; min-width: 0; }
   .field__label { font-size: var(--text-sm); font-weight: 700; color: var(--color-text); }
   .field__label .req { color: var(--color-emergency-text); }
-  .field__label .opt { font-weight: 400; color: var(--color-text-muted); }
+  .field__label .opt,
+  .form-more > summary .opt { font-weight: 400; color: var(--color-text-muted); }
   .field__hint { font-size: var(--text-xs); color: var(--color-text-muted); }
 
   .field__control {
@@ -1590,7 +1532,6 @@
     list-style: none;
   }
   .form-more > summary::-webkit-details-marker { display: none; }
-  .form-more > summary span { font-weight: 400; color: var(--color-text-muted); }
   .form-more > summary .icon { transition: transform var(--dur) var(--ease); color: var(--color-accent-text); }
   .form-more[open] > summary .icon { transform: rotate(180deg); }
   .form-more__body { padding-bottom: var(--space-5); }
@@ -1602,13 +1543,11 @@
     display: none;
     gap: var(--space-3);
     align-items: flex-start;
-    padding: var(--space-4);
+    padding-top: var(--space-3);
     font-size: var(--text-sm);
     font-weight: 600;
-    color: #7d1a14;
-    background: var(--color-emergency-tint);
-    border: 1.5px solid var(--color-emergency-text);
-    border-radius: var(--radius-sm);
+    color: var(--color-emergency-text);
+    border-top: 3px solid var(--color-emergency);
   }
   .form-alert.is-visible { display: flex; }
   .form-alert .icon { color: var(--color-emergency-text); }
@@ -1804,7 +1743,11 @@
     transition: transform var(--dur) var(--ease);
   }
   .mobile-actions.is-visible { transform: none; }
-  .mobile-actions .button { min-height: 3rem; }
+  .mobile-actions--single { grid-template-columns: minmax(0, 1fr); }
+  .mobile-actions .button { min-height: 3rem; padding-inline: var(--space-3); letter-spacing: 0.04em; white-space: nowrap; }
+  @media (max-width: 22.49em) {
+    .mobile-actions .button { padding-inline: var(--space-2); letter-spacing: 0.02em; font-size: 0.8125rem; }
+  }
   @media (min-width: 45em) {
     .mobile-actions { display: none; }
   }
@@ -1835,7 +1778,6 @@
   .tnum { font-variant-numeric: tabular-nums; }
   .mt-4 { margin-top: var(--space-4); }
   .mt-6 { margin-top: var(--space-6); }
-  .muted { color: var(--color-text-muted); }
 }
 
 /* ============================================================

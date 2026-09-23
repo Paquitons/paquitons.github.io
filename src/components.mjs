@@ -130,7 +130,7 @@ export function emergencyPanel({ id, alt = false } = {}) {
       <div class="button-row button-row--stack-sm">
         <a class="button button--emergency button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
       </div>
-      <p class="emergency__more"><a href="/services/emergency">What to do while you wait</a></p>
+      <p class="emergency__more"><a class="link-arrow" href="/services/emergency#wait-title">What to do while you wait ${icon('arrow')}</a></p>
     </div>
     <ul class="rule-list rule-list--columns rule-list--emergency">
       ${hazards.map((h) => html`<li>${h}</li>`)}
@@ -226,7 +226,7 @@ export function serviceIndex(services, { columns = false } = {}) {
    and their rules are the booking server's (lib/booking-fields.js
    in ironvolt-server); js/form.js checks the same ones first.
    ------------------------------------------------------------ */
-export function requestForm({ id = 'request', headingId, compact = false } = {}) {
+export function requestForm({ id = 'request', headingId } = {}) {
   const f = (name) => `${id}-${name}`;
   const err = (name) => html`<p class="field__error" id="${f(name)}-error"></p>`;
 
@@ -234,7 +234,7 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
   <div class="form-success" data-form-success hidden tabindex="-1">
     ${icon('check')}
     <h2>Request received</h2>
-    <p>We’ll review it and contact you within 24 hours to confirm a time for the technician visit. If it’s urgent, call <a href="${site.phoneHref}" class="tnum">${site.phone}</a> rather than waiting on us.</p>
+    <p>We’ll call you within 24 hours to confirm the details and arrange a visit. If it’s urgent, call <a href="${site.phoneHref}" class="tnum">${site.phone}</a> rather than waiting on us.</p>
     <p data-form-success-copy hidden></p>
     <a class="button button--outline" href="/">Back to home</a>
   </div>
@@ -252,33 +252,33 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
     <div class="form-grid form-grid--2">
       <div class="field field--full">
         <label class="field__label" for="${f('name')}">Name <span class="req" aria-hidden="true">*</span></label>
-        <input class="field__control" type="text" id="${f('name')}" name="name" required autocomplete="name" aria-describedby="${f('name')}-error">
+        <input class="field__control" type="text" id="${f('name')}" name="name" required maxlength="200" autocomplete="name" aria-describedby="${f('name')}-error">
         ${err('name')}
       </div>
       <div class="field">
         <label class="field__label" for="${f('phone')}">Phone <span class="req" aria-hidden="true">*</span></label>
-        <input class="field__control" type="tel" id="${f('phone')}" name="phone" required autocomplete="tel" inputmode="tel" aria-describedby="${f('phone')}-error">
+        <input class="field__control" type="tel" id="${f('phone')}" name="phone" required maxlength="40" autocomplete="tel" inputmode="tel" aria-describedby="${f('phone')}-error">
         ${err('phone')}
       </div>
       <div class="field">
         <label class="field__label" for="${f('email')}">Email <span class="opt">(optional)</span></label>
-        <input class="field__control" type="email" id="${f('email')}" name="email" autocomplete="email" aria-describedby="${f('email')}-error">
+        <input class="field__control" type="email" id="${f('email')}" name="email" maxlength="200" autocomplete="email" aria-describedby="${f('email')}-error">
         ${err('email')}
       </div>
       <div class="field field--full">
         <label class="field__label" for="${f('address')}">Address where the work is needed <span class="req" aria-hidden="true">*</span></label>
-        <input class="field__control" type="text" id="${f('address')}" name="address" required autocomplete="street-address" aria-describedby="${f('address')}-error">
+        <input class="field__control" type="text" id="${f('address')}" name="address" required maxlength="300" autocomplete="street-address" aria-describedby="${f('address')}-error">
         ${err('address')}
       </div>
       <div class="field">
         <label class="field__label" for="${f('serviceType')}">What do you need? <span class="req" aria-hidden="true">*</span></label>
         <select class="field__control" id="${f('serviceType')}" name="serviceType" required aria-describedby="${f('serviceType')}-error">
           <option value="">Choose a service</option>
-          <optgroup label="Home">
+          <optgroup label="Residential">
             <option value="res-repairs">Electrical repair</option>
             <option value="res-panel">Panel or breaker upgrade</option>
             <option value="res-wiring">Wiring repair or rewiring</option>
-            <option value="res-ev">EV charger</option>
+            <option value="res-ev">EV charger installation</option>
             <option value="res-lighting">Lighting</option>
             <option value="res-generator">Generator</option>
             <option value="res-surge">Surge protection</option>
@@ -286,7 +286,7 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
             <option value="res-fan">Ceiling fan</option>
             <option value="res-circuit">Dedicated circuit</option>
           </optgroup>
-          <optgroup label="Business">
+          <optgroup label="Commercial">
             <option value="com-repairs">Commercial repair</option>
             <option value="com-lighting">Commercial lighting</option>
             <option value="com-panel">Commercial panel or service upgrade</option>
@@ -310,14 +310,14 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
       </div>
       <div class="field field--full">
         <label class="field__label" for="${f('description')}">What’s going on? <span class="req" aria-hidden="true">*</span></label>
-        <textarea class="field__control" id="${f('description')}" name="description" rows="${compact ? 3 : 4}" required aria-describedby="${f('description')}-hint ${f('description')}-error"></textarea>
+        <textarea class="field__control" id="${f('description')}" name="description" rows="4" required maxlength="2000" aria-describedby="${f('description')}-hint ${f('description')}-error"></textarea>
         <p class="field__hint" id="${f('description')}-hint">A sentence or two is plenty: what’s happening, and where in the property.</p>
         ${err('description')}
       </div>
     </div>
 
     <details class="form-more">
-      <summary>Add a preferred date and details <span>(optional)</span>${icon('chevron')}</summary>
+      <summary><span>Add a preferred date and details <span class="opt">(optional)</span></span>${icon('chevron')}</summary>
       <div class="form-more__body form-grid form-grid--2">
         <div class="field">
           <label class="field__label" for="${f('preferredDate')}">Preferred date</label>
@@ -353,7 +353,7 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
         </div>
         <div class="field field--full">
           <label class="field__label" for="${f('notes')}">Anything else we should know?</label>
-          <textarea class="field__control" id="${f('notes')}" name="notes" rows="2" placeholder="Gate code, where to park, dogs in the yard"></textarea>
+          <textarea class="field__control" id="${f('notes')}" name="notes" rows="2" maxlength="1000" placeholder="Gate code, where to park, dogs in the yard"></textarea>
         </div>
       </div>
     </details>

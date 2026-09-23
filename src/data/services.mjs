@@ -190,7 +190,7 @@ export const services = [
     anchors: ['wiring'],
     summary: 'Aluminum wiring, knob-and-tube, damaged and unsafe wiring, partial or full rewires.',
     meta: {
-      title: 'Rewiring & Aluminum Wiring Repair in Houston | Iron Volt Electric',
+      title: 'Rewiring & Aluminum Wiring Repair in Greater Houston | Iron Volt Electric',
       description: 'Aluminum branch wiring, knob-and-tube, heat- and rodent-damaged wiring. In-person assessment, options and a written price. Licensed electrician, TECL #41098.',
     },
     hero: {

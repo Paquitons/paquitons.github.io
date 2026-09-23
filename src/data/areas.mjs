@@ -16,7 +16,7 @@ export const areas = [
     slug: 'spring',
     name: 'Spring',
     meta: {
-      title: 'Electrician in Spring, TX | Iron Volt Electric | (832) 610-8081',
+      title: 'Electrician in Spring, TX | Iron Volt Electric',
       description: 'Licensed electrician in Spring, TX. Panel upgrades, repairs, rewiring, EV chargers and generators for homes and businesses. Emergency line answered 24/7. TECL #41098.',
     },
     lead: 'Repairs, panel upgrades, EV chargers, generators and commercial work from Old Town Spring to the Grand Parkway, with an emergency line answered 24/7.',

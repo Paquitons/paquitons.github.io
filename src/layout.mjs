@@ -39,6 +39,7 @@ export function layout(page, assets) {
 <meta name="description" content="${esc(page.description)}">
 ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
 <meta name="theme-color" content="#060e1a">
+<meta name="color-scheme" content="light only">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:title" content="${esc(page.ogTitle ?? page.title)}">
@@ -64,7 +65,7 @@ ${header(page)}
 ${page.main}
 </main>
 ${footer()}
-${mobileActions()}
+${mobileActions(page)}
 <script src="${assets.js}" defer></script>
 ${(page.scripts ?? []).join('\n')}
 <script src="https://widget.heyrosie.com/widget.js" async data-rosie-business-id="${site.embeds.rosieBusinessId}"></script>
@@ -221,10 +222,10 @@ function footer() {
       <div class="footer-col">
         <h2 class="footer-col__title">Contact</h2>
         <dl class="footer-facts">
-          <div><dt>Phone and text</dt><dd><a class="tnum" href="${site.phoneHref}">${site.phone}</a></dd></div>
+          <div><dt>Call or text</dt><dd><a class="tnum" href="${site.phoneHref}">${site.phone}</a></dd></div>
           <div class="footer-facts__wide"><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
           <div><dt>Office</dt><dd>${site.hours.short}</dd></div>
-          <div><dt>Emergency line</dt><dd>24 hours, 7 days</dd></div>
+          <div><dt>Emergency line</dt><dd>Answered 24/7</dd></div>
         </dl>
       </div>
     </nav>
@@ -239,10 +240,13 @@ function footer() {
 </footer>`;
 }
 
-function mobileActions() {
-  return html`<div class="mobile-actions" data-mobile-actions>
+/* On /contact the form is already on the page, so the bar offers
+   only the call. */
+function mobileActions(page) {
+  const onForm = page.path === '/contact';
+  return html`<div class="mobile-actions${onForm ? ' mobile-actions--single' : ''}" data-mobile-actions>
   <a class="button button--primary" href="${site.phoneHref}">${icon('phone')}Call now</a>
-  <a class="button button--outline-inverse" href="${site.requestHref}">Request service</a>
+  ${!onForm && html`<a class="button button--outline-inverse" href="${site.requestHref}">Request service</a>`}
 </div>`;
 }
 
