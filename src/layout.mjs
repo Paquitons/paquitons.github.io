@@ -80,7 +80,6 @@ function utilityBar() {
   return html`<aside class="utility-bar" aria-label="Emergency line and office hours">
   <div class="container utility-bar__inner">
     <a class="utility-bar__emergency" href="${site.phoneHref}">
-      <span class="status-dot" aria-hidden="true"></span>
       <span>24/7 emergency line</span>
       <strong class="tnum">${site.phone}</strong>
     </a>

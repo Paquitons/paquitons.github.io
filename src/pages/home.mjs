@@ -41,7 +41,7 @@ export function homePage() {
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
         <a class="button button--outline-inverse button--lg" href="/booking">Request service</a>
       </div>
-      <p class="hero__emergency"><span class="status-dot" aria-hidden="true"></span><span>Sparks, a burning smell or no power? <a href="/services/emergency">Our emergency line</a> is answered 24/7.</span></p>
+      <p class="hero__emergency"><span>Sparks, a burning smell or no power? <a href="/services/emergency">Our emergency line</a> is answered 24/7.</span></p>
     </div>
     <div class="hero__media">
       ${picture('electrician-panel-test', {

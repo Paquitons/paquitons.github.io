@@ -121,7 +121,7 @@ export const hazards = [
 export function emergencyPanel({ headingId = 'emergency-title' } = {}) {
   return html`<div class="emergency-panel">
   <div class="emergency-panel__intro">
-    <p class="kicker kicker--emergency"><span class="status-dot" aria-hidden="true"></span>Answered 24/7</p>
+    <p class="kicker kicker--emergency">Answered 24/7</p>
     <h2 id="${headingId}">Electrical emergency?</h2>
     <p>Don’t wait on these. They turn into fire hazards quickly. If there’s smoke or fire, call 911 first.</p>
     <a class="button button--emergency button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>

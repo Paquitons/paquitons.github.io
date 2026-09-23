@@ -124,7 +124,7 @@ Content is separated with rules, not shadows; shadows are only for things that f
 
 **Breakpoints.** 30em, 45em, 60em and 75em (480, 720, 960, 1200px). Nothing else.
 
-**Motion.** Color and small position changes on hover, a 1px button press. No scroll
+**Motion.** Hover changes color or adds an underline; nothing moves, fades or disappears. A 1px button press. No status dots, no scroll
 animations, carousels or tickers. Everything is disabled under
 `prefers-reduced-motion`, and nothing depends on it.
 

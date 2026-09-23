@@ -94,7 +94,7 @@ function header(s, crumbs) {
   }
   return pageHeader({
     crumbs,
-    title: s.title,
+    title: s.titleHtml ?? s.title,
     lead: s.hero.lead,
     image: s.hero.image,
     portrait: ['foyer-chandelier', 'electrician-panel-test'].includes(s.hero.image?.key),

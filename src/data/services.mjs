@@ -20,6 +20,8 @@ export const services = [
     slug: 'electrical-repairs',
     name: 'Electrical repairs',
     title: 'Electrical repair and troubleshooting',
+    // Soft hyphen: on the narrowest phones the word is wider than the screen.
+    titleHtml: 'Electrical repair and trouble&shy;shooting',
     group: 'residential',
     anchors: ['repairs'],
     summary: 'Breakers that trip, dead outlets, flickering lights and faults you can’t pin down.',
