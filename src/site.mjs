@@ -21,6 +21,9 @@ export const site = {
   phoneE164: '+18326108081',
   email: 'contact@ironvoltelectric.com',
 
+  // Every "Request service" button goes here. /booking redirects to it.
+  requestHref: '/contact#request',
+
   license: {
     short: 'TECL #41098',
     number: '41098',

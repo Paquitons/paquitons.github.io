@@ -140,7 +140,7 @@ function header(page) {
       </ul>
       <div class="site-nav__actions">
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-        <a class="button button--outline-inverse button--lg" href="/booking">Request service</a>
+        <a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>
       </div>
     </nav>
 
@@ -152,7 +152,7 @@ function header(page) {
       </span>
       <span class="header-call__short">Call</span>
     </a>
-    <a class="button button--primary header-cta" href="/booking"${page.section === 'booking' ? ' aria-current="page"' : ''}>Request service</a>
+    <a class="button button--primary header-cta" href="${site.requestHref}">Request service</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       ${icon('menu')}<span class="nav-toggle__label">Menu</span>
     </button>
@@ -215,7 +215,7 @@ function footer() {
           ${link('/about', 'About')}
           ${link('/reviews', 'Reviews')}
           ${link('/contact', 'Contact')}
-          ${link('/booking', 'Request service')}
+          ${link(site.requestHref, 'Request service')}
           ${link('/privacy', 'Privacy policy')}
         </ul>
       </div>
@@ -243,7 +243,7 @@ function footer() {
 function mobileActions() {
   return html`<div class="mobile-actions" data-mobile-actions>
   <a class="button button--primary" href="${site.phoneHref}">${icon('phone')}Call now</a>
-  <a class="button button--outline-inverse" href="/booking">Request service</a>
+  <a class="button button--outline-inverse" href="${site.requestHref}">Request service</a>
 </div>`;
 }
 

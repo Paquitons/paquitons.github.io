@@ -29,7 +29,7 @@ export function pageHeader({ crumbs, title, lead, actions = true, image, portrai
         ${children}
         ${actions === true && html`<div class="button-row button-row--stack-sm">
           <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-          <a class="button button--outline-inverse button--lg" href="/booking">Request service</a>
+          <a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>
         </div>`}
         ${typeof actions === 'string' && actions}
       </div>
@@ -149,7 +149,7 @@ export function ctaBand({ heading, body, emergency = false, email = false } = {}
     <div class="cta-band__actions">
       <a class="cta-band__phone tnum" href="${site.phoneHref}">${icon('phone')}${site.phone}</a>
       ${email && html`<a class="button button--outline-inverse" href="mailto:${site.email}">${icon('mail')}Email us</a>`}
-      ${!email && !emergency && html`<a class="button button--primary" href="/booking">Request service</a>`}
+      ${!email && !emergency && html`<a class="button button--primary" href="${site.requestHref}">Request service</a>`}
     </div>
   </div>
 </section>`;
@@ -211,7 +211,7 @@ export function serviceIndex(services, { columns = false } = {}) {
 
 /* ------------------------------------------------------------
    REQUEST FORM
-   The same short form on /booking and /contact. Only what we
+   The service request form on /contact. Only what we
    need to call someone back is shown; scheduling preferences
    are optional and tucked into a disclosure. Field names match
    what the booking endpoint has always received.
@@ -230,6 +230,12 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
 
   <form class="form-grid" data-request-form method="POST" action="${site.embeds.bookingEndpoint}" novalidate${headingId ? ` aria-labelledby="${headingId}"` : ''}>
     <input type="hidden" name="subject" value="New booking request, Iron Volt Electric">
+    <!-- The booking server has always received a first and last name
+         and a ticked consent box. The form asks for one name and
+         states consent in words; form.js fills these in on submit. -->
+    <input type="hidden" name="firstName">
+    <input type="hidden" name="lastName">
+    <input type="hidden" name="terms" value="on">
     <div class="hp-field" aria-hidden="true">
       <label for="${f('website')}">Website</label>
       <input type="text" id="${f('website')}" name="website" tabindex="-1" autocomplete="off">
@@ -240,15 +246,10 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
     </div>
 
     <div class="form-grid form-grid--2">
-      <div class="field">
-        <label class="field__label" for="${f('firstName')}">First name <span class="req" aria-hidden="true">*</span></label>
-        <input class="field__control" type="text" id="${f('firstName')}" name="firstName" required autocomplete="given-name" aria-describedby="${f('firstName')}-error">
-        ${err('firstName')}
-      </div>
-      <div class="field">
-        <label class="field__label" for="${f('lastName')}">Last name <span class="req" aria-hidden="true">*</span></label>
-        <input class="field__control" type="text" id="${f('lastName')}" name="lastName" required autocomplete="family-name" aria-describedby="${f('lastName')}-error">
-        ${err('lastName')}
+      <div class="field field--full">
+        <label class="field__label" for="${f('name')}">Name <span class="req" aria-hidden="true">*</span></label>
+        <input class="field__control" type="text" id="${f('name')}" name="name" required autocomplete="name" aria-describedby="${f('name')}-error">
+        ${err('name')}
       </div>
       <div class="field">
         <label class="field__label" for="${f('phone')}">Phone <span class="req" aria-hidden="true">*</span></label>
@@ -353,20 +354,12 @@ export function requestForm({ id = 'request', headingId, compact = false } = {})
       </div>
     </details>
 
-    <div class="field">
-      <label class="check">
-        <input type="checkbox" id="${f('terms')}" name="terms" required aria-describedby="${f('terms')}-error">
-        <span>Iron Volt Electric may contact me about this request. I understand an estimate needs a technician to see the job.</span>
-      </label>
-      ${err('terms')}
-    </div>
-
     <div class="form-actions">
       <button type="submit" class="button button--primary button--lg button--block">
         <span class="spinner" aria-hidden="true" hidden></span>
         <span data-button-label>Send request</span>
       </button>
-      <p class="form-note">We reply within 24 hours. For an emergency, call <a href="${site.phoneHref}" class="tnum">${site.phone}</a>. This form is protected by reCAPTCHA; Google’s <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">terms</a> apply.</p>
+      <p class="form-note">By sending this you agree we can contact you about it. We reply within 24 hours; for an emergency, call instead. Protected by reCAPTCHA: Google’s <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">terms</a> apply.</p>
     </div>
   </form>
 </div>`;

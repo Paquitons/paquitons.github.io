@@ -32,7 +32,6 @@ import { servicesIndexPage } from '../src/pages/services-index.mjs';
 import { serviceAreaIndexPage } from '../src/pages/service-area-index.mjs';
 import { aboutPage } from '../src/pages/about.mjs';
 import { contactPage } from '../src/pages/contact.mjs';
-import { bookingPage } from '../src/pages/booking.mjs';
 import { reviewsPage, privacyPage, notFoundPage } from '../src/pages/misc.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -63,7 +62,6 @@ const pages = [
   ...areas.map(areaPage),
   aboutPage(),
   contactPage(assets),
-  bookingPage(assets),
   reviewsPage(),
   privacyPage(),
   notFoundPage(),
@@ -89,6 +87,9 @@ for (const page of pages) {
 /* The service area used to live at /servicearea. Keep the old URL
    working for anyone who bookmarked or linked it. */
 write('servicearea.html', redirect('/service-area/'));
+/* /booking was a separate page with the same form as /contact.
+   Keep the URL, which has been linked from everywhere, working. */
+write('booking.html', redirect(site.requestHref));
 
 /* ------------------------------------------------------------
    Sitemap and robots
@@ -132,7 +133,7 @@ function redirect(to) {
 <link rel="canonical" href="${site.url}${to}">
 <meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url=${to}">
-<script>location.replace(${JSON.stringify(to)} + location.hash);</script>
+<script>location.replace(${JSON.stringify(to)}${to.includes('#') ? '' : ' + location.hash'});</script>
 </head>
 <body>
 <p>This page has moved to <a href="${to}">${site.url}${to}</a>.</p>

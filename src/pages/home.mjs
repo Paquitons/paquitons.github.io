@@ -9,7 +9,7 @@ import { html, icon, picture } from '../lib/html.mjs';
 import { site } from '../site.mjs';
 import { serviceBySlug } from '../data/services.mjs';
 import {
-  credentials, processList, faqSection, ctaBand, emergencyPanel,
+  credentials, faqSection, ctaBand, emergencyPanel,
   reviewsEmbed, profileLinks, townLinks, serviceIndex,
 } from '../components.mjs';
 import { faqSchema } from '../schema.mjs';
@@ -37,7 +37,7 @@ export function homePage() {
       </h1>
       <div class="hero__actions button-row button-row--stack-sm">
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-        <a class="button button--outline-inverse button--lg" href="/booking">Request service</a>
+        <a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>
       </div>
     </div>
     <div class="hero__media">
@@ -85,6 +85,18 @@ ${credentials()}
   </div>
 </section>
 
+<section class="section section--white" aria-labelledby="reviews-title">
+  <div class="container">
+    <header class="section-head section-head--split reviews__head">
+      <h2 id="reviews-title">What customers say</h2>
+      <div class="section-head__aside">
+        <p>Left by customers on our Google Business Profile. We’re also on ${profileLinks({ inline: true })}.</p>
+      </div>
+    </header>
+    ${reviewsEmbed()}
+  </div>
+</section>
+
 <section class="section surface-dark" aria-labelledby="commercial-title">
   <div class="container feature-band">
     <div class="feature-band__media">
@@ -112,22 +124,8 @@ ${credentials()}
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="process-title">
-  <div class="container">
-    <header class="section-head section-head--split">
-      <h2 id="process-title">From your call to a finished job</h2>
-      <p class="section-head__aside">The same four steps whether it’s a dead outlet or a full rewire. You know the price before any work starts.</p>
-    </header>
-    ${processList([
-      { title: 'You get in touch', body: 'Call, text, email or send a request. We confirm we cover the work and check availability.' },
-      { title: 'A technician visits', body: 'A licensed technician looks at the job in person, including anything underneath it you may not have spotted.' },
-      { title: 'You get the price in writing', body: 'A written estimate, free, with no obligation to go ahead.' },
-      { title: 'The work gets done', body: 'To code, on the agreed day, with permits pulled where needed and our guarantee behind it.' },
-    ])}
-  </div>
-</section>
 
-<section class="section" aria-labelledby="company-title">
+<section class="section section--alt" aria-labelledby="company-title">
   <div class="container feature-band feature-band--reverse">
     <div class="feature-band__media">
       ${picture('generator-brick-home', { alt: 'A standby generator on a pad beside a brick house, below the meter and transfer switch', sizes: '(min-width: 60em) 45vw, 100vw' })}
@@ -145,19 +143,8 @@ ${credentials()}
   </div>
 </section>
 
-<section class="section section--white" aria-labelledby="reviews-title">
-  <div class="container">
-    <header class="section-head section-head--split reviews__head">
-      <h2 id="reviews-title">What customers say</h2>
-      <div class="section-head__aside">
-        <p>Left by customers on our Google Business Profile. We’re also on ${profileLinks({ inline: true })}.</p>
-      </div>
-    </header>
-    ${reviewsEmbed()}
-  </div>
-</section>
 
-<section class="section section--alt" aria-labelledby="area-title">
+<section class="section" aria-labelledby="area-title">
   <div class="container split split--center">
     <figure class="area-map">
       ${picture('service-area-map', { alt: 'Map of Greater Houston with pins marking the towns Iron Volt Electric covers, from Conroe in the north to Sugar Land in the southwest and Baytown in the east', sizes: '(min-width: 60em) 45vw, 100vw' })}
@@ -171,7 +158,7 @@ ${credentials()}
   </div>
 </section>
 
-${faqSection({ id: 'faq', items: faq, alt: false })}
+${faqSection({ id: 'faq', items: faq })}
 
 ${ctaBand({
     heading: 'Tell us what’s going on',
