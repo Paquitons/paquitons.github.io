@@ -99,7 +99,7 @@ export function faqSection({ id = 'faq', heading = 'Questions we get asked', int
   <div class="container faq-layout">
     <header class="faq-layout__head">
       <h2 id="${id}-title">${heading}</h2>
-      <p class="note">${intro ?? html`Something we haven’t covered? Call <a class="tnum" href="${site.phoneHref}">${site.phone}</a>.`}</p>
+      ${intro && html`<p class="note">${intro}</p>`}
     </header>
     ${faqList(items, id)}
   </div>
@@ -150,7 +150,6 @@ export function ctaBand({ heading, body, emergency = false, email = false } = {}
       <a class="cta-band__phone tnum" href="${site.phoneHref}">${icon('phone')}${site.phone}</a>
       ${email && html`<a class="button button--outline-inverse" href="mailto:${site.email}">${icon('mail')}Email us</a>`}
       ${!email && !emergency && html`<a class="button button--primary" href="/booking">Request service</a>`}
-      <p class="cta-band__note">${emergency ? 'Answered 24 hours a day, 7 days a week.' : `Office ${site.hours.short}. Emergency line answered 24/7.`}</p>
     </div>
   </div>
 </section>`;

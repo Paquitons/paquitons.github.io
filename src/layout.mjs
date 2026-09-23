@@ -79,12 +79,11 @@ ${(page.scripts ?? []).join('\n')}
 function utilityBar() {
   // Facts only. The phone number lives in the header, one line below;
   // repeating it here put the same number on screen twice.
-  return html`<aside class="utility-bar" aria-label="Hours and license">
+  return html`<aside class="utility-bar" aria-label="Hours and service area">
   <div class="container utility-bar__inner">
     <a class="utility-bar__emergency" href="${site.phoneHref}">Emergency service, 24 hours a day</a>
     <ul class="utility-bar__facts">
       <li>Office ${site.hours.short}</li>
-      <li>${site.license.short}</li>
       <li>Spring &amp; Greater Houston</li>
     </ul>
   </div>
@@ -227,7 +226,6 @@ function footer() {
           <div class="footer-facts__wide"><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
           <div><dt>Office</dt><dd>${site.hours.short}</dd></div>
           <div><dt>Emergency line</dt><dd>24 hours, 7 days</dd></div>
-          <div><dt>License</dt><dd>${site.license.short} · <a href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Verify<span class="visually-hidden"> with TDLR (opens in a new tab)</span></a></dd></div>
         </dl>
       </div>
     </nav>

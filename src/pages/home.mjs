@@ -31,17 +31,14 @@ export function homePage() {
 <section class="hero surface-dark" aria-labelledby="hero-title">
   <div class="container hero__grid">
     <div class="hero__content">
-      <p class="kicker">Licensed electrical contractor · ${site.license.short}</p>
       <h1 id="hero-title" class="hero__title">
         <span class="hero__tagline">Wired right. <em>Done right.</em></span>
         <span class="hero__subtitle">Residential and commercial electricians for Spring and Greater Houston</span>
       </h1>
-      <p class="hero__lead">Repairs, panel upgrades, rewiring, EV chargers, lighting and generators, from a licensed contractor who puts the price in writing before any work starts.</p>
       <div class="hero__actions button-row button-row--stack-sm">
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
         <a class="button button--outline-inverse button--lg" href="/booking">Request service</a>
       </div>
-      <p class="hero__emergency"><span>Sparks, a burning smell or no power? <a href="/services/emergency">Our emergency line</a> is answered 24/7.</span></p>
     </div>
     <div class="hero__media">
       ${picture('panel-test-hands', {
@@ -138,10 +135,9 @@ ${credentials()}
     <div class="feature-band__body">
       <h2 id="company-title">A local contractor, not a call center</h2>
       <p>${site.legalName} was founded in ${site.foundedLabel} by a licensed electrician with ${site.experience} of field experience in Houston homes, businesses, parks and community properties. We’re not a franchise, and we’re not a lead service passing your number along.</p>
-      <dl class="fact-grid">
+      <dl class="fact-grid fact-grid--3">
         <div><dt>Founded</dt><dd>${site.foundedLabel}</dd></div>
         <div><dt>Field experience</dt><dd>${site.experience}</dd></div>
-        <div><dt>License</dt><dd>${site.license.short}</dd></div>
         <div><dt>Based in</dt><dd>${site.base}</dd></div>
       </dl>
       <a class="link-arrow" href="/about">About Iron Volt Electric ${icon('arrow')}</a>
@@ -186,7 +182,7 @@ ${ctaBand({
   return {
     path: '/',
     section: 'home',
-    title: 'Electrician in Spring & Greater Houston | Iron Volt Electric | TECL #41098',
+    title: 'Electrician in Spring & Greater Houston | Iron Volt Electric',
     ogTitle: 'Iron Volt Electric | Licensed Electrician, Spring & Greater Houston',
     description: `Licensed residential and commercial electrician serving Spring, The Woodlands, Cypress and Greater Houston. Repairs, panel upgrades, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
     preload: 'panel-test-hands',
