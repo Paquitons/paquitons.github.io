@@ -47,7 +47,7 @@ src/
   schema.mjs            JSON-LD structured data, built from site.mjs
   templates/service.mjs One service page
   templates/area.mjs    One town page
-  pages/*.mjs           Home, services hub, service-area hub, about, contact, booking,
+  pages/*.mjs           Home, services hub, service-area hub, about, contact,
                         reviews, privacy, 404
   lib/html.mjs          Template helper, responsive <picture>, icon set
 scripts/
@@ -66,7 +66,8 @@ fonts/                  Archivo, self-hosted and subset
 | `/` | `src/pages/home.mjs` |
 | `/services/` and `/services/<service>` | `pages/services-index.mjs`, `templates/service.mjs` + `data/services.mjs` |
 | `/service-area/` and `/service-area/<town>` | `pages/service-area-index.mjs`, `templates/area.mjs` + `data/areas.mjs` |
-| `/about`, `/contact`, `/booking`, `/reviews`, `/privacy`, `/404` | `src/pages/` |
+| `/about`, `/contact`, `/reviews`, `/privacy`, `/404` | `src/pages/` |
+| `/booking` | Redirect to the request form on `/contact#request`, kept for old links |
 | `/servicearea` | Redirect to `/service-area/`, kept for old links |
 | `/review` | Redirect to the Google review form (hand-written, not generated) |
 
@@ -162,8 +163,11 @@ Named for what they do. There is deliberately no generic "card".
 - **Mobile action bar** appears only after the page header's own buttons scroll away,
   hides while the footer is on screen and while someone is typing in a form, and pads the
   page so it never covers content.
-- **Request form** (`/booking` and `/contact`) posts the same field names to the same
-  endpoint as before. It carries `novalidate`; `js/form.js` is the only validation, with
+- **Request form** (on `/contact`; every "Request service" button links to
+  `site.requestHref`) posts the same field names to the same endpoint as before. It asks
+  for one Name, which `js/form.js` splits into `firstName`/`lastName` (a single word
+  sends `lastName=(not given)`), and states consent under the button instead of a
+  checkbox, sending `terms=on` as the old ticked box did. It carries `novalidate`; `js/form.js` is the only validation, with
   messages tied to fields through `aria-describedby` and `aria-invalid`, and a summary
   in a `role="alert"` region. reCAPTCHA v3 loads on first interaction with the form,
   not on page load; its badge is hidden because the required notice is printed under
@@ -214,5 +218,5 @@ used either.
 
 - Common Ninja reviews embed (`/`, `/reviews`)
 - Rosie chat widget (every page)
-- reCAPTCHA v3 (`/booking`, `/contact`, on interaction)
+- reCAPTCHA v3 (`/contact`, on interaction)
 - Booking endpoint: `https://ironvolt.omnemarchy.online/booking`

@@ -1,9 +1,10 @@
 /* ============================================================
    IRON VOLT ELECTRIC — form.js
    Validation and submission for the service request form, used
-   on /booking and /contact. Replaces booking.js; the rules,
-   messages, endpoint and field names are unchanged, so the
-   server receives exactly what it always has.
+   on /contact. The server receives exactly the fields it always
+   has: the single Name field is split into firstName/lastName
+   and the consent line under the button stands in for the old
+   checkbox (a hidden terms=on), both just before sending.
 
    The form carries `novalidate` so messages appear next to each
    field instead of in browser tooltips. That makes this script
@@ -52,8 +53,7 @@
      Messages say what to do, not what went wrong.
      --------------------------------------------------------- */
   const rules = {
-    firstName: (v) => (v.trim() ? '' : 'Enter your first name.'),
-    lastName: (v) => (v.trim() ? '' : 'Enter your last name.'),
+    name: (v) => (v.trim().length >= 2 ? '' : 'Enter your name.'),
     phone: (v) => {
       const digits = v.replace(/\D/g, '');
       if (!digits) return 'Enter a phone number we can reach you on.';
@@ -65,7 +65,6 @@
     address: (v) => (v.trim().length >= 6 ? '' : 'Enter the street address where the work is needed.'),
     serviceType: (v) => (v ? '' : 'Choose the service you need. Pick “Something else” if none of these fit.'),
     description: (v) => (v.trim().length >= 10 ? '' : 'Tell us briefly what’s happening, at least a few words.'),
-    terms: (v, field) => (field.checked ? '' : 'Tick this box so we can contact you about the request.'),
   };
 
   document.querySelectorAll('[data-request]').forEach((wrapper) => {
@@ -106,15 +105,13 @@
     Object.keys(rules).forEach((name) => {
       const field = form.elements[name];
       if (!field) return;
-      if (field.type !== 'checkbox') {
-        field.addEventListener('blur', () => {
-          if (field.value.trim() || field.getAttribute('aria-invalid')) show(field, errorFor(field));
-        });
-      }
+      field.addEventListener('blur', () => {
+        if (field.value.trim() || field.getAttribute('aria-invalid')) show(field, errorFor(field));
+      });
       field.addEventListener('input', () => {
         if (field.getAttribute('aria-invalid') === 'true') show(field, errorFor(field));
       });
-      if (field.type === 'checkbox' || field.tagName === 'SELECT') {
+      if (field.tagName === 'SELECT') {
         field.addEventListener('change', () => show(field, errorFor(field)));
       }
     });
@@ -157,6 +154,12 @@
       setBusy(true);
       try {
         const body = new URLSearchParams(new FormData(form));
+        // One name in, first and last out. A single word goes in as the
+        // first name, with the last name marked as not given.
+        const [first, ...rest] = body.get('name').trim().split(/\s+/);
+        body.set('firstName', first);
+        body.set('lastName', rest.join(' ') || '(not given)');
+        body.delete('name');
         body.set('recaptchaToken', await getToken());
 
         const response = await fetch(form.action, {
