@@ -20,7 +20,7 @@ const faq = [
   { q: 'How quickly can you respond to an emergency?', a: `Our line at ${site.phone} is answered 24/7. Sparks, burning smells, complete power loss and breakers that trip repeatedly are prioritized and dispatched as fast as we can get there. Don’t wait on these; they turn into fire hazards quickly.` },
   { q: 'Do you pull permits?', a: 'Yes. Panel upgrades, new circuits, generator installs and major rewiring normally need permits and inspections, and we handle that as part of the job. Be wary of any electrician offering to skip the permit: unpermitted work can void your homeowner’s insurance and cause problems when you sell.' },
   { q: 'Do I need a panel upgrade?', a: 'Signs point that way if breakers trip often, lights dim when an appliance starts, you have a 100A panel in a modern house, you want to add an EV charger or large appliance, or the panel is 25 years old or more. We’ll assess it and give you an honest answer. Not every house needs one, and we’ll say so if yours doesn’t. <a href="/services/panel-upgrades">More on panel upgrades</a>.' },
-  { q: 'Which areas do you serve?', a: 'Spring, The Woodlands and Conroe to the north; Tomball, Cypress and Klein to the northwest; Humble, Kingwood and Atascocita to the northeast; Katy and Cinco Ranch to the west; plus Houston itself, Memorial, Bellaire, Sugar Land and the communities in between. See the <a href="/service-area/">full service area</a>, or call to check your address.' },
+  { q: 'Which areas do you serve?', a: 'All of Greater Houston: The Woodlands and Conroe to the north; Spring, Tomball, Cypress and Klein to the northwest; Humble, Kingwood and Atascocita to the northeast; Katy and Cinco Ranch to the west; plus Houston itself, Memorial, Bellaire, Sugar Land and the communities in between. See the <a href="/service-area/">full service area</a>, or call to check your address.' },
 ];
 
 const indexServices = ['electrical-repairs', 'rewiring', 'ev-chargers', 'lighting', 'generators', 'installations', 'inspections']
@@ -33,7 +33,7 @@ export function homePage() {
     <div class="hero__content">
       <h1 id="hero-title" class="hero__title">
         <span class="hero__tagline">Wired right. <em>Done right.</em></span>
-        <span class="hero__subtitle">Residential and commercial electricians for Spring and Greater Houston</span>
+        <span class="hero__subtitle">Residential and commercial electricians serving Greater Houston</span>
       </h1>
       <div class="hero__actions button-row button-row--stack-sm">
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
@@ -138,8 +138,8 @@ ${emergencyPanel()}
       ${picture('service-area-map', { alt: 'Map of Greater Houston with pins marking the towns Iron Volt Electric covers, from Conroe in the north to Sugar Land in the southwest and Baytown in the east', sizes: '(min-width: 60em) 45vw, 100vw' })}
     </div>
     <div>
-      <h2 id="area-title">Spring, The Woodlands and Greater Houston</h2>
-      <p class="section-intro">Based in Spring and working across the metro, from Conroe in the north to Sugar Land in the southwest and Baytown in the east.</p>
+      <h2 id="area-title">Serving Greater Houston</h2>
+      <p class="section-intro">From Conroe in the north to Sugar Land in the southwest and Baytown in the east, for homes and businesses across the metro. We’re based in Spring, TX.</p>
       <div class="mt-6">${townLinks()}</div>
     </div>
   </div>
@@ -156,9 +156,9 @@ ${ctaBand({
   return {
     path: '/',
     section: 'home',
-    title: 'Electrician in Spring & Greater Houston | Iron Volt Electric',
-    ogTitle: 'Iron Volt Electric | Licensed Electrician, Spring & Greater Houston',
-    description: `Licensed residential and commercial electrician serving Spring, The Woodlands, Cypress and Greater Houston. Repairs, panel upgrades, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
+    title: 'Electrician in Greater Houston | Iron Volt Electric',
+    ogTitle: 'Iron Volt Electric | Licensed Electrician, Greater Houston',
+    description: `Licensed residential and commercial electrician serving Greater Houston. Repairs, panel upgrades, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
     preload: 'panel-test-hands',
     preloadSizes: '(min-width: 60em) 38vw, 100vw',
     schema: [faqSchema(faq)],

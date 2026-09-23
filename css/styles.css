@@ -1557,7 +1557,8 @@
      FORMS
      ---------------------------------------------------------- */
   .form-panel {
-    padding: clamp(var(--space-5), 3vw, var(--space-7));
+    --panel-pad: clamp(var(--space-5), 3vw, var(--space-7));
+    padding: var(--panel-pad);
     background: var(--color-surface);
     border: var(--rule);
     border-top: 4px solid var(--color-accent);
@@ -1687,11 +1688,40 @@
     .booking-layout { grid-template-columns: minmax(0, 1fr) 20rem; gap: var(--space-8); }
     .booking-layout__aside { position: sticky; top: calc(var(--header-height) + var(--space-5)); }
   }
-  .booking-layout__aside { display: grid; gap: var(--space-5); }
-  .booking-layout__aside .process { grid-template-columns: 1fr; gap: var(--space-4); }
-  .booking-layout__aside .process__step { padding-top: var(--space-3); border-top-width: 1px; }
-  .booking-layout__aside .process__step:first-child { border-top: var(--rule-heavy); }
-  .booking-layout__aside .process__step::before { font-size: var(--text-base); margin-bottom: var(--space-1); }
+  /* Contact sidebar: plain text beside the form, no boxes. The form
+     is the one framed element on the page; the sidebar supports it.
+     Two short blocks, one hairline between them. */
+  .contact-aside { display: grid; gap: var(--space-6); padding-top: var(--space-5); }
+  /* Desktop: first heading on the same line as the form's title
+     (the panel's padding plus its 4px top rule). */
+  @media (min-width: 60em) {
+    .contact-aside { padding-top: calc(clamp(var(--space-5), 3vw, var(--space-7)) + 4px); }
+  }
+  .contact-aside__block + .contact-aside__block { padding-top: var(--space-6); border-top: var(--rule); }
+  .contact-aside__title {
+    margin-bottom: var(--space-4);
+    font-size: var(--text-md);
+    font-stretch: 88%;
+  }
+  .contact-aside__note { margin-top: var(--space-3); font-size: var(--text-sm); color: var(--color-text-muted); }
+  .contact-aside .detail-list { margin-top: var(--space-5); gap: var(--space-3); }
+
+  .next-steps { list-style: none; padding: 0; counter-reset: next; display: grid; gap: var(--space-4); }
+  .next-steps li {
+    counter-increment: next;
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr);
+    font-size: var(--text-sm);
+    line-height: var(--leading-snug);
+    color: var(--color-text-muted);
+  }
+  .next-steps li::before {
+    content: counter(next);
+    font-weight: 800;
+    color: var(--color-accent-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .next-steps strong { color: var(--color-text); font-weight: 700; }
 
   /* ----------------------------------------------------------
      RELATED LINKS

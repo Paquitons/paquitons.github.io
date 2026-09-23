@@ -14,7 +14,7 @@ export function aboutPage() {
 ${pageHeader({
     crumbs,
     title: 'About Iron Volt Electric',
-    lead: `A licensed electrical contractor in Spring, Texas. A new company, built on ${site.experience} of field work.`,
+    lead: `A licensed electrical contractor serving Greater Houston, based in ${site.base}. A new company, built on ${site.experience} of field work.`,
     media: html`<picture>
       <source type="image/webp" srcset="/images/opt/badge-320.webp 320w, /images/opt/badge-550.webp 550w" sizes="(min-width: 60em) 20rem, 60vw">
       <img src="/images/opt/badge.png" alt="The Iron Volt Electric badge" width="550" height="480" fetchpriority="high">
@@ -99,8 +99,8 @@ ${ctaBand({
   return {
     path: '/about',
     section: 'about',
-    title: 'About Iron Volt Electric | Licensed Electrical Contractor in Spring, TX',
-    description: `About Iron Volt Electric LLC: a licensed Spring, TX electrical contractor founded in 2026 on ${site.experience} of field experience. TECL #41098, bonded and insured.`,
+    title: 'About Iron Volt Electric | Licensed Electrical Contractor, Greater Houston',
+    description: `About Iron Volt Electric LLC: a licensed electrical contractor serving Greater Houston, based in Spring, TX, and founded in 2026 on ${site.experience} of field experience. TECL #41098, bonded and insured.`,
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

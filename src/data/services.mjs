@@ -26,8 +26,8 @@ export const services = [
     anchors: ['repairs'],
     summary: 'Breakers that trip, dead outlets, flickering lights and faults you can’t pin down.',
     meta: {
-      title: 'Electrical Repair & Troubleshooting in Spring & Houston | Iron Volt Electric',
-      description: 'Tripping breakers, dead outlets, flickering lights, hot switches. Licensed electricians trace the fault and fix the cause. Spring and Greater Houston. (832) 610-8081.',
+      title: 'Electrical Repair & Troubleshooting in Greater Houston | Iron Volt Electric',
+      description: 'Tripping breakers, dead outlets, flickering lights, hot switches. Licensed electricians trace the fault and fix the cause across Greater Houston. (832) 610-8081.',
     },
     hero: {
       lead: 'Breakers that won’t stay on, outlets that quit, lights that flicker when the AC kicks in. We trace the fault to its cause, fix it to code and tell you what we found.',
@@ -102,7 +102,7 @@ export const services = [
     anchors: ['panels'],
     summary: 'Service upgrades from 100A to 200A, panel replacement and breaker work.',
     meta: {
-      title: 'Electrical Panel Upgrades in Spring & Houston | 100A to 200A | Iron Volt Electric',
+      title: 'Electrical Panel Upgrades in Greater Houston | 100A to 200A | Iron Volt Electric',
       description: 'Panel replacement and 100A to 200A service upgrades, permitted and inspected. Load calculation first, and a straight answer on whether you need one. TECL #41098.',
     },
     hero: {
@@ -272,7 +272,7 @@ export const services = [
     anchors: ['ev'],
     summary: 'Level 2 home charging for every major brand, with the permit handled.',
     meta: {
-      title: 'EV Charger Installation in Spring & Houston | Level 2 | Iron Volt Electric',
+      title: 'EV Charger Installation in Greater Houston | Level 2 | Iron Volt Electric',
       description: 'Level 2 home EV charger installation for Tesla, Ford, GM, Rivian and more. Load calculation, dedicated circuit, permit handled. Licensed electrician serving Greater Houston.',
     },
     hero: {
@@ -345,7 +345,7 @@ export const services = [
     anchors: ['lighting'],
     summary: 'Recessed lighting, chandeliers, landscape and security lighting, LED retrofits.',
     meta: {
-      title: 'Lighting Installation in Spring & Houston | Recessed, Chandeliers, Outdoor | Iron Volt Electric',
+      title: 'Lighting Installation in Greater Houston | Recessed, Chandeliers, Outdoor | Iron Volt Electric',
       description: 'Recessed lighting, high-ceiling chandeliers, landscape and security lighting, and LED retrofits across Greater Houston. Licensed electrician, written estimates.',
     },
     hero: {
@@ -422,7 +422,7 @@ export const services = [
     anchors: ['generators', 'surge'],
     summary: 'Standby generators, transfer switches, portable hookups and surge protection.',
     meta: {
-      title: 'Generator Installation in Spring & Houston | Standby & Transfer Switches | Iron Volt Electric',
+      title: 'Generator Installation in Greater Houston | Standby & Transfer Switches | Iron Volt Electric',
       description: 'Whole-home standby generators, automatic and manual transfer switches, portable generator hookups and whole-home surge protection, sized to your load. Greater Houston.',
     },
     hero: {
@@ -500,7 +500,7 @@ export const services = [
     summary: 'New outlets, GFCI and USB outlets, smart switches, fans and dedicated circuits.',
     meta: {
       title: 'Outlet, Switch, Ceiling Fan & Dedicated Circuit Installation | Iron Volt Electric',
-      description: 'New outlets, GFCI and USB outlets, smart switches, ceiling fans on fan-rated boxes, 240V outlets and dedicated circuits. Licensed electrician serving Spring and Greater Houston.',
+      description: 'New outlets, GFCI and USB outlets, smart switches, ceiling fans on fan-rated boxes, 240V outlets and dedicated circuits. Licensed electrician serving Greater Houston.',
     },
     hero: {
       lead: 'Outlets where you actually need them, GFCI and USB outlets, smart switches, ceiling fans on a proper fan-rated box, 240-volt outlets, and dedicated circuits for appliances, shops, hot tubs and home offices.',
@@ -552,7 +552,7 @@ export const services = [
     summary: 'Home-sale repairs, pre-purchase assessments and failed-inspection corrections.',
     meta: {
       title: 'Electrical Inspections & Code Corrections | Home Sale Repairs | Iron Volt Electric',
-      description: 'Fixing electrical items on a home inspection report, pre-sale and pre-purchase assessments, failed inspections and GFCI/AFCI compliance. Licensed electrician, Spring and Greater Houston.',
+      description: 'Fixing electrical items on a home inspection report, pre-sale and pre-purchase assessments, failed inspections and GFCI/AFCI compliance. Licensed electrician serving Greater Houston.',
     },
     hero: {
       lead: 'Pre-sale and pre-purchase assessments, electrical items flagged on a home inspection report, preparing for a city inspection, and correcting work that failed one.',
@@ -626,7 +626,7 @@ export const services = [
     anchors: ['commercial'],
     summary: 'Tenant build-outs, service upgrades, three-phase work, lighting and equipment hookups.',
     meta: {
-      title: 'Commercial Electrician in Spring & Houston | Build-Outs, Service, Lighting | Iron Volt Electric',
+      title: 'Commercial Electrician in Greater Houston | Build-Outs, Service, Lighting | Iron Volt Electric',
       description: 'Commercial electrical for retail, offices, warehouses and restaurants: tenant finish-outs, 200A to 400A and three-phase service, LED lighting and equipment hookups. TECL #41098.',
     },
     hero: {
@@ -690,8 +690,8 @@ export const services = [
     emergency: true,
     summary: 'Sparks, burning smells, hot panels, power loss and storm damage. Answered 24/7.',
     meta: {
-      title: '24/7 Emergency Electrician in Spring & Houston | (832) 610-8081 | Iron Volt Electric',
-      description: 'Sparks, burning smells, hot outlets, power loss or storm damage? Our emergency line is answered 24/7. Licensed electrician serving Spring and Greater Houston. Call (832) 610-8081.',
+      title: '24/7 Emergency Electrician in Greater Houston | (832) 610-8081 | Iron Volt Electric',
+      description: 'Sparks, burning smells, hot outlets, power loss or storm damage? Our emergency line is answered 24/7. Licensed electrician serving Greater Houston. Call (832) 610-8081.',
     },
     hero: {
       lead: 'Sparks, a burning smell, a hot panel, power out to part of the house, or storm damage to your service. Our line is answered 24/7, and emergency calls are dispatched as fast as we can get there.',
