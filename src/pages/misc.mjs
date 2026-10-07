@@ -39,7 +39,7 @@ ${pageHeader({
 
 ${ctaBand({
     heading: 'Ready to book?',
-    body: 'Request an appointment online or call us. Free written estimates, no obligation.',
+    body: 'Request an appointment online or call us. You get the price in writing before any work starts.',
   })}
 `;
   return {

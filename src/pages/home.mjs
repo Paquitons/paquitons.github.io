@@ -10,13 +10,13 @@ import { site } from '../site.mjs';
 import { serviceBySlug } from '../data/services.mjs';
 import {
   credentials, faqSection, ctaBand, emergencyPanel,
-  reviewsEmbed, profileLinks, townLinks, serviceIndex,
+  reviewsEmbed, profileLinks, townLinks, serviceIndex, estimateFaq,
 } from '../components.mjs';
 import { faqSchema } from '../schema.mjs';
 
 const faq = [
   { q: 'Are you licensed and insured to work in Texas?', a: `Yes. We hold ${site.license.full} and carry general liability insurance and workers’ compensation. You can verify the license at any time through the <a href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Texas Department of Licensing and Regulation</a>. We provide proof of insurance before any work begins.` },
-  { q: 'How do estimates work?', a: 'Estimates are free. A technician comes out, looks at the job in person and gives you a written quote before anything starts. There’s no obligation. We don’t quote over the phone, because an accurate number needs someone to see the job.' },
+  estimateFaq,
   { q: 'How quickly can you respond to an emergency?', a: `Our line at ${site.phone} is answered 24/7. Sparks, burning smells, complete power loss and breakers that trip repeatedly are prioritized and dispatched as fast as we can get there. Don’t wait on these; they turn into fire hazards quickly.` },
   { q: 'Do you pull permits?', a: 'Yes. Panel upgrades, new circuits, generator installs and major rewiring normally need permits and inspections, and we handle that as part of the job. Be wary of any electrician offering to skip the permit: unpermitted work can void your homeowner’s insurance and cause problems when you sell.' },
   { q: 'Do I need a panel upgrade?', a: 'Signs point that way if breakers trip often, lights dim when an appliance starts, you have a 100A panel in a modern house, you want to add an EV charger or large appliance, or the panel is 25 years old or more. We’ll assess it and give you an honest answer. Not every house needs one, and we’ll say so if yours doesn’t. <a href="/services/panel-upgrades">More on panel upgrades</a>.' },
@@ -149,7 +149,7 @@ ${faqSection({ id: 'faq', items: faq })}
 
 ${ctaBand({
     heading: 'Tell us what’s going on',
-    body: 'Call and describe the problem, or send a request online. A technician comes out, looks at the job and leaves you with a written estimate at no charge.',
+    body: 'Call and describe the problem, or send a request online. A technician comes out, looks at the job and leaves you with a written price before any work starts.',
   })}
 `;
 

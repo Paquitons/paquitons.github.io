@@ -168,6 +168,18 @@ Named for what they do. There is deliberately no generic "card".
 | `.mobile-actions` | Call / Request bar on phones; call only on `/contact`, where the form already is. |
 | `.button` | `--primary`, `--outline`, `--outline-inverse`, `--emergency`; `--lg`, `--block`. Minimum 48px tall. |
 
+## Free estimate policy
+
+The policy lives on `/contact#estimate-policy` (`src/pages/contact.mjs`), with its
+wording in one place there. Everything else links to it through `site.estimatePolicyHref`:
+the notice above the request form's Send button, the shared "How do estimates work?"
+answer (`estimateFaq` in `src/components.mjs`, used on the home page and every town
+page), the inspections page and the footer.
+
+Don't describe estimates as free anywhere without that qualification: write "may be
+complimentary" or "may be available" for standard work, and say that insurance, real
+estate, inspection and other third-party pricing needs a paid professional evaluation.
+
 ## Behaviour
 
 - **Mobile action bar** appears only after the page header's own buttons scroll away,

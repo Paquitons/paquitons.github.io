@@ -23,6 +23,9 @@ export const site = {
 
   // Every "Request service" button goes here. /booking redirects to it.
   requestHref: '/contact#request',
+  // Where the free estimate policy lives. Linked from the request form,
+  // the estimate FAQs, the inspections page and the footer.
+  estimatePolicyHref: '/contact#estimate-policy',
 
   license: {
     short: 'TECL #41098',

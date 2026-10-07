@@ -11,6 +11,7 @@
    claims about the business. Prices appear only where the
    business supplied them.
    ============================================================ */
+import { site } from '../site.mjs';
 
 export const services = [
   /* ----------------------------------------------------------
@@ -400,7 +401,7 @@ export const services = [
       ],
     },
     faq: [
-      { q: 'How much does recessed lighting cost?', a: 'It depends on the number of lights, the ceiling height, attic access and the existing wiring. Most Houston homeowners spend $100 to $200 per light installed, fixtures and labor included. A living room or kitchen with 10 to 12 lights generally runs $1,200 to $2,200. Book a free estimate for a number specific to your home.' },
+      { q: 'How much does recessed lighting cost?', a: 'It depends on the number of lights, the ceiling height, attic access and the existing wiring. Most Houston homeowners spend $100 to $200 per light installed, fixtures and labor included. A living room or kitchen with 10 to 12 lights generally runs $1,200 to $2,200. Book an estimate for a number specific to your home.' },
       { q: 'Why do my LED lights flicker on a dimmer?', a: 'Most older dimmers were designed for incandescent bulbs and don’t handle the low load of LED lamps. The usual fix is a dimmer rated for LED, matched to the lamps you’re using. We check compatibility before we install.' },
       { q: 'Can you hang a chandelier in a two-story entry?', a: 'Yes. We bring the equipment to work at that height safely, and make sure the box and support are rated for the fixture’s weight.' },
     ],
@@ -563,6 +564,7 @@ export const services = [
       body: [
         'A buyer’s inspector flags the panel, the GFCIs and a handful of outlets, and now there’s a deadline. We look at each item, tell you which ones are real safety issues and which are minor, and fix what needs fixing.',
         'We’re electricians, not home inspectors. We don’t write the report; we correct what it found, and we can put those corrections in writing for the other side of the sale.',
+        `Because this pricing is for a sale, an inspection, a claim or another party, it starts with a professional evaluation rather than a complimentary estimate. We tell you the fee, and you approve it, before we come out. <a href="${site.estimatePolicyHref}">Our free estimate policy</a> explains why.`,
       ],
     },
     signs: {
@@ -592,7 +594,7 @@ export const services = [
     },
     process: [
       { title: 'Send us the report', body: 'Email the electrical section, or the whole report, to contact@ironvoltelectric.com.' },
-      { title: 'Verify on site', body: 'We confirm each item in person. Reports are sometimes wrong in both directions.' },
+      { title: 'Professional evaluation', body: 'We confirm each item in person, for a fee you approve first. Reports are sometimes wrong in both directions.' },
       { title: 'Written price', body: 'Where it helps the negotiation, we can break it down item by item.' },
       { title: 'Correct and document', body: 'We make the corrections and describe the work in writing.' },
     ],
@@ -603,14 +605,14 @@ export const services = [
       ],
     },
     faq: [
-      { q: 'Can you fix just the items on the report?', a: 'Yes. We look at each item, confirm it, and price the corrections. If we find something else that’s a genuine safety problem we’ll tell you, but you decide what gets done.' },
+      { q: 'Can you fix just the items on the report?', a: 'Yes. A professional evaluation comes first: we look at each item, confirm it, and price the corrections. The evaluation is a paid visit, and we agree the fee with you before we come out. If we find something else that’s a genuine safety problem we’ll tell you, but you decide what gets done.' },
       { q: 'Do you do pre-purchase assessments?', a: 'Yes. If you’re buying an older home, especially one with an original panel or aluminum wiring, an electrician’s assessment before you close tells you what you’re taking on.' },
-      { q: 'We failed a city inspection. Can you help?', a: 'Send us the inspector’s notes. We’ll correct the items and get the work ready for re-inspection.' },
+      { q: 'We failed a city inspection. Can you help?', a: 'Send us the inspector’s notes. After a paid professional evaluation, with the fee agreed first, we’ll correct the items and get the work ready for re-inspection.' },
     ],
     related: ['panel-upgrades', 'rewiring', 'commercial'],
     cta: {
       heading: 'Got an inspection report?',
-      body: 'Email it to us or call. We’ll tell you what’s urgent, what isn’t, and what it costs to fix.',
+      body: 'Email it to us or call. We’ll tell you what the evaluation costs before we come out, then what’s urgent, what isn’t, and what it costs to fix.',
       email: true,
     },
   },
