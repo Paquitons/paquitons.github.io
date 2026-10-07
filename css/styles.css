@@ -289,7 +289,7 @@
 
   /* Links inside running text are underlined; color alone is not
      an affordance. */
-  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside) a:not(.link-arrow) {
+  :where(.prose, .faq__answer, .note, .form-note, .form-policy, .field__hint, .section-head__aside) a:not(.link-arrow) {
     color: var(--color-accent-text);
     font-weight: 600;
     text-decoration: underline;
@@ -297,7 +297,7 @@
     text-underline-offset: 0.2em;
     transition: color var(--dur-fast) var(--ease);
   }
-  :where(.prose, .faq__answer, .note, .form-note, .field__hint, .section-head__aside) a:not(.link-arrow):hover { color: var(--color-text); text-decoration-thickness: 2px; }
+  :where(.prose, .faq__answer, .note, .form-note, .form-policy, .field__hint, .section-head__aside) a:not(.link-arrow):hover { color: var(--color-text); text-decoration-thickness: 2px; }
 
   :focus-visible {
     outline: 3px solid var(--color-focus);
@@ -1537,6 +1537,8 @@
   .form-more__body { padding-bottom: var(--space-5); }
 
   .form-note { font-size: var(--text-xs); color: var(--color-text-muted); }
+  .form-policy { font-size: var(--text-sm); line-height: var(--leading-snug); color: var(--color-text); }
+  .form-policy a { white-space: nowrap; }
   .form-actions { display: grid; gap: var(--space-3); }
 
   .form-alert {
@@ -1752,6 +1754,31 @@
     .mobile-actions { display: none; }
   }
 
+
+
+  /* ----------------------------------------------------------
+     FREE ESTIMATE POLICY (/contact#estimate-policy)
+     Two columns under one heading: what may be complimentary, and
+     what needs a paid professional evaluation. Each column opens on
+     a heavy rule like every other list on the site; the gold rule
+     marks the complimentary side. The terms sit underneath as three
+     short ruled points.
+     ---------------------------------------------------------- */
+  .policy { display: grid; gap: var(--space-7); }
+  @media (min-width: 60em) { .policy { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: var(--split-gap); align-items: start; } }
+  .policy__col { padding-top: var(--space-5); border-top: var(--rule-heavy); }
+  .policy__col:first-child { border-top-color: var(--color-accent); }
+  .policy__label { font-size: var(--text-2xs); font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--color-accent-text); }
+  .policy__label--paid { color: var(--color-text); }
+  .policy__title { margin-top: var(--space-2); font-size: var(--text-lg); }
+  .policy__col > p:not(.policy__label) { margin-top: var(--space-4); max-width: var(--measure-narrow); }
+  .policy__col .link-arrow { margin-top: var(--space-5); }
+  .policy__list { margin-top: var(--space-4); border-top: var(--rule); }
+  .policy__terms { list-style: none; padding: 0; display: grid; gap: var(--space-6); margin-top: var(--space-8); }
+  @media (min-width: 45em) { .policy__terms { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); } }
+  .policy__terms li { padding-top: var(--space-4); border-top: var(--rule); }
+  .policy__terms h3 { font-size: var(--text-base); }
+  .policy__terms p { margin-top: var(--space-2); line-height: var(--leading-body); }
 
   /* ----------------------------------------------------------
      BRAND GUIDELINES  (/branding)

@@ -10,7 +10,7 @@ import { html, icon, picture } from '../lib/html.mjs';
 import { site } from '../site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { areaBySlug } from '../data/areas.mjs';
-import { pageHeader, faqSection, ctaBand, serviceIndex } from '../components.mjs';
+import { pageHeader, faqSection, ctaBand, serviceIndex, estimateFaq } from '../components.mjs';
 import { breadcrumbSchema, faqSchema } from '../schema.mjs';
 
 export function areaPage(a) {
@@ -24,7 +24,7 @@ export function areaPage(a) {
   const faq = [
     ...a.faq,
     { q: `Are you licensed to work in ${a.name}?`, a: `Yes. ${site.license.full} is issued by the ${site.license.issuer} and covers electrical contracting anywhere in Texas. We carry general liability and workers’ compensation, and provide proof of insurance before any work begins.` },
-    { q: 'How do estimates work?', a: 'Estimates are free. A technician comes out, looks at the job in person and gives you a written price before anything starts. There’s no obligation. We don’t quote over the phone, because an accurate number needs someone to see the job.' },
+    estimateFaq,
   ];
 
   const main = html`

@@ -328,7 +328,7 @@ ${pageHeader({
           <figcaption>${icon('cross')}Don’t place it over busy photos.</figcaption>
         </figure>
         <figure class="bg-dont">
-          <div class="bg-stage bg-stage--dark bg-stage--crowd">${brandImg('logo-primary', 'Logo crowded by text')}<p>CALL NOW · FREE ESTIMATES</p></div>
+          <div class="bg-stage bg-stage--dark bg-stage--crowd">${brandImg('logo-primary', 'Logo crowded by text')}<p>CALL NOW · 24/7 SERVICE</p></div>
           <figcaption>${icon('cross')}Don’t crowd it inside its clear space.</figcaption>
         </figure>
         <figure class="bg-dont">
@@ -393,7 +393,7 @@ ${pageHeader({
         <article class="bg-type__row">
           <div class="bg-type__sample bg-type__sample--web">
             <p class="bg-type__display">Electrical work for homes and businesses</p>
-            <p class="bg-type__body">Licensed electricians serving Greater Houston. Free written estimates.</p>
+            <p class="bg-type__body">Licensed electricians serving Greater Houston. Written estimates before any work starts.</p>
           </div>
           <div class="bg-type__meta">
             <p class="bg-type__name">Archivo ${WEBSITE}</p>

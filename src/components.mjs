@@ -60,7 +60,7 @@ export function credentials() {
   const items = [
     ['Texas license', site.license.short],
     ['Coverage', 'Licensed, bonded & insured'],
-    ['Estimates', 'Free and in writing'],
+    ['Estimates', 'Written, before work starts'],
     ['Emergency line', 'Answered 24/7'],
   ];
   return html`<section class="credentials" aria-label="Credentials">
@@ -109,6 +109,16 @@ export function faqSection({ id = 'faq', heading = 'Questions we get asked', int
 /* ------------------------------------------------------------
    EMERGENCY PANEL
    ------------------------------------------------------------ */
+/* ------------------------------------------------------------
+   "How do estimates work?"
+   One answer, used by the home page and every town page, so the
+   estimate wording can't drift from the free estimate policy.
+   ------------------------------------------------------------ */
+export const estimateFaq = {
+  q: 'How do estimates work?',
+  a: `For standard electrical work, a complimentary estimate may be available: a technician looks at the job in person and gives you a written price before anything starts, with no obligation. We don’t quote over the phone, because an accurate number needs someone to see the job. Pricing for an insurance claim, a property sale, a failed inspection or another third party needs a paid professional evaluation instead. <a href="${site.estimatePolicyHref}">Our free estimate policy</a> explains the difference.`,
+};
+
 export const hazards = [
   'Sparks or arcing from an outlet, switch or panel',
   'A burning or hot-plastic smell',
@@ -359,6 +369,8 @@ export function requestForm({ id = 'request', headingId } = {}) {
     </details>
 
     <div class="form-actions">
+      <!-- Before the button, so it is read before sending, not after. -->
+      <p class="form-policy">Estimates for standard electrical work may be complimentary. Requests for insurance, real estate, failed inspections or other third-party purposes need a paid professional evaluation, with any fee agreed before we start. <a href="${site.estimatePolicyHref}">Free estimate policy</a></p>
       <button type="submit" class="button button--primary button--lg button--block">
         <span class="spinner" aria-hidden="true" hidden></span>
         <span data-button-label>Send request</span>

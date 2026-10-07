@@ -71,7 +71,7 @@ ${pageHeader({
 
 ${ctaBand({
     heading: 'Check we cover your address',
-    body: 'Call or send a request with your address. If we cover it, a technician comes out and gives you a written estimate at no charge.',
+    body: 'Call or send a request with your address. If we cover it, a technician comes out and puts the price in writing before any work starts.',
   })}
 `;
 
