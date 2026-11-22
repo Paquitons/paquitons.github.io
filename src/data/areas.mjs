@@ -17,7 +17,7 @@ export const areas = [
     name: 'Spring',
     meta: {
       title: 'Electrician in Spring, TX | Iron Volt Electric',
-      description: 'Licensed electrician in Spring, TX. Panel upgrades, repairs, rewiring, EV chargers and generators for homes and businesses. Emergency line answered 24/7. TECL #41098.',
+      description: 'Licensed electrician in Spring, TX for panel upgrades, repairs, rewiring, EV chargers and generators, for homes and businesses. Emergency line answered 24/7.',
     },
     lead: 'Repairs, panel upgrades, EV chargers, generators and commercial work from Old Town Spring to the Grand Parkway, with an emergency line answered 24/7.',
     intro: [
@@ -26,7 +26,7 @@ export const areas = [
     ],
     focus: [
       { title: 'Panels in 1970s and 80s homes', body: 'Original panels in these houses are often 100 to 150 amps, and some are brands with a poor track record. If yours is original and you’re adding air conditioning capacity, a charger or a pool, have it assessed.', service: 'panel-upgrades' },
-      { title: 'Storm season', body: 'Tropical storms and summer thunderstorms bring outages and tree damage to service masts. A standby generator and whole-home surge protection are worth planning before the season, not during it.', service: 'generators' },
+      { title: 'Storm season', body: 'Tropical storms and summer thunderstorms bring outages and tree damage to service masts. A standby generator and <a href="/services/surge-protection">whole-home surge protection</a> are worth planning before the season, not during it.', service: 'generators' },
       { title: 'Chargers in newer builds', body: 'Newer homes usually have a 200-amp service, but often a panel the builder already filled. A load calculation tells us whether a charger fits as it is.', service: 'ev-chargers' },
     ],
     nearby: ['Klein', 'Tomball', 'The Woodlands', 'Cypress', 'Humble'],
@@ -39,12 +39,12 @@ export const areas = [
     name: 'The Woodlands',
     meta: {
       title: 'Electrician in The Woodlands, TX | Iron Volt Electric',
-      description: 'Licensed electrician for The Woodlands: panel upgrades, standby generators, lighting, EV chargers and repairs. Written estimates and a 24/7 emergency line. TECL #41098.',
+      description: 'Licensed electrician in The Woodlands, TX: panel upgrades, standby generators, lighting, EV chargers and repairs. Written prices and a 24/7 emergency line.',
     },
     lead: 'Panel upgrades, standby generators, lighting, EV chargers and repairs across every village of The Woodlands, from Grogan’s Mill to Creekside Park.',
     intro: [
       'The Woodlands has been building since the 1970s, so the housing runs from original homes in the older villages to recent construction in Creekside Park. The older homes are reaching the age where panels, breakers and connections need attention. The newer ones tend to need capacity for chargers, generators and outdoor living.',
-      'The tall pines and mature oaks are part of the appeal, and part of the risk: limbs come down on service drops and masts in storms, and that damage has to be repaired on your side before power can be restored.',
+      'The tall pines and mature oaks are part of the appeal, and part of the risk: limbs come down on service drops and masts in storms, and that damage has to be <a href="/services/storm-damage">repaired on your side</a> before power can be restored.',
     ],
     focus: [
       { title: 'Generators and design review', body: 'Exterior equipment in The Woodlands, standby generators included, generally needs approval through residential design review before it’s installed. We can give you the equipment details and placement the application asks for.', service: 'generators' },
@@ -61,7 +61,7 @@ export const areas = [
     name: 'Conroe',
     meta: {
       title: 'Electrician in Conroe, TX | Iron Volt Electric',
-      description: 'Licensed electrician in Conroe and around Lake Conroe. Repairs, panel upgrades, rewiring, generators and commercial electrical work. Emergency line answered 24/7. TECL #41098.',
+      description: 'Licensed electrician in Conroe and around Lake Conroe: repairs, panel upgrades, rewiring, generators and commercial work. Emergency line answered 24/7.',
     },
     lead: 'Repairs, panel upgrades, rewiring, generators and commercial work in Conroe and around Lake Conroe, from downtown out to Montgomery and Willis.',
     intro: [
@@ -83,7 +83,7 @@ export const areas = [
     name: 'Cypress',
     meta: {
       title: 'Electrician in Cypress, TX | Iron Volt Electric',
-      description: 'Licensed electrician in Cypress, TX. EV chargers, panel upgrades, generators, outdoor circuits and repairs for newer and established homes. Emergency line 24/7. TECL #41098.',
+      description: 'Licensed electrician in Cypress, TX: EV chargers, panel upgrades, generators, outdoor circuits and repairs for new and established homes. 24/7 emergency line.',
     },
     lead: 'EV chargers, panel upgrades, generators, lighting and repairs for Cypress homes and businesses, from the 290 corridor to Bridgeland and Towne Lake.',
     intro: [
@@ -105,7 +105,7 @@ export const areas = [
     name: 'Katy',
     meta: {
       title: 'Electrician in Katy, TX | Iron Volt Electric',
-      description: 'Licensed electrician for the Katy area, Cinco Ranch and the Energy Corridor. Residential repairs, panel upgrades, generators and commercial build-outs. TECL #41098.',
+      description: 'Licensed electrician for Katy, Cinco Ranch and the Energy Corridor: repairs, panel upgrades, generators and commercial build-outs. Emergency line answered 24/7.',
     },
     lead: 'Residential and commercial electrical work across the Katy area, including Cinco Ranch, the Energy Corridor and the I-10 corridor. Emergency line answered 24/7.',
     intro: [
@@ -125,9 +125,11 @@ export const areas = [
   {
     slug: 'humble',
     name: 'Humble',
+    // The page covers these too; they go into its structured data.
+    alsoCovers: ['Kingwood', 'Atascocita'],
     meta: {
       title: 'Electrician in Humble, Kingwood & Atascocita, TX | Iron Volt Electric',
-      description: 'Licensed electrician in Humble, Kingwood and Atascocita. Repairs, panel upgrades, flood-damage assessments, generators and commercial work. Emergency line 24/7. TECL #41098.',
+      description: 'Licensed electrician in Humble, Kingwood and Atascocita: repairs, panel upgrades, flood-damage checks, generators and commercial work. 24/7 emergency line.',
     },
     lead: 'Repairs, panel upgrades, flood-damage assessments, generators and commercial work in Humble, Kingwood and Atascocita.',
     intro: [
@@ -135,7 +137,7 @@ export const areas = [
       'Humble is its own city, Kingwood is part of Houston, and Atascocita is unincorporated, so permits and inspections depend on the address. We confirm which applies before we quote.',
     ],
     focus: [
-      { title: 'After a flood', body: 'Panels, breakers, outlets and wiring that have been submerged generally need replacing, not drying out. Water leaves corrosion and residue inside equipment that can fail later. We assess what was affected and what has to go.', service: 'electrical-repairs' },
+      { title: 'After a flood', body: 'Panels, breakers, outlets and wiring that have been submerged generally need replacing, not drying out. Water leaves corrosion and residue inside equipment that can fail later. We assess what was affected and what has to go.', service: 'storm-damage' },
       { title: 'Storm preparation', body: 'Standby generators, transfer switches and surge protection for homes that can’t sit through another long outage.', service: 'generators' },
       { title: 'Businesses along US 59', body: 'Service upgrades, lighting and equipment hookups for commercial properties around Humble and the airport corridor.', service: 'commercial' },
     ],

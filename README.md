@@ -52,11 +52,13 @@ src/
   lib/html.mjs          Template helper, responsive <picture>, icon set
 scripts/
   build.mjs             Renders the site, writes sitemap.xml and robots.txt, checks links
+  lastmod.json          Content hash and last-changed date per page, for the sitemap (commit it)
   optimize-images.py    Makes WebP derivatives of photos (needs Pillow)
   brand-assets.py       Makes the /branding logo previews, downloads and type crops
                         from the brand folder (needs Pillow)
 css/styles.css          The design system. The only stylesheet.
-js/main.js              Navigation, mobile action bar, lazy reviews embed, chat-widget fix
+js/main.js              Navigation, mobile action bar, lazy reviews embed, chat-widget fix,
+                        deferred chat-widget loading
 js/form.js              Request form validation and submission
 fonts/                  Archivo, self-hosted and subset
 ```
@@ -99,8 +101,8 @@ Keep the two apart: say "Greater Houston" wherever the site talks about who we s
 where the company is, which is only on the About page. Never "Spring and Greater
 Houston". Spring still has its own town page, like the other towns.
 
-The business is new (founded January 2026); the lead electrician's 25 years of field
-experience is not. Always say both, and never let "25 years" read as the age of the
+The business is new (founded January 2026); the lead electrician's 26 years of field
+experience is not. Always say both, and never let "26 years" read as the age of the
 company.
 
 Nothing is published that the business hasn't supplied or that isn't general, verifiable
@@ -213,10 +215,40 @@ reduced motion respected.
 
 ## SEO
 
-Unique title and description per page, canonical URLs, clean extensionless URLs,
-`sitemap.xml` and `robots.txt` generated on build, and JSON-LD for the business
-(`Electrician`, with license credential, hours, service area and profiles), each service
-(`Service`), breadcrumbs and FAQs. No ratings in structured data.
+**Metadata.** Every page has its own title and description. Titles lead with what
+people search for and name the area: `<Service> in Greater Houston | Iron Volt Electric`,
+`Electrician in <Town>, TX | Iron Volt Electric`. Keep titles under about 70 characters
+and descriptions at 160 or fewer; check new pages before publishing. Canonical URLs,
+`robots` with `max-image-preview:large`, Open Graph and Twitter cards (with image alt)
+come from `layout.mjs`. Pages with `noindex: true` (404, `/branding`) carry no canonical
+and stay out of the sitemap; the redirect pages are `noindex` too.
+
+**One page per search intent.** Each service has one page and each core town has one
+page, and they link to each other. Don't add a page that would compete with an existing
+one (a "panel replacement" page next to `/services/panel-upgrades`), and don't add
+town × service pages: they would be the same page with the name swapped.
+
+**Structured data** (`src/schema.mjs`), linked by `@id`:
+- `Electrician` (`/#business`, a LocalBusiness and so an Organization) on every page:
+  license credential, office hours, a 24/7 emergency `ContactPoint`, counties and towns
+  served, an `OfferCatalog` pointing at every service page, profiles. The street address
+  is not published (service-area business), matching the Google Business Profile.
+- `WebSite` (`/#website`) on the home page.
+- `Service` on every service page (`<url>#service`) and on every town page.
+- `BreadcrumbList` on inner pages, `FAQPage` where the page shows FAQs.
+
+No ratings, review counts or prices in structured data.
+
+**Sitemap.** `<lastmod>` is when a page's content last changed, tracked by hash in
+`scripts/lastmod.json`, not the build date. Each URL lists its photos for image search.
+
+**Request links.** A service page's "Request service" buttons go to
+`site.requestHrefFor(formValue)`, e.g. `/contact?service=res-ev#request`, and `js/form.js`
+picks that service in the form. `formValue` must be an option value in the form.
+
+**Speed.** The chat widget loads on first interaction or a few seconds after the page
+has loaded (`<template data-deferred-script>` in `layout.mjs`, loaded by `js/main.js`),
+not during first paint.
 
 ## Images
 
@@ -238,6 +270,6 @@ Two rules for photos:
 ## Third-party services
 
 - Common Ninja reviews embed (`/`, `/reviews`)
-- Rosie chat widget (every page)
+- Rosie chat widget (every page, deferred until interaction or shortly after load)
 - reCAPTCHA v3 (`/contact`, on interaction)
 - Booking endpoint: `https://ironvolt.omnemarchy.online/booking`

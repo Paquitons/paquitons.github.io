@@ -45,7 +45,7 @@ ${pageHeader({
 <section class="section" aria-labelledby="residential-title" id="residential">
   <div class="container">
     <header class="section-head section-head--split">
-      <h2 id="residential-title">For your home</h2>
+      <h2 id="residential-title">Residential electrical services</h2>
       <p class="section-head__aside">From a single dead outlet to a full rewire. If you’re not sure which of these you need, describe the problem when you call and we’ll work it out.</p>
     </header>
     <ul class="service-directory">
@@ -57,7 +57,7 @@ ${pageHeader({
 <section class="section section--alt" aria-labelledby="commercial-title" id="business">
   <div class="container">
     <header class="section-head section-head--split">
-      <h2 id="commercial-title">For your business</h2>
+      <h2 id="commercial-title">Commercial electrical services</h2>
       <p class="section-head__aside">Retail, offices, warehouses and restaurants across ${site.counties}.</p>
     </header>
     <ul class="service-directory">
@@ -78,7 +78,7 @@ ${ctaBand({
     path: '/services/',
     section: 'services',
     title: 'Electrical Services in Greater Houston | Iron Volt Electric',
-    description: 'Electrical repairs, panel upgrades, rewiring, EV chargers, lighting, generators, inspections and commercial electrical work across Greater Houston. Licensed, written estimates.',
+    description: 'Residential and commercial electrical services across Greater Houston: repairs, panel replacement, rewiring, EV chargers, generators, lighting and more.',
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

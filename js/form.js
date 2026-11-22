@@ -87,6 +87,13 @@
 
     form.addEventListener('focusin', loadRecaptcha, { once: true });
 
+    // Arriving from a service page (/contact?service=res-ev#request)
+    // picks that service in the list, so there's one less thing to do.
+    // Only values that exist in the list are accepted.
+    const preset = new URLSearchParams(location.search).get('service');
+    const select = form.elements.serviceType;
+    if (preset && select && [...select.options].some((o) => o.value === preset)) select.value = preset;
+
     const errorFor = (field) => {
       const rule = rules[field.name];
       return rule ? rule(field.value, field) : '';

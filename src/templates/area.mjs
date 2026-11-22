@@ -11,7 +11,7 @@ import { site } from '../site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { areaBySlug } from '../data/areas.mjs';
 import { pageHeader, faqSection, ctaBand, serviceIndex, estimateFaq } from '../components.mjs';
-import { breadcrumbSchema, faqSchema } from '../schema.mjs';
+import { breadcrumbSchema, faqSchema, areaServiceSchema } from '../schema.mjs';
 
 export function areaPage(a) {
   const path = `/service-area/${a.slug}`;
@@ -92,7 +92,7 @@ ${ctaBand({
     section: 'area',
     title: a.meta.title,
     description: a.meta.description,
-    schema: [breadcrumbSchema(crumbs), faqSchema(faq)],
+    schema: [areaServiceSchema(a, path), breadcrumbSchema(crumbs), faqSchema(faq)],
     main,
   };
 }

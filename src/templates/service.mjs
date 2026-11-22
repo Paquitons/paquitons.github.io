@@ -33,6 +33,9 @@ export function servicePage(s) {
     { name: 'Services', href: '/services/' },
     { name: s.name },
   ];
+  // "Request service" buttons on this page open the form with this
+  // service already chosen.
+  const requestHref = site.requestHrefFor(s.formValue);
 
   // Blocks in page order. Each takes the surface class it should
   // sit on; surfaces alternate so two tinted bands never touch,
@@ -53,11 +56,11 @@ export function servicePage(s) {
   ].filter(Boolean);
 
   const main = html`
-${header(s, crumbs)}
+${header(s, crumbs, requestHref)}
 ${blocks.map((render, i) => render(i % 2 ? ' section--alt' : ''))}
 ${s.emergency
     ? ctaBand({ heading: 'Electrical emergency? Call now.', body: 'Tell us what’s happening. We’ll tell you what to switch off and when we can be there.', emergency: true })
-    : ctaBand(s.cta)}
+    : ctaBand({ ...s.cta, requestHref })}
 `;
 
   return {
@@ -65,6 +68,7 @@ ${s.emergency
     section: 'services',
     title: s.meta.title,
     description: s.meta.description,
+    requestHref,
     preload: s.hero.image?.key,
     preloadSizes: '(min-width: 60em) 45vw, 100vw',
     schema: [serviceSchema(s, path), breadcrumbSchema(crumbs), ...(s.faq ? [faqSchema(s.faq)] : [])],
@@ -74,7 +78,7 @@ ${s.emergency
 
 /* ------------------------------------------------------------ */
 
-function header(s, crumbs) {
+function header(s, crumbs, requestHref) {
   if (s.emergency) {
     return pageHeader({
       crumbs,
@@ -92,6 +96,7 @@ function header(s, crumbs) {
     image: s.hero.image,
     portrait: ['foyer-chandelier', 'panel-test-hands'].includes(s.hero.image?.key),
     facts: s.hero.facts,
+    requestHref,
   });
 }
 

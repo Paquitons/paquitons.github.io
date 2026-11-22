@@ -63,8 +63,8 @@ ${estimatePolicy()}
   return {
     path: '/contact',
     section: 'contact',
-    title: 'Contact & Request Service | Iron Volt Electric',
-    description: `Call or text ${site.phone}, email ${site.email}, or request service online. Licensed electrician serving Greater Houston. Written estimates before any work starts.`,
+    title: 'Contact Us & Request an Electrician | Iron Volt Electric',
+    description: `Call or text ${site.phone}, email us, or request service online. Licensed Greater Houston electrician; office Mon–Sat 8am–6pm, emergency line 24/7.`,
     schema: [breadcrumbSchema(crumbs)],
     scripts: [`<script src="${assets.form}" defer></script>`],
     main,

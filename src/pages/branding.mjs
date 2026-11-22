@@ -551,6 +551,10 @@ ${pageHeader({
 
   return {
     path: '/branding',
+    // A reference for designers and printers, not a page anyone searches
+    // for an electrician through. Reachable from the footer, kept out of
+    // the index and the sitemap.
+    noindex: true,
     title: 'Brand Guidelines | Iron Volt Electric',
     description: 'Iron Volt Electric brand guidelines: logo versions and usage, colors, typography, the tagline, website UI and photography.',
     schema: [breadcrumbSchema(crumbs)],
