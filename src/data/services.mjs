@@ -25,10 +25,12 @@ export const services = [
     titleHtml: 'Electrical repair and trouble&shy;shooting',
     group: 'residential',
     anchors: ['repairs'],
+    formValue: 'res-repairs',
+    serviceType: 'Electrical repair and troubleshooting',
     summary: 'Breakers that trip, dead outlets, flickering lights and faults you can’t pin down.',
     meta: {
-      title: 'Electrical Repair & Troubleshooting in Greater Houston | Iron Volt Electric',
-      description: 'Tripping breakers, dead outlets, flickering lights, hot switches. Licensed electricians trace the fault and fix the cause across Greater Houston. (832) 610-8081.',
+      title: 'Electrical Repair & Troubleshooting, Greater Houston | Iron Volt Electric',
+      description: 'Breakers that trip, dead outlets, flickering lights, hot switches. A licensed electrician traces the fault and fixes the cause. Greater Houston, (832) 610-8081.',
     },
     hero: {
       lead: 'Breakers that won’t stay on, outlets that quit, lights that flicker when the AC kicks in. We trace the fault to its cause, fix it to code and tell you what we found.',
@@ -80,7 +82,7 @@ export const services = [
       ],
     },
     faq: [
-      { q: 'Why does my breaker keep tripping?', a: 'Usually one of three things: the circuit is carrying more than it’s rated for, there’s a short circuit, or there’s a ground fault or arc fault that a GFCI or AFCI breaker is detecting. Occasionally the breaker itself is worn out. Each has a different fix, which is why we test before we replace anything.' },
+      { q: 'Why does my breaker keep tripping?', a: 'Usually one of three things: the circuit is carrying more than it’s rated for, there’s a short circuit, or there’s a ground fault or arc fault that a GFCI or AFCI breaker is detecting. Occasionally the breaker itself is worn out. Each has a different fix, which is why we test before we replace anything. If the panel itself is overloaded, a <a href="/services/panel-upgrades">panel upgrade</a> may be the real fix.' },
       { q: 'Is a flickering light dangerous?', a: 'One flickering bulb is usually the bulb, the fixture, or a dimmer that doesn’t suit LED lamps. Lights flickering in several rooms, or dimming when a big appliance starts, can point to a loose connection at the panel or the service, and that should be checked soon. If there’s buzzing, heat or a burning smell with it, call us straight away.' },
       { q: 'How quickly can you come out?', a: 'For sparks, burning smells, heat or a total loss of power, call the emergency line. It’s answered 24/7 and those calls are dispatched as fast as we can get there. Routine repairs are scheduled Monday to Saturday, 8am to 6pm.' },
     ],
@@ -101,10 +103,12 @@ export const services = [
     group: 'residential',
     featured: true,
     anchors: ['panels'],
+    formValue: 'res-panel',
+    serviceType: 'Electrical panel replacement and upgrade',
     summary: 'Service upgrades from 100A to 200A, panel replacement and breaker work.',
     meta: {
-      title: 'Electrical Panel Upgrades in Greater Houston | 100A to 200A | Iron Volt Electric',
-      description: 'Panel replacement and 100A to 200A service upgrades, permitted and inspected. Load calculation first, and a straight answer on whether you need one. TECL #41098.',
+      title: 'Electrical Panel Replacement & Upgrade, Greater Houston | Iron Volt Electric',
+      description: 'Electrical panel replacement and 100A to 200A upgrades in Greater Houston, permitted and inspected. Load calculation first, and a straight answer. TECL #41098.',
     },
     hero: {
       lead: 'Replacing an old or undersized panel, upgrading service from 100 to 200 amps, and breaker work. Load calculation first, permit and utility coordination handled, and inspected before we call it done.',
@@ -140,7 +144,7 @@ export const services = [
         'Individual breaker replacement',
         'AFCI and GFCI breaker upgrades',
         'Sub-panels for additions, garages and shops',
-        'Whole-home surge protection at the panel',
+        '<a href="/services/surge-protection">Whole-home surge protection</a> at the panel',
         'Load calculation and circuit balancing',
         'A clearly labeled panel directory',
       ],
@@ -169,7 +173,7 @@ export const services = [
     },
     faq: [
       { q: 'How long does a panel upgrade take?', a: 'Most residential upgrades from 100A to 200A are done in a single day, usually four to eight hours. You’ll be without power for part of that. We arrange permits in advance so nothing holds up the day itself.' },
-      { q: 'Do I need a bigger panel for an EV charger?', a: 'Not always. A load calculation tells us whether your current service can carry a Level 2 charger. Sometimes a smaller charger circuit or a load-management device avoids an upgrade. Sometimes the panel is genuinely at capacity. We’ll show you the numbers either way.' },
+      { q: 'Do I need a bigger panel for an EV charger?', a: 'Not always. The same load calculation that sizes a panel upgrade shows whether your service can take a Level 2 charger as it is. Our <a href="/services/ev-chargers">EV charger installation</a> page explains how the charger circuit is sized.' },
       { q: 'Will I need a permit?', a: 'Yes. Panel replacements and service upgrades need a permit and an inspection, and we handle both as part of the job. Be wary of anyone offering to skip it: unpermitted work can void your homeowner’s insurance and cause problems when you sell.' },
       { q: 'Can my existing EV charger move to a new panel?', a: 'Usually, yes. We check the circuit requirements during the estimate and tell you if anything needs to change. If you’re adding a charger and upgrading the panel, we plan both as one project, which saves time and money.' },
     ],
@@ -189,10 +193,12 @@ export const services = [
     title: 'House rewiring and wiring repair',
     group: 'residential',
     anchors: ['wiring'],
+    formValue: 'res-wiring',
+    serviceType: 'Rewiring and aluminum wiring repair',
     summary: 'Aluminum wiring, knob-and-tube, damaged and unsafe wiring, partial or full rewires.',
     meta: {
       title: 'Rewiring & Aluminum Wiring Repair in Greater Houston | Iron Volt Electric',
-      description: 'Aluminum branch wiring, knob-and-tube, heat- and rodent-damaged wiring. In-person assessment, options and a written price. Licensed electrician, TECL #41098.',
+      description: 'Aluminum branch wiring, knob-and-tube and damaged wiring in Greater Houston homes. In-person assessment, options and a written price. TECL #41098.',
     },
     hero: {
       lead: 'Aluminum branch wiring, knob-and-tube, cable damaged by heat or rodents, and additions wired by someone who shouldn’t have. We assess what’s in the walls and give you options, from targeted repair to a full rewire.',
@@ -271,10 +277,12 @@ export const services = [
     title: 'EV charger installation',
     group: 'residential',
     anchors: ['ev'],
+    formValue: 'res-ev',
+    serviceType: 'EV charger installation',
     summary: 'Level 2 home charging for every major brand, with the permit handled.',
     meta: {
-      title: 'EV Charger Installation in Greater Houston | Level 2 | Iron Volt Electric',
-      description: 'Level 2 home EV charger installation for Tesla, Ford, GM, Rivian and more. Load calculation, dedicated circuit, permit handled. Licensed electrician serving Greater Houston.',
+      title: 'EV Charger Installation in Greater Houston | Iron Volt Electric',
+      description: 'Level 2 home EV charger installation for Tesla, Ford, GM, Rivian and more. Load calculation, dedicated circuit and permit included. Licensed, Greater Houston.',
     },
     hero: {
       lead: 'Level 2 home charging for Tesla, Ford, GM, Rivian and every other major brand. We check your panel can carry it, run a dedicated circuit to where you park, and handle the permit.',
@@ -288,7 +296,7 @@ export const services = [
       heading: 'Start with the panel, not the charger',
       body: [
         'A Level 2 charger is one of the largest loads a house carries, and it runs for hours at a time. The electrical code treats it as a continuous load, so the circuit is sized at 125% of the charger’s rating: a 48-amp charger needs a 60-amp circuit.',
-        'Whether your panel has room for that is the first question. Many do. Some need a lower charger setting, a load-management device or a panel upgrade. We tell you which after a load calculation, before you buy anything expensive.',
+        'Whether your panel has room for that is the first question. Many do. Some need a lower charger setting, a load-management device or a <a href="/services/panel-upgrades">panel upgrade</a>. We tell you which after a load calculation, before you buy anything expensive.',
       ],
     },
     options: {
@@ -344,10 +352,12 @@ export const services = [
     title: 'Lighting installation, indoors and out',
     group: 'residential',
     anchors: ['lighting'],
+    formValue: 'res-lighting',
+    serviceType: 'Lighting installation',
     summary: 'Recessed lighting, chandeliers, landscape and security lighting, LED retrofits.',
     meta: {
-      title: 'Lighting Installation in Greater Houston | Recessed, Chandeliers, Outdoor | Iron Volt Electric',
-      description: 'Recessed lighting, high-ceiling chandeliers, landscape and security lighting, and LED retrofits across Greater Houston. Licensed electrician, written estimates.',
+      title: 'Lighting Installation in Greater Houston | Iron Volt Electric',
+      description: 'Recessed lighting, chandeliers in two-story entries, landscape and security lighting, and LED retrofits across Greater Houston. Licensed, priced in writing.',
     },
     hero: {
       lead: 'Recessed lighting, chandeliers in two-story entries, fixture swaps, landscape and security lighting, and LED retrofits. Laid out properly, supported properly, and on dimmers that don’t flicker.',
@@ -420,11 +430,13 @@ export const services = [
     name: 'Generators',
     title: 'Standby generators and backup power',
     group: 'residential',
-    anchors: ['generators', 'surge'],
-    summary: 'Standby generators, transfer switches, portable hookups and surge protection.',
+    anchors: ['generators'],
+    formValue: 'res-generator',
+    serviceType: 'Generator installation',
+    summary: 'Standby generators, automatic and manual transfer switches, and portable generator hookups.',
     meta: {
-      title: 'Generator Installation in Greater Houston | Standby & Transfer Switches | Iron Volt Electric',
-      description: 'Whole-home standby generators, automatic and manual transfer switches, portable generator hookups and whole-home surge protection, sized to your load. Greater Houston.',
+      title: 'Generator Installation in Greater Houston | Iron Volt Electric',
+      description: 'Whole-home standby generators, automatic and manual transfer switches and portable generator hookups, sized to your load. Licensed, Greater Houston.',
     },
     hero: {
       lead: 'Whole-home standby generators, automatic and manual transfer switches, portable generator hookups and whole-home surge protection, sized to what you actually need to keep running.',
@@ -452,7 +464,7 @@ export const services = [
       groups: [
         { title: 'Generators', items: ['Whole-home standby generators', 'Portable generator hookups', 'Generac, Kohler, Cummins and Briggs & Stratton', 'Permit coordination'] },
         { title: 'Transfer switches', items: ['Automatic transfer switches', 'Manual transfer switches', 'Generator inlets and interlocks'] },
-        { title: 'Surge protection', items: ['Whole-home surge protection at the panel', 'Point-of-use protection', 'HVAC and appliance protection'] },
+        { title: 'Surge protection', items: ['<a href="/services/surge-protection">Whole-home surge protection</a> at the panel', 'Point-of-use protection', 'HVAC and appliance protection'] },
       ],
     },
     gallery: {
@@ -480,12 +492,192 @@ export const services = [
     faq: [
       { q: 'What size generator does my house need?', a: 'It depends what you want to keep running. A 7 to 12 kW unit covers essentials: lights, fridge and key outlets. A 20 to 22 kW unit runs most of a house including HVAC. Larger homes may need 24 to 30 kW or more. We run a load calculation during the estimate and recommend a size.' },
       { q: 'Automatic or manual transfer switch?', a: 'An automatic transfer switch starts the generator and switches the house over on its own when the power drops, whether you’re home or not. It’s the standard choice for a standby generator. A manual switch or an interlock suits a portable generator, where you start it and switch over yourself.' },
-      { q: 'Do I need surge protection too?', a: 'It’s worth having in any house, and when a service is upgraded or replaced, current code requires it anyway. A whole-home surge protector at the panel protects everything downstream, including the electronics in your HVAC and appliances.' },
+      { q: 'Do I need surge protection too?', a: 'It’s worth having in any house, and when a service is upgraded or replaced, current code requires it anyway. A whole-home surge protector at the panel protects everything downstream, including the electronics in your HVAC and appliances. <a href="/services/surge-protection">More on surge protection</a>.' },
     ],
-    related: ['panel-upgrades', 'emergency', 'installations'],
+    related: ['panel-upgrades', 'surge-protection', 'storm-damage'],
     cta: {
       heading: 'Ready for the next outage?',
       body: 'Book a site visit. We’ll size the generator to your load and put the price in writing.',
+    },
+  },
+
+  /* ----------------------------------------------------------
+     SURGE PROTECTION
+     Was a group on the generators page. It has its own search
+     demand and its own reason to exist (code requires it on new
+     and replaced services), so it has its own page.
+     ---------------------------------------------------------- */
+  {
+    slug: 'surge-protection',
+    name: 'Surge protection',
+    title: 'Whole-home surge protection',
+    group: 'residential',
+    anchors: ['surge'],
+    formValue: 'res-surge',
+    serviceType: 'Whole-home surge protection installation',
+    summary: 'A surge protective device at the panel, with point-of-use protection where it counts.',
+    meta: {
+      title: 'Whole-Home Surge Protection in Greater Houston | Iron Volt Electric',
+      description: 'Whole-home surge protectors installed at your panel to protect HVAC, appliances and electronics. Grounding checked first. Licensed electrician, Greater Houston.',
+    },
+    hero: {
+      lead: 'A surge protective device at your main panel protects everything wired to it: the air conditioning, the water heater and appliance controls, the garage door opener, and the electronics inside all of them. Paired with plug-in protection for TVs and computers, it covers the whole house.',
+      facts: [
+        ['Installed at', 'Your main panel'],
+        ['Protects', 'Every circuit it feeds'],
+        ['Required by code', 'When a home’s service is installed or replaced'],
+      ],
+    },
+    intro: {
+      heading: 'What a surge protector at the panel does',
+      body: [
+        'Surges come from outside the house, from lightning and from switching on the utility’s lines, and from inside it, every time a large motor like the air conditioning compressor starts and stops. The big ones are rare. The small ones happen every day and wear down the circuit boards in appliances, HVAC controls and chargers over time.',
+        'A whole-home surge protective device mounts at the main panel and diverts a surge to ground before it travels out through your circuits. It works with plug-in surge strips, not instead of them: the panel device takes the large surges, and point-of-use protection handles what’s left at sensitive equipment.',
+      ],
+    },
+    signs: {
+      heading: 'Worth adding if',
+      items: [
+        'You’re replacing or upgrading your panel or service',
+        'You’re adding an EV charger, a generator or a new HVAC system',
+        'Electronics, chargers or appliance control boards have failed after a storm',
+        'The house has a variable-speed air conditioner, smart thermostat or other electronics-heavy equipment',
+        'There’s no surge protector at the panel now',
+      ],
+    },
+    options: {
+      heading: 'At the panel and at the outlet',
+      items: [
+        { title: 'Whole-home, at the panel', list: ['Protects hardwired equipment a plug-in strip can’t reach: AC, water heater, garage door opener', 'Takes the large surges that arrive on the utility lines', 'Installed by a licensed electrician'] },
+        { title: 'Point-of-use, at the outlet', list: ['Plug-in protection for TVs, computers and networking gear', 'Handles smaller surges that start inside the house', 'Wears out over time; many show when protection is spent'] },
+      ],
+      note: 'Neither stops a direct lightning strike to the house. Together, they’re the practical protection.',
+    },
+    scope: {
+      heading: 'What we install',
+      items: [
+        'Whole-home surge protection at the main panel',
+        'Surge protection for sub-panels',
+        'HVAC and appliance protection',
+        'Advice on point-of-use protection',
+        'Surge protection added during panel upgrades and generator installs',
+        'A check of the panel’s grounding before install',
+      ],
+    },
+    process: [
+      { title: 'Look at the panel', body: 'We check the panel, its grounding, and where the device can go.' },
+      { title: 'Written price', body: 'You get the price in writing before any work starts.' },
+      { title: 'Install and confirm', body: 'Power is off briefly while the device is connected. We confirm it shows protected before we leave.' },
+    ],
+    safety: {
+      heading: 'Only as good as the grounding',
+      body: [
+        'A surge protector sends the surge to ground, so it depends on the grounding system behind it. Loose or corroded grounding connections are the first thing we look at, and we tell you if they need work.',
+      ],
+    },
+    faq: [
+      { q: 'Is whole-home surge protection worth it?', a: 'For most houses, yes. It protects equipment a plug-in strip can’t reach, like the air conditioning, water heater controls, garage door opener and anything else that’s hardwired, and those are expensive to replace. It doesn’t replace plug-in protection for sensitive electronics; the two work together.' },
+      { q: 'Will it protect against lightning?', a: 'No surge protector stops a direct strike to the house. A whole-home device handles surges that arrive through the utility lines, including those from lightning nearby, which is the far more common case.' },
+      { q: 'Is surge protection required by code?', a: 'Under the current National Electrical Code, a surge protective device is required when a home’s service is installed or replaced, which includes most panel upgrades. Which code edition applies depends on your city or county; we check. Adding one to an existing panel is optional, and worth it.' },
+      { q: 'Can you add it during a panel upgrade or generator install?', a: 'Yes, and that’s the easiest time, because we’re already working at the panel. On a service upgrade, current code requires it anyway. See <a href="/services/panel-upgrades">panel upgrades</a> and <a href="/services/generators">generator installation</a>.' },
+    ],
+    related: ['panel-upgrades', 'generators', 'storm-damage'],
+    cta: {
+      heading: 'Protect what’s wired in',
+      body: 'We’ll look at your panel, check the grounding and put the price in writing.',
+    },
+  },
+
+  /* ----------------------------------------------------------
+     STORM DAMAGE
+     Who owns what is CenterPoint Energy's published guidance:
+     the customer owns the weatherhead and meter box, and needs a
+     licensed electrician to repair them before service is
+     restored. Permits vary by address, so the copy says so.
+     ---------------------------------------------------------- */
+  {
+    slug: 'storm-damage',
+    name: 'Storm damage repair',
+    title: 'Storm damage electrical repair',
+    group: 'residential',
+    anchors: ['storm'],
+    formValue: 'res-repairs',
+    serviceType: 'Storm damage electrical repair',
+    summary: 'Weatherheads, service masts and meter boxes pulled down by wind and trees, repaired so power can be restored.',
+    meta: {
+      title: 'Storm Damage Electrical Repair in Greater Houston | Iron Volt Electric',
+      description: 'Weatherhead, mast or meter box damaged by a storm or tree? A licensed electrician repairs your side so the utility can restore power. Greater Houston, 24/7.',
+    },
+    hero: {
+      lead: 'When wind or a falling limb pulls the service line off your house, the weatherhead, mast and meter box often come with it. Those are yours to have repaired, by a licensed electrician, before the utility will restore power. Our emergency line is answered 24/7.',
+      facts: [
+        ['Yours to repair', 'Weatherhead, mast and meter box'],
+        ['The utility’s', 'The line from the pole'],
+        ['Emergency line', 'Answered 24/7'],
+      ],
+    },
+    steps: {
+      heading: 'First, stay safe',
+      items: [
+        'Stay well clear of any line that’s down or sagging, and assume it’s live. Report it to your utility, and to 911 if it’s on the ground.',
+        'If water has reached the panel or outlets, don’t touch them. Leave the power off until it’s been checked.',
+        'Photograph the damage for your insurance company before anything is moved or repaired.',
+        `Call us on ${site.phone}. We’ll tell you what to do next and when we can be there.`,
+      ],
+    },
+    intro: {
+      heading: 'Whose job is it?',
+      body: [
+        'Across most of Greater Houston, CenterPoint Energy repairs and restores its system up to the point where it connects to your house. The weatherhead, the capped pipe where the overhead line attaches, and the meter box belong to the homeowner, and CenterPoint requires a licensed electrician to repair them before it restores service. If you’re served by another utility or a co-op, we check its requirements before we start.',
+        'Depending on your address, the repair may also need a permit and an inspection before power goes back on. We know which applies, arrange it, and coordinate with the utility so you’re reconnected as soon as the work is approved.',
+      ],
+    },
+    signs: {
+      heading: 'Call us if you see',
+      items: [
+        { text: 'The service line pulled away from the house, or the mast bent or snapped', urgent: 'Stay clear and call the utility too' },
+        'A meter box pulled loose from the wall or hanging by its conduit',
+        'A weatherhead or mast leaning or cracked after high winds',
+        'Power out at your house only, while the neighbors have it',
+        'Lights that flicker or swing between dim and bright after a storm',
+        'Water in the meter box or panel after a storm or flood',
+      ],
+    },
+    scope: {
+      heading: 'What we repair',
+      items: [
+        'Service masts and weatherheads',
+        'Meter boxes (meter bases)',
+        'Service entrance cable and conduit',
+        'Panels and breakers damaged by water or surges',
+        'Grounding and bonding',
+        'Flood-damaged wiring, outlets and equipment',
+        'Exterior lighting, outlets and equipment damaged in the storm',
+        'Permit, inspection and utility coordination',
+      ],
+    },
+    process: [
+      { title: `Call ${site.phone}`, body: 'Day or night. Tell us what you can see from a safe distance, and we’ll tell you what’s safe to do.' },
+      { title: 'Make safe and assess', body: 'We make sure the damaged equipment is de-energized and work out what was damaged, outside and inside the house.' },
+      { title: 'Repair to code', body: 'Damaged equipment is repaired or replaced, with a written price first. Where a permit and inspection are needed, we arrange them.' },
+      { title: 'Reconnection', body: 'We coordinate with your utility so power can be restored once the repair is approved.' },
+    ],
+    safety: {
+      heading: 'If you’re making an insurance claim',
+      body: [
+        `Photograph the damage before anything is moved, and keep the repair invoice. If your insurer needs an itemized evaluation or report from us, that’s a paid professional evaluation under our <a href="${site.estimatePolicyHref}">free estimate policy</a>, with the fee agreed before we start.`,
+      ],
+    },
+    faq: [
+      { q: 'Who pays to fix a meter box pulled off by a storm?', a: 'The meter box and weatherhead belong to the homeowner, so the repair is yours to arrange, with a licensed electrician. Storm and tree damage is often covered by homeowner’s insurance; check your policy. The line from the pole to the house is normally the utility’s to repair.' },
+      { q: 'Why won’t the utility reconnect my power?', a: 'If the weatherhead, mast or meter box on your house is damaged, the utility won’t restore service until a licensed electrician has repaired it, and in many areas until it has passed inspection. Once the repair is approved, the utility reconnects you.' },
+      { q: 'My house flooded. Can I turn the power back on?', a: 'Not until the electrical system has been checked. Panels, breakers, outlets and wiring that sat in water generally need replacing, not drying out. Keep the power off to anything that was submerged, and call us.' },
+      { q: 'Do you work after hurricanes and major storms?', a: `Yes. The emergency line at ${site.phone} is answered 24/7. Anything sparking, burning or live is prioritized.` },
+    ],
+    related: ['emergency', 'generators', 'surge-protection'],
+    cta: {
+      heading: 'Storm damage to your service?',
+      body: 'Call and tell us what you see. We’ll tell you what’s safe, what to switch off and when we can be there.',
     },
   },
 
@@ -498,10 +690,12 @@ export const services = [
     title: 'Outlets, switches, ceiling fans and new circuits',
     group: 'residential',
     anchors: ['outlets', 'fans', 'circuits'],
+    formValue: 'res-outlets',
+    serviceType: 'Electrical installation',
     summary: 'New outlets, GFCI and USB outlets, smart switches, fans and dedicated circuits.',
     meta: {
-      title: 'Outlet, Switch, Ceiling Fan & Dedicated Circuit Installation | Iron Volt Electric',
-      description: 'New outlets, GFCI and USB outlets, smart switches, ceiling fans on fan-rated boxes, 240V outlets and dedicated circuits. Licensed electrician serving Greater Houston.',
+      title: 'Electrical Installation: Outlets, Fans & Circuits | Iron Volt Electric',
+      description: 'New outlets, GFCI and USB outlets, smart switches, ceiling fans on fan-rated boxes, 240V outlets and dedicated circuits. Licensed, serving Greater Houston.',
     },
     hero: {
       lead: 'Outlets where you actually need them, GFCI and USB outlets, smart switches, ceiling fans on a proper fan-rated box, 240-volt outlets, and dedicated circuits for appliances, shops, hot tubs and home offices.',
@@ -550,10 +744,11 @@ export const services = [
     title: 'Electrical inspections and code corrections',
     group: 'both',
     anchors: ['inspections'],
+    serviceType: 'Electrical code corrections',
     summary: 'Home-sale repairs, pre-purchase assessments and failed-inspection corrections.',
     meta: {
-      title: 'Electrical Inspections & Code Corrections | Home Sale Repairs | Iron Volt Electric',
-      description: 'Fixing electrical items on a home inspection report, pre-sale and pre-purchase assessments, failed inspections and GFCI/AFCI compliance. Licensed electrician serving Greater Houston.',
+      title: 'Electrical Inspection Repairs & Code Corrections | Iron Volt Electric',
+      description: 'Electrical items on a home inspection report, pre-sale and pre-purchase assessments, and failed-inspection corrections. Licensed, serving Greater Houston.',
     },
     hero: {
       lead: 'Pre-sale and pre-purchase assessments, electrical items flagged on a home inspection report, preparing for a city inspection, and correcting work that failed one.',
@@ -574,8 +769,8 @@ export const services = [
         'Double-tapped breakers',
         'Open grounds and reversed polarity at outlets',
         'Missing knockout covers or panel screws',
-        'Federal Pacific or Zinsco panels',
-        'Aluminum branch wiring',
+        'Federal Pacific or Zinsco <a href="/services/panel-upgrades">panels</a>',
+        '<a href="/services/rewiring">Aluminum branch wiring</a>',
         'Junction boxes without covers, and exposed splices',
       ],
     },
@@ -626,10 +821,11 @@ export const services = [
     title: 'Commercial electrical contractor',
     group: 'commercial',
     anchors: ['commercial'],
+    serviceType: 'Commercial electrical contracting',
     summary: 'Tenant build-outs, service upgrades, three-phase work, lighting and equipment hookups.',
     meta: {
-      title: 'Commercial Electrician in Greater Houston | Build-Outs, Service, Lighting | Iron Volt Electric',
-      description: 'Commercial electrical for retail, offices, warehouses and restaurants: tenant finish-outs, 200A to 400A and three-phase service, LED lighting and equipment hookups. TECL #41098.',
+      title: 'Commercial Electrician in Greater Houston | Iron Volt Electric',
+      description: 'Commercial electrician for retail, offices, warehouses and restaurants: tenant finish-outs, 200A to 400A and three-phase service, lighting. TECL #41098.',
     },
     hero: {
       lead: 'Retail, offices, warehouses and restaurants across Harris, Montgomery and Fort Bend counties. Tenant finish-outs, service upgrades and three-phase work, lighting, equipment hookups, and repairs that keep downtime short.',
@@ -690,10 +886,11 @@ export const services = [
     group: 'emergency',
     anchors: ['emergency'],
     emergency: true,
+    serviceType: 'Emergency electrical service',
     summary: 'Sparks, burning smells, hot panels, power loss and storm damage. Answered 24/7.',
     meta: {
-      title: '24/7 Emergency Electrician in Greater Houston | (832) 610-8081 | Iron Volt Electric',
-      description: 'Sparks, burning smells, hot outlets, power loss or storm damage? Our emergency line is answered 24/7. Licensed electrician serving Greater Houston. Call (832) 610-8081.',
+      title: '24/7 Emergency Electrician in Greater Houston | Iron Volt Electric',
+      description: 'Sparks, burning smells, hot outlets, power loss or storm damage? Our emergency line is answered 24/7. Licensed Greater Houston electrician. Call (832) 610-8081.',
     },
     hero: {
       lead: 'Sparks, a burning smell, a hot panel, power out to part of the house, or storm damage to your service. Our line is answered 24/7, and emergency calls are dispatched as fast as we can get there.',
@@ -723,7 +920,7 @@ export const services = [
       heading: 'Us, or the utility?',
       body: [
         'If the whole street is dark, it’s the utility. If the wires from the pole to your house are down, call the utility and stay clear.',
-        'Damage on your side of the meter is ours to fix: the service mast, weatherhead, meter base, panel and everything in the house. After a storm, that damage usually has to be repaired before the utility will reconnect you.',
+        'Damage on your side of the meter is ours to fix: the service mast, weatherhead, meter base, panel and everything in the house. After a storm, that damage usually has to be repaired before the utility will reconnect you. <a href="/services/storm-damage">How storm damage repair works</a>.',
       ],
     },
     process: [
@@ -736,7 +933,7 @@ export const services = [
       { q: 'How quickly can you respond to an emergency?', a: 'Our line at (832) 610-8081 is answered 24/7. Sparks, burning smells, complete power loss and breakers that trip repeatedly are prioritized and dispatched as fast as we can get there. Don’t wait on these; they turn into fire hazards quickly.' },
       { q: 'Is a tripped breaker an emergency?', a: 'Usually not. Reset it once. If it trips again straight away, leave it off and call us during business hours, unless there’s heat, a burning smell or sparking. In that case, call the emergency line.' },
     ],
-    related: ['electrical-repairs', 'panel-upgrades', 'generators'],
+    related: ['electrical-repairs', 'storm-damage', 'generators'],
   },
 ];
 

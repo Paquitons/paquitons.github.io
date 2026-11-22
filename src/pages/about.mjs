@@ -99,7 +99,7 @@ ${ctaBand({
   return {
     path: '/about',
     section: 'about',
-    title: 'About | Licensed Electrical Contractor in Greater Houston | Iron Volt Electric',
+    title: 'About Iron Volt Electric | Licensed Electrical Contractor',
     description: `Iron Volt Electric LLC: a licensed electrical contractor serving Greater Houston, based in Spring, TX, with ${site.experience} of field experience. TECL #41098.`,
     schema: [breadcrumbSchema(crumbs)],
     main,

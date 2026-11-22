@@ -78,8 +78,8 @@ ${ctaBand({
   return {
     path: '/service-area/',
     section: 'area',
-    title: 'Service Area | Greater Houston Electrician | Iron Volt Electric',
-    description: 'Iron Volt Electric serves Greater Houston, including The Woodlands, Conroe, Cypress, Katy, Humble, Tomball and Spring. Licensed electrician, TECL #41098.',
+    title: 'Areas We Serve in Greater Houston | Iron Volt Electric',
+    description: 'Licensed electrician serving Greater Houston: Spring, The Woodlands, Conroe, Cypress, Katy, Humble, Tomball and the towns between. Emergency line answered 24/7.',
     schema: [breadcrumbSchema(crumbs)],
     main,
   };

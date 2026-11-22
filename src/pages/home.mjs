@@ -12,18 +12,18 @@ import {
   credentials, faqSection, ctaBand, emergencyPanel,
   reviewsEmbed, profileLinks, townLinks, serviceIndex, estimateFaq,
 } from '../components.mjs';
-import { faqSchema } from '../schema.mjs';
+import { faqSchema, websiteSchema } from '../schema.mjs';
 
 const faq = [
   { q: 'Are you licensed and insured to work in Texas?', a: `Yes. We hold ${site.license.full} and carry general liability insurance and workers’ compensation. You can verify the license at any time through the <a href="${site.license.verifyUrl}" target="_blank" rel="noopener noreferrer">Texas Department of Licensing and Regulation</a>. We provide proof of insurance before any work begins.` },
   estimateFaq,
-  { q: 'How quickly can you respond to an emergency?', a: `Our line at ${site.phone} is answered 24/7. Sparks, burning smells, complete power loss and breakers that trip repeatedly are prioritized and dispatched as fast as we can get there. Don’t wait on these; they turn into fire hazards quickly.` },
+  { q: 'How quickly can you respond to an emergency?', a: `Our line at ${site.phone} is answered 24/7. Sparks, burning smells, complete power loss and breakers that trip repeatedly are prioritized and dispatched as fast as we can get there. <a href="/services/emergency">What counts as an electrical emergency</a>.` },
   { q: 'Do you pull permits?', a: 'Yes. Panel upgrades, new circuits, generator installs and major rewiring normally need permits and inspections, and we handle that as part of the job. Be wary of any electrician offering to skip the permit: unpermitted work can void your homeowner’s insurance and cause problems when you sell.' },
   { q: 'Do I need a panel upgrade?', a: 'Signs point that way if breakers trip often, lights dim when an appliance starts, you have a 100A panel in a modern house, you want to add an EV charger or large appliance, or the panel is 25 years old or more. We’ll assess it and give you an honest answer. Not every house needs one, and we’ll say so if yours doesn’t. <a href="/services/panel-upgrades">More on panel upgrades</a>.' },
   { q: 'Which areas do you serve?', a: 'All of Greater Houston: The Woodlands and Conroe to the north; Spring, Tomball, Cypress and Klein to the northwest; Humble, Kingwood and Atascocita to the northeast; Katy and Cinco Ranch to the west; plus Houston itself, Memorial, Bellaire, Sugar Land and the communities in between. See the <a href="/service-area/">full service area</a>, or call to check your address.' },
 ];
 
-const indexServices = ['electrical-repairs', 'rewiring', 'ev-chargers', 'lighting', 'generators', 'installations', 'inspections']
+const indexServices = ['electrical-repairs', 'rewiring', 'ev-chargers', 'lighting', 'generators', 'surge-protection', 'storm-damage', 'installations', 'inspections']
   .map((slug) => serviceBySlug[slug]);
 
 export function homePage() {
@@ -156,12 +156,12 @@ ${ctaBand({
   return {
     path: '/',
     section: 'home',
-    title: 'Electrician in Greater Houston | Iron Volt Electric',
+    title: 'Licensed Electrician in Greater Houston | Iron Volt Electric',
     ogTitle: 'Iron Volt Electric | Licensed Electrician, Greater Houston',
-    description: `Licensed residential and commercial electrician serving Greater Houston. Repairs, panel upgrades, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
+    description: `Residential and commercial electrician serving Greater Houston. Repairs, panel replacement, EV chargers, generators. 24/7 emergency line: ${site.phone}.`,
     preload: 'panel-test-hands',
     preloadSizes: '(min-width: 60em) 38vw, 100vw',
-    schema: [faqSchema(faq)],
+    schema: [websiteSchema(), faqSchema(faq)],
     main,
   };
 }

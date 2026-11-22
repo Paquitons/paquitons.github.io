@@ -23,6 +23,9 @@ export const site = {
 
   // Every "Request service" button goes here. /booking redirects to it.
   requestHref: '/contact#request',
+  // The same, with a service picked in the form's list. `value` is an
+  // option value from the request form (src/components.mjs).
+  requestHrefFor: (value) => (value ? `/contact?service=${value}#request` : '/contact#request'),
   // Where the free estimate policy lives. Linked from the request form,
   // the estimate FAQs, the inspections page and the footer.
   estimatePolicyHref: '/contact#estimate-policy',
@@ -43,13 +46,14 @@ export const site = {
   },
 
   // The company is new; the experience behind it is not. Always say
-  // both, in this order, so nobody reads "25 years" as the age of the LLC.
+  // both, in this order, so nobody reads "26 years" as the age of the LLC.
   founded: '2026-01-12',
   foundedLabel: 'January 2026',
-  experience: '25 years',
+  experience: '26 years',
 
   base: 'Spring, TX',
   counties: 'Harris, Montgomery and Fort Bend counties',
+  countyList: ['Harris County', 'Montgomery County', 'Fort Bend County'],
 
   reviewUrl: 'https://g.page/r/CXlaNGHGERuGEBM/review',
   social: [

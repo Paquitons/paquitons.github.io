@@ -10,6 +10,7 @@
    3. Lazy third-party embeds (reviews)
    4. Chat widget position
    5. Copy buttons (brand guidelines)
+   6. Deferred third-party scripts (chat widget)
 
    Deliberately not here: scroll-reveal animation, carousels,
    header effects on scroll.
@@ -206,4 +207,38 @@
     }
     setTimeout(() => { btn.textContent = label; }, 1500);
   });
+
+  /* ---------------------------------------------------------
+     6. DEFERRED SCRIPTS
+     <template data-deferred-script="url" data-…> becomes a
+     <script> with the same data attributes on the visitor's first
+     interaction, or a few seconds after the page has loaded,
+     whichever comes first. The chat widget is the heaviest thing
+     on most pages; keeping it out of the first load protects
+     Largest Contentful Paint and Interaction to Next Paint, and
+     nobody opens a chat in the first second anyway.
+     --------------------------------------------------------- */
+  const deferred = document.querySelectorAll('template[data-deferred-script]');
+  if (deferred.length) {
+    let loaded = false;
+    const events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+    const load = () => {
+      if (loaded) return;
+      loaded = true;
+      events.forEach((type) => window.removeEventListener(type, load));
+      deferred.forEach((tpl) => {
+        const s = document.createElement('script');
+        Object.entries(tpl.dataset).forEach(([key, value]) => {
+          if (key !== 'deferredScript') s.dataset[key] = value;
+        });
+        s.src = tpl.dataset.deferredScript;
+        s.async = true;
+        document.body.appendChild(s);
+      });
+    };
+    events.forEach((type) => window.addEventListener(type, load, { once: true, passive: true }));
+    const later = () => setTimeout(() => ('requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 2000 }) : load()), 3500);
+    if (document.readyState === 'complete') later();
+    else window.addEventListener('load', later, { once: true });
+  }
 })();

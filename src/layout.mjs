@@ -11,6 +11,14 @@ import { residentialServices, commercialService, emergencyService, serviceBySlug
 import { areas } from './data/areas.mjs';
 import { localBusinessSchema } from './schema.mjs';
 
+/* The social share card: a real job photo, 1200×630. */
+const DEFAULT_OG_IMAGE = {
+  src: '/images/og-iron-volt-electric.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'A standby generator installed beside a brick house, below the meter and transfer switch',
+};
+
 /**
  * @param {object} page
  * @param {string} page.path        Site-relative URL, e.g. '/services/panel-upgrades'
@@ -24,11 +32,14 @@ import { localBusinessSchema } from './schema.mjs';
  * @param {string[]} [page.scripts] Extra script tags
  * @param {boolean} [page.noindex]
  * @param {string} [page.canonical] Override canonical path
+ * @param {object} [page.ogImage]   { src, width, height, alt } social card; defaults to the site card
+ * @param {string} [page.requestHref] Where this page's "Request service" buttons go
  * @param {object} assets           { css, js } cache-busted URLs
  */
 export function layout(page, assets) {
   const canonical = site.url + (page.canonical ?? page.path);
   const schema = [localBusinessSchema(), ...(page.schema ?? [])];
+  const og = page.ogImage ?? DEFAULT_OG_IMAGE;
 
   return html`<!DOCTYPE html>
 <html lang="en-US">
@@ -37,7 +48,10 @@ export function layout(page, assets) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.description)}">
-${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
+${page.noindex
+    ? '<meta name="robots" content="noindex, follow">'
+    : `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="${canonical}">`}
 <meta name="theme-color" content="#060e1a">
 <meta name="color-scheme" content="light only">
 <meta property="og:type" content="website">
@@ -45,11 +59,16 @@ ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonica
 <meta property="og:title" content="${esc(page.ogTitle ?? page.title)}">
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${canonical}">
-<meta property="og:image" content="${site.url}/images/og-iron-volt-electric.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="${site.url}${og.src}">
+<meta property="og:image:width" content="${og.width}">
+<meta property="og:image:height" content="${og.height}">
+<meta property="og:image:alt" content="${esc(og.alt)}">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(page.ogTitle ?? page.title)}">
+<meta name="twitter:description" content="${esc(page.description)}">
+<meta name="twitter:image" content="${site.url}${og.src}">
+<meta name="twitter:image:alt" content="${esc(og.alt)}">
 <link rel="icon" href="/images/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/images/IronVoltElectricBadgeBlueBGSmaller.jpg">
 <link rel="preload" href="/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -68,7 +87,7 @@ ${footer()}
 ${mobileActions(page)}
 <script src="${assets.js}" defer></script>
 ${(page.scripts ?? []).join('\n')}
-<script src="https://widget.heyrosie.com/widget.js" async data-rosie-business-id="${site.embeds.rosieBusinessId}"></script>
+<template data-deferred-script="https://widget.heyrosie.com/widget.js" data-rosie-business-id="${site.embeds.rosieBusinessId}"></template>
 </body>
 </html>
 `;
@@ -141,7 +160,7 @@ function header(page) {
       </ul>
       <div class="site-nav__actions">
         <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-        <a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>
+        <a class="button button--outline-inverse button--lg" href="${page.requestHref ?? site.requestHref}">Request service</a>
       </div>
     </nav>
 
@@ -153,7 +172,7 @@ function header(page) {
       </span>
       <span class="header-call__short">Call</span>
     </a>
-    <a class="button button--primary header-cta" href="${site.requestHref}">Request service</a>
+    <a class="button button--primary header-cta" href="${page.requestHref ?? site.requestHref}">Request service</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       ${icon('menu')}<span class="nav-toggle__label">Menu</span>
     </button>
@@ -248,7 +267,7 @@ function mobileActions(page) {
   const onForm = page.path === '/contact';
   return html`<div class="mobile-actions${onForm ? ' mobile-actions--single' : ''}" data-mobile-actions>
   <a class="button button--primary" href="${site.phoneHref}">${icon('phone')}Call now</a>
-  ${!onForm && html`<a class="button button--outline-inverse" href="${site.requestHref}">Request service</a>`}
+  ${!onForm && html`<a class="button button--outline-inverse" href="${page.requestHref ?? site.requestHref}">Request service</a>`}
 </div>`;
 }
 

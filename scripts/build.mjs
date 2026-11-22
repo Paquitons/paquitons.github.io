@@ -95,12 +95,40 @@ write('booking.html', redirect(site.requestHref));
 
 /* ------------------------------------------------------------
    Sitemap and robots
+
+   <lastmod> is the date a page's content last changed, not the
+   date of the build: search engines ignore a lastmod that is
+   always "today". scripts/lastmod.json keeps a hash of each
+   page's title, description and <main>; the date moves only when
+   that hash does. Commit the file with the pages.
+
+   Each URL lists the photos on that page (the largest WebP), so
+   job photos can be found through image search.
    ------------------------------------------------------------ */
 const today = new Date().toISOString().slice(0, 10);
 const indexable = pages.filter((p) => !p.noindex);
+const LASTMOD_FILE = join(ROOT, 'scripts/lastmod.json');
+const previous = existsSync(LASTMOD_FILE) ? JSON.parse(readFileSync(LASTMOD_FILE, 'utf8')) : {};
+const lastmod = {};
+for (const p of indexable) {
+  const hash = createHash('sha256').update(`${p.title}\n${p.description}\n${p.main}`).digest('hex').slice(0, 16);
+  const before = previous[p.path];
+  lastmod[p.path] = before && before.hash === hash ? before : { hash, date: today };
+}
+writeFileSync(LASTMOD_FILE, `${JSON.stringify(lastmod, null, 2)}\n`);
+
+function pageImages(p) {
+  const urls = [...p.main.matchAll(/<source type="image\/webp" srcset="([^"]+)"/g)]
+    .map(([, set]) => set.split(',').map((part) => part.trim().split(/\s+/)[0]).pop());
+  return [...new Set(urls)];
+}
+
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${indexable.map((p) => {
+  const images = pageImages(p).map((src) => `\n    <image:image><image:loc>${site.url}${src}</image:loc></image:image>`).join('');
+  return `  <url>\n    <loc>${site.url}${p.path}</loc>\n    <lastmod>${lastmod[p.path].date}</lastmod>${images}\n  </url>`;
+}).join('\n')}
 </urlset>
 `);
 write('robots.txt', `User-agent: *

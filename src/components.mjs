@@ -12,7 +12,7 @@ import { areas } from './data/areas.mjs';
    PAGE HEADER
    variant: 'plain' | 'media' | 'emergency' | 'compact'
    ------------------------------------------------------------ */
-export function pageHeader({ crumbs, title, lead, actions = true, image, media, portrait = false, facts, variant, children = '' }) {
+export function pageHeader({ crumbs, title, lead, actions = true, image, media, portrait = false, facts, variant, children = '', requestHref = site.requestHref }) {
   const hasMedia = Boolean(image || media);
   const classes = ['page-header', 'surface-dark'];
   if (hasMedia) classes.push('page-header--media');
@@ -29,7 +29,7 @@ export function pageHeader({ crumbs, title, lead, actions = true, image, media, 
         ${children}
         ${actions === true && html`<div class="button-row button-row--stack-sm">
           <a class="button button--primary button--lg" href="${site.phoneHref}">${icon('phone')}Call ${site.phone}</a>
-          <a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>
+          <a class="button button--outline-inverse button--lg" href="${requestHref}">Request service</a>
         </div>`}
         ${typeof actions === 'string' && actions}
       </div>
@@ -152,14 +152,14 @@ export function emergencyPanel({ id, alt = false } = {}) {
 /* ------------------------------------------------------------
    CTA BAND
    ------------------------------------------------------------ */
-export function ctaBand({ heading, body, emergency = false, email = false } = {}) {
+export function ctaBand({ heading, body, emergency = false, email = false, requestHref = site.requestHref } = {}) {
   // Reason on the left; the two ways to act on the right, as one
   // button row, the same pair the hero and page headers use.
   const second = emergency
     ? ''
     : email
       ? html`<a class="button button--outline-inverse button--lg" href="mailto:${site.email}">${icon('mail')}Email us</a>`
-      : html`<a class="button button--outline-inverse button--lg" href="${site.requestHref}">Request service</a>`;
+      : html`<a class="button button--outline-inverse button--lg" href="${requestHref}">Request service</a>`;
   return html`<section class="cta-band surface-dark${emergency ? ' cta-band--emergency' : ''}" aria-labelledby="cta-title">
   <div class="container cta-band__inner">
     <div class="cta-band__body">
